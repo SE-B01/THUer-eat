@@ -1,0 +1,12 @@
+<!--pages/addword/addword.wxml-->
+<view style="text-align: center;margin-top: 20rpx;">
+  <text style="font-size: 20px;">请输入需要添加的一对近义词</text>
+</view>
+
+<textarea placeholder="加入的新词语1" placeholder-style="color: #949494" class="message" bindinput="bindTextArea1"></textarea>
+
+<textarea placeholder="加入的新词语2" placeholder-style="color: #949494" class="message" bindinput="bindTextArea2"></textarea>
+
+<view class="line-button">
+  <button class="submit" style="width:90%; height:100rpx; line-height:100rpx; margin-left:5%; margin-right:5%;padding:0rpx;" bindtap="submitClick">提交</button>
+</view>

@@ -1,0 +1,32 @@
+<!--pages/management/management.wxml-->
+
+<view class="feedback-wrapper" wx:for="{{feedbacks}}" wx:for-item="itemName" wx:for-index="idx">
+  <view class="item-title">{{itemName.content}}</view>
+  <view class="item-title">微信号：{{itemName.wechat_account}}</view>
+  <view class="item-title">邮箱：{{itemName.email}}</view>
+  <image wx:if="{{itemName.picture_url != ''}}" class="item-picture" mode="widthFix" src="{{itemName.picture_url}}"></image>
+  <view class="info-line">
+    <block wx:if="{{itemName.type == 1}}">
+      <view class="info-type" style="background-color: #1dd1a1;">增加词语</view>
+    </block>
+    <block wx:if="{{itemName.type == 2}}">
+      <view class="info-type" style="background-color: #ff9f43;">加入我们</view>
+    </block>
+    <block wx:if="{{itemName.type == 3}}">
+      <view class="info-type" style="background-color: #f368e0;">商务合作</view>
+    </block>
+    <block wx:if="{{itemName.type == 4}}">
+      <view class="info-type" style="background-color: #48dbfb;">其他</view>
+    </block>
+    <block wx:if="{{itemName.type == 5}}">
+      <view class="info-type" style="background-color: #5f27cd;">BUG反馈</view>
+    </block>
+    <view class="info-time">{{itemName.creat_date_time}}</view>
+
+    <view class="info-type" style="background-color: #32d11d;" bindtap="reply" id="{{itemName._id}}" data-idx="{{idx}}" data-openid = "{{itemName.openid}}">回复</view>
+
+    <view class="info-type" style="background-color: #ee5253;" bindtap="del" id="{{itemName._id}}" data-idx="{{idx}}">删除</view>
+  </view>
+</view>
+
+<view style="height: 150rpx;"></view>
