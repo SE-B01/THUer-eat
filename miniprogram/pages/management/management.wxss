@@ -1,0 +1,62 @@
+/* pages/management/management.wxss */
+
+page{
+  background-color: #EAF0FB;
+}
+
+.feedback-wrapper{
+  width: 90%;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 4rpx solid #437dd4;
+  border-radius: 10rpx;
+  background-color: white;
+  align-items: center;
+}
+
+.item-title{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 20rpx;
+  font-size: 35rpx;
+}
+
+.item-picture{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10rpx;
+  margin-bottom: 35rpx;
+}
+
+.info-line{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info-type{
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: white;
+}
+
+.info-time{
+  font-size: 30rpx;
+  color: gray;
+  margin-right: 20rpx;
+}
+
+.footer{
+  position: absolute;
+  bottom:0;
+}
