@@ -1,0 +1,74 @@
+/* pages/feedback/feedback.wxss */
+
+page{
+  background-color: white;
+}
+
+.message{
+  width: 82%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 40rpx;
+  padding: 4%;
+  background-color: #eaf0fb;
+  border-radius: 20rpx;
+  font-size: 34rpx;
+  line-height: 50rpx;
+}
+
+.line-block{
+  width: 90%;
+  margin-top: 30rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #eaf0fb;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.line-txt{
+  width: 26%;
+  margin-left: 4%;
+  height: 100rpx;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  color: #949494;
+}
+
+.line-select{
+  width: 66%;
+  margin-right: 4%;
+  height: 100rpx;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.upload-txt{
+  width: 100%;
+  line-height: 100rpx;
+  text-align: center;
+  color: #437dd4;
+  font-size: 34rpx;
+}
+
+.upload-image{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.line-button{
+  margin-top: 40rpx;
+  padding-bottom: 80rpx;
+}
+
+.submit{
+  background-color: #437dd4;
+  color: white;
+  font-size: 33rpx;
+  border-radius: 20rpx;
+}
