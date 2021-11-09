@@ -1,0 +1,70 @@
+<!--pages/comments/comments.wxml-->
+<view style="width: 750rpx; height: 102rpx; display: block; box-sizing: border-box">
+    <view class="solid-bottom text-xl padding">
+        <text class="text-black text-bold">{{canteen.name}}</text>
+      </view>
+    <button class="cu-btn bg-grey " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 395rpx; top: -91rpx; position: relative">保存</button>
+    <button class="cu-btn bg-mauve "  style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 394rpx; top: -92rpx; position: relative">发表</button>
+</view>
+<view class="padding bg-white solid-bottom" style="width: 750rpx; height: 102rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx">
+    <view class="solid-bottom text-lg padding" style="position: relative; left: -2rpx; top: -22rpx">
+        <text class="text-black text-bold">总体   </text>
+        <text class="cuIcon-favorfill lg text-{{starlist[0]}}"></text>
+        <text class="cuIcon-favorfill lg text-{{starlist[1]}}"></text>
+        <text class="cuIcon-favorfill lg text-{{starlist[2]}}"></text>
+        <text class="cuIcon-favorfill lg text-{{starlist[3]}}"></text>
+        <text class="cuIcon-favorfill lg text-{{starlist[4]}}"></text>
+      </view>
+</view>
+<view class="cu-form-group margin-top" style="position: relative; left: 0rpx; top: -2rpx">
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="同学们可能关注的问题：食堂环境、食堂整体菜品评价、特定菜品评价..." style="width: 693rpx; height: 377rpx; display: block; box-sizing: border-box; left: -2rpx; top: 0rpx; position: relative"></textarea>
+        <view class="cu-form-group margin-top" style="position: relative; left: 20rpx; top: 152rpx">
+			<view class="title">匿名评价</view>
+			<radio checked></radio>
+		</view>
+	</view>
+    <view class="cu-bar bg-white margin-top" style="position: relative; left: 0rpx; top: -6rpx">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+	<view class="cu-form-group" style="position: relative; left: 0rpx; top: -6rpx">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+
+<view class="cu-bar bg-white solid-bottom" style="position: relative; left: 0rpx; top: 24rpx">
+    <view class="action">推荐菜品</view>
+</view>
+<view class="padding bg-white solid-bottom" style="position: relative; left: 0rpx; top: 24rpx">
+  <view class="cu-tag round" wx:for="{{canteen.dish}}">{{item}}</view>
+  <view class="cu-tag round">自定义</view>
+</view>
+
+<view class="padding bg-white solid-bottom" style="position: relative; left: 0rpx; top: 45rpx">
+    <view class="cu-form-group">
+		<view class="title">人均消费</view>
+		<input></input>
+		<text >￥</text>
+	</view>
+    <view class="cu-form-group margin-top">
+		<view class="title">普通选择</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
+			<view class="picker">
+				{{index?picker[index]:'请选择支付方式'}}
+			</view>
+		</picker>
+	</view>
+</view>
