@@ -1,0 +1,25 @@
+/* pages/home/index.wxss */
+.canteen_wrapper{
+  background-color: white;
+
+}
+.canteen_info{
+  display: flex;
+  flex-direction: row;
+  border:2rpx solid rgb(65, 65, 65);
+}
+.canteen_text{
+  margin: 20rpx;
+}
+
+.canteen_picture{
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 30rpx;
+  margin: 20rpx;
+}
+
+.canteen_name{
+  color: black;
+  font-size: 40rpx;
+}
