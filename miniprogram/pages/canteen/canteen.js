@@ -1,5 +1,9 @@
 Page({
   data: {
+    TabCur: 0,
+    scrollLeft:0,
+    TabName: ["评价","菜品","问大家"],
+    TabNumber: [32, 20, 15],
     cardCur: 0,
     buttonColor: {
       title: '木槿',
@@ -42,6 +46,26 @@ Page({
       type: 'image',
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }],
+    ColorList: [{
+      title: '人较少',
+      name: 'red',
+      color: '#e54d42'
+    },
+    {
+      title: '口味不错',
+      name: 'orange',
+      color: '#f37b1d'
+    },
+    {
+      title: '食材新鲜',
+      name: 'yellow',
+      color: '#fbbd08'
+    },
+    {
+      title: '上菜快',
+      name: 'olive',
+      color: '#8dc63f'
+    }]
   },
   onLoad() {
 
@@ -52,4 +76,10 @@ Page({
       cardCur: e.detail.current
     })
   },
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id-1)*60
+    })
+  }
 })
