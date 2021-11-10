@@ -36,7 +36,7 @@
       <text class="cuIcon-title text-blue"></text>精选评价
     </view>
   </view>
-  <view class="cu-list menu-avatar comment">
+  <view class="cu-list menu-avatar">
     <view class="cu-item">
       <view class="cu-avatar round lg"
         style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
