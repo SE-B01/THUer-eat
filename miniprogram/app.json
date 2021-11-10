@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/canteen",
+    "pages/canteen/canteen",
     "pages/index/index",
     "pages/management/management",
     "pages/feedback/feedback",
