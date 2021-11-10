@@ -1,4 +1,4 @@
-<!--pages/canteen.wxml-->
+<!--pages/canteen/canteen.wxml-->
 <view class="padding bg-white solid-bottom">
 <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
@@ -50,7 +50,7 @@
     {{TabName[index] + "(" + TabNumber[index] + ")"}}
     </view>
   </scroll-view>
-  <view class="cu-list menu-avatar comment" wx:if="{{TabCur==0}}">
+  <view class="cu-list menu-avatar" wx:if="{{TabCur==0}}">
     <view class="cu-item">
       <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
       <view class="content">
