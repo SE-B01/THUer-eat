@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/dishes/dishes",
     "pages/canteen/canteen",
     "pages/index/index",
     "pages/management/management",
