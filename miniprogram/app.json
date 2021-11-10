@@ -8,6 +8,7 @@
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
+    "pages/mine/mine"
     "pages/map/map"
   ],
   "window": {
