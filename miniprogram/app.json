@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/canteen",
+    "pages/canteen/canteen",
+    "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
     "pages/feedback/feedback",
