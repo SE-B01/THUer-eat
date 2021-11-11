@@ -8,10 +8,11 @@
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
+    "pages/map",
     "pages/map/map",
-    "pages/home/index",
-    "pages/mine/mine"
-
+    "pages/mine/mine",
+    "pages/infos/infos",
+    "pages/home/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
