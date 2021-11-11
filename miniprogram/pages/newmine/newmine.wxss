@@ -1,0 +1,4 @@
+/* pages/mine/mine.wxss */
+page{
+    padding-top: 90rpx;
+  }
