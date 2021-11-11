@@ -8,7 +8,7 @@
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
-    "pages/mine/mine"
+    "pages/mine/mine",
     "pages/comments/comments",
     "pages/map/map"
   ],
