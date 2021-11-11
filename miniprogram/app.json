@@ -30,26 +30,26 @@
     "custom": true,
     "list": [
       {
-        "selectedIconPath": "images/host_on.png",
-        "iconPath": "images/host.png",
+        "selectedIconPath": "images/icons/host_on.png",
+        "iconPath": "images/icons/host.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
-        "selectedIconPath": "images/feedback_on.png",
-        "iconPath": "images/feedback.png",
+        "selectedIconPath": "images/icons/feedback_on.png",
+        "iconPath": "images/icons/feedback.png",
         "pagePath": "pages/feedback/feedback",
         "text": "反馈"
       },
       {
-        "selectedIconPath": "images/manage_on.png",
-        "iconPath": "images/manage.png",
+        "selectedIconPath": "images/icons/manage_on.png",
+        "iconPath": "images/icons/manage.png",
         "pagePath": "pages/management/management",
         "text": "反馈处理"
       },
       {
-        "selectedIconPath": "images/addword_on.png",
-        "iconPath": "images/addword.png",
+        "selectedIconPath": "images/icons/addword_on.png",
+        "iconPath": "images/icons/addword.png",
         "pagePath": "pages/addword/addword",
         "text": "词库管理"
       }

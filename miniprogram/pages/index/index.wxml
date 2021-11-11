@@ -5,7 +5,7 @@
   <!-- <button style="width:500rpx; height:180rpx; margin:0rpx; padding:0rpx;" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" hover-class="none"> -->
 
 <view wx:if="{{userInfo.nickName == undefined}}" class="userinfo">
-  <image class="userinfo-avatar" src="/images/user-unlogin.png" mode="scaleToFill"></image>
+  <image class="userinfo-avatar" src="/images/icons/user-unlogin.png" mode="scaleToFill"></image>
   <button style="background: #FFFFFF;text-align: left;" bindtap="getUserProfile" hover-class="none">点击登录</button>  
 </view>
 
@@ -22,7 +22,7 @@
 
 <view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
   <input class="search_input" placeholder="输入词语.." bindinput="bindKeyInput" value="{{search_word}}"></input>
-  <image class="search_img" src="/images/search.png" bindtap="search"></image>
+  <image class="search_img" src="/images/icons/search.png" bindtap="search"></image>
 </view>
 
 <view class="area">
@@ -34,7 +34,7 @@
       <view class="word-txt">{{itemName.word}}</view>
       <view class="word-hot">{{itemName.hot}}</view>
     </view>
-    <image class="word-img" src="/images/hot.png"></image>
+    <image class="word-img" src="/images/icons/hot.png"></image>
   </view>
 </view>
 

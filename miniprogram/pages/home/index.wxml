@@ -35,16 +35,50 @@
   </view>
 </scroll-view>
 
-<view class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
+<view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
   <view class = "canteen_info">
     <image src="{{itemName.canteen_picture}}" class="canteen_picture"></image>
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.canteen_name}}</view>
-      <view class="canteen_rank">{{itemName.canteen_rank}}</view>
-      <view class="canteen_cost">{{itemName.canteen_cost}}</view>
+      <view style="display: flex;flex-direction: row;">
+        <view class="canteen_rank">{{itemName.canteen_rank}}</view>
+        <view class="canteen_cost">￥{{itemName.canteen_cost}}/人</view>
+      </view>
       <view class="canteen_opentime">{{itemName.canteen_opentime}}</view>
       <view class="canteen_location">{{itemName.canteen_location}}</view>
-      <view class="canteen_tag">{{itemName.canteen_evaluation}}</view>
+      <view class="canteen_tags">
+        <view class="cu-tag round" wx:for="{{itemName.canteen_tag}}">
+        {{item}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="dish_wrapper" wx:if="{{TabCur==1}}">
+  <view>
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class = "dish_info" wx:if="{{idx%2==0}}">
+      <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture"></image>
+      <view class="dish_text">
+        <view style="display: flex;flex-direction: row;justify-content:space-between;">
+          <view class="dish_name">{{itemName.dish_name}}</view>
+          <view class="dish_cost">￥{{itemName.dish_cost}}</view>
+        </view>
+        <view class="dish_comment">"{{itemName.dish_comment}}"</view>
+        <text class="cuIcon-shopfill">{{itemName.dish_canteen}}</text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class = "dish_info" wx:if="{{idx%2==1}}">
+      <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture"></image>
+      <view class="dish_text">
+        <view style="display: flex;flex-direction: row;justify-content:space-between;">
+          <view class="dish_name">{{itemName.dish_name}}</view>
+          <view class="dish_cost">￥{{itemName.dish_cost}}</view>
+        </view>
+        <view class="dish_comment">"{{itemName.dish_comment}}"</view>
+        <text class="cuIcon-shopfill">{{itemName.dish_canteen}}</text>
+      </view>
     </view>
   </view>
 </view>
