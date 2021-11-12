@@ -11,11 +11,11 @@
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/comments/comments",
-    
     "pages/infos/infos",
     "pages/newinfos/newinfos",
     "pages/newmine/newmine",
     "pages/home/index"
+
   ],
    
  "permission": {
