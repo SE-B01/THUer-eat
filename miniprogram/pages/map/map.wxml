@@ -1,49 +1,52 @@
 <!--pages/map/map.wxml-->
 <view class="cu-bar search bg-purple">
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索餐厅名字" confirm-type="search" style="width: 468rpx; height: 64rpx; display: block; box-sizing: border-box"></input>
-    </view>
-    <view class="action">
-      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
-    </view>
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索餐厅名字" confirm-type="search"
+      style="width: 468rpx; height: 64rpx; display: block; box-sizing: border-box"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-mauve shadow-blur round"
+      style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
+  </view>
 </view>
 <view class="cu-bar search bg-white">
   <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
     <text class="name">{{item.title}}</text>
     <text class="cuIcon-unfold"></text>
   </view> -->
-  <view class="cu-form-group" style="width: 204rpx; height: 102rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
-		    <view class="picker">
-			    {{index?paymethod[index]:'支付方式'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
-		    <view class="picker">
-			    {{index?cost[index]:'人均消费'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
-		    <view class="picker">
-			    {{index?cost[index]:'更多筛选'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
-		    <view class="picker">
-			    {{index?cost[index]:'附近食堂'}}
-		    </view>
-	    </picker>
-    </view>
+  <view class="cu-form-group"
+    style="width: 204rpx; height: 102rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
+      <view class="picker">
+        {{index?paymethod[index]:'支付方式'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}" style="position: relative; left: 0rpx; top: 6rpx">
+      <view class="picker">
+        {{index?cost[index]:'人均消费'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+      <view class="picker">
+        {{index?cost[index]:'更多筛选'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+      <view class="picker">
+        {{index?cost[index]:'附近食堂'}}
+      </view>
+    </picker>
+  </view>
 </view>
 <view class="map_container">
-  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}'" bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
-    show-location></map>
+    <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}"
+    controls="{{controls}}" bindcontroltap="bindcontroltap" polyline="{{polyline}}" circles="{{circles}}" bindmarkertap="bindmarkertap" bindcontroltap="bindcontroltap" show-location style="position: relative; left: 35rpx; top: 278rpx">
+    </map>
 </view>
- 
