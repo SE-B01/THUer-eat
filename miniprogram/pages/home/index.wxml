@@ -3,26 +3,28 @@
 <view class="cu-bar search bg-white" style="background-color: #7B10A8;">
   <view class="search-form round" style="width: 634rpx; height: 64rpx; display: flex; box-sizing: border-box">
 
-      <input type="text" placeholder="   搜索食堂或菜品" confirm-type="search">
-      </input>
-      <view class="cuIcon-search" style="font-size: 80; text-align: right; width: auto; height: 64rpx; display: block; box-sizing: border-box; position: relative; left: -15rpx; top: 0rpx"></view>
+    <input type="text" placeholder="   搜索食堂或菜品" confirm-type="search">
+    </input>
+    <view class="cuIcon-search"
+      style="font-size: 80; text-align: right; width: auto; height: 64rpx; display: block; box-sizing: border-box; position: relative; left: -15rpx; top: 0rpx">
+    </view>
   </view>
   <view class="action">
-      <view class="cuIcon-locationfill" style="color: white;text-align: end;font-size:medium;">地图</view>
+    <view class="cuIcon-locationfill" style="color: white;text-align: end;font-size:medium;">地图</view>
   </view>
 
 </view>
-<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}" style="width: 750rpx; height: 180rpx; display: flex; box-sizing: border-box">
+<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}"
+  style="width: 750rpx; height: 180rpx; display: flex; box-sizing: border-box">
   <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
     <view class="cuIcon-{{item.icon}} text-{{item.color}}">
       <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-          <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+        <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
       </view>
     </view>
     <text>{{item.name}}</text>
   </view>
 </view>
-
 
 <scroll-view scroll-x class="nav">
   <view class="flex text-center">
@@ -35,8 +37,14 @@
   </view>
 </scroll-view>
 
+
+<dropdownmenu dropDownMenuTitle='{{dropDownMenuTitle}}' dropDownMenuFourthData='{{dropDownMenuFourthData}}' dropDownMenuFirstData='{{dropDownMenuFirstData}}'
+dropDownMenuSecondData='{{dropDownMenuSecondData}}' 
+dropDownMenuThirdData='{{dropDownMenuThirdData}}' bind:selectedItem='selectedFourth'></dropdownmenu>
+
+
 <view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
-  <view class = "canteen_info">
+  <view class="canteen_info">
     <image src="{{itemName.canteen_picture}}" class="canteen_picture"></image>
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.canteen_name}}</view>
@@ -48,7 +56,7 @@
       <view class="canteen_location">{{itemName.canteen_location}}</view>
       <view class="canteen_tags">
         <view class="cu-tag round" wx:for="{{itemName.canteen_tag}}">
-        {{item}}</view>
+          {{item}}</view>
       </view>
     </view>
   </view>
@@ -56,7 +64,7 @@
 
 <view class="dish_wrapper" wx:if="{{TabCur==1}}">
   <view>
-    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class = "dish_info" wx:if="{{idx%2==0}}">
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==0}}">
       <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture"></image>
       <view class="dish_text">
         <view style="display: flex;flex-direction: row;justify-content:space-between;">
@@ -69,7 +77,7 @@
     </view>
   </view>
   <view>
-    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class = "dish_info" wx:if="{{idx%2==1}}">
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==1}}">
       <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture"></image>
       <view class="dish_text">
         <view style="display: flex;flex-direction: row;justify-content:space-between;">
