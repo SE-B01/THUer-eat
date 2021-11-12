@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    TabCur: 0,
+    TabCur: 1,
     scrollLeft:0,
     //宫格，不用修改
     iconList: [
@@ -33,21 +33,58 @@ Page({
       "canteen_name":"听涛园",
       "canteen_picture":"../../images/canteens/听涛园.jfif",
       "canteen_rank":"5",
-      "canteen_cost":"￥18/人",
+      "canteen_cost":"18",
       "canteen_opentime":"9:00-18:00",
       "canteen_location":"学堂路与至善路交界处",
-      "canteen_tag":"好吃"
+      "canteen_tag":["好吃","便宜","哈哈哈"]
     },
     {
       "canteen_name":"观畴园",
       "canteen_picture":"../../images/canteens/观畴园.jfif",
       "canteen_rank":"3",
-      "canteen_cost":"￥18/人",
+      "canteen_cost":"20",
       "canteen_opentime":"9:00-18:00",
       "canteen_location":"学堂路与至善路交界处",
-      "canteen_tag":"好吃"
+      "canteen_tag":["好吃","人较多"]
     }
-  ]
+  ],
+    dishes:[
+      {
+        "dish_picture":"../../images/dishes/打卤面.jfif",
+        "dish_name":"打卤面",
+        "dish_cost":9,
+        "dish_comment":"咸淡适中，肉量很足。",
+        "dish_canteen":"清芬园"
+      },
+      {
+        "dish_picture":"../../images/dishes/铁板鸡饭.jfif",
+        "dish_name":"铁板鸡饭",
+        "dish_cost":21,
+        "dish_comment":"真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
+        "dish_canteen":"观畴园"
+      },
+      {
+        "dish_picture":"../../images/dishes/石锅拌饭.jfif",
+        "dish_name":"石锅拌饭",
+        "dish_cost":18,
+        "dish_comment":"超喜欢，比喜欢嘉然还喜欢。",
+        "dish_canteen":"玉树园"
+      },
+      {
+        "dish_picture":"../../images/dishes/葱油饼.jfif",
+        "dish_name":"葱油饼",
+        "dish_cost":12,
+        "dish_comment":"香，真的香。",
+        "dish_canteen":"观畴园"
+      },
+      {
+        "dish_picture":"../../images/dishes/派蒙.jpg",
+        "dish_name":"应急食品",
+        "dish_cost":648,
+        "dish_comment":"派蒙才不是食物！",
+        "dish_canteen":"原神"
+      },
+    ]
   },
 
   //tab键目前选定的页面
