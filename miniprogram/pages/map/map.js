@@ -1,36 +1,59 @@
+// pages/map/map.js
 Page({
-  data:{
-   longitude: 113.324520,
-   latitude: 23.099994,
-   markers:[{
-     id: 0,
-     iconPath: "../../images/icon_cur_position.png",
-     latitude: 23.099994,
-     longitude: 113.324520,
-     width: 50,
-     height: 50
-   }]
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    addmissage: '选的位置',
+    // markers	 Array	标记点
+    stitle:'故宫',
+    latitude: "",
+    longitude: "",
+    scale: 14,
+    markers: [],
+    distanceArr: [],
+    active: 0,
+    value: 4,
+    open: false,
+    index: 0,
+    paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
+    cost:["1-5￥","6-10￥","11-15￥","16-20￥",">20￥"],
+    // select: [{
+    //     title: '支付方式',
+    //     open: false
+    //   },
+    //   {
+    //     title: '人均消费',
+    //     open: false
+    //   },
+    //   {
+    //     title: '更多筛选',
+    //     open: false
+    //   },
+    //   {
+    //     title: '附近食堂',
+    //     open: false
+    //   }
+    // ],
+    indexSign: '',
   },
-  onLoad: function(){
-    var that = this;
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    //获取当前的地理位置、速度
     wx.getLocation({
-      type: "wgs84",
-      success: function(res){
-        var latitude = res.latitude;
-        var longitude = res.longitude;
-       //console.log(res.latitude);
+      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+      success: function (res) {
+        //赋值经纬度
         that.setData({
-         latitude: res.latitude,
-         longitude: res.longitude,
-         markers:[{
-           latitude: res.latitude,
-           longitude: res.longitude
-         }]
+          latitude: res.latitude,
+          longitude: res.longitude,
+ 
         })
       }
     })
   },
-  onReady: function(){
-
-  }
 })
