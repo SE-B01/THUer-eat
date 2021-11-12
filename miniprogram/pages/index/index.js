@@ -10,7 +10,7 @@ Page({
    */
   data: {
     nickName: "未登录",
-    avatarUrl: "/images/user-unlogin.png",
+    avatarUrl: "/images/icons/user-unlogin.png",
     userInfo: {},
     hot_words: [],
     search_word: "",

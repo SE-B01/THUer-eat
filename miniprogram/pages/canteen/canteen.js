@@ -15,7 +15,6 @@ Page({
       price: 25,
       grade: 3,
       address: "清华大学内荷花池畔",
-
       time: "11:00-19:00"
     },
     swiperList: [{

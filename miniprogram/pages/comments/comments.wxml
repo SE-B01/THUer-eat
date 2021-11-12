@@ -8,6 +8,7 @@
 </view>
 <view class="padding bg-white solid-bottom" style="width: 750rpx; height: 102rpx; display: block; box-sizing: border-box; left: 0rpx; top: 20rpx; position: relative">
     <view class="solid-bottom text-lg padding" style="position: relative; left: -2rpx; top: -22rpx">
+
         <text class="text-black text-bold">总体   </text>
         <text class="cuIcon-favorfill lg text-{{starlist[0]}}"></text>
         <text class="cuIcon-favorfill lg text-{{starlist[1]}}"></text>
