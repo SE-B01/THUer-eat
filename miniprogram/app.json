@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/map/map",
     "pages/canteen/canteen",
     "pages/dishes/dishes",
     "pages/index/index",
@@ -10,7 +11,7 @@
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/comments/comments",
-    "pages/map/map",
+    
     "pages/infos/infos",
     "pages/newinfos/newinfos",
     "pages/newmine/newmine",
