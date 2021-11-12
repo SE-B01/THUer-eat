@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/index",
     "pages/map/map",
     "pages/canteen/canteen",
     "pages/dishes/dishes",
@@ -13,11 +14,9 @@
     "pages/comments/comments",
     "pages/infos/infos",
     "pages/newinfos/newinfos",
-    "pages/newmine/newmine",
-    "pages/home/index"
+    "pages/newmine/newmine"
 
   ],
-   
  "permission": {
   "scope.userLocation": {
     "desc": "你的位置信息将用于小程序位置接口的效果展示"
