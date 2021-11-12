@@ -15,6 +15,7 @@
     "pages/newinfos/newinfos",
     "pages/newmine/newmine",
     "pages/home/index"
+
   ],
    
  "permission": {
