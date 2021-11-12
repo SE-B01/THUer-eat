@@ -7,7 +7,6 @@
     <view class="action">
       <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
     </view>
-
 </view>
 <view class="cu-bar search bg-white">
   <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
