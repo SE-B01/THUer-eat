@@ -1,6 +1,5 @@
 /* pages/map/map.wxss */
 .map_container {
-  height: 260px;
   width: 100%;
 }
  

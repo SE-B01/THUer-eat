@@ -5,9 +5,11 @@
       <input type="text" placeholder="搜索餐厅名字" confirm-type="search"></input>
     </view>
     <view class="action">
-      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
+      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showMap">搜索</button>
     </view>
-
+    <view class="action">
+      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showPath">导航</button>
+    </view>
 </view>
 <view class="cu-bar search bg-white">
   <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
@@ -43,13 +45,11 @@
 	    </picker>
     </view>
 </view>
-
-<!--pages/map/map.wxml-->
  
 <!-- 这是地图部分 -->
  
-<view class="map_container">
+<view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
   <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
-    show-location style="position: relative; left: 2rpx; top: 0rpx"></map>
+    show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box"></map>
 </view>
 
