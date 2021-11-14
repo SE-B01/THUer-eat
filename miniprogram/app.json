@@ -1,14 +1,9 @@
 {
   "pages": [
     "pages/home/index",
-
-   
-
     "pages/map/map",
-
     "pages/canteen/canteen",
-    "pages/dishes/dishes",
-   
+    "pages/dishes/dishes",  
     "pages/management/management",
     "pages/feedback/feedback",
     "pages/search/search",
@@ -18,9 +13,7 @@
     "pages/comments/comments",
     "pages/infos/infos",
     "pages/newinfos/newinfos",
-
-    "pages/newmine/newmine",
-    "pages/home/index"
+    "pages/newmine/newmine"
   ],
   "plugins": {
       "chooseLocation": {
@@ -41,8 +34,9 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "近义词反义词典",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "THUer今天吃什么",
+    "navigationBarBackgroundColor": "#7B10A8",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
@@ -55,26 +49,26 @@
       {
         "selectedIconPath": "images/icons/host_on.png",
         "iconPath": "images/icons/host.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/index",
         "text": "首页"
       },
       {
         "selectedIconPath": "images/icons/feedback_on.png",
         "iconPath": "images/icons/feedback.png",
-        "pagePath": "pages/feedback/feedback",
-        "text": "反馈"
+        "pagePath": "pages/map/map",
+        "text": "地图"
       },
       {
         "selectedIconPath": "images/icons/manage_on.png",
         "iconPath": "images/icons/manage.png",
-        "pagePath": "pages/management/management",
-        "text": "反馈处理"
+        "pagePath": "pages/infos/infos",
+        "text": "消息"
       },
       {
         "selectedIconPath": "images/icons/addword_on.png",
         "iconPath": "images/icons/addword.png",
-        "pagePath": "pages/addword/addword",
-        "text": "词库管理"
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   }
