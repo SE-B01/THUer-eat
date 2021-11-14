@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    TabCur: 1,
+    TabCur: 0,
 
     scrollLeft:0,
     nickName: "未登录",
     is_admin: false,
-
+    avatarUrl:'',
     //宫格，不用修改
     iconList: [{
       icon: 'rank',
@@ -134,6 +134,19 @@ Page({
   //dropDownMenu选定的选项
   selectedFourth:function(e){
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
+  },
+
+  switchToCanteen:function(e){
+    wx.navigateTo({
+      url: '../canteen/canteen',
+      // success: function(res) {
+      //   //通过eventChannel向被打开页面传送数据
+      //   res.eventChannel.emit('acceptDataFromOpenerPage', {
+      //     search_word: that.data.search_word,
+      //   })
+      // }
+    })
+
   },
 
 

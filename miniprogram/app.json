@@ -35,7 +35,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "THUer今天吃什么",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#7B10A8",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
