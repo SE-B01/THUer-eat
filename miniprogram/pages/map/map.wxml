@@ -1,2 +1,54 @@
 <!--pages/map/map.wxml-->
-<text>pages/map/map.wxml</text>
+<view class="cu-bar search bg-purple">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索餐厅名字" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showMap">搜索</button>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showPath">导航</button>
+    </view>
+</view>
+<view class="cu-bar search bg-white">
+  <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
+    <text class="name">{{item.title}}</text>
+    <text class="cuIcon-unfold"></text>
+  </view> -->
+  <view class="cu-form-group">  
+        <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
+		    <view class="picker">
+			    {{index?paymethod[index]:'支付方式'}}
+		    </view>
+	    </picker>
+    </view>
+    <view class="cu-form-group">  
+        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+		    <view class="picker">
+			    {{index?cost[index]:'人均消费'}}
+		    </view>
+	    </picker>
+    </view>
+    <view class="cu-form-group">  
+        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}" style="position: relative; left: 2rpx; top: -2rpx">
+		    <view class="picker">
+			    {{index?cost[index]:'更多筛选'}}
+		    </view>
+	    </picker>
+    </view>
+    <view class="cu-form-group">  
+        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+		    <view class="picker">
+			    {{index?cost[index]:'附近食堂'}}
+		    </view>
+	    </picker>
+    </view>
+</view>
+ 
+<!-- 这是地图部分 -->
+<view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
+  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
+    show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box"></map>
+</view>
+

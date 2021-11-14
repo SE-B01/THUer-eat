@@ -1,8 +1,11 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/index/index",
+
    
+
+    "pages/map/map",
+
     "pages/canteen/canteen",
     "pages/dishes/dishes",
    
@@ -11,17 +14,29 @@
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
-    "pages/map",
-    "pages/map/map",
     "pages/mine/mine",
+    "pages/comments/comments",
     "pages/infos/infos",
-
     "pages/newinfos/newinfos",
-    "pages/newmine/newmine"
 
-    
-
+    "pages/newmine/newmine",
+    "pages/home/index"
   ],
+  "plugins": {
+      "chooseLocation": {
+      "version": "1.0.5",
+      "provider": "wx76a9a06e5b4e693e"
+      },
+      "routePlan": {
+        "version": "1.0.14",
+        "provider": "wx50b5593e81dd937a"
+      }
+  },
+  "permission": {
+    "scope.userLocation": {
+    "desc": "你的位置信息将用于小程序定位"
+    }
+},
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
@@ -64,3 +79,4 @@
     ]
   }
 }
+      

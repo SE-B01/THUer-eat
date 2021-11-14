@@ -1,1 +1,9 @@
 /* pages/map/map.wxss */
+.map_container {
+  width: 100%;
+}
+ 
+.map {
+  height: 100%;
+  width: 100%;
+}
