@@ -1,4 +1,5 @@
 // pages/home/index.js
+const app = getApp()
 Page({
 
   /**
@@ -7,6 +8,8 @@ Page({
   data: {
     TabCur: 1,
     scrollLeft:0,
+    nickName: "未登录",
+    is_admin: false,
     //宫格，不用修改
     iconList: [
   {
@@ -95,18 +98,185 @@ Page({
     })
   },
 
+
+
+  onGetOpenid: function() {
+    var that = this
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'wechat_sign',
+      data: {
+        avatarUrl: that.data.avatarUrl,
+        gender: that.data.userInfo.gender,
+        nickName: that.data.nickName
+      },
+      success: res => {
+        console.log(res);
+        if (res.result.errCode == 0) {
+          that.setData({
+            is_admin: res.result.data.user.is_admin
+          })
+          app.globalData.logged = true
+          app.globalData.is_admin = res.result.data.user.is_admin
+          that.getTabBar().changeFormat()
+          that.data.user = res.result.data.user
+          app.globalData.user = res.result.data.user
+        } else {
+          wx.showModal({
+            title: '抱歉，出错了呢~',
+            content: res.result.errMsg,
+            confirmText: "我知道了",
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [wechat_sign] 调用失败', err)
+        wx.showModal({
+          title: '调用失败',
+          content: '请检查云函数是否已部署',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    if (!wx.cloud) {
+      wx.showModal({
+        title: '初始化失败',
+        content: '请使用 2.2.3 或以上的基础库以使用云能力',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
+    if (!app.globalData.logged) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录哦~',
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.getUserProfile({
+              desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+              success: (res) => {
+                console.log("已经调用getUserProfile-from getuserinfo")
+                console.log(res)
+                this.setData({
+                  nickName: res.userInfo.nickName,
+                  avatarUrl: res.userInfo.avatarUrl,
+                  userInfo: res.userInfo
+                })
+                app.globalData.userInfo = res.userInfo
+                console.log(this.data.userInfo)
+                this.onGetOpenid()
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else{
+      return
+    }
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          // zyx20211007
+          // wx.getUserInfo({
+          //   success: res => {
+          //     this.setData({
+          //       nickName: res.userInfo.nickName,
+          //       avatarUrl: res.userInfo.avatarUrl,
+          //       userInfo: res.userInfo
+          //     })
+          //     app.globalData.userInfo = res.userInfo
+          //     this.onGetOpenid()
+          //   }
+          // })
+          wx.getUserProfile({
+            desc: '请填写你的信息',
+            success: res => {
+              console.log("已经调用getUserProfile")
+              this.setData({
+                nickName: res.userInfo.nickName,
+                avatarUrl: res.userInfo.avatarUrl,
+                userInfo: res.userInfo
+              })
+              app.globalData.userInfo = res.userInfo
+              this.onGetOpenid()
+            }
+          })
+        }
+      }
+    })
+  },
+  getUserProfile(e) {
+    wx.getUserProfile({
+      desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log("已经调用getUserProfile-from getuserinfo")
+        console.log(res)
+        this.setData({
+          nickName: res.userInfo.nickName,
+          avatarUrl: res.userInfo.avatarUrl,
+          userInfo: res.userInfo
+        })
+        app.globalData.userInfo = res.userInfo
+        console.log(this.data.userInfo)
+        this.onGetOpenid()
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.getUserProfile({
+      desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log("已经调用getUserProfile-from getuserinfo")
+        console.log(res)
+        this.setData({
+          nickName: res.userInfo.nickName,
+          avatarUrl: res.userInfo.avatarUrl,
+          userInfo: res.userInfo
+        })
+        app.globalData.userInfo = res.userInfo
+        console.log(this.data.userInfo)
+        this.onGetOpenid()
+      }
+    })
   },
 
   /**

@@ -209,6 +209,64 @@ Page({
       return
     }
 
+    if (!app.globalData.logged) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录哦~',
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.getUserProfile({
+              desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+              success: (res) => {
+                console.log("已经调用getUserProfile-from getuserinfo")
+                console.log(res)
+                this.setData({
+                  nickName: res.userInfo.nickName,
+                  avatarUrl: res.userInfo.avatarUrl,
+                  userInfo: res.userInfo
+                })
+                app.globalData.userInfo = res.userInfo
+                console.log(this.data.userInfo)
+                this.onGetOpenid()
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else if (this.data.search_word == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请输入要查询的词语~',
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else {
+      var that = this
+      wx.navigateTo({
+        url: '../search/search?search_word=' + that.data.search_word,
+        success: function(res) {
+          //通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', {
+            search_word: that.data.search_word,
+          })
+        }
+      })
+    }
+
+   
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
