@@ -9,53 +9,79 @@ Component({
       {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/index/index",
+        pagePath: "/pages/home/index",
         text: "首页"
       },
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/feedback/feedback",
-        text: "反馈"
+        pagePath: "/pages/map/map",
+        text: "地图"
+      },
+      {
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/infos/infos",
+        text: "消息"
+      },
+      {
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/mine/mine",
+        text: "我的"
       }
     ],
     list_admin: [
       {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/index/index",
+        pagePath: "/pages/home/index",
         text: "首页"
       },
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/feedback/feedback",
-        text: "反馈"
+        pagePath: "/pages/map/map",
+        text: "地图"
       },
       {
-        selectedIconPath: "../images/icons/manage_on.png",
-        iconPath: "../images/icons/manage.png",
-        pagePath: "/pages/management/management",
-        text: "反馈处理"
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/infos/infos",
+        text: "消息"
       },
       {
-        selectedIconPath: "../images/icons/addword_on.png",
-        iconPath: "../images/icons/addword.png",
-        pagePath: "/pages/addword/addword",
-        text: "词库管理"
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/mine/mine",
+        text: "我的"
       }],
-      list:[{
+      list:[
+      {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/index/index",
+        pagePath: "/pages/home/index",
         text: "首页"
       },
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/feedback/feedback",
-        text: "反馈"
-      }]
+        pagePath: "/pages/map/map",
+        text: "地图"
+      },
+      {
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/infos/infos",
+        text: "消息"
+      },
+      {
+        selectedIconPath: "../images/icons/feedback_on.png",
+        iconPath: "../images/icons/feedback.png",
+        pagePath: "/pages/mine/mine",
+        text: "我的"
+      }
+    ]
   },
   attached() {
   },
