@@ -1,4 +1,6 @@
 // pages/map/map.js
+"use strict";
+const chooseLocation = requirePlugin('chooseLocation');
 Page({
   /**
    * 页面的初始数据
@@ -51,9 +53,38 @@ Page({
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
- 
         })
       }
     })
+    const location = chooseLocation.getLocation();
+    if(location){
+        this.setData({
+          latitude: location.latitude?location.latitude : "",
+          longitude: location.longitude?location.longitude : ""
+        });
+    }
   },
+  //显示地图
+  showMap() {
+    //使用在腾讯位置服务申请的key（必填）
+    const key = "ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW"; 
+    //调用插件的app的名称（必填）
+    const referer = "THUer今天吃什么"; 
+    wx.navigateTo({
+        url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer
+    });
+  },
+  showPath(){
+    let plugin = requirePlugin('routePlan');
+    let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
+    let referer = 'THUer今天吃什么';   //调用插件的app的名称
+    let endPoint = JSON.stringify({  //终点
+        'name': '吉野家(北京西站北口店)',
+        'latitude': 39.89631551,
+        'longitude': 116.323459711
+    });
+    wx.navigateTo({
+        url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
+  }
 })

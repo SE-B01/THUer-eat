@@ -39,33 +39,33 @@
         "showES6CompileOption": false,
         "useCompilerPlugins": false
     },
-  "appid": "wxac9b138167ac42ac",
-  "projectname": "THUer%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88",
-  "libVersion": "2.19.6",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide"
+    "appid": "wxf14afe0de0f6f4e7",
+    "projectname": "THUer%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88",
+    "libVersion": "2.19.6",
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide"
+                }
+            ]
         }
-      ]
     }
-  }
 }
