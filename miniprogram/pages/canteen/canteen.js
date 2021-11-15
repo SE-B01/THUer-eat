@@ -1,3 +1,4 @@
+const db = wx.cloud.database({});
 Page({
   data: {
     TabCur: 0,
@@ -10,13 +11,8 @@ Page({
        name: 'mauve',
       color: '#9c26b0'
     },
-    canteenInfo: {
-      name: "荷园",
-      price: 25,
-      grade: 3,
-      address: "清华大学内荷花池畔",
-      time: "11:00-19:00"
-    },
+    canteenInfo: [],
+    comments: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -68,7 +64,24 @@ Page({
     }]
   },
   onLoad() {
-
+    var that = this;
+    db.collection('canteen').get({
+      success: res =>{
+          this.setData({
+            canteenInfo: res.data
+          })
+          //console.log(res.data);
+          //console.log(this);
+      }
+    });
+    db.collection('appraise_canteen').where({
+      "canteen_id": '859059a561909a1505ad6b675e098532'
+    })
+    .get({
+      success: function(res) {
+        console.log(res.data)
+      }
+    })
   },
   // cardSwiper
   cardSwiper(e) {

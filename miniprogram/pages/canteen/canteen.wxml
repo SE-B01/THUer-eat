@@ -12,7 +12,7 @@
 <view class="padding bg-white solid-bottom margin-top">
   <view class="canteen-info">
     <view class="grid col-2 margin-bottom">
-      <view class="canteen-info-item">{{canteenInfo.name}}</view>
+      <view class="canteen-info-item">{{canteenInfo[0].name}}</view>
       <view class="canteen-info-item">￥{{canteenInfo.price}}/人</view>
     </view>
     <view class="grid col-1 margin-bottom">
@@ -28,14 +28,14 @@
       <view class="canteen-info-item">食材：{{4.7}}</view>
     </view>
     <view class="grid col-1 margin-bottom">
-      <view class="canteen-info-item">地址：{{canteenInfo.address}}</view>
+      <view class="canteen-info-item">地址：{{canteenInfo[0].location}}</view>
     </view>
     <view class="grid col-1 margin-bottom">
-      <view class="canteen-info-item">营业时间：{{canteenInfo.time}}</view>
+      <view class="canteen-info-item">营业时间：{{canteenInfo[0].business_hours}}</view>
     </view>
     <view class="grid col-2 margin-bottom">
-      <view class="canteen-navigation">
-        <button class="cu-btn block line-orange lg">
+      <view class="canteen-navigation bg-purple light">
+        <button class="cu-btn block line-purple lg">
         <text class="cuIcon-location"></text>导航</button>
       </view>
     </view>
