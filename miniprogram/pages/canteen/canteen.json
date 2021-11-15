@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {"dropdownmenu": "../../plugin/components/dropdownmenu/dropdownmenu"},
+  "navigationBarTitleText": "THUer今天吃什么",
+  "navigationBarBackgroundColor": "#7B10A8"
 }
