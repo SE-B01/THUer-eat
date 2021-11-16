@@ -1,5 +1,4 @@
 <!--pages/test/test.wxml-->
 <text>pages/test/test.wxml</text>
-<view>
-{{msg}}
-</view>
+<view>{{msg.a}}</view>
+<view>{{testData}}</view>
