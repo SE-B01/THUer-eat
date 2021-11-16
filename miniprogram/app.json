@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/canteen/canteen",
     "pages/home/index",
     "pages/map/map",
@@ -15,29 +16,27 @@
     "pages/infos/infos",
     "pages/newinfos/newinfos",
     "pages/newmine/newmine"
-
   ],
   "plugins": {
-      "chooseLocation": {
+    "chooseLocation": {
       "version": "1.0.5",
       "provider": "wx76a9a06e5b4e693e"
-      },
-      "routePlan": {
-        "version": "1.0.14",
-        "provider": "wx50b5593e81dd937a"
-      }
+    },
+    "routePlan": {
+      "version": "1.0.14",
+      "provider": "wx50b5593e81dd937a"
+    }
   },
   "permission": {
     "scope.userLocation": {
-    "desc": "你的位置信息将用于小程序定位"
+      "desc": "你的位置信息将用于小程序定位"
     }
-},
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "THUer今天吃什么",
     "navigationBarBackgroundColor": "#7B10A8",
+    "navigationBarTitleText": "THUer今天吃什么",
     "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
@@ -75,4 +74,3 @@
     ]
   }
 }
-      
