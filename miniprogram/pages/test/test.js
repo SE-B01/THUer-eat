@@ -5,8 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      msg: {},
-      testData: {}
+      msg: ''
   },
 
   /**
@@ -14,28 +13,15 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'http://127.0.0.1:5000/',
+      url: 'http://127.0.0.1:5000/user',
       data: {
-
-      },
-      method: 'GET',
-      success: (res) => {
-        console.log(res.data[0])
-        this.setData({
-        msg: res.data[0]
-        })
-      }
-    }),
-    wx.request({
-      url: 'http://127.0.0.1:5000/test',
-      data: {
-        test: [1, 2, 3]
+        text:"hello"
       },
       method: 'GET',
       success: (res) => {
         console.log(res.data)
         this.setData({
-          testData: res.data
+        msg: res.data
         })
       }
     })
