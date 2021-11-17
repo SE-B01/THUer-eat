@@ -6,7 +6,7 @@ Page({
    */
   data: {
       msg: {},
-      testData: {}
+      testData: []
   },
 
   /**
@@ -20,22 +20,22 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data[0])
+        //console.log(res.data[0])
         this.setData({
         msg: res.data[0]
         })
       }
     }),
     wx.request({
-      url: 'http://127.0.0.1:5000/test',
+      url: 'http://127.0.0.1:5000/appraise_test',
       data: {
         test: [1, 2, 3]
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
+        console.log(res.data.appraise)
         this.setData({
-          testData: res.data
+          testData: res.data.appraise
         })
       }
     })

@@ -1,14 +1,12 @@
 from flask import Blueprint
 from .models import Dish
-import sys
-from . import models
 
 dish = Blueprint('dish', __name__)
 
 def test_dataset():
-    dish = Dish.query.first()
-    print(dish.name)
-    return dish.name
+    dish_ = Dish.query.first()
+    #print(dish_.name)
+    return dish_.name
 
 @dish.route('/', methods=['GET', 'POST'])
 def index():
