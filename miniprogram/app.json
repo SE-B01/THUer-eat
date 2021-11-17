@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/test/test",
-    "pages/canteen/canteen",
     "pages/home/index",
+    "pages/canteen/canteen",
     "pages/map/map",
     "pages/dishes/dishes",
     "pages/index/index",
