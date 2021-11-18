@@ -2,8 +2,8 @@
   "pages": [
     "pages/test/test",
     "pages/home/index",
-    "pages/canteen/canteen",
     "pages/map/map",
+    "pages/canteen/canteen",
     "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
@@ -16,6 +16,7 @@
     "pages/infos/infos",
     "pages/newinfos/newinfos",
     "pages/newmine/newmine"
+
   ],
   "plugins": {
     "chooseLocation": {
