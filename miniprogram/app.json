@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/home/index",
     "pages/map/map",
-    "pages/index/index",
     "pages/canteen/canteen",
     "pages/dishes/dishes",
+    "pages/index/index",
     "pages/management/management",
     "pages/feedback/feedback",
     "pages/search/search",
@@ -18,26 +19,26 @@
 
   ],
   "plugins": {
-      "chooseLocation": {
+    "chooseLocation": {
       "version": "1.0.5",
       "provider": "wx76a9a06e5b4e693e"
-      },
-      "routePlan": {
-        "version": "1.0.14",
-        "provider": "wx50b5593e81dd937a"
-      }
+    },
+    "routePlan": {
+      "version": "1.0.14",
+      "provider": "wx50b5593e81dd937a"
+    }
   },
   "permission": {
     "scope.userLocation": {
-    "desc": "你的位置信息将用于小程序定位"
+      "desc": "你的位置信息将用于小程序定位"
     }
-},
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "近义词反义词典",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#7B10A8",
+    "navigationBarTitleText": "THUer今天吃什么",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
@@ -50,28 +51,27 @@
       {
         "selectedIconPath": "images/icons/host_on.png",
         "iconPath": "images/icons/host.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/index",
         "text": "首页"
       },
       {
         "selectedIconPath": "images/icons/feedback_on.png",
         "iconPath": "images/icons/feedback.png",
-        "pagePath": "pages/feedback/feedback",
-        "text": "反馈"
+        "pagePath": "pages/map/map",
+        "text": "地图"
       },
       {
         "selectedIconPath": "images/icons/manage_on.png",
         "iconPath": "images/icons/manage.png",
-        "pagePath": "pages/management/management",
-        "text": "反馈处理"
+        "pagePath": "pages/infos/infos",
+        "text": "消息"
       },
       {
         "selectedIconPath": "images/icons/addword_on.png",
         "iconPath": "images/icons/addword.png",
-        "pagePath": "pages/addword/addword",
-        "text": "词库管理"
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   }
 }
-      
