@@ -12,5 +12,6 @@ def create_app(config_name='default'):
     canteen.init_app(app)
     appraise.init_app(app)
     collection.init_app(app)
+    user.init_app(app)
 
     return app

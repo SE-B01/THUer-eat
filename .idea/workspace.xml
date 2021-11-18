@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Pipfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/dish/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/dish/dish.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/dish/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/后端项目结构.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/团队会议纪要.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/团队会议纪要.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/小程序框架请求数据.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/小程序框架请求数据.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/custom-tab-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/custom-tab-bar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/infos/infos.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/infos/infos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/plugin/components/api/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/plugin/api/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="212M8D4cilYkdgC3SLY76mGExh3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="" />
+      <created>1637134571311</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637134571311</updated>
+      <workItem from="1637134575965" duration="849000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
