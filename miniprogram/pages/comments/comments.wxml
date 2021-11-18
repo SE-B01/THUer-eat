@@ -4,7 +4,7 @@
 		<text class="text-black text-bold">{{canteen.name}}</text>
 	</view>
 	<button class="cu-btn bg-grey " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -91rpx; position: relative">保存</button>
-	<button class="cu-btn bg-mauve " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -92rpx; position: relative">发表</button>
+	<button class="cu-btn bg-mauve " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -92rpx; position: relative" bindtap="publish">发表</button>
 </view>
 <view class="padding bg-white solid-bottom" style="width: 750rpx; height: 102rpx; display: block; box-sizing: border-box; left: 0rpx; top: 20rpx; position: relative">
 	<view class="solid-bottom text-lg padding" style="position: relative; left: -2rpx; top: -22rpx">
@@ -56,10 +56,12 @@
 	<view class="action">推荐菜品</view>
 </view>
 <view class="padding bg-white solid-bottom" style="position: relative; left: 0rpx; top: 24rpx">
-	<view data-text="{{item}}" class="cu-tag round" wx:for="{{canteen.dish}}" style="margin: 10rpx;" bindtap="addDish">{{item}}</view>
+	<view class="cu-tag round bg-{{item[2]}}" wx:for="{{canteen.dish}}"  style="margin: 10rpx" data-text="{{item}}" data-index = "{{index}}" bindtap="addDish">
+		{{item[0]}}
+	</view>
 	<!-- <view class="cu-tag round" style="margin: 10rpx;">自定义</view> -->
 </view>
-<view>{{appraise.dish[0]}}</view>
+A
 <view class="padding bg-white solid-bottom" style="position: relative; left: 0rpx; top: 45rpx">
 	<view class="cu-form-group">
 		<view class="title">人均消费</view>

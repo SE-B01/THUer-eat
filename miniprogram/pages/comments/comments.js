@@ -4,15 +4,40 @@ Page({
      * 页面的初始数据
      */
     data: {
-        canteen: { name: "桃李园-二层", dish: ["辣子鸡", "咕佬肉", "荷塘小炒", "香辣豆皮", "水煮肉", "地三鲜", "叉烧鸡腿"] },
+        canteen: { name: "桃李园-二层", id: '1' ,dish: [["辣子鸡",false,"gray"], ["咕佬肉",false,"gray"], ["荷塘小炒",false,"gray"], ["香辣豆皮",false,"gray"], ["水煮肉",false,"gray"], ["地三鲜",false,"gray"], ["叉烧鸡腿",false,"gray"]]},
         starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
         index: null,
         imgList: [],
         // paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
-        appraise: { star: 0, anonymous: true, comment: '', dish: [], cost: 0, time: '', user_id: 0 }
+        appraise: { canteen_id: '', star: 0, anonymous: true, comment: '', dish: [], cost: 0, time: null, user_id: 0 , imgList: [], is_publish: false}
+    },
+    publish(e){
+        this.data.appraise.canteen_id = this.data.canteen.id
+        this.data.appraise.time = new Date()
+        this.data.appraise.imgList = this.data.imgList
+        this.data.appraise.is_publish = true
+        // console.log(this.data.appraise)
+        wx.request({
+            url: 'http://127.0.0.1:5000/appraise/get',
+            data: {
+              data : this.data.appraise
+                // canteen_id : 1,
+                // star : 0
+            },
+            method: 'get',
+            success: (res) => {
+              console.log(res.data)
+            }
+          })
+    },
+    solve(e){
+        this.data.appraise.time = new Date()
+        this.data.appraise.imgList = this.data.imgList
+        this.data.appraise.is_publish = false
+        console.log(this.data.appraise)
     },
     commentInput(e) {
-        console.log(Number(e.detail.value))
+        console.log(e.detail.value)
         this.setData({
             ['appraise.comment']: e.detail.value
         })
@@ -104,11 +129,28 @@ Page({
         })
     },
     addDish(e) {
-        console.log(e.currentTarget.dataset.text)
-        this.data.appraise.dish.push(e.currentTarget.dataset.text),
+        // console.log(e.currentTarget.dataset.index)
+        let index = e.currentTarget.dataset.index
+        if(!this.data.canteen.dish[index][1]){
+            this.data.canteen.dish[index][1] = true
+            this.data.canteen.dish[index][2] = "purple"
             this.setData({
-                ['appraise.comment']: this.data.appraise.comment + "#" + e.currentTarget.dataset.text + "#",
+                ['canteen.dish'] : this.data.canteen.dish
             })
+            this.data.appraise.dish.push(e.currentTarget.dataset.text[0])
+        }else{
+            this.data.canteen.dish[index][1] = false
+            this.data.canteen.dish[index][2] = "gray"
+            this.setData({
+                ['canteen.dish'] : this.data.canteen.dish
+            })
+            this.data.appraise.dish.forEach(function(item, index, arr){
+                if(item === e.currentTarget.dataset.text[0]){
+                    arr.splice(index, 1);
+                }
+            })
+        }
+        
         console.log(this.data.appraise.dish)
     },
     /**
