@@ -1,6 +1,9 @@
 const db = wx.cloud.database({});
 Page({
   data: {
+    //canteen接受其它页面传参，显示当前的餐厅
+    canteen: "",
+
     TabCur: 0,
     scrollLeft:0,
     TabName: ["评价","菜品","问大家"],
@@ -63,8 +66,14 @@ Page({
       color: '#8dc63f'
     }]
   },
-  onLoad() {
+  onLoad: function(options) {
     var that = this;
+    that.setData({
+      canteen: options.canteen
+    })
+    console.log("当前浏览餐厅:"+that.data.canteen)
+
+
     db.collection('canteen').get({
       success: res =>{
           this.setData({
