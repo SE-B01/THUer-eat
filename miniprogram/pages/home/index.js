@@ -97,7 +97,8 @@ Page({
         "dish_name": "铁板鸡饭",
         "dish_cost": 21,
         "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
-        "dish_canteen": "观畴园"
+        "dish_canteen": "观畴园",
+        
       },
       {
         "dish_picture": "../../images/dishes/石锅拌饭.jfif",

@@ -1,14 +1,10 @@
 {
   "pages": [
     "pages/home/index",
-
-   
-
     "pages/map/map",
-
+    "pages/index/index",
     "pages/canteen/canteen",
     "pages/dishes/dishes",
-   
     "pages/management/management",
     "pages/feedback/feedback",
     "pages/search/search",
@@ -18,9 +14,8 @@
     "pages/comments/comments",
     "pages/infos/infos",
     "pages/newinfos/newinfos",
+    "pages/newmine/newmine"
 
-    "pages/newmine/newmine",
-    "pages/home/index"
   ],
   "plugins": {
       "chooseLocation": {
