@@ -13,23 +13,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
-      url: 'http://127.0.0.1:5000/',
-      data: {
-
-      },
-      method: 'GET',
-      success: (res) => {
-        //console.log(res.data[0])
-        this.setData({
-        msg: res.data[0]
-        })
-      }
-    }),
+    // 前端 -> 后端
     wx.request({
       url: 'http://127.0.0.1:5000/appraise_test',
       data: {
         test: [1, 2, 3]
+      },
+      method: 'GET',
+      success: (res) => {
+
+      }
+    }),
+    // 后端 -> 前端
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise_test2',
+      data: {
+
       },
       method: 'GET',
       success: (res) => {
