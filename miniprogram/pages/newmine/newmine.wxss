@@ -1,0 +1,80 @@
+/* pages/mine/mine.wxss */
+page{
+    padding-top: 90rpx;
+  }
+
+/* pages/home/index.wxss */
+.canteen_wrapper{
+  background:white;
+  background-color: white;
+
+}
+.canteen_info{
+  display: flex;
+  flex-direction: row;
+  background:white;
+  border:2rpx solid rgb(65, 65, 65);
+  margin: 5rpx;
+  border-radius: 30rpx;
+}
+.canteen_text{
+  margin: 20rpx;
+}
+
+.canteen_picture{
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 30rpx;
+  margin: 20rpx;
+}
+
+.canteen_name{
+  color: black;
+  font-size: 40rpx;
+}
+
+.canteen_tags{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+.canteen_tag{
+  padding:6rpx;
+  background:rgb(220, 220, 220);
+  margin-right:10rpx;
+  border-radius: 10rpx;
+  color: black;
+}
+
+.dish_wrapper{
+  display:flex;
+  direction: row;
+  justify-content:space-between;
+}
+.dish_info{
+  max-width: 800rpx;
+  border-radius:20rpx;
+  background:white;
+  border:2rpx solid rgb(65, 65, 65);
+  margin: 20rpx;
+  border-radius: 30rpx;
+}
+
+.dish_picture{
+  max-width: 320rpx;
+  border-radius: 20rpx;
+  margin: 20rpx;
+}
+
+.dish_name{
+  color: black;
+  font-size: 40rpx;
+}
+
+.dish_text{
+  margin:10rpx;
+}
+
+.dish_cost{
+  margin-top: 5rpx;
+}

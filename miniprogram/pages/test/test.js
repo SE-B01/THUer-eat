@@ -5,27 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-      msg: {},
-      testData: []
+      msg: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
-      url: 'http://127.0.0.1:5000/',
-      data: {
-
-      },
-      method: 'GET',
-      success: (res) => {
-        //console.log(res.data[0])
-        this.setData({
-        msg: res.data[0]
-        })
-      }
-    }),
+    // 前端 -> 后端
     wx.request({
       url: 'http://127.0.0.1:5000/appraise_test',
       data: {
@@ -33,9 +20,19 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data.appraise)
+
+      }
+    }),
+    // 后端 -> 前端
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise_test2',
+      data: {
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log(res.data)
         this.setData({
-          testData: res.data.appraise
+        msg: res.data
         })
       }
     })
