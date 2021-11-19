@@ -2,6 +2,7 @@ import uuid
 
 from flask_sqlalchemy import SQLAlchemy
 from ..db import db
+import uuid
 
 class Appraise(db.Model):
     __tablename__ = 'appraise'
@@ -21,5 +22,6 @@ class Appraise(db.Model):
 
     def __repr__(self):
         return '<Appraise %r>' % self.id
+
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
