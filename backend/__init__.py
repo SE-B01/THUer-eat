@@ -1,6 +1,7 @@
 from flask import Flask
 from .config import *
 
+
 def create_app(config_name='default'):
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@152.136.200.218:3306/THUer-eat'
