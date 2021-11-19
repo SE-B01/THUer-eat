@@ -3,7 +3,7 @@
 	<view class="solid-bottom text-xl padding">
 		<text class="text-black text-bold">{{canteen.name}}</text>
 	</view>
-	<button class="cu-btn bg-grey " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -91rpx; position: relative">保存</button>
+	<button class="cu-btn bg-grey " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -91rpx; position: relative" bindtap="save">保存</button>
 	<button class="cu-btn bg-mauve " style="width: 166rpx; height: 77rpx; display: inline-flex; box-sizing: border-box; left: 397rpx; top: -92rpx; position: relative" bindtap="publish">发表</button>
 </view>
 <view class="padding bg-white solid-bottom" style="width: 750rpx; height: 102rpx; display: block; box-sizing: border-box; left: 0rpx; top: 20rpx; position: relative">
@@ -25,7 +25,7 @@
 
 <view class="cu-form-group">
 	<view class="title">匿名评价</view>
-	<switch class="purple sm" checked bindchange="switchChange"></switch>
+	<switch class="purple sm" checked = "{{appraise.anonymous}}" bindchange="switchChange"></switch>
 </view>
 <!-- <view class="cu-form-group">
 	<view class="title">匿名评价</view>
