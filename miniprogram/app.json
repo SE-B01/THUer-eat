@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/comments/comments",
     "pages/test/test",
     "pages/home/index",
     "pages/map/map",
@@ -12,7 +13,6 @@
     "pages/reply/reply",
     "pages/addword/addword",
     "pages/mine/mine",
-    "pages/comments/comments",
     "pages/infos/infos",
     "pages/newinfos/newinfos",
     "pages/newmine/newmine"
