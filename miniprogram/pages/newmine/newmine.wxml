@@ -60,6 +60,39 @@
     </view>
 </block>
 <block wx:if="{{TabCur==1}}">
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
+            <view class="dish_wrapper">
+                <view>
+                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                </view>
+                
+                <view style="width: 172rpx;  display: block; box-sizing: border-box">
+                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
+                        <view class="dish_name">{{itemName.dish_name}}</view>
+                    </view>
+                    <view class="dish_cost" style="position: relative; left: 0rpx; top: 24rpx">￥{{itemName.dish_cost}}</view>
+                    <view style="position: relative; left: 0rpx; top: 24rpx">
+                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen}}</text>
+                    </view>
+                    <view style="position: relative; left: 0rpx; top: 25rpx">
+                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen_on}}</text>
+                    </view> 
+                </view>
+                
+                <view style="width: 174rpx; display: flex; box-sizing: border-box;justify-content: space-between;flex-direction: column; margin-left: 10rpx;margin-top:10rpx;margin-bottom:10rpx;margin-right:10rpx">
+                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box ">提醒</button>
+                        <view style="position: relative; left:10rpx;   height: 50rpx; display: flex;justify-content: space-between; box-sizing: border-box;flex-direction: row">
+                            <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
+                            <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
+                        </view>
+                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx;  ">删除</button>
+                </view>
+            </view>
+            <view class="dish_text">
+                
+                <view class="dish_comment">"{{itemName.dish_comment}}"</view>
+            </view>
+        </view>
     <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
         <view class="cu-item shadow">   
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
@@ -100,6 +133,40 @@
     </view>
 </block>
 <block wx:if="{{TabCur==0}}">
+  
+
+        <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
+            <view class="dish_wrapper">
+                <view>
+                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                </view>
+                <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box">
+                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
+                    <view class="dish_name">{{itemName.dish_name}}</view>
+                    
+                </view>
+                    <view class="dish_cost" style="position: relative; left: 0rpx; top: 24rpx">￥{{itemName.dish_cost}}</view>
+                    <view style="position: relative; left: 0rpx; top: 24rpx">
+                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen}}</text>
+                    </view>
+                    <view style="position: relative; left: 0rpx; top: 25rpx">
+                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen_on}}</text>
+                    </view>
+                    
+                </view>
+                <view style="width: 174rpx; display: block; box-sizing: border-box; height: 221rpx">
+                    <button class="cu-btn block text-orange lg bg-white" style="width: 146rpx; height: 80rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 19rpx; position: relative">
+                    <text class="cuIcon-favorfill"></text> </button>
+                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 15rpx; top: 19rpx; position: relative">删除</button>
+   
+                </view>
+            </view>
+            <view class="dish_text">
+                
+                <view class="dish_comment">"{{itemName.dish_comment}}"</view>
+            </view>
+        </view>
+
     <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
         <view class="cu-item shadow">   
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">

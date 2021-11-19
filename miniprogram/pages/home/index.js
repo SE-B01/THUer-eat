@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    TabCur: 0,
+    TabCur: 1,
 
     scrollLeft:0,
     nickName: "未登录",
     is_admin: false,
-    avatarUrl:'',
+
     //宫格，不用修改
     iconList: [{
       icon: 'rank',
@@ -97,7 +97,8 @@ Page({
         "dish_name": "铁板鸡饭",
         "dish_cost": 21,
         "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
-        "dish_canteen": "观畴园"
+        "dish_canteen": "观畴园",
+        
       },
       {
         "dish_picture": "../../images/dishes/石锅拌饭.jfif",
@@ -134,19 +135,6 @@ Page({
   //dropDownMenu选定的选项
   selectedFourth:function(e){
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
-  },
-
-  switchToCanteen:function(e){
-    wx.navigateTo({
-      url: '../canteen/canteen',
-      // success: function(res) {
-      //   //通过eventChannel向被打开页面传送数据
-      //   res.eventChannel.emit('acceptDataFromOpenerPage', {
-      //     search_word: that.data.search_word,
-      //   })
-      // }
-    })
-
   },
 
 
@@ -334,14 +322,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-    this.getTabBar()) {
-    this.getTabBar().setData({
-      selected: 0
-    })
-    this.getTabBar().changeFormat()
-  }
-
 
   },
 
