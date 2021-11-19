@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/newmine/newmine",
+    "pages/feedback/feedback",
+    "pages/newinfos/newinfos",
     "pages/test/test",
     "pages/home/index",
     "pages/canteen/canteen",
@@ -7,15 +10,12 @@
     "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
-    "pages/feedback/feedback",
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/comments/comments",
-    "pages/infos/infos",
-    "pages/newinfos/newinfos",
-    "pages/newmine/newmine"
+    "pages/infos/infos"
   ],
   "plugins": {
     "chooseLocation": {

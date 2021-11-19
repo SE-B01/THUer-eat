@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from ..db import db
+import uuid
 
 class Collection(db.Model):
     __tablename__ = 'collection'
@@ -11,4 +12,6 @@ class Collection(db.Model):
 
     def __repr__(self):
         return '<Collection %r>' % self.id
-    #def __init__(self):
+
+    def __init__(self):
+        self.id = str(uuid.uuid4()).replace("-", "")

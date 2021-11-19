@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from ..db import db
+import uuid
 
 class Feedback(db.Model):
     __tablename__ = 'feedback'
@@ -9,4 +10,6 @@ class Feedback(db.Model):
 
     def __repr__(self):
         return '<Feedback %r>' % self.id
-    #def __init__(self):
+
+    def __init__(self):
+        self.id = str(uuid.uuid4()).replace("-", "")
