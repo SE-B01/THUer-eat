@@ -1,51 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Pipfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dish/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dish/dish.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dish/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/后端项目结构.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/团队会议纪要.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/团队会议纪要.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/小程序框架请求数据.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/小程序框架请求数据.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.js" afterDir="false" />
+    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="评论页面发表评论功能">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/custom-tab-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/custom-tab-bar/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/infos/infos.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/infos/infos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/mine/mine.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/mine/mine.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/plugin/components/api/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/plugin/api/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +43,89 @@
       <option name="presentableId" value="Default" />
       <updated>1637134571311</updated>
       <workItem from="1637134575965" duration="849000" />
+      <workItem from="1637210696688" duration="1182000" />
+      <workItem from="1637216036030" duration="244000" />
+      <workItem from="1637216614222" duration="4127000" />
+      <workItem from="1637247750915" duration="10752000" />
     </task>
+    <task id="LOCAL-00001" summary="完成评论页面向后端传参">
+      <created>1637250030173</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637250030173</updated>
+    </task>
+    <task id="LOCAL-00002" summary="评论页面发表评论功能">
+      <created>1637320441032</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1637320441032</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="qsj" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成评论页面向后端传参" />
+    <MESSAGE value="评论页面发表评论功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="评论页面发表评论功能" />
   </component>
 </project>
