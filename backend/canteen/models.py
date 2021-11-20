@@ -12,6 +12,7 @@ class Canteen(db.Model):
     star = db.Column(db.Integer, default=0)
     business_hours = db.Column(db.String(50))
     img = db.Column(db.String(100))
+    cost = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Canteen %r>' % self.name

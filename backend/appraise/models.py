@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from ..db import db
 import uuid
 
+
 class Appraise(db.Model):
     __tablename__ = 'appraise'
 

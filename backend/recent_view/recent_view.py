@@ -3,6 +3,7 @@ from .models import Recent_view
 from ..dish.models import Dish
 from ..canteen.models import Canteen
 import json
+
 recent_view = Blueprint('recent_view', __name__)
 
 @recent_view.route('/recent_view_test', methods=['GET', 'POST'])
