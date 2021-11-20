@@ -68,7 +68,7 @@ page{
 
 .dish_name{
   color: black;
-  font-size: 40rpx;
+  font-size: 32rpx;
 }
 
 .dish_text{
