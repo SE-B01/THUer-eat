@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from .models import Recent_view
+from ..dish.models import Dish
 
 recent_view = Blueprint('recent_view', __name__)
 
@@ -14,7 +15,9 @@ def get_recent_view():
     user_id = request.args.get('user_id')
     print(user_id)
     recent_view_list = Recent_view.query.order_by(Recent_view.time.desc()).filter_by(user_id=user_id)
-
+    dish = Dish.query.first()
+    print(dish.name)
+    # 根据dish_id读取dish表
     recent_view_list = [x.to_json() for x in recent_view_list]
     print(recent_view_list)
     return jsonify(recent_view_list), 200

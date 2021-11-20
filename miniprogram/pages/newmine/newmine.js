@@ -120,7 +120,7 @@ Page({
               },
               method: 'GET',
               success: (res) => {
-                console.log(res.data[0])
+                console.log(res.data)
               }
             })
           },
