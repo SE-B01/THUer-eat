@@ -193,9 +193,8 @@
                     
                 </view>
                 <view style="width: 174rpx; display: block; box-sizing: border-box; height: 221rpx">
-                    <button class="cu-btn block text-orange lg bg-white" style="width: 146rpx; height: 80rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 19rpx; position: relative">
-                    <text class="cuIcon-favorfill"></text> </button>
-                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 15rpx; top: 19rpx; position: relative">删除</button>
+                    
+                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 15rpx; margin-top: 40rpx; position: relative">删除</button>
    
                 </view>
             </view>

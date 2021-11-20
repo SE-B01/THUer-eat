@@ -139,6 +139,7 @@ Page({
 
   switchToCanteen: function(e) {
     console.log(e)
+    console.log(app.globalData)
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../canteen/canteen?canteen="+canteen
@@ -205,6 +206,7 @@ Page({
    */
   onLoad: function(options) {
     //加载：1.检查是否登录
+    var that = this
     if (!wx.cloud) {
       wx.showModal({
         title: '初始化失败',
@@ -234,16 +236,21 @@ Page({
               success: (res) => {
                 console.log("已经调用getUserProfile")
                 console.log(res)
-                this.setData({
+                that.setData({
                   nickName: res.userInfo.nickName,
                   avatarUrl: res.userInfo.avatarUrl,
                   userInfo: res.userInfo
                 })
                 app.globalData.userInfo = res.userInfo
-                console.log(this.data.userInfo)
-                this.onGetOpenid()
+                console.log('thererererer')
+                console.log(that.data.userInfo)
+                console.log(wx.getStorageSync('openid'))
+                app.getOpenId.then(res => {
+                  console.log(res, 'then-res')
+                })
               }
             })
+
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
