@@ -72,7 +72,9 @@ page{
 }
 
 .dish_text{
-  margin:10rpx;
+  margin-left:30rpx;
+  margin-right:30rpx;
+  margin-bottom:30rpx
 }
 
 .dish_cost{
