@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/canteen/canteen",
     "pages/home/index",
     "pages/comments/comments",
-    "pages/canteen/canteen",
     "pages/newmine/newmine",
     "pages/test/test",
     "pages/map/map",
