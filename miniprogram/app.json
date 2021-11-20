@@ -68,7 +68,7 @@
       {
         "selectedIconPath": "images/icons/addword_on.png",
         "iconPath": "images/icons/addword.png",
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/newmine/newmine",
         "text": "我的"
       }
     ]
