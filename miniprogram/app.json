@@ -1,11 +1,9 @@
 {
   "pages": [
-
     "pages/home/index",
     "pages/canteen/canteen",
     "pages/comments/comments",
     "pages/newmine/newmine",
-
     "pages/test/test",
     "pages/map/map",
     "pages/dishes/dishes",

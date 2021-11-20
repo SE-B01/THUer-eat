@@ -26,7 +26,7 @@
         <text class="cuIcon-favorfill lg text-yellow" wx:for="{{canteenInfo.grade}}"></text>
         <text class="cuIcon-favorfill lg text-gray" wx:for="{{5 - canteenInfo.grade}}"></text>
       </view> -->
-  </view> -->
+  </view>
   <view class="grid col-4 margin-bottom">
     <view class="canteen-info-item">口味：{{4.7}}</view>
     <view class="canteen-info-item">环境：{{4.6}}</view>
@@ -39,11 +39,13 @@
   <view class="grid col-1 margin-bottom">
     <view class="canteen-info-item">营业时间：{{business_hours}}</view>
   </view>
-  <view class="grid col-2 margin-bottom">
-    <view class="canteen-navigation bg-purple light">
+  <view style="width: 693rpx; height: 95rpx; display: block; box-sizing: border-box">
+    <!-- <view class="canteen-navigation bg-purple light">
       <button class="cu-btn block line-purple lg">
         <text class="cuIcon-location"></text>导航</button>
-    </view>
+    </view> -->
+      <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative">导航</button>
+      <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}"style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">发表评价</button>
   </view>
 </view>
 <view class="padding-sm flex flex-wrap">

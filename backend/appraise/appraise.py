@@ -1,9 +1,11 @@
 from datetime import datetime
-
+from ..canteen.models import Canteen
+from ..dish.models import Dish
 from flask import Blueprint, request
 from .models import Appraise, db
 import json
 from ..db import db
+
 appraise = Blueprint('appraise', __name__)
 
 
@@ -19,7 +21,7 @@ def appraise_example():
     return args, 200
 
 
-@appraise.route('/appraise/get', methods=['GET', 'POST'])
+@appraise.route('/appraise/publish', methods=['GET', 'POST'])
 def get_appraise():
     # appraise_ = Appraise.query.first()
     # appraise_dish_json = '{"appraise": ' + appraise_.dish + '}'
@@ -43,4 +45,20 @@ def get_appraise():
     # data = data.get('obj')
     # print(type(new_appraise))
     print(type(data.get('time')))
+    return "ok", 200
 
+
+@appraise.route('/appraise/get', methods=['GET', 'POST'])
+def get_canteen_info():
+    canteen_name = request.args.get('canteen_name')  # 获取 JOSN 数据
+    # ca:餐厅信息
+    ca = Canteen.query.filter(Canteen.name == canteen_name).first()
+    print(ca.id)
+    # di: 菜品列表
+    di = Dish.query.filter(Dish.canteen_id == ca.id)
+    dish_list = []
+    for dish in di:
+        dish_list.append([dish.name, 0, "gray"])
+    print(dish_list)
+    canteen_info = {'id': ca.id, 'dish': dish_list}
+    return canteen_info, 200

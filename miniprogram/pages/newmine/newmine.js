@@ -1,7 +1,6 @@
 // pages/newmine/newmine.js
 Page({
       data: {
-        //CustomBar: app.globalData.CustomBar,
         TabCur:0,
         tabNav: ['最近浏览', '收藏', '消息'],
         dishes:[],
