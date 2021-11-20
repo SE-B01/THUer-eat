@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from .models import Canteen
 from ..appraise.models import Appraise
+from ..dish.models import Dish
 
 canteen = Blueprint('canteen', __name__)
 
@@ -36,10 +37,21 @@ def get_canteen():
     ap = Appraise.query.filter(Appraise.canteen_id == ca.id).order_by(Appraise.time)
     ap_list = []
     for item in ap:
-        print(item)
+        #print(item)
         ap_list.append(
             {"user_id": item.user_id, "anonymous": item.anonymous, "img_list": item.img_list, "star": item.star,
              "comment": item.comment, "dish": item.dish, "cost": item.cost})
     ca_info["ap_list"] = ap_list
+    canteen = Canteen.query.filter(Canteen.name == name).first()
+    dish_list = Dish.query.filter(Dish.canteen_id == canteen.id)
+    dish_list_ = []
+    for item in dish_list:
+        dish_item = {}
+        dish_item['name'] = item.name
+        print(item.name)
+        dish_item['price'] = item.price
+        dish_item['comment'] = item.comment
+        dish_list_.append(dish_item)
+    ca_info['dish_list'] = dish_list_
     return ca_info, 200
     # return canteen_, 200
