@@ -1,211 +1,242 @@
 
-<view class="padding flex flex-wrap justify-between align-center bg-white" style="width: 750rpx; height: 169rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -87rpx">
-  <view class="cu-avatar round" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); width: 113rpx; height: 108rpx; display: inline-flex; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
-  <view class="action" style="position: relative; left: 162rpx; top: -120rpx; width: 193rpx; height: 66rpx; display: block; box-sizing: border-box; font-size: 15px">昵称：lzh
-  </view>
-  <button class="cu-btn round" style="position: relative; left: 540rpx; top: -186rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box">功能建议</button>
-    <button class="cu-btn round" style="position: relative; left: 378rpx; top: -108rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box">设置</button>
+<!--pages/newmine/newmine.wxml-->
+<view class="padding flex flex-wrap justify-between align-center bg-white"
+    style="width: 750rpx; height: 169rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -87rpx">
+    <view class="cu-avatar round"
+        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); width: 113rpx; height: 108rpx; display: inline-flex; box-sizing: border-box; left: 0rpx; top: 0rpx">
+    </view>
+    <view class="action"
+        style="position: relative; left: 162rpx; top: -120rpx; width: 193rpx; height: 66rpx; display: block; box-sizing: border-box; font-size: 15px">
+        昵称：lzh
+    </view>
+    <button class="cu-btn round"
+        style="position: relative; left: 540rpx; top: -186rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box"
+        bindtap="showModal" data-target="DialogModal1">反馈</button>
+    <button class="cu-btn round"
+        style="position: relative; left: 378rpx; top: -108rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box">设置</button>
 </view>
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">反馈</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="action">
+            <view class="cu-form-group margin-top">
+                <textarea maxlength="-1" bindinput="textareaAInput" value="{{textareaAValue}}"
+                    placeholder="请输入您的反馈" focus="true">
+                </textarea>
+            </view>
+        </view>
+        <view class="cu-bar bg-white justify-end">
+            <view class="action flex solid-bottom padding justify-around">
+        <button class="cu-btn line-mauve text-mauve padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="hideModal">取消</button>
+                <button class="cu-btn bg-mauve margin-left padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="storeFeedback">确定</button>
+                
+            </view>
+        </view>
+    </view>
+</view>
+
+
 <scroll-view scroll-x class="bg-white nav text-center fixed" style="top: 172rpx; position: fixed; left: 0rpx">
-  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabNav}}" wx:key bindtap='tabSelect' data-id="{{index}}" style="width: 237rpx; height: 85rpx; display: inline-block; box-sizing: border-box; position: relative; left: -24rpx; top: 0rpx">
-    {{tabNav[index]}}
-  </view>
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabNav}}" wx:key bindtap='tabSelect'
+        data-id="{{index}}"
+        style="width: 237rpx; height: 85rpx; display: inline-block; box-sizing: border-box; position: relative; left: -24rpx; top: 0rpx">
+        {{tabNav[index]}}
+    </view>
 </scroll-view>
 <block wx:if="{{TabCur==2}}">
-    <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
-        <view class="cu-item shadow">   
-            <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
-            <view class="cu-item">
+    <view class="cu-card case {{isCard?'no-card':''}}"
+        style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
+        <view class="cu-item shadow">
+            <view class="cu-list menu-avatar"
+                style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
+                <view class="cu-item">
 
-                <view class="cu-avatar round lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute"></view>
-                <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
-                <view class="text-grey" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">观畴园食堂</view>
-                <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
-                    十天前
+                    <view class="cu-avatar round lg"
+                        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute">
+                    </view>
+                    <view class="content flex-sub"
+                        style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
+                        <view class="text-grey"
+                            style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">
+                            观畴园食堂</view>
+                        <view class="text-gray text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
+                            十天前
+                        </view>
+                        <text class="cuIcon-favorfill lg text-yellow"
+                            style="position: relative; left: 415rpx; top: -53rpx;font-size:50rpx"></text>
+                        <view class="text-gray text-sm flex"
+                            style="width: 310rpx; height: 101rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: -8rpx">
+                            您的信息我们已经收到
+                        </view>
+                    </view>
                 </view>
-                <text class="cuIcon-favorfill lg text-yellow"  style="position: relative; left: 415rpx; top: -53rpx;font-size:50rpx"></text>
-                <view class="text-gray text-sm flex" style="width: 310rpx; height: 101rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: -8rpx">
-                    您的信息我们已经收到
-                </view>
-                </view>
-            </view>
             </view>
         </view>
-        
-        <button class="cu-btn round" style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
-        
+
+        <button class="cu-btn round"
+            style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
+
     </view>
-    <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
-        <view class="cu-item shadow">   
-            <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
-            <view class="cu-item">
+    <view class="cu-card case {{isCard?'no-card':''}}"
+        style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
+        <view class="cu-item shadow">
+            <view class="cu-list menu-avatar"
+                style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
+                <view class="cu-item">
 
-                <view class="cu-avatar round lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute"></view>
-                <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
-                <view class="text-grey" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">观畴园食堂</view>
-                <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
-                    十天前
+                    <view class="cu-avatar round lg"
+                        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute">
+                    </view>
+                    <view class="content flex-sub"
+                        style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
+                        <view class="text-grey"
+                            style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">
+                            观畴园食堂</view>
+                        <view class="text-gray text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
+                            十天前
+                        </view>
+                        <text class="cuIcon-favorfill lg text-yellow"
+                            style="position: relative; left: 415rpx; top: -53rpx;font-size:50rpx"></text>
+                        <view class="text-gray text-sm flex"
+                            style="width: 310rpx; height: 101rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: -8rpx">
+                            您的信息我们已经收到
+                        </view>
+                    </view>
                 </view>
-                <text class="cuIcon-favorfill lg text-yellow"  style="position: relative; left: 415rpx; top: -53rpx;font-size:50rpx"></text>
-                <view class="text-gray text-sm flex" style="width: 310rpx; height: 101rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: -8rpx">
-                    您的信息我们已经收到
-                </view>
-                </view>
-            </view>
             </view>
         </view>
-        
-        <button class="cu-btn round" style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
-        
+
+        <button class="cu-btn round"
+            style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
+
     </view>
 </block>
 <block wx:if="{{TabCur==1}}">
-    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
-            <view class="dish_wrapper">
-                <view>
-                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
-                </view>
-                
-                <view style="width: 172rpx;  display: block; box-sizing: border-box">
-                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
-                        <view class="dish_name">{{itemName.dish_name}}</view>
-                    </view>
-                    <view class="dish_cost" style="position: relative; left: 0rpx; top: 24rpx">￥{{itemName.dish_cost}}</view>
-                    <view style="position: relative; left: 0rpx; top: 24rpx">
-                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen}}</text>
-                    </view>
-                    <view style="position: relative; left: 0rpx; top: 25rpx">
-                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen_on}}</text>
-                    </view> 
-                </view>
-                
-                <view style="width: 174rpx; display: flex; box-sizing: border-box;justify-content: space-between;flex-direction: column; margin-left: 10rpx;margin-top:10rpx;margin-bottom:10rpx;margin-right:10rpx">
-                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box ">提醒</button>
-                        <view style="position: relative; left:10rpx;   height: 50rpx; display: flex;justify-content: space-between; box-sizing: border-box;flex-direction: row">
-                            <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
-                            <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
-                        </view>
-                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx;  ">删除</button>
-                </view>
-            </view>
-            <view class="dish_text">
-                
-                <view class="dish_comment">"{{itemName.dish_comment}}"</view>
-            </view>
-        </view>
-    <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
-        <view class="cu-item shadow">   
-            <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
-            <view class="cu-item">
+    <view class="cu-card case {{isCard?'no-card':''}}"
+        style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
+        <view class="cu-item shadow">
+            <view class="cu-list menu-avatar"
+                style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
+                <view class="cu-item">
 
-                <view class="cu-avatar radius lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute"></view>
-                <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
-                <view class="text-black" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">打卤面</view>
-                <view class="text-grey" style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">9元</view>
-                <view class="text-grey" style="width: 64rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 278rpx; top: -61rpx">营业</view>
-                <text class="cuIcon-shopfill lg text-gray"  style="position: relative; left: 40rpx; top: 43rpx; font-size: 30rpx"></text>
-                <text class="cuIcon-vipcard lg text-gray"  style="position: relative; left: 12rpx; top: 73rpx; font-size: 30rpx"></text>
-                <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
-                    十天前
+                    <view class="cu-avatar radius lg"
+                        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute">
+                    </view>
+                    <view class="content flex-sub"
+                        style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
+                        <view class="text-black"
+                            style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">
+                            打卤面</view>
+                        <view class="text-grey"
+                            style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">
+                            9元</view>
+                        <view class="text-grey"
+                            style="width: 64rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 278rpx; top: -61rpx">
+                            营业</view>
+                        <text class="cuIcon-shopfill lg text-gray"
+                            style="position: relative; left: 40rpx; top: 43rpx; font-size: 30rpx"></text>
+                        <text class="cuIcon-vipcard lg text-gray"
+                            style="position: relative; left: 12rpx; top: 73rpx; font-size: 30rpx"></text>
+                        <view class="text-gray text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
+                            十天前
+                        </view>
+
+                        <view class="text-black text-sm flex"
+                            style="width: 209rpx; height: 85rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: -135rpx">
+                            "咸淡适中，肉量很足"
+                        </view>
+
+                        <view class="text-black text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -129rpx">
+                            清芬园餐厅
+                        </view>
+                        <view class="text-black text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -141rpx">
+                            未品尝
+                        </view>
+
+
+                    </view>
                 </view>
-                
-                <view class="text-black text-sm flex" style="width: 209rpx; height: 85rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: -135rpx">
-                    "咸淡适中，肉量很足"
-                </view>
-                
-                <view class="text-black text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -129rpx">
-                    清芬园餐厅
-                </view>
-                <view class="text-black text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -141rpx">
-                    未品尝
-                </view>
-              
-                
-                </view>
-            </view>
             </view>
         </view>
-        
-        <button class="cu-btn round" style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
-        <button class="cu-btn round" style="position: relative; left: 443rpx; top: -258rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">提醒</button>
-        <button class="cu-btn round" style="position: relative; left: 323rpx; top: -189rpx; width: 54rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
-        <button class="cu-btn round" style="position: relative; left: 323rpx; top: -189rpx; width: 54rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
+
+        <button class="cu-btn round"
+            style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
+        <button class="cu-btn round"
+            style="position: relative; left: 443rpx; top: -258rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">提醒</button>
+        <button class="cu-btn round"
+            style="position: relative; left: 323rpx; top: -189rpx; width: 54rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
+        <button class="cu-btn round"
+            style="position: relative; left: 323rpx; top: -189rpx; width: 54rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
     </view>
 </block>
 <block wx:if="{{TabCur==0}}">
-  
+    <view class="cu-card case {{isCard?'no-card':''}}"
+        style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
+        <view class="cu-item shadow">
+            <view class="cu-list menu-avatar"
+                style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
+                <view class="cu-item">
 
-        <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
-            <view class="dish_wrapper">
-                <view>
-                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
-                </view>
-                <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box">
-                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
-                    <view class="dish_name">{{itemName.dish_name}}</view>
-                    
-                </view>
-                    <view class="dish_cost" style="position: relative; left: 0rpx; top: 24rpx">￥{{itemName.dish_cost}}</view>
-                    <view style="position: relative; left: 0rpx; top: 24rpx">
-                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen}}</text>
+                    <view class="cu-avatar radius lg"
+                        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute">
                     </view>
-                    <view style="position: relative; left: 0rpx; top: 25rpx">
-                        <text class="cuIcon-shopfill" >{{itemName.dish_canteen_on}}</text>
+                    <view class="content flex-sub"
+                        style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
+                        <view class="text-black"
+                            style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">
+                            打卤面</view>
+                        <view class="text-grey"
+                            style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">
+                            9元</view>
+                        <view class="text-grey"
+                            style="width: 64rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 278rpx; top: -61rpx">
+                            营业</view>
+                        <text class="cuIcon-shopfill lg text-gray"
+                            style="position: relative; left: 40rpx; top: 43rpx; font-size: 30rpx"></text>
+                        <text class="cuIcon-vipcard lg text-gray"
+                            style="position: relative; left: 12rpx; top: 73rpx; font-size: 30rpx"></text>
+                        <view class="text-gray text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
+                            十天前
+                        </view>
+
+                        <view class="text-black text-sm flex"
+                            style="width: 209rpx; height: 85rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: -135rpx">
+                            "咸淡适中，肉量很足"
+                        </view>
+
+                        <view class="text-black text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -129rpx">
+                            清芬园餐厅
+                        </view>
+                        <view class="text-black text-sm flex"
+                            style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -141rpx">
+                            未品尝
+                        </view>
+
+
                     </view>
-                    
                 </view>
-                <view style="width: 174rpx; display: block; box-sizing: border-box; height: 221rpx">
-                    <button class="cu-btn block text-orange lg bg-white" style="width: 146rpx; height: 80rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 19rpx; position: relative">
-                    <text class="cuIcon-favorfill"></text> </button>
-                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 15rpx; top: 19rpx; position: relative">删除</button>
-   
-                </view>
-            </view>
-            <view class="dish_text">
-                
-                <view class="dish_comment">"{{itemName.dish_comment}}"</view>
             </view>
         </view>
+        <button class="cu-btn round"
+            style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
 
-    <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
-        <view class="cu-item shadow">   
-            <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
-            <view class="cu-item">
+        <button class="cu-btn block text-orange lg bg-white"
+            style="width: 78rpx; height: 57rpx; display: flex; box-sizing: border-box; left: 258rpx; top: -312rpx; position: relative">
+            <text class="cuIcon-favorfill"></text> </button>
 
-                <view class="cu-avatar radius lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute"></view>
-                <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
-                <view class="text-black" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">打卤面</view>
-                <view class="text-grey" style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">9元</view>
-                <view class="text-grey" style="width: 64rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 278rpx; top: -61rpx">营业</view>
-                <text class="cuIcon-shopfill lg text-gray"  style="position: relative; left: 40rpx; top: 43rpx; font-size: 30rpx"></text>
-                <text class="cuIcon-vipcard lg text-gray"  style="position: relative; left: 12rpx; top: 73rpx; font-size: 30rpx"></text>
-                <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
-                    十天前
-                </view>
-                
-                <view class="text-black text-sm flex" style="width: 209rpx; height: 85rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: -135rpx">
-                    "咸淡适中，肉量很足"
-                </view>
-                
-                <view class="text-black text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -129rpx">
-                    清芬园餐厅
-                </view>
-                <view class="text-black text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 78rpx; top: -141rpx">
-                    未品尝
-                </view>
-              
-                
-                </view>
-            </view>
-            </view>
-        </view>
-        
-        <button class="cu-btn round" style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
-   
-        <button class="cu-btn block text-orange lg bg-white" style="width: 78rpx; height: 57rpx; display: flex; box-sizing: border-box; left: 258rpx; top: -312rpx; position: relative">
-        <text class="cuIcon-favorfill"></text> </button>
- 
-        
+
     </view>
 </block>
-

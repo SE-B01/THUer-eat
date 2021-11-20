@@ -137,7 +137,13 @@ Page({
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
   },
 
-
+  switchToCanteen: function(e) {
+    console.log(e)
+    var canteen = e.currentTarget.dataset.canteen
+    wx.navigateTo({
+      url: "../canteen/canteen?canteen="+canteen
+    })
+  },
 
   onGetOpenid: function() {
     var that = this
@@ -198,6 +204,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //加载：1.检查是否登录
     if (!wx.cloud) {
       wx.showModal({
         title: '初始化失败',
@@ -225,7 +232,7 @@ Page({
             wx.getUserProfile({
               desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
               success: (res) => {
-                console.log("已经调用getUserProfile-from getuserinfo")
+                console.log("已经调用getUserProfile")
                 console.log(res)
                 this.setData({
                   nickName: res.userInfo.nickName,
@@ -245,77 +252,24 @@ Page({
     } else{
       return
     }
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          // zyx20211007
-          // wx.getUserInfo({
-          //   success: res => {
-          //     this.setData({
-          //       nickName: res.userInfo.nickName,
-          //       avatarUrl: res.userInfo.avatarUrl,
-          //       userInfo: res.userInfo
-          //     })
-          //     app.globalData.userInfo = res.userInfo
-          //     this.onGetOpenid()
-          //   }
-          // })
-          wx.getUserProfile({
-            desc: '请填写你的信息',
-            success: res => {
-              console.log("已经调用getUserProfile")
-              this.setData({
-                nickName: res.userInfo.nickName,
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-              app.globalData.userInfo = res.userInfo
-              this.onGetOpenid()
-            }
-          })
-        }
-      }
-    })
-  },
-  getUserProfile(e) {
-    wx.getUserProfile({
-      desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    //2.调用数据库返回食堂
+    wx.request({
+      url: 'http://127.0.0.1:5000/get_all_canteens',
+      data: {
+        
+      },
+      method: 'GET',
       success: (res) => {
-        console.log("已经调用getUserProfile-from getuserinfo")
         console.log(res)
-        this.setData({
-          nickName: res.userInfo.nickName,
-          avatarUrl: res.userInfo.avatarUrl,
-          userInfo: res.userInfo
-        })
-        app.globalData.userInfo = res.userInfo
-        console.log(this.data.userInfo)
-        this.onGetOpenid()
+
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.getUserProfile({
-      desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log("已经调用getUserProfile-from getuserinfo")
-        console.log(res)
-        this.setData({
-          nickName: res.userInfo.nickName,
-          avatarUrl: res.userInfo.avatarUrl,
-          userInfo: res.userInfo
-        })
-        app.globalData.userInfo = res.userInfo
-        console.log(this.data.userInfo)
-        this.onGetOpenid()
-      }
-    })
+    
   },
 
   /**

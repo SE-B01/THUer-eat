@@ -8,7 +8,6 @@
     "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
-    "pages/feedback/feedback",
     "pages/search/search",
     "pages/reply/reply",
     "pages/addword/addword",
@@ -69,7 +68,7 @@
       {
         "selectedIconPath": "images/icons/addword_on.png",
         "iconPath": "images/icons/addword.png",
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/newmine/newmine",
         "text": "我的"
       }
     ]
