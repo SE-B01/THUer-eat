@@ -2,7 +2,7 @@
 Page({
       data: {
         //CustomBar: app.globalData.CustomBar,
-        TabCur:1,
+        TabCur:0,
         tabNav: ['最近浏览', '收藏', '消息'],
         dishes:[],
       //   dishes: [{
@@ -47,7 +47,7 @@ Page({
       //   },
       // ]
       },
-      
+
       tabSelect(e) {
         console.log(e);
         this.setData({
