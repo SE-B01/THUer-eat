@@ -22,7 +22,7 @@ Component({
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/mine/mine",
+        pagePath: "/pages/newmine/newmine",
         text: "我的"
       }
     ],
@@ -43,7 +43,7 @@ Component({
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/mine/mine",
+        pagePath: "/pages/newmine/newmine",
         text: "我的"
       }],
       list:[
@@ -63,7 +63,7 @@ Component({
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/mine/mine",
+        pagePath: "/pages/newmine/newmine",
         text: "我的"
       }
     ]
