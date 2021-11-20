@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Blueprint, request
 from .models import Appraise, db
 import json
-
+from ..db import db
 appraise = Blueprint('appraise', __name__)
 
 
@@ -17,6 +17,7 @@ def appraise_example():
     args = request.args.get('test')
     print(args)
     return args, 200
+
 
 @appraise.route('/appraise/get', methods=['GET', 'POST'])
 def get_appraise():
@@ -42,4 +43,4 @@ def get_appraise():
     # data = data.get('obj')
     # print(type(new_appraise))
     print(type(data.get('time')))
-    return data, 200
+

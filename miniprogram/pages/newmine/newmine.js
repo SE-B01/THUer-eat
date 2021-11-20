@@ -54,6 +54,7 @@ Page({
         })
         
       },
+
       showModal(e) {
         this.setData({
           textareaAValue: '',

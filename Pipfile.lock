@@ -1,7 +1,9 @@
 {
     "_meta": {
         "hash": {
+
             "sha256": "13cdf687e3cd9ddfe5937f8e04d63356cb0c408fc1725afd9f0580468fc5ede2"
+
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,6 +17,7 @@
             }
         ]
     },
+
     "default": {
         "jsonify": {
             "hashes": [
@@ -24,5 +27,6 @@
             "version": "==0.5"
         }
     },
+
     "develop": {}
 }
