@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/newmine/newmine",
     "pages/comments/comments",
-    "pages/test/test",
     "pages/home/index",
+    "pages/test/test",
     "pages/map/map",
     "pages/canteen/canteen",
     "pages/dishes/dishes",
@@ -13,9 +14,7 @@
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/infos/infos",
-    "pages/newinfos/newinfos",
-    "pages/newmine/newmine"
-
+    "pages/newinfos/newinfos"
   ],
   "plugins": {
     "chooseLocation": {

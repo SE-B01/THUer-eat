@@ -15,4 +15,19 @@ class Canteen(db.Model):
 
     def __repr__(self):
         return '<Canteen %r>' % self.name
-    #def __init__(self):
+
+    def __init__(self):
+        self.id = str(uuid.uuid4()).replace("-", "")
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'location': self.location,
+            'longitude': self.longitude,
+            'latitude': self.latitude,
+            'payment': self.payment,
+            'star': self.star,
+            'bussiness_hours': self.business_hours,
+            'img': self.img
+        }

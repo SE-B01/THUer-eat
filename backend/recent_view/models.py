@@ -15,3 +15,12 @@ class Recent_view(db.Model):
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'dish_id': self.dish_id,
+            'rank': self.rank,
+            'time': self.time
+        }
