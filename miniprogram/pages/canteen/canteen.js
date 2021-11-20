@@ -74,7 +74,7 @@ Page({
     var that = this;
     that.setData({
       canteen: options.canteen
-      // canteen: "桃李园-一层"
+      // canteen: "听涛园"
     })
     wx.request({
       url: 'http://127.0.0.1:5000/canteen/get',
@@ -93,6 +93,13 @@ Page({
         })
         console.log(res.data)
       }
+    })
+  },
+  switchToComment: function(e) {
+    console.log(e.currentTarget.dataset.canteen)
+    var canteen = e.currentTarget.dataset.canteen
+    wx.navigateTo({
+      url: "../comments/comments?canteen="+canteen
     })
   },
   // cardSwiper
