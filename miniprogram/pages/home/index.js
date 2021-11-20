@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    TabCur: 1,
+    TabCur: 0,
 
     scrollLeft:0,
     nickName: "未登录",
