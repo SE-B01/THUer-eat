@@ -18,12 +18,7 @@ Component({
         pagePath: "/pages/map/map",
         text: "地图"
       },
-      {
-        selectedIconPath: "../images/icons/feedback_on.png",
-        iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/infos/infos",
-        text: "消息"
-      },
+
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
@@ -44,12 +39,7 @@ Component({
         pagePath: "/pages/map/map",
         text: "地图"
       },
-      {
-        selectedIconPath: "../images/icons/feedback_on.png",
-        iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/infos/infos",
-        text: "消息"
-      },
+
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
@@ -69,12 +59,7 @@ Component({
         pagePath: "/pages/map/map",
         text: "地图"
       },
-      {
-        selectedIconPath: "../images/icons/feedback_on.png",
-        iconPath: "../images/icons/feedback.png",
-        pagePath: "/pages/infos/infos",
-        text: "消息"
-      },
+
       {
         selectedIconPath: "../images/icons/feedback_on.png",
         iconPath: "../images/icons/feedback.png",
