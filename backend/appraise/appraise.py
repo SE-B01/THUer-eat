@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from .models import Appraise
 import json
-
+from ..db import db
 appraise = Blueprint('appraise', __name__)
 
 @appraise.route('/appraise_test', methods=['GET', 'POST'])
@@ -13,3 +13,4 @@ def appraise_example():
     args = request.args.get('test')
     print(args)
     return args, 200
+

@@ -63,7 +63,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      wx.request({
+        url: 'http://127.0.0.1:5000/latest_review',
+        data: {
+            user_id:1
+        },
+        method: 'GET',
+        success: (res) => {
+          console.log(res)
+          console.log('success')
 
+          this.setData({
+          msg: res.data[0]
+          })
+        }
+      })
     },
 
     /**
