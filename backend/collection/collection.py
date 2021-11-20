@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from .models import Recent_view
+from ..recent_view.models import Recent_view
 from ..dish.models import Dish
 from ..canteen.models import Canteen
 
