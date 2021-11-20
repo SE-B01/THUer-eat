@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
 jsonify = "*"
-
+flask = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
 python_version = "3.9"

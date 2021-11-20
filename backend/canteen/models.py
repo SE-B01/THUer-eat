@@ -29,6 +29,6 @@ class Canteen(db.Model):
             'latitude': self.latitude,
             'payment': self.payment,
             'star': self.star,
-            'bussiness_hours': self.business_hours,
+            'business_hours': self.business_hours,
             'img': self.img
         }
