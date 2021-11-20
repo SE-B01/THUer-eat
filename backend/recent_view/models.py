@@ -2,8 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from ..db import db
 import uuid
 
-class Collection(db.Model):
-    __tablename__ = 'collection'
+class Recent_view(db.Model):
+    __tablename__ = 'recent_view'
     id = db.Column(db.String(32), primary_key=True)
     user_id = db.Column(db.String(32))
     dish_id = db.Column(db.String(32))
@@ -11,7 +11,7 @@ class Collection(db.Model):
     time = db.Column(db.DateTime)
 
     def __repr__(self):
-        return '<Collection %r>' % self.id
+        return '<Recent_view %r>' % self.id
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")

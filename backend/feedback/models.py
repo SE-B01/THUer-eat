@@ -2,16 +2,14 @@ from flask_sqlalchemy import SQLAlchemy
 from ..db import db
 import uuid
 
-class Collection(db.Model):
-    __tablename__ = 'collection'
+class Feedback(db.Model):
+    __tablename__ = 'feedback'
     id = db.Column(db.String(32), primary_key=True)
-    user_id = db.Column(db.String(32))
-    dish_id = db.Column(db.String(32))
-    rank = db.Column(db.Integer)
+    content = db.Column(db.Text)
     time = db.Column(db.DateTime)
 
     def __repr__(self):
-        return '<Collection %r>' % self.id
+        return '<Feedback %r>' % self.id
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
@@ -19,8 +17,6 @@ class Collection(db.Model):
     def to_json(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'dish_id': self.dish_id,
-            'rank': self.rank,
+            'content': self.content,
             'time': self.time
         }
