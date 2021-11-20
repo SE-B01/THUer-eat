@@ -2,7 +2,7 @@
 Page({
       data: {
         //CustomBar: app.globalData.CustomBar,
-        TabCur:0,
+        TabCur:1,
         tabNav: ['最近浏览', '收藏', '消息'],
         dishes: [{
           "dish_picture": "../../images/dishes/打卤面.jfif",
