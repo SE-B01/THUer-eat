@@ -43,8 +43,8 @@ dropDownMenuSecondData='{{dropDownMenuSecondData}}'
 dropDownMenuThirdData='{{dropDownMenuThirdData}}' bind:selectedItem='selectedFourth'></dropdownmenu>
 
 
-<view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx" bindtap="switchToCanteen">
-  <view class="canteen_info">
+<view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
+  <view class="canteen_info" bindtap="switchToCanteen" id="{{itemName._id}}" data-canteen="{{itemName.canteen_name}}">
     <image src="{{itemName.canteen_picture}}" class="canteen_picture"></image>
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.canteen_name}}</view>

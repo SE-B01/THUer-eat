@@ -1,12 +1,10 @@
 {
   "pages": [
-    "pages/newmine/newmine",
-    "pages/feedback/feedback",
-    "pages/newinfos/newinfos",
+    "pages/comments/comments",
     "pages/test/test",
     "pages/home/index",
-    "pages/canteen/canteen",
     "pages/map/map",
+    "pages/canteen/canteen",
     "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
@@ -14,8 +12,10 @@
     "pages/reply/reply",
     "pages/addword/addword",
     "pages/mine/mine",
-    "pages/comments/comments",
-    "pages/infos/infos"
+    "pages/infos/infos",
+    "pages/newinfos/newinfos",
+    "pages/newmine/newmine"
+
   ],
   "plugins": {
     "chooseLocation": {
@@ -68,7 +68,7 @@
       {
         "selectedIconPath": "images/icons/addword_on.png",
         "iconPath": "images/icons/addword.png",
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/newmine/newmine",
         "text": "我的"
       }
     ]

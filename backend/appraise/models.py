@@ -1,3 +1,5 @@
+import uuid
+
 from flask_sqlalchemy import SQLAlchemy
 from ..db import db
 import uuid
@@ -15,6 +17,8 @@ class Appraise(db.Model):
     time = db.Column(db.DateTime)
     canteen_id = db.Column(db.String(32))
     user_id = db.Column(db.String(32))
+    cost = db.Column(db.Integer)
+    is_publish = db.Column(db.BOOLEAN)
 
     def __repr__(self):
         return '<Appraise %r>' % self.id

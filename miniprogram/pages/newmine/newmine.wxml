@@ -1,3 +1,5 @@
+
+<!--pages/newmine/newmine.wxml-->
 <view class="padding flex flex-wrap justify-between align-center bg-white"
     style="width: 750rpx; height: 169rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -87rpx">
     <view class="cu-avatar round"
@@ -228,7 +230,6 @@
                 </view>
             </view>
         </view>
-
         <button class="cu-btn round"
             style="position: relative; left: 570rpx; top: -118rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
 

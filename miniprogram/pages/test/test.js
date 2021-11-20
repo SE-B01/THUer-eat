@@ -5,8 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      msg: {},
-      testData: []
+      msg: ''
   },
 
   /**
@@ -28,13 +27,12 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:5000/appraise_test2',
       data: {
-
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data.appraise)
+        console.log(res.data)
         this.setData({
-          testData: res.data.appraise
+        msg: res.data
         })
       }
     })
