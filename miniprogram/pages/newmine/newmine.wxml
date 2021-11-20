@@ -98,7 +98,7 @@
     </view>
 </block>
 <block wx:if="{{TabCur==1}}">
-    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
+    <view wx:for="{{collection}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
             <view class="dish_wrapper">
                 <view>
                     <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
@@ -123,7 +123,7 @@
                             <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
                             <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
                         </view>
-                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx;  ">删除</button>
+                    <button class="cu-btn round"  style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx" bindtap="delete_collection" id="{{itemName.id}}">删除</button>
                 </view>
             </view>
             <view class="dish_text">
