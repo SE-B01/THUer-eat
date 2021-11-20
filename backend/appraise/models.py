@@ -26,3 +26,19 @@ class Appraise(db.Model):
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'img_list': self.img_list,
+            'anonymous': self.anonymous,
+            'comment': self.comment,
+            'dish': self.dish,
+            'like': self.like,
+            'star': self.star,
+            'time': self.time,
+            'canteen_id': self.canteen_id,
+            'user_id': self.user_id,
+            'cost': self.cost,
+            'is_publish': self.is_publish,
+        }

@@ -13,3 +13,10 @@ class Feedback(db.Model):
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'time': self.time
+        }
