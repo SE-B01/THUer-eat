@@ -4,7 +4,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        canteen: { name: "桃李园-二层", id: '1', dish: [["辣子鸡", false, "gray"], ["咕佬肉", false, "gray"], ["荷塘小炒", false, "gray"], ["香辣豆皮", false, "gray"], ["水煮肉", false, "gray"], ["地三鲜", false, "gray"], ["叉烧鸡腿", false, "gray"]] },
+        canteen: { name: "听涛园", id: '2', dish: [["辣子鸡", false, "gray"], ["咕佬肉", false, "gray"], ["荷塘小炒", false, "gray"], ["香辣豆皮", false, "gray"], ["水煮肉", false, "gray"], ["地三鲜", false, "gray"], ["叉烧鸡腿", false, "gray"]] },
         starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
         index: null,
         imgList: [],

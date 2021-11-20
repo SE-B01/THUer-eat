@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/comments/comments",
-    "pages/test/test",
     "pages/home/index",
-    "pages/map/map",
+    "pages/comments/comments",
     "pages/canteen/canteen",
+    
+    "pages/newmine/newmine",
+    "pages/test/test",
+    "pages/map/map",
     "pages/dishes/dishes",
     "pages/index/index",
     "pages/management/management",
@@ -13,9 +15,7 @@
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/infos/infos",
-    "pages/newinfos/newinfos",
-    "pages/newmine/newmine"
-
+    "pages/newinfos/newinfos"
   ],
   "plugins": {
     "chooseLocation": {
