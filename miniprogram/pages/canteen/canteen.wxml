@@ -75,6 +75,43 @@
     </view>
   </view>
 </view>
+
+<view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
+  <view class="cu-item" wx:for="{{dish_list}}">
+    <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+    <view class="content">
+      <view class="text-black">{{item.name}}</view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut">
+          <text class="text-black  margin-right-xs">{{item.comment}}</text>
+        </text>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-xs">{{item.price}}￥</view>
+    </view>
+  </view>
+</view>
+
+<!--
+<view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
+  <view class="cu-item" wx:for="{{dish_list}}">
+    <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+    <view class="content">
+      <view class="text-black">凯尔</view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut">
+          <text class="text-black  margin-right-xs">{{item.name}}</text>
+        </text>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">{{item.price}}</view>
+    
+    </view>
+  </view>
+</view>
+-->
 <!-- <view class="cu-item">
       <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Taric.png);">
         <view class="cu-tag badge">99+</view>

@@ -20,6 +20,7 @@ Page({
     comments: [],
     cost: 0,
     apprise_list: [],
+    dish_list: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -89,9 +90,12 @@ Page({
           business_hours: res.data.business_hours,
           starlist: res.data.starlist,
           cost: res.data.cost,
-          apprise_list: res.data.ap_list
+          apprise_list: res.data.ap_list,
+          dish_list: res.data.dish_list
         })
-        console.log(res.data)
+        //console.log(res.data)
+        console.log(res.data.ap_list)
+        console.log(res.data.dish_list)
       }
     })
   },
