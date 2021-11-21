@@ -1,26 +1,2 @@
 <!--pages/infos/infos.wxml-->
-<view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 296rpx; display: block; box-sizing: border-box">
-        <view class="cu-item shadow">   
-            <view class="cu-list menu-avatar" style="width: 694rpx; height: 277rpx; display: block; box-sizing: border-box">
-            <view class="cu-item" style="width: 397rpx; height: 101rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">
-                <view class="cu-avatar radius lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute"></view>
-                <view class="content flex-sub" style="position: absolute; left: 186rpx; top: 3rpx; width: 352rpx; height: 214rpx; display: block; box-sizing: border-box">
-                <view class="text-black" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 38rpx; font-size: 40rpx">观畴园</view>
-                </view>
-            </view>
-            </view>
-        </view>
-        <button class="cu-btn round" style="position: relative; left: 593rpx; top: -122rpx; width: 127rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">删除</button>
-    
-        <button class="cu-btn block text-orange lg bg-white" style="width: 78rpx; height: 57rpx; display: flex; box-sizing: border-box; left: 282rpx; top: -334rpx; position: relative">
-        <text class="cuIcon-favorfill" style="width: 57rpx; height: 52rpx; display: block; box-sizing: border-box; position: relative; left: -8rpx; top: 10rpx"></text> </button>
-    </view>
-    <view class="feedback-wrapper" style="width: 713rpx; height: 150rpx; display: block; box-sizing: border-box">
-        <view class="item-title" style=" display: block; box-sizing: border-box">{{'上次您提的问题是'}}</view>
-        <view class="item-title" style=" display: block; box-sizing: border-box">{{'我们的回复是：'}}</view>
-    </view>
-    <textarea placeholder="请详细描述您的问题或意见..." placeholder-style="color: #949494" class="message" bindinput="bindTextAreaBlur"> </textarea>
-    <button class="cu-btn block text-black lg bg-white" style="width: 233rpx; height: 52rpx; display: flex; box-sizing: border-box; left: -197rpx; top: 75rpx; position: relative; border: 4rpx solid black">
-        再次反馈</button>
-    <button class="cu-btn block text-black lg bg-white" style="width: 228rpx; height: 47rpx; display: flex; box-sizing: border-box; left: 202rpx; top: 29rpx; position: relative; border: 4rpx solid black">
-        结束反馈</button>
+<text>pages/infos/infos.wxml</text>
