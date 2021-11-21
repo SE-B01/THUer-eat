@@ -11,7 +11,7 @@ def collection_example():
     # print(collection_)
     return str(collection_.rank), 200
 
-@collection.route('/collection', methods=['GET', 'POST'])
+@collection.route('/get_collection', methods=['GET', 'POST'])
 def get_collection():
     user_id = request.args.get('user_id')
     collection_list = Collection.query.order_by(Collection.rank.desc() ).filter_by(user_id=user_id)
@@ -42,7 +42,7 @@ def get_collection():
     return jsonify(return_list), 200
 
 @collection.route('/collection_delete', methods=['GET', 'POST'])
-def delete_collection():
+def collection_delete():
     
     user_id = request.args.get('user_id')
     collection_id = request.args.get('collection_id')
