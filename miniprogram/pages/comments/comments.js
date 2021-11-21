@@ -74,7 +74,8 @@ Page({
                             url: "../canteen/canteen?canteen=" + this.data.canteen.name
                         })
                     }
-            }
+            })
+        }
         })
     },
     solve(e) {
