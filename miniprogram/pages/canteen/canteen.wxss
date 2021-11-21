@@ -4,3 +4,18 @@
   margin-left: calc(var(--left) * 100rpx - 150rpx);
   z-index: var(--index);
 }
+.canteen-info {
+  border-radius: 30rpx;
+  background: white;
+  border: 2rpx solid rgb(65, 65, 65);
+  margin: 5rpx;
+  border-radius: 30rpx;
+}
+
+.comment-item {
+  border-radius: 30rpx;
+  background: white;
+  border: 2rpx solid rgb(65, 65, 65);
+  margin: 5rpx;
+  border-radius: 30rpx;
+}
