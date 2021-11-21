@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="评论页面发表评论功能">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d75aaf62-bccb-40b6-a3eb-b89d77bc3cd6/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="pull前保存">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +42,8 @@
       <workItem from="1637210696688" duration="1182000" />
       <workItem from="1637216036030" duration="244000" />
       <workItem from="1637216614222" duration="4127000" />
-      <workItem from="1637247750915" duration="10752000" />
+      <workItem from="1637247750915" duration="11590000" />
+      <workItem from="1637329400816" duration="7058000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>
@@ -62,7 +59,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637320441032</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="pull前保存">
+      <created>1637320606961</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637320606961</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成评论页面向后端传参" />
     <MESSAGE value="评论页面发表评论功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="评论页面发表评论功能" />
+    <MESSAGE value="pull前保存" />
+    <option name="LAST_COMMIT_MESSAGE" value="pull前保存" />
   </component>
 </project>

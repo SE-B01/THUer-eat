@@ -1,51 +1,51 @@
 // pages/newmine/newmine.js
 Page({
       data: {
-        //CustomBar: app.globalData.CustomBar,
         TabCur:0,
         tabNav: ['最近浏览', '收藏', '消息'],
         dishes:[],
-      //   dishes: [{
-      //     "dish_picture": "../../images/dishes/打卤面.jfif",
-      //     "dish_name": "打卤面",
-      //     "dish_cost": 9,
-      //     "dish_comment": "咸淡适中，肉量很足。",
-      //     "dish_canteen": "清芬园",
-      //     "dish_canteen_on": "营业中"
-      //   },
-      //   {
-      //     "dish_picture": "../../images/dishes/铁板鸡饭.jfif",
-      //     "dish_name": "铁板鸡饭",
-      //     "dish_cost": 21,
-      //     "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
-      //     "dish_canteen": "观畴园",
-      //     "dish_canteen_on": "营业中"
-      //   },
-      //   {
-      //     "dish_picture": "../../images/dishes/石锅拌饭.jfif",
-      //     "dish_name": "石锅拌饭",
-      //     "dish_cost": 18,
-      //     "dish_comment": "超喜欢，比喜欢嘉然还喜欢。",
-      //     "dish_canteen": "玉树园",
-      //     "dish_canteen_on": "营业中"
-      //   },
-      //   {
-      //     "dish_picture": "../../images/dishes/葱油饼.jfif",
-      //     "dish_name": "葱油饼",
-      //     "dish_cost": 12,
-      //     "dish_comment": "香，真的香。",
-      //     "dish_canteen": "观畴园",
-      //     "dish_canteen_on": "营业中"
-      //   },
-      //   {
-      //     "dish_picture": "../../images/dishes/派蒙.jpg",
-      //     "dish_name": "应急食品",
-      //     "dish_cost": 648,
-      //     "dish_comment": "派蒙才不是食物！",
-      //     "dish_canteen": "原神",
-      //     "dish_canteen_on": "营业中"
-      //   },
-      // ]
+        collection:[],
+        collections: [{
+          "dish_picture": "../../images/dishes/打卤面.jfif",
+          "dish_name": "打卤面",
+          "dish_cost": 9,
+          "dish_comment": "咸淡适中，肉量很足。",
+          "dish_canteen": "清芬园",
+          "dish_canteen_on": "营业中"
+        },
+        {
+          "dish_picture": "../../images/dishes/铁板鸡饭.jfif",
+          "dish_name": "铁板鸡饭",
+          "dish_cost": 21,
+          "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
+          "dish_canteen": "观畴园",
+          "dish_canteen_on": "营业中"
+        },
+        {
+          "dish_picture": "../../images/dishes/石锅拌饭.jfif",
+          "dish_name": "石锅拌饭",
+          "dish_cost": 18,
+          "dish_comment": "超喜欢，比喜欢嘉然还喜欢。",
+          "dish_canteen": "玉树园",
+          "dish_canteen_on": "营业中"
+        },
+        {
+          "dish_picture": "../../images/dishes/葱油饼.jfif",
+          "dish_name": "葱油饼",
+          "dish_cost": 12,
+          "dish_comment": "香，真的香。",
+          "dish_canteen": "观畴园",
+          "dish_canteen_on": "营业中"
+        },
+        {
+          "dish_picture": "../../images/dishes/派蒙.jpg",
+          "dish_name": "应急食品",
+          "dish_cost": 648,
+          "dish_comment": "派蒙才不是食物！",
+          "dish_canteen": "原神",
+          "dish_canteen_on": "营业中"
+        },
+      ]
       },
 
       tabSelect(e) {
@@ -108,6 +108,40 @@ Page({
             })
             //console.log('textareaAValue: ' + this.data.textareaAValue)
           },
+          delete_collection(e) {
+            var that = this
+            console.log(e)
+            console.log(e.target.id)
+            wx.showModal({
+              title: '提示',
+              content: '确定删除吗',
+              confirmText: "确定",
+              showCancel: true,
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.request({
+                    url: 'http://127.0.0.1:5000/collection_delete',
+                    data: {
+                      user_id:1,
+                      collection_id: e.target.id
+                    },
+                    method: 'GET',
+                    success: (res) => {
+                      console.log(res.data)
+                    }
+                  })
+                  wx.reLaunch({
+                    url: 'newmine',
+                    })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+
+            //console.log('textareaAValue: ' + this.data.textareaAValue)
+          },
           /**
            * 页面的初始数据
            */
@@ -118,7 +152,20 @@ Page({
           onLoad: function (options) {
             var that = this
             wx.request({
-              url: 'http://127.0.0.1:5000/latest_review',
+              url: 'http://127.0.0.1:5000/get_recent_view',
+              data: {
+                user_id: 1
+              },
+              method: 'GET',
+              success: (res) => {
+                // console.log(res.data)
+                that.setData({
+                  dishes:res.data
+                })
+              }
+            })
+            wx.request({
+              url: 'http://127.0.0.1:5000/get_collection',
               data: {
                 user_id: 1
               },
@@ -126,7 +173,7 @@ Page({
               success: (res) => {
                 console.log(res.data)
                 that.setData({
-                  dishes:res.data
+                  collection:res.data
                 })
               }
             })
