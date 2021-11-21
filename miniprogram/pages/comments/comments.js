@@ -31,6 +31,7 @@ Page({
             },
             method: 'POST',
             success: (res) => {
+                console.log(res.data)
                 wx.showToast({
                     title: '发表成功',
                     icon: 'success',
@@ -66,7 +67,7 @@ Page({
             success: (res) => {
                 console.log(res.data)
                 wx.showToast({
-                    title: '发表成功',
+                    title: '保存成功',
                     icon: 'success',
                     duration: 1500,
                     success: (res) => {
@@ -75,6 +76,7 @@ Page({
                         })
                     }
             })
+
             }
         })
     },
@@ -216,6 +218,7 @@ Page({
             },
             method: 'GET',
             success: (res) => {
+                console.log(res.data)
                 this.data.canteen.dish = res.data.dish
                 this.data.canteen.id = res.data.id
                 this.setData({

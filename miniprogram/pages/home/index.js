@@ -244,10 +244,7 @@ Page({
                 app.globalData.userInfo = res.userInfo
                 console.log('thererererer')
                 console.log(that.data.userInfo)
-                console.log(wx.getStorageSync('openid'))
-                app.getOpenId.then(res => {
-                  console.log(res, 'then-res')
-                })
+                
               }
             })
 
