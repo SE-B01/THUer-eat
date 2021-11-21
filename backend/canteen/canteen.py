@@ -24,7 +24,7 @@ def get_all_canteens():
 
 
 @canteen.route('/canteen/get', methods=['GET', 'POST'])
-def get_canteen():
+def get_canteen_info():
     name = request.args.get("name")
     # ca：数据库中目标食堂条目
     ca = Canteen.query.filter(Canteen.name == name).first()

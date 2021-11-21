@@ -22,12 +22,9 @@ def appraise_example():
 
 
 @appraise.route('/appraise/publish', methods=['GET', 'POST'])
-def get_appraise():
-    # appraise_ = Appraise.query.first()
-    # appraise_dish_json = '{"appraise": ' + appraise_.dish + '}'
-    # return json.loads(appraise_dish_json), 200
-    # new_appraise = request.get_data()
+def publish_appraise():
     data = request.json  # 获取 JOSN 数据
+    # ap：新建一条评价数据
     ap = Appraise()
     ap.comment = data.get('comment')
     ap.dish = data.get('dish')
@@ -42,10 +39,8 @@ def get_appraise():
     ap.is_publish = data.get('is_publish')
     db.session.add(ap)
     db.session.commit()
-    # data = data.get('obj')
-    # print(type(new_appraise))
     print(type(data.get('time')))
-    return "ok", 200
+    return "发表成功", 200
 
 
 @appraise.route('/appraise/get', methods=['GET', 'POST'])
