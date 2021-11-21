@@ -12,7 +12,7 @@ def recent_view_example():
     print(recent_view_)
     return str(recent_view_.rank), 200
 
-@recent_view.route('/latest_review', methods=['GET', 'POST'])
+@recent_view.route('/get_recent_view', methods=['GET', 'POST'])
 def get_recent_view():
     user_id = request.args.get('user_id')
     recent_view_list = Recent_view.query.order_by(Recent_view.time.desc()).filter_by(user_id=user_id)

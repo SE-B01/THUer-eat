@@ -153,7 +153,7 @@ Page({
           onLoad: function (options) {
             var that = this
             wx.request({
-              url: 'http://127.0.0.1:5000/latest_review',
+              url: 'http://127.0.0.1:5000/get_recent_view',
               data: {
                 user_id: 1
               },
@@ -166,7 +166,7 @@ Page({
               }
             })
             wx.request({
-              url: 'http://127.0.0.1:5000/collection',
+              url: 'http://127.0.0.1:5000/get_collection',
               data: {
                 user_id: 1
               },
