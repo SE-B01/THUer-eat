@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="pull前保存">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appraise/appraise.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/appraise/appraise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/canteen/canteen.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/canteen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,7 @@
       <workItem from="1637216036030" duration="244000" />
       <workItem from="1637216614222" duration="4127000" />
       <workItem from="1637247750915" duration="11590000" />
-      <workItem from="1637329400816" duration="7058000" />
+      <workItem from="1637329400816" duration="11820000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>
