@@ -23,12 +23,12 @@
   <text class="cuIcon-favorfill lg text-{{starlist[3]}}"></text>
   <text class="cuIcon-favorfill lg text-{{starlist[4]}}"></text>
 
-  <!-- <!-- <view class="grid col-1 margin-bottom">
+<!-- <view class="grid col-1 margin-bottom">
       <view class="canteen-info-grade">
         <text class="cuIcon-favorfill lg text-yellow" wx:for="{{canteenInfo.grade}}"></text>
         <text class="cuIcon-favorfill lg text-gray" wx:for="{{5 - canteenInfo.grade}}"></text>
       </view> -->
-  -->
+
   <view class="grid col-4 margin-bottom">
     <view class="canteen-info-item">口味：{{4.7}}</view>
     <view class="canteen-info-item">环境：{{4.6}}</view>

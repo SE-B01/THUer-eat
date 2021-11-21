@@ -85,6 +85,7 @@ Page({
       },
       method: 'GET',
       success: (res) => {
+        console.log(res.data)
         this.setData({
           location: res.data.location,
           business_hours: res.data.business_hours,
@@ -93,9 +94,6 @@ Page({
           apprise_list: res.data.ap_list,
           dish_list: res.data.dish_list
         })
-        //console.log(res.data)
-        console.log(res.data.ap_list)
-        console.log(res.data.dish_list)
       }
     })
   },
