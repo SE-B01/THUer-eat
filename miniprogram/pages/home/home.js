@@ -82,12 +82,23 @@ Page({
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
   },
 
+  //点击餐厅图片跳转到指定餐厅
   switchToCanteen: function(e) {
     console.log(e)
     console.log(app.globalData)
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../canteen/canteen?canteen="+canteen
+    })
+  },
+  //点击菜品图片跳转到指定菜品
+  switchToDish: function(e) {
+    console.log(e)
+    console.log(app.globalData)
+    var dish = e.currentTarget.dataset.dish
+    console.log(dish)
+    wx.navigateTo({
+      url: "../dish/dish?dish="+dish
     })
   },
 
@@ -151,12 +162,11 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:5000/get_select_canteens',
       data: {
-
       },
       method: 'GET',
       success: (res) => {
         console.log("get canteens success")
-        console.log(res.data)
+        //console.log(res.data)
         that.setData({
           canteens:res.data,
         })
@@ -169,12 +179,11 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:5000/get_select_dishes',
       data: {
-
       },
       method: 'GET',
       success: (res) => {
         console.log("get dishes success")
-        console.log(res.data)
+        //console.log(res.data)
         that.setData({
           dishes:res.data,
         })
