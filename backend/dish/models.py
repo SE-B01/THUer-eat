@@ -9,6 +9,7 @@ class Dish(db.Model):
     price = db.Column(db.Integer)
     canteen_id = db.Column(db.String(32)) # potential foreign key
     comment = db.Column(db.String(50))
+    img = db.Column(db.String(50))
     def __repr__(self):
         return '<Dish %r>' % self.name
 
@@ -21,5 +22,6 @@ class Dish(db.Model):
             'name': self.name,
             'price': self.price,
             'canteen_id': self.canteen_id,
-            'comment':self.comment
+            'comment':self.comment,
+            'img':self.img
         }

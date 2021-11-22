@@ -13,10 +13,11 @@
   border-radius: 30rpx;
 }
 .canteen_text{
+  max-width: 440rpx;
   margin: 20rpx;
 }
 
-.canteen_picture{
+.canteen_img{
   width: 220rpx;
   height: 220rpx;
   border-radius: 30rpx;
@@ -70,6 +71,6 @@
   margin:10rpx;
 }
 
-.dish_cost{
+.dish_price{
   margin-top: 5rpx;
 }
