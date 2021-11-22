@@ -9,7 +9,7 @@ Component({
       {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/home/index",
+        pagePath: "/pages/home/home",
         text: "首页"
       },
       {
@@ -30,7 +30,7 @@ Component({
       {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/home/index",
+        pagePath: "/pages/home/home",
         text: "首页"
       },
       {
@@ -50,7 +50,7 @@ Component({
       {
         selectedIconPath: "../images/icons/host_on.png",
         iconPath: "../images/icons/host.png",
-        pagePath: "/pages/home/index",
+        pagePath: "/pages/home/home",
         text: "首页"
       },
       {
