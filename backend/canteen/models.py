@@ -20,6 +20,7 @@ class Canteen(db.Model):
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
 
+
     def to_json(self):
         return {
             'id': self.id,
@@ -30,5 +31,6 @@ class Canteen(db.Model):
             'payment': self.payment,
             'star': self.star,
             'business_hours': self.business_hours,
-            'img': self.img
+            'img': self.img,
+            'cost': self.cost
         }

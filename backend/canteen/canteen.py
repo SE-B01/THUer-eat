@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from .models import Canteen
 from ..appraise.models import Appraise
 from ..dish.models import Dish
@@ -12,15 +12,14 @@ def canteen_example():
     return canteen_.name, 200
 
 
-@canteen.route('/get_all_canteens', methods=['GET', 'POST'])
-def get_all_canteens():
-    canteen_ = Canteen.query()
-    # canteen_info_name = [canteen.name for canteen in canteen_]
-    # canteen_info = {}
-    # canteen_info['name'] = canteen_info_name
-    print(canteen_)
-    return canteen_, 200
-    # return canteen_, 200
+@canteen.route('/get_select_canteens', methods=['GET', 'POST'])
+def get_select_canteens():
+    canteen_ = Canteen.query.all()
+    canteen_list = []
+    for canteen in canteen_:
+        canteen_list.append(canteen.to_json())
+    canteen_json = jsonify(canteen_list)
+    return canteen_json, 200
 
 
 @canteen.route('/canteen/get', methods=['GET', 'POST'])
