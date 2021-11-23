@@ -32,40 +32,51 @@ Page({
     gridCol: 3,
     skin: false,
 
-    //dropDownMenu数据
-    dropDownMenuTitle: ['美食种类', '附近', '支付方式','排序方式'],
-    dropDownMenuFourthData: [{
-      id: 1,
-      title: '智能排序'
-    }, {
-      id: 2,
-      title: '好评优先'
-    }, {
-      id: 3,
-      title: '距离优先'
-    }], //排序数据
-    dropDownMenuFirstData: [
-      {id: 1, title: '清淡菜品',
-      childModel: [
-        { id: '11', title: '粤菜'}, 
-        { id: '12', title:'淮扬菜'}]
-    },
-      {id: 2, title: '川湘口味',
-      childModel: [
-        { id: '11', title: '川菜'}, 
-        { id: '12', title:'湘菜'}]},
-    ],
-    dropDownMenuSecondData: [
+    //选择食堂时dropDownMenu数据
+    drop_canteen_titles: ['附近', '支付方式','排序方式'],
+    drop_canteen_distance: [
+      {id: 0, title: '不限距离'},
       {id: 1, title: '<500m'},
       {id: 2, title: '<1km'},
       {id: 3, title: '<3km'},
     ],
-    dropDownMenuThirdData: [
+    drop_canteen_payment: [
+      {id: 0, title: '支付方式不限'},
       {id: 1, title: '仅支持校园卡'},
       {id: 2, title: '可以使用支付宝'}
     ],
-    //餐厅信息，后续从数据库读取
+    drop_canteen_filter: [
+      {id: 0, title: '智能排序'},
+      {id: 1, title: '好评优先'},
+      {id: 2, title: '距离优先'}
+    ], 
+
+    //选择菜品时dropDownMenu数据
+    drop_dish_titles: ['附近', '口味','用餐风格'],
+    drop_dish_distance: [
+      {id: 0, title: '不限距离'},
+      {id: 1, title: '<500m'},
+      {id: 2, title: '<1km'},
+      {id: 3, title: '<3km'},
+    ],
+    drop_dish_favour: [
+      {id: 0, title: '口味不限'},
+      {id: 1, title: '清淡口味'},
+      {id: 2, title: '鲜辣口味'},
+      {id: 3, title: '大鱼大肉'},
+      {id: 4, title: '大鱼大肉'}
+    ],
+    drop_dish_filter: [
+      {id: 0, title: '风格不限'},
+      {id: 1, title: '个人独享'},
+      {id: 2, title: '朋友小聚'},
+      {id: 3, title: '宴请四方'}
+    ], 
+
+    //餐厅信息，从数据库读取
     canteens: [],
+
+    //菜品信息，从数据库读取
     dishes: []
 
   },
@@ -78,7 +89,7 @@ Page({
     })
   },
   //dropDownMenu选定的选项
-  selectedFourth:function(e){
+  filterSelect:function(e){
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
   },
 
