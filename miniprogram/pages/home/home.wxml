@@ -36,7 +36,7 @@
 </scroll-view>
 
 
-<dropdownmenu  wx:if="{{TabCur==0}}" dropDownMenuTitle='{{drop_canteen_titles}}' dropDownMenuFirstData='{{drop_canteen_distance}}' dropDownMenuSecondData='{{drop_canteen_payment}}' dropDownMenuThirdData='{{drop_canteen_filter}}' bind:selectedItem='filterSelect'></dropdownmenu>
+<dropdownmenu  wx:if="{{TabCur==0}}" dropDownMenuTitle='{{drop_canteen_titles}}' dropDownMenuFirstData='{{drop_canteen_distance}}' dropDownMenuSecondData='{{drop_canteen_style}}' dropDownMenuThirdData='{{drop_canteen_payment}}' dropDownMenuFourthData='{{drop_canteen_filter}}' bind:selectedItem='filterSelect'></dropdownmenu>
 
 <dropdownmenu  wx:if="{{TabCur==1}}" dropDownMenuTitle='{{drop_dish_titles}}' dropDownMenuFirstData='{{drop_dish_distance}}' dropDownMenuSecondData='{{drop_dish_favour}}' dropDownMenuThirdData='{{drop_dish_filter}}' bind:selectedItem='filterSelect'></dropdownmenu>
 
