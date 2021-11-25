@@ -26,180 +26,165 @@ Component({
   },
   data: {
     // 这里是一些组件内部数据
-    hyopen: false,
-    sqopen: false,
-    pxopen: false,
-    sortopen: false,
+    firstopen: false,
+    secondopen: false,
+    thirdopen: false,
+    fourthopen: false,
     shownavindex: '',
     dropDownMenuDataFirstRight: {},
-    select1: '',
-    select2: '',
-    selectedQt: 0,
-    selectedSq: 0,
-    selectedSort: 1,
+    selectedFirst: 0,
+    selectedSecond: 0,
+    selectedThird: 0,
+    selectedFourth: 0,
   },
   methods: {
     // 这里是自定义方法
-    listqy: function (e) {
-      if (this.data.hyopen) {
+    listfirst: function (e) {
+      if (this.data.firstopen) {
         this.setData({
-          hyopen: false,
-          sqopen: false,
-          pxopen: false,
-          sortopen: false,
+          firstopen: false,
+          secondopen: false,
+          thirdopen: false,
+          fourthopen: false,
           shownavindex: 0
         })
       } else {
         this.setData({
-          hyopen: true,
-          pxopen: false,
-          sqopen: false,
-          sortopen: false,
+          firstopen: true,
+          thirdopen: false,
+          secondopen: false,
+          fourthopen: false,
           shownavindex: e.currentTarget.dataset.nav
         })
       }
 
     },
-    list: function (e) {
-      if (this.data.sqopen) {
+    listsecond: function (e) {
+      if (this.data.secondopen) {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
           shownavindex: 0
         })
       } else {
         this.setData({
-          sqopen: true,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: true,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
           shownavindex: e.currentTarget.dataset.nav
         })
       }
     },
-    listpx: function (e) {
-      if (this.data.pxopen) {
+    listthird: function (e) {
+      if (this.data.thirdopen) {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
           shownavindex: 0
         })
       } else {
         this.setData({
-          sqopen: false,
-          pxopen: true,
-          sortopen: false,
-          hyopen: false,
+          secondopen: false,
+          thirdopen: true,
+          fourthopen: false,
+          firstopen: false,
           shownavindex: e.currentTarget.dataset.nav
         })
       }
       console.log(e.target)
     },
-    listsort: function (e) {
-      if (this.data.sortopen) {
+    listfourth: function (e) {
+      if (this.data.fourthopen) {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
           shownavindex: 0
         })
       } else {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: true,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: true,
           shownavindex: e.currentTarget.dataset.nav
         })
       }
     },
-    selectleft: function (e) {
-      var model = e.target.dataset.model.childModel;
-      var selectedId = e.target.dataset.model.id
-      var selectedTitle = e.target.dataset.model.title;
-      this.setData({
-        dropDownMenuDataFirstRight: model==null?"":model,
-        select1: selectedId,
-        select2: '',
-      })
-      if (model == null || model.length == 0) {
-        this.closeHyFilter();
-        this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
-      }
-    },
-    selectcenter: function (e) {
+    selectFirstItem: function (e) {
       var selectedId = e.target.dataset.model.id
       var selectedTitle = e.target.dataset.model.title;
       this.closeHyFilter();
       this.setData({
-        select2: selectedId
+        selectedFirst: selectedId
       })
       this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
     },
-    selectsqitem: function (e) {
+    selectSecondItem: function (e) {
       var selectedId = e.target.dataset.model.id
       var selectedTitle = e.target.dataset.model.title;
       this.closeHyFilter();
       this.setData({
-        selectedSq: selectedId
+        selectedSecond: selectedId
       })
       this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
     },
-    selecsortlitem: function (e) {
+    selectThirdItem: function (e) {
       var selectedId = e.target.dataset.model.id
       var selectedTitle = e.target.dataset.model.title;
       this.closeHyFilter();
       this.setData({
-        selectedSort: selectedId
+        selectedThird: selectedId
       })
       this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
     },
-    selecqtlitem: function (e) {
+    selectFourthItem: function (e) {
       var selectedId = e.target.dataset.model.id
       var selectedTitle = e.target.dataset.model.title;
       this.closeHyFilter();
       this.setData({
-        selectedQt: selectedId
+        selectedFourth: selectedId
       })
       this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
     },
     
     /**关闭筛选 */
     closeHyFilter: function () {
-      if (this.data.hyopen) {
+      if (this.data.firstopen) {
         this.setData({
-          hyopen: false,
-          sqopen: false,
-          pxopen: false,
-          sortopen: false,
+          firstopen: false,
+          secondopen: false,
+          thirdopen: false,
+          fourthopen: false,
         })
-      } else if (this.data.sqopen) {
+      } else if (this.data.secondopen) {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
-        })
-      }
-      else if (this.data.pxopen) {
-        this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
         })
       }
-      else if (this.data.sortopen) {
+      else if (this.data.thirdopen) {
         this.setData({
-          sqopen: false,
-          pxopen: false,
-          hyopen: false,
-          sortopen: false,
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
+        })
+      }
+      else if (this.data.fourthopen) {
+        this.setData({
+          secondopen: false,
+          thirdopen: false,
+          firstopen: false,
+          fourthopen: false,
         })
       }
     },
