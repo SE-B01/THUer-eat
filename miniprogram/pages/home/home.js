@@ -32,96 +32,52 @@ Page({
     gridCol: 3,
     skin: false,
 
-    //dropDownMenu数据
-    dropDownMenuTitle: ['美食种类', '附近', '支付方式','排序方式'],
-    dropDownMenuFourthData: [{
-      id: 1,
-      title: '智能排序'
-    }, {
-      id: 2,
-      title: '好评优先'
-    }, {
-      id: 3,
-      title: '距离优先'
-    }], //排序数据
-    dropDownMenuFirstData: [
-      {id: 1, title: '清淡菜品',
-      childModel: [
-        { id: '11', title: '粤菜'}, 
-        { id: '12', title:'淮扬菜'}]
-    },
-      {id: 2, title: '川湘口味',
-      childModel: [
-        { id: '11', title: '川菜'}, 
-        { id: '12', title:'湘菜'}]},
-    ],
-    dropDownMenuSecondData: [
+    //选择食堂时dropDownMenu数据
+    drop_canteen_titles: ['附近', '支付方式','排序方式'],
+    drop_canteen_distance: [
+      {id: 0, title: '不限距离'},
       {id: 1, title: '<500m'},
       {id: 2, title: '<1km'},
       {id: 3, title: '<3km'},
     ],
-    dropDownMenuThirdData: [
+    drop_canteen_payment: [
+      {id: 0, title: '支付方式不限'},
       {id: 1, title: '仅支持校园卡'},
       {id: 2, title: '可以使用支付宝'}
     ],
-    //餐厅信息，后续从数据库读取
-    canteens: [{
-        "canteen_name": "听涛园",
-        "canteen_picture": "../../images/canteens/听涛园.jfif",
-        "canteen_rank": "5",
-        "canteen_cost": "18",
-        "canteen_opentime": "9:00-18:00",
-        "canteen_location": "学堂路与至善路交界处",
-        "canteen_tag": ["好吃", "便宜", "哈哈哈"]
-      },
-      {
-        "canteen_name": "观畴园",
-        "canteen_picture": "../../images/canteens/观畴园.jfif",
-        "canteen_rank": "3",
-        "canteen_cost": "20",
-        "canteen_opentime": "9:00-18:00",
-        "canteen_location": "学堂路与至善路交界处",
-        "canteen_tag": ["好吃", "人较多"]
-      }
+    drop_canteen_filter: [
+      {id: 0, title: '智能排序'},
+      {id: 1, title: '好评优先'},
+      {id: 2, title: '距离优先'}
+    ], 
+
+    //选择菜品时dropDownMenu数据
+    drop_dish_titles: ['附近', '口味','用餐风格'],
+    drop_dish_distance: [
+      {id: 0, title: '不限距离'},
+      {id: 1, title: '<500m'},
+      {id: 2, title: '<1km'},
+      {id: 3, title: '<3km'},
     ],
-    //菜品信息，后续从数据库读取
-    dishes: [{
-        "dish_picture": "../../images/dishes/打卤面.jfif",
-        "dish_name": "打卤面",
-        "dish_cost": 9,
-        "dish_comment": "咸淡适中，肉量很足。",
-        "dish_canteen": "清芬园"
-      },
-      {
-        "dish_picture": "../../images/dishes/铁板鸡饭.jfif",
-        "dish_name": "铁板鸡饭",
-        "dish_cost": 21,
-        "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
-        "dish_canteen": "观畴园",
-        
-      },
-      {
-        "dish_picture": "../../images/dishes/石锅拌饭.jfif",
-        "dish_name": "石锅拌饭",
-        "dish_cost": 18,
-        "dish_comment": "超喜欢，比喜欢嘉然还喜欢。",
-        "dish_canteen": "玉树园"
-      },
-      {
-        "dish_picture": "../../images/dishes/葱油饼.jfif",
-        "dish_name": "葱油饼",
-        "dish_cost": 12,
-        "dish_comment": "香，真的香。",
-        "dish_canteen": "观畴园"
-      },
-      {
-        "dish_picture": "../../images/dishes/派蒙.jpg",
-        "dish_name": "应急食品",
-        "dish_cost": 648,
-        "dish_comment": "派蒙才不是食物！",
-        "dish_canteen": "原神"
-      },
-    ]
+    drop_dish_favour: [
+      {id: 0, title: '口味不限'},
+      {id: 1, title: '清淡口味'},
+      {id: 2, title: '鲜辣口味'},
+      {id: 3, title: '大鱼大肉'},
+      {id: 4, title: '大鱼大肉'}
+    ],
+    drop_dish_filter: [
+      {id: 0, title: '风格不限'},
+      {id: 1, title: '个人独享'},
+      {id: 2, title: '朋友小聚'},
+      {id: 3, title: '宴请四方'}
+    ], 
+
+    //餐厅信息，从数据库读取
+    canteens: [],
+
+    //菜品信息，从数据库读取
+    dishes: []
 
   },
 
@@ -133,16 +89,27 @@ Page({
     })
   },
   //dropDownMenu选定的选项
-  selectedFourth:function(e){
+  filterSelect:function(e){
     console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
   },
 
+  //点击餐厅图片跳转到指定餐厅
   switchToCanteen: function(e) {
     console.log(e)
     console.log(app.globalData)
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../canteen/canteen?canteen="+canteen
+    })
+  },
+  //点击菜品图片跳转到指定菜品
+  switchToDish: function(e) {
+    console.log(e)
+    console.log(app.globalData)
+    var dish = e.currentTarget.dataset.dish
+    console.log(dish)
+    wx.navigateTo({
+      url: "../dish/dish?dish="+dish
     })
   },
 
@@ -201,12 +168,50 @@ Page({
     })
   },
 
+  getSelectCanteens: function () {
+    var that = this
+    wx.request({
+      url: 'http://127.0.0.1:5000/get_select_canteens',
+      data: {
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log("get canteens success")
+        //console.log(res.data)
+        that.setData({
+          canteens:res.data,
+        })
+      }
+    })
+  },
+
+  getSelectDishes: function () {
+    var that = this
+    wx.request({
+      url: 'http://127.0.0.1:5000/get_select_dishes',
+      data: {
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log("get dishes success")
+        //console.log(res.data)
+        that.setData({
+          dishes:res.data,
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
+  
   onLoad: function(options) {
-    //加载：1.检查是否登录
     var that = this
+    //加载页面函数
+    that.getSelectCanteens()
+    that.getSelectDishes()
+    //登录模块
     if (!wx.cloud) {
       wx.showModal({
         title: '初始化失败',
@@ -256,18 +261,7 @@ Page({
     } else{
       return
     }
-    //2.调用数据库返回食堂
-    wx.request({
-      url: 'http://127.0.0.1:5000/get_all_canteens',
-      data: {
-        
-      },
-      method: 'GET',
-      success: (res) => {
-        console.log(res)
 
-      }
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -280,6 +274,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 0
+    })
+    this.getTabBar().changeFormat()
+  }
+    
 
   },
 

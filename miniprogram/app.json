@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/home/index",
+    "pages/home/home",
     "pages/canteen/canteen",
     "pages/comments/comments",
     "pages/newmine/newmine",
     "pages/test/test",
     "pages/map/map",
-    "pages/dishes/dishes",
+    "pages/dish/dish",
     "pages/index/index",
     "pages/management/management",
     "pages/search/search",
@@ -42,26 +42,26 @@
   "style": "v2",
   "tabBar": {
     "color": "#a9b7b7",
-    "selectedColor": "#1296db",
+    "selectedColor": "#7b10a8",
     "borderStyle": "white",
     "custom": true,
     "list": [
       {
-        "selectedIconPath": "images/icons/host_on.png",
-        "iconPath": "images/icons/host.png",
-        "pagePath": "pages/home/index",
+        "selectedIconPath": "images/icons/home_on.png",
+        "iconPath": "images/icons/home.png",
+        "pagePath": "pages/home/home",
         "text": "首页"
       },
       {
-        "selectedIconPath": "images/icons/feedback_on.png",
-        "iconPath": "images/icons/feedback.png",
+        "selectedIconPath": "images/icons/map_on.png",
+        "iconPath": "images/icons/map.png",
         "pagePath": "pages/map/map",
         "text": "地图"
       },
 
       {
-        "selectedIconPath": "images/icons/addword_on.png",
-        "iconPath": "images/icons/addword.png",
+        "selectedIconPath": "images/icons/mine_on.png",
+        "iconPath": "images/icons/mine.png",
         "pagePath": "pages/newmine/newmine",
         "text": "我的"
       }

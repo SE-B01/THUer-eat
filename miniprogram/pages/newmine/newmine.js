@@ -158,7 +158,7 @@ Page({
               },
               method: 'GET',
               success: (res) => {
-                // console.log(res.data)
+                //console.log(res.data)
                 that.setData({
                   dishes:res.data
                 })
@@ -190,6 +190,13 @@ Page({
            * 生命周期函数--监听页面显示
            */
           onShow: function () {
+            if (typeof this.getTabBar === 'function' &&
+            this.getTabBar()) {
+            this.getTabBar().setData({
+              selected: 2
+            })
+            this.getTabBar().changeFormat()
+          }
 
           },
 
