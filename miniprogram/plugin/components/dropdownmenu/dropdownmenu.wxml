@@ -1,61 +1,56 @@
 <view class="nav">
-    <view class="nav-son {{hyopen? 'active' : ''}}" bindtap="listqy" data-nav="1">
+    <view class="nav-son {{firstopen? 'active' : ''}}" bindtap="listfirst" data-nav="1">
       <view class="content">{{dropDownMenuTitle[0]}}</view>
       <view class="icon"></view>
     </view>
-    <view class="nav-son borders {{sqopen? 'active' : ''}}" bindtap="list" data-nav="2">
+    <view class="nav-son borders {{secondopen? 'active' : ''}}" bindtap="listsecond" data-nav="2">
       <view class="content">{{dropDownMenuTitle[1]}}</view>
       <view class="icon"></view>
     </view>
-    <view class="nav-son borders-right {{pxopen? 'active' : ''}}" bindtap="listpx" data-nav="3">
+    <view class="nav-son borders-right {{thirdopen? 'active' : ''}}" bindtap="listthird" data-nav="3">
       <view class="content">{{dropDownMenuTitle[2]}}</view>
       <view class="icon"></view>
     </view>
-    <view class="nav-son {{sortopen ? 'active' : ''}}" bindtap="listsort" data-nav="4">
+    <view class="nav-son {{fourthopen ? 'active' : ''}}" bindtap="listfourth" data-nav="4">
       <view class="content">{{dropDownMenuTitle[3]}}</view>
       <view class="icon"></view>
     </view>
   </view>
 
 
-
-
-  <view class="quyu {{hyopen ? 'show' : 'disappear'}} ">
-    <view class="qy quyu-left">
-      <view class="{{select1 == item.id ? 'current' : ''}}" wx:for="{{dropDownMenuFirstData}}" bindtap="selectleft" data-model='{{item}}' wx:key="unique">
-        {{item.title}}
-      </view>
-    </view>
-    <view class="qy quyu-center">
-      <view class="{{select2 == item.id ? 'current2' : ''}}" wx:for="{{dropDownMenuDataFirstRight}}" bindtap="selectcenter" data-model='{{item}}' wx:key="unique">
-        {{item.title}}
+  <view class="temp temp3 {{firstopen ? 'show' : 'disappear'}} ">
+    <view class='tempheight'>
+      <view>
+        <block wx:for="{{dropDownMenuFirstData}}" wx:key="unique">
+          <view class="fourthitem {{selectedFirst==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selectFirstItem'> {{item.title}}</view>
+        </block>
       </view>
     </view>
   </view>
 
-  <view class="temp temp3 {{sqopen ? 'show' : 'disappear'}} ">
+  <view class="temp temp3 {{secondopen ? 'show' : 'disappear'}} ">
     <view class='tempheight'>
       <view>
         <block wx:for="{{dropDownMenuSecondData}}" wx:key="unique">
-          <view class="sortitem {{selectedSq==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selectsqitem'> {{item.title}}</view>
+          <view class="fourthitem {{selectedSecond==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selectSecondItem'> {{item.title}}</view>
         </block>
       </view>
     </view>
   </view>
-  <view class="temp temp3 {{pxopen ? 'show' : 'disappear'}} ">
+  <view class="temp temp3 {{thirdopen ? 'show' : 'disappear'}} ">
     <view class='tempheight'>
       <view>
         <block wx:for="{{dropDownMenuThirdData}}" wx:key="unique">
-          <view class="sortitem {{selectedQt==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selecqtlitem'> {{item.title}}</view>
+          <view class="fourthitem {{selectedThird==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selectThirdItem'> {{item.title}}</view>
         </block>
       </view>
     </view>
   </view>
-  <view class="temp temp3 {{sortopen ? 'show' : 'disappear'}} ">
+  <view class="temp temp3 {{fourthopen ? 'show' : 'disappear'}} ">
     <view class='tempheight'>
       <view>
         <block wx:for="{{dropDownMenuFourthData}}" wx:key="unique">
-          <view class="sortitem {{selectedSort==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selecsortlitem'> {{item.title}}</view>
+          <view class="fourthitem {{selectedFourth==item.id ? ' active ' : ' '}}" data-model='{{item}}' bindtap='selectFourthItem'> {{item.title}}</view>
         </block>
       </view>
     </view>

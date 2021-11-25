@@ -6,9 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //TabCur：校园食堂/发现好菜互相跳转
     TabCur: 0,
-
     scrollLeft: 0,
+
+    //用户信息
     nickName: "未登录",
     is_admin: false,
     openid: "",
@@ -35,120 +37,68 @@ Page({
 
     //选择食堂时dropDownMenu数据
     drop_canteen_titles: ['附近', '用餐风格', '支付方式', '排序方式'],
-    drop_canteen_distance: [{
-        id: 0,
-        title: '不限距离'
-      },
-      {
-        id: 1,
-        title: '<500m'
-      },
-      {
-        id: 2,
-        title: '<1km'
-      },
-      {
-        id: 3,
-        title: '<3km'
-      },
+    drop_canteen_distance: [
+      {id: 0, title: '不限距离'},
+      {id: 1, title: '<500m'},
+      {id: 2, title: '<1km'},
+      {id: 3, title: '<3km'},
     ],
-    drop_canteen_style: [{
-        id: 0,
-        title: '风格不限'
-      },
-      {
-        id: 1,
-        title: '个人独享'
-      },
-      {
-        id: 2,
-        title: '朋友小聚'
-      },
-      {
-        id: 3,
-        title: '宴请四方'
-      }
+    drop_canteen_style: [
+      {id: 0, title: '风格不限'},
+      {id: 1, title: '个人独享'},
+      {id: 2, title: '朋友小聚'},
+      {id: 3, title: '宴请四方'}
     ],
-    drop_canteen_payment: [{
-        id: 0,
-        title: '支付方式不限'
-      },
-      {
-        id: 1,
-        title: '仅支持校园卡'
-      },
-      {
-        id: 2,
-        title: '可以使用支付宝'
-      }
+    drop_canteen_payment: [
+      {id: 0, title: '支付方式不限'},
+      {id: 1, title: '仅支持校园卡'},
+      {id: 2, title: '可以使用支付宝'}
     ],
-    drop_canteen_filter: [{
-        id: 0,
-        title: '智能排序'
-      },
-      {
-        id: 1,
-        title: '好评优先'
-      },
-      {
-        id: 2,
-        title: '距离优先'
-      }
+    drop_canteen_sortby: [
+      {id: 0, title: '智能排序'},
+      {id: 1, title: '好评优先'},
+      {id: 2, title: '距离优先'}
     ],
 
     //选择菜品时dropDownMenu数据
-    drop_dish_titles: ['附近', '口味', '用餐风格'],
-    drop_dish_distance: [{
-        id: 0,
-        title: '不限距离'
-      },
-      {
-        id: 1,
-        title: '<500m'
-      },
-      {
-        id: 2,
-        title: '<1km'
-      },
-      {
-        id: 3,
-        title: '<3km'
-      },
+    drop_dish_titles: ['附近', '口味', '价格区间','排序方式'],
+    drop_dish_distance: [
+      {id: 0, title: '不限距离'},
+      {id: 1, title: '<500m'},
+      {id: 2, title: '<1km'},
+      {id: 3, title: '<3km'},
     ],
-    drop_dish_favour: [{
-        id: 0,
-        title: '口味不限'
-      },
-      {
-        id: 1,
-        title: '清淡口味'
-      },
-      {
-        id: 2,
-        title: '鲜辣口味'
-      },
-      {
-        id: 3,
-        title: '大鱼大肉'
-      },
+    drop_dish_favour: [
+      {id: 0, title: '口味不限'},
+      {id: 1, title: '清淡口味'},
+      {id: 2, title: '鲜辣口味'},
+      {id: 3, title: '大鱼大肉'},
     ],
-    drop_dish_filter: [{
-        id: 0,
-        title: '风格不限'
-      },
-      {
-        id: 1,
-        title: '个人独享'
-      },
-      {
-        id: 2,
-        title: '朋友小聚'
-      },
-      {
-        id: 3,
-        title: '宴请四方'
-      }
+    drop_dish_price: [
+      {id: 0, title: '价格不限'},
+      {id: 1, title: '5-10元'},
+      {id: 2, title: '10-50元'},
+      {id: 3, title: '50元以上'}
     ],
+    drop_dish_sortby: [
+      {id: 0, title: '智能排序'},
+      {id: 1, title: '好评优先'},
+      {id: 2, title: '新菜优先'}
+    ],
+    //目前的筛选信息
+    canteen_select: {
+      distance:0,
+      style:0,
+      payment:0,
+      sortby:0
+    },
+
+    dish_select: {
+      distance:0,
+      favour:0,
+      price:0,
+      sortby:0
+    },
 
     //餐厅信息，从数据库读取
     canteens: [],
@@ -219,6 +169,43 @@ Page({
     });
   },
 
+  getUserNameAvatar: function () {
+    if (!app.globalData.logged) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录哦~',
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.getUserProfile({
+              desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+              success: (res) => {
+                console.log("已经调用getUserProfile")
+                console.log(res)
+                that.setData({
+                  nickName: res.userInfo.nickName,
+                  avatarUrl: res.userInfo.avatarUrl,
+                  userInfo: res.userInfo
+                })
+                app.globalData.userInfo = res.userInfo
+                console.log('登陆成功')
+                console.log(that.data.userInfo)
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else {
+      return
+    }
+
+    
+  },
+
   getSelectCanteens: function () {
     var that = this
     wx.request({
@@ -263,56 +250,6 @@ Page({
     //测试：getOpenid
     that.getOpenid()
     //登录模块
-    if (!wx.cloud) {
-      wx.showModal({
-        title: '初始化失败',
-        content: '请使用 2.2.3 或以上的基础库以使用云能力',
-        showCancel: false,
-        success(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-      return
-    }
-    if (!app.globalData.logged) {
-      wx.showModal({
-        title: '提示',
-        content: '请先登录哦~',
-        confirmText: "我知道了",
-        showCancel: false,
-        success(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            wx.getUserProfile({
-              desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-              success: (res) => {
-                console.log("已经调用getUserProfile")
-                console.log(res)
-                that.setData({
-                  nickName: res.userInfo.nickName,
-                  avatarUrl: res.userInfo.avatarUrl,
-                  userInfo: res.userInfo
-                })
-                app.globalData.userInfo = res.userInfo
-                console.log('登陆成功')
-                console.log(that.data.userInfo)
-
-              }
-            })
-
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } else {
-      return
-    }
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

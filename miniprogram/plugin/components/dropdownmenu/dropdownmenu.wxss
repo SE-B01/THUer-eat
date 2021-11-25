@@ -229,7 +229,7 @@
   flex-wrap: wrap;
 }
 
-.sdbitem {
+.seconditem {
   width: 119rpx;
   text-align: center;
   border: solid #ccc 1rpx;
@@ -284,12 +284,12 @@
   background-color: #F1E6B8;
 }  
 
-.sortitem {
+.fourthitem {
   border-bottom: solid #F7F7F7 1rpx;
   justify-content: space-between;
   padding: 20rpx 30rpx;
 }
-.sortitem.active{  
+.fourthitem.active{  
   color: #a912bd;  
 }  
 
