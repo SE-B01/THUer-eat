@@ -86,19 +86,8 @@ Page({
       {id: 2, title: '新菜优先'}
     ],
     //目前的筛选信息
-    canteen_select: {
-      distance:0,
-      style:0,
-      payment:0,
-      sortby:0
-    },
-
-    dish_select: {
-      distance:0,
-      favour:0,
-      price:0,
-      sortby:0
-    },
+    canteen_select:[0,0,0,0],
+    dish_select:[0,0,0,0],
 
     //餐厅信息，从数据库读取
     canteens: [],
@@ -117,13 +106,25 @@ Page({
   },
   //dropDownMenu选定的选项
   filterSelect: function (e) {
-    console.log("选中第" + e.detail.index + "个标签，选中的id：" + e.detail.selectedId + "；选中的内容：" + e.detail.selectedTitle);
+    if (this.data.TabCur==0){
+      if ((e.detail.selectdata[0] != this.data.canteen_select[0]) ||(e.detail.selectdata[1] != this.data.canteen_select[1]) || (e.detail.selectdata[2] != this.data.canteen_select[2]) ||(e.detail.selectdata[3] != this.data.canteen_select[3])) {
+        this.setData({
+          canteen_select: e.detail.selectdata
+        })
+        console.log(this.data.canteen_select)
+        this.getSelectCanteens()
+      }
+    }
+    else {
+      this.setData({
+        dish_select: e.detail.selectdata
+      })
+      this.getSelectDishes()
+    }
   },
 
   //点击餐厅图片跳转到指定餐厅
   switchToCanteen: function (e) {
-    console.log(e)
-    console.log(app.globalData)
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../canteen/canteen?canteen=" + canteen
@@ -131,8 +132,6 @@ Page({
   },
   //点击菜品图片跳转到指定菜品
   switchToDish: function (e) {
-    console.log(e)
-    console.log(app.globalData)
     var dish = e.currentTarget.dataset.dish
     console.log(dish)
     wx.navigateTo({
@@ -210,7 +209,12 @@ Page({
     var that = this
     wx.request({
       url: 'http://127.0.0.1:5000/get_select_canteens',
-      data: {},
+      data: {
+        distance: that.data.canteen_select[0],
+        style: that.data.canteen_select[1],
+        payment: that.data.canteen_select[2],
+        sortby: that.data.canteen_select[3]
+      },
       method: 'GET',
       success: (res) => {
         console.log("get canteens success")
@@ -226,7 +230,9 @@ Page({
     var that = this
     wx.request({
       url: 'http://127.0.0.1:5000/get_select_dishes',
-      data: {},
+      data: {
+        distance: that.data.dish_select[0]
+      },
       method: 'GET',
       success: (res) => {
         console.log("get dishes success")

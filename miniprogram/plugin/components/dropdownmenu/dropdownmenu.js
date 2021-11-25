@@ -124,7 +124,7 @@ Component({
       this.setData({
         selectedFirst: selectedId
       })
-      this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+      this.triggerEvent("selectedItem", {selectdata: [this.data.selectedFirst, this.data.selectedSecond, this.data.selectedThird, this.data.selectedFourth]})
     },
     selectSecondItem: function (e) {
       var selectedId = e.target.dataset.model.id
@@ -133,7 +133,7 @@ Component({
       this.setData({
         selectedSecond: selectedId
       })
-      this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+      this.triggerEvent("selectedItem", {selectdata: [this.data.selectedFirst, this.data.selectedSecond, this.data.selectedThird, this.data.selectedFourth]})
     },
     selectThirdItem: function (e) {
       var selectedId = e.target.dataset.model.id
@@ -142,7 +142,7 @@ Component({
       this.setData({
         selectedThird: selectedId
       })
-      this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+      this.triggerEvent("selectedItem", {selectdata: [this.data.selectedFirst, this.data.selectedSecond, this.data.selectedThird, this.data.selectedFourth]})
     },
     selectFourthItem: function (e) {
       var selectedId = e.target.dataset.model.id
@@ -151,7 +151,7 @@ Component({
       this.setData({
         selectedFourth: selectedId
       })
-      this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+      this.triggerEvent("selectedItem", {selectdata: [this.data.selectedFirst, this.data.selectedSecond, this.data.selectedThird, this.data.selectedFourth]})
     },
     
     /**关闭筛选 */
