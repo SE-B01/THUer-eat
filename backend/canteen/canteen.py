@@ -43,9 +43,9 @@ def get_select_canteens():
         limit = ".all()"
 
     query_limit = "Canteen.query" + limit
-    print(query_limit)
+    # print(query_limit)
     canteen_ = eval(query_limit)
-    print(canteen_)
+    # print(canteen_)
     canteen_list = []
     for canteen in canteen_:
         canteen_list.append(canteen.to_json())

@@ -13,8 +13,9 @@ Page({
     //用户信息
     nickName: "未登录",
     is_admin: false,
+    userInfo:'',
     openid: "",
-
+    newuser:"0",
     //宫格，不用修改
     iconList: [{
       icon: 'rank',
@@ -154,21 +155,37 @@ Page({
               //这里没有传appsecret，放在后端了
             },
             success: function(res){
-              //console.log(res)
+              console.log('openid_res')
+              console.log(res)
+              console.log(res.data[1])
               that.setData({
-                openid: res.data.openid
+                openid: res.data[0].openid,
+                newuser: res.data[1]
               })
+              console.log('get openid0')
               app.globalData.openid = that.data.openid
+              console.log('get openid')
+              console.log(app.globalData.openid)
+              console.log(app.globalData.openid)
+              // 
+              console.log(that.data.newuser)
+              if (that.data.newuser==0){
+                that.getUserNameAvatar()
+                console.log('begin user info')
+              }
+              
             }
           })
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)
+
         }
       }
     });
   },
 
   getUserNameAvatar: function () {
+    var that = this
     if (!app.globalData.logged) {
       wx.showModal({
         title: '提示',
@@ -183,6 +200,7 @@ Page({
               success: (res) => {
                 console.log("已经调用getUserProfile")
                 console.log(res)
+                console.log(res.userInfo.nickName)
                 that.setData({
                   nickName: res.userInfo.nickName,
                   avatarUrl: res.userInfo.avatarUrl,
@@ -191,6 +209,7 @@ Page({
                 app.globalData.userInfo = res.userInfo
                 console.log('登陆成功')
                 console.log(that.data.userInfo)
+                that.insertUserinfo()
               }
             })
           } else if (res.cancel) {
@@ -200,9 +219,28 @@ Page({
       })
     } else {
       return
-    }
-
-    
+    }  
+  },
+  insertUserinfo: function () {
+    var that = this
+    console.log('inserting')
+    wx.request({
+      url: 'http://127.0.0.1:5000/insertUserinfo',
+      data: {
+        nickName: that.data.nickName,
+        avatarUrl: that.data.avatarUrl,
+        userInfo: that.data.userInfo,
+        openid: that.data.openid
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log("get canteens success")
+        //console.log(res.data)
+        that.setData({
+          canteens: res.data,
+        })
+      }
+    })
   },
 
   getSelectCanteens: function () {
@@ -254,6 +292,7 @@ Page({
     that.getSelectCanteens()
     that.getSelectDishes()
     //测试：getOpenid
+    console.log("test openid")
     that.getOpenid()
     //登录模块
   },
