@@ -14,7 +14,38 @@ def canteen_example():
 
 @canteen.route('/get_select_canteens', methods=['GET', 'POST'])
 def get_select_canteens():
-    canteen_ = Canteen.query.all()
+    """
+    根据筛选条件返回餐厅
+    条件: list
+    list[0]: distance:  0: 不限距离  1: <500m  2: <1km  3: <3km
+    list[1]: style:     0: 风格不限 1: 个人独享 2: 朋友小聚 3:宴请四方
+    list[2]: payment:   0: 支付方式不限 1:仅支持校园卡 2:可以使用支付宝
+    list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先    
+    
+    """
+    distance = request.args.get("distance")
+    style = request.args.get("distance")
+    payment = request.args.get("payment")
+    sortby = request.args.get("sortby")
+
+    limit = ""
+    distance_limits = [0, 500, 1000, 3000]
+
+
+    # if distance != "0":
+    #     distance_limit = distance_limits[int(distance)]
+    if style != "0":
+        limit += ".filter_by(style={})".format(style)
+    if payment != "0":
+        limit += ".filter_by(payment={})".format(payment)
+
+    if limit == "":
+        limit = ".all()"
+
+    query_limit = "Canteen.query" + limit
+    # print(query_limit)
+    canteen_ = eval(query_limit)
+    # print(canteen_)
     canteen_list = []
     for canteen in canteen_:
         canteen_list.append(canteen.to_json())

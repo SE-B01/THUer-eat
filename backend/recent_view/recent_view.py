@@ -9,7 +9,7 @@ recent_view = Blueprint('recent_view', __name__)
 @recent_view.route('/recent_view_test', methods=['GET', 'POST'])
 def recent_view_example():
     recent_view_ = Recent_view.query.first()
-    print(recent_view_)
+    # print(recent_view_)
     return str(recent_view_.rank), 200
 
 @recent_view.route('/get_recent_view', methods=['GET', 'POST'])
@@ -20,10 +20,10 @@ def get_recent_view():
     for recent_view_list_item in recent_view_list:
         dish_detail = Dish.query.filter_by(id=recent_view_list_item.dish_id)
         for dish_detail_item in dish_detail:
-            print(dish_detail_item.to_json())
+            # print(dish_detail_item.to_json())
             canteen_detail = Canteen.query.filter_by(id=dish_detail_item.canteen_id)
             for canteen_detail_item in canteen_detail:
-                print(canteen_detail_item.to_json())
+                # print(canteen_detail_item.to_json())
                 return_list_item={
                 'id':recent_view_list_item.id,
                 'dish_name':dish_detail_item.name,
@@ -34,9 +34,9 @@ def get_recent_view():
                 'dish_canteen_on':'营业中'
                 }
                 # return_list_item = json.dumps(return_list_item, ensure_ascii=False)
-                print('return list item')
-                print(return_list_item)
+                # print('return list item')
+                # print(return_list_item)
                 return_list.append(return_list_item)
-    print('list')
-    print(return_list)
+    # print('list')
+    # print(return_list)
     return jsonify(return_list), 200
