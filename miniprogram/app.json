@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/test/test",
+    "pages/comments/comments",
     "pages/home/home",
     "pages/canteen/canteen",
-    "pages/comments/comments",
     "pages/newmine/newmine",
-    "pages/test/test",
     "pages/map/map",
     "pages/dish/dish",
     "pages/index/index",
