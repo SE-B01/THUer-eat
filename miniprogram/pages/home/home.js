@@ -173,6 +173,10 @@ Page({
                 that.getUserNameAvatar()
                 console.log('begin user info')
               }
+              else{
+                app.globalData.logged=true
+                that.searchUserNameAvatar()
+              }
               
             }
           })
@@ -183,7 +187,26 @@ Page({
       }
     });
   },
+  searchUserNameAvatar: function () {
+    var that = this
+    console.log('searching')
+    wx.request({
+      url: 'http://127.0.0.1:5000/searchUserinfo',
+      data: {
+        openid: that.data.openid
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log("get user info")
+        console.log(res.data)
+        that.setData({
+          userInfo: res.data[0],
+        })
+        app.globalData.userInfo=that.data.userInfo
+      }
+    })
 
+  },
   getUserNameAvatar: function () {
     var that = this
     if (!app.globalData.logged) {
