@@ -71,3 +71,14 @@ def insertUserinfo():
     db.session.close()
     return_list=['success']
     return jsonify(return_list), 200
+
+@user.route('/searchUserinfo', methods=['GET', 'POST'])
+def searchUserinfo():
+    openid = request.args.get("openid")
+    User_query = User.query.filter_by(id=openid)
+    return_list=[]
+    for User_query_index in User_query:
+        print(User_query_index.to_json())
+    
+        return_list.append(User_query_index.to_json())
+    return jsonify(return_list), 200
