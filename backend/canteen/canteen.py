@@ -97,3 +97,14 @@ def get_canteen_info():
     ca_info['dish_list'] = dish_list_
     return ca_info, 200
     # return canteen_, 200
+
+
+@canteen.route('/canteen/map_get', methods=['GET', 'POST'])
+def get_canteen_location():
+    markers = {'markers': []}
+    ca = Canteen.query.all()
+    for item in ca:
+        marker = {'id': item.id, 'latitude': item.latitude, 'longitude': item.longitude}
+        print(marker)
+        markers['markers'].append(marker)
+    return markers,200
