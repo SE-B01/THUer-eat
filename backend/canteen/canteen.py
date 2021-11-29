@@ -53,10 +53,13 @@ def get_select_canteens():
         canteen_info = canteen.to_json()
         #print(canteen.img)
         try:
-            canteen_info['img'] = canteen.img.split('[')[1].split(']')[0].split(',')
+            canteen_info['img'] = canteen.img.split(',')
             print(canteen_info['img'])
         except:
-            canteen_info['img'] = 'none'
+            print(canteen_info['name'])
+            canteen_img = []
+            canteen_img.append(canteen.img)
+            canteen_info['img'] = canteen_img
         canteen_list.append(canteen_info)
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
