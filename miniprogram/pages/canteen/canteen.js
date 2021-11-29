@@ -5,6 +5,8 @@ Page({
     canteen: "",
     apprise: [],
     starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
+    latitude : 0.0, 
+    longitude : 0.0,
     TabCur: 0,
     scrollLeft: 0,
     TabName: ["评价", "菜品", "问大家"],
@@ -92,7 +94,9 @@ Page({
           starlist: res.data.starlist,
           cost: res.data.cost,
           apprise_list: res.data.ap_list,
-          dish_list: res.data.dish_list
+          dish_list: res.data.dish_list,
+          latitude:res.data.latitude,
+          longitude:res.data.longitude
         })
       }
     })
@@ -115,5 +119,18 @@ Page({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+  },
+  showPath(){
+    let plugin = requirePlugin('routePlan');
+    let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
+    let referer = 'THUer今天吃什么';   //调用插件的app的名称
+    let endPoint = JSON.stringify({  //终点
+        'name': this.data.canteen,
+        'latitude': this.data.latitude,
+        'longitude': this.data.longitude
+    });
+    wx.navigateTo({
+        url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
   }
 })
