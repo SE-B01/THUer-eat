@@ -15,5 +15,15 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.name
 
-    def __init__(self):
-        self.id = str(uuid.uuid4()).replace("-", "")
+    # def __init__(self):
+    #     self.id = str(uuid.uuid4()).replace("-", "")
+    
+    def to_json(self):
+        return {
+            'id': self.id,
+            'avatarUrl': self.avatarUrl,
+            'gender': self.gender,
+            'is_admin': self.is_admin,
+            'nickname': self.nickname,
+            'is_in_school': self.is_in_school
+        }
