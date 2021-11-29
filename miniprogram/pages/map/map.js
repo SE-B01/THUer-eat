@@ -21,6 +21,7 @@ Page({
     paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
     cost: ["1-5￥", "6-10￥", "11-15￥", "16-20￥", ">20￥"],
     indexSign: '',
+    modalName:''
   },
 
   /**
@@ -86,5 +87,21 @@ Page({
     wx.navigateTo({
       url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
     });
-  }
+  },
+
+  bindmarkertap(e){
+    this.setData({
+      modalName: "bottomModal"
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
 })

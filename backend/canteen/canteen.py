@@ -104,7 +104,7 @@ def get_canteen_location():
     markers = {'markers': []}
     ca = Canteen.query.all()
     for item in ca:
-        marker = {'id': item.id, 'latitude': item.latitude, 'longitude': item.longitude}
+        marker = {'id': int(item.id), 'latitude': item.latitude, 'longitude': item.longitude}
         print(marker)
         markers['markers'].append(marker)
     return markers,200
