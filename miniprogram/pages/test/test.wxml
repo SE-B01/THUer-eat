@@ -1,4 +1,9 @@
 <!--pages/test/test.wxml-->
 <view>
 <image src="{{images}}"></image>
+<<<<<<< HEAD
 </view>
+=======
+</view>
+
+>>>>>>> 5d82e800d74b95d1e853f58ebb69d1c285101a2a
