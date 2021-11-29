@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/canteen/canteen",
-    "pages/comments/comments",
-    "pages/newmine/newmine",
     "pages/test/test",
+    "pages/comments/comments",
+    "pages/canteen/canteen",
+    "pages/newmine/newmine",
     "pages/map/map",
     "pages/dish/dish",
     "pages/index/index",
@@ -58,7 +58,6 @@
         "pagePath": "pages/map/map",
         "text": "地图"
       },
-
       {
         "selectedIconPath": "images/icons/mine_on.png",
         "iconPath": "images/icons/mine.png",
