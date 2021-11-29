@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from .models import Canteen
 from ..appraise.models import Appraise
 from ..dish.models import Dish
+import json
 
 canteen = Blueprint('canteen', __name__)
 
@@ -48,7 +49,15 @@ def get_select_canteens():
     # print(canteen_)
     canteen_list = []
     for canteen in canteen_:
-        canteen_list.append(canteen.to_json())
+        #print(canteen.to_json())
+        canteen_info = canteen.to_json()
+        #print(canteen.img)
+        try:
+            canteen_info['img'] = canteen.img.split('[')[1].split(']')[0].split(',')
+            print(canteen_info['img'])
+        except:
+            canteen_info['img'] = 'none'
+        canteen_list.append(canteen_info)
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
 
