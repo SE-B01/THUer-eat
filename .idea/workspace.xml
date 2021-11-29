@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="pull前保存">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/接口文档.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/canteen/canteen.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/canteen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/canteen/canteen.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +43,7 @@
       <workItem from="1637247750915" duration="11590000" />
       <workItem from="1637329400816" duration="14686000" />
       <workItem from="1637753190645" duration="2732000" />
-      <workItem from="1638098479270" duration="2911000" />
+      <workItem from="1638098479270" duration="2996000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>
