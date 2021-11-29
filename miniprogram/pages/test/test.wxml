@@ -2,3 +2,4 @@
 <view>
 <image src="{{images}}"></image>
 </view>
+
