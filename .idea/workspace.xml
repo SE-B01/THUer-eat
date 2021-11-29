@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/接口文档.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/comments/comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/test/test.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +43,8 @@
       <workItem from="1637216614222" duration="4127000" />
       <workItem from="1637247750915" duration="11590000" />
       <workItem from="1637329400816" duration="14686000" />
-      <workItem from="1637753190645" duration="1878000" />
+      <workItem from="1637753190645" duration="2732000" />
+      <workItem from="1638098479270" duration="2911000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>
