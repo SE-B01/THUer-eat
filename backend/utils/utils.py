@@ -1,5 +1,4 @@
 
-
 def img2blob(addr):
     f = open("./test.jpg", 'rb')
     img = f.read()

@@ -14,7 +14,8 @@
     "pages/addword/addword",
     "pages/mine/mine",
     "pages/infos/infos",
-    "pages/newinfos/newinfos"
+    "pages/newinfos/newinfos",
+    "pages/plaza/plaza"
   ],
   "plugins": {
     "chooseLocation": {
