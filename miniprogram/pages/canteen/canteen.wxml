@@ -47,7 +47,7 @@
       <button class="cu-btn block line-purple lg">
         <text class="cuIcon-location"></text>导航</button>
     </view> -->
-      <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative">导航</button>
+      <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative" bindtap = "showPath">导航</button>
       <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}"style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">发表评价</button>
   </view>
 </view>

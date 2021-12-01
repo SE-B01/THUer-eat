@@ -1,10 +1,12 @@
 // pages/newmine/newmine.js
+const app = getApp()
 Page({
       data: {
         TabCur:0,
         tabNav: ['最近浏览', '收藏', '消息'],
         dishes:[],
         collection:[],
+        nickName:'',
         collections: [{
           "dish_picture": "../../images/dishes/打卤面.jfif",
           "dish_name": "打卤面",
@@ -151,6 +153,13 @@ Page({
            */
           onLoad: function (options) {
             var that = this
+            that.setData({
+              nickname:app.globalData.userInfo.nickname
+            })
+            console.log('userInfo')
+            console.log(app.globalData.userInfo)
+            console.log('nickName')
+            console.log(that.data.nickname)
             wx.request({
               url: 'http://127.0.0.1:5000/get_recent_view',
               data: {

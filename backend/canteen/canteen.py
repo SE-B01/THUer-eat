@@ -21,7 +21,7 @@ def get_select_canteens():
     list[0]: distance:  0: 不限距离  1: <500m  2: <1km  3: <3km
     list[1]: style:     0: 风格不限 1: 个人独享 2: 朋友小聚 3:宴请四方
     list[2]: payment:   0: 支付方式不限 1:仅支持校园卡 2:可以使用支付宝
-    list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先    
+    list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先
     
     """
     distance = request.args.get("distance")
@@ -47,6 +47,7 @@ def get_select_canteens():
     # print(query_limit)
     canteen_ = eval(query_limit)
     # print(canteen_)
+
     canteen_list = []
     for canteen in canteen_:
         #print(canteen.to_json())
@@ -74,7 +75,7 @@ def get_canteen_info():
     for i in range(0, ca.star):
         starlist[i] = 'yellow'
     ca_info = {"location": ca.location, "payment": ca.payment, "starlist": starlist,
-               "business_hours": ca.business_hours, "cost": ca.cost}
+               "business_hours": ca.business_hours, "cost": ca.cost, "latitude": ca.latitude, "longitude": ca.longitude}
     # ap：数据库中目标食堂对应评价列表
     ap = Appraise.query.filter(Appraise.canteen_id == ca.id).order_by(Appraise.time)
     ap_list = []
@@ -97,3 +98,14 @@ def get_canteen_info():
     ca_info['dish_list'] = dish_list_
     return ca_info, 200
     # return canteen_, 200
+
+
+@canteen.route('/canteen/map_get', methods=['GET', 'POST'])
+def get_canteen_location():
+    markers = {'markers': []}
+    ca = Canteen.query.all()
+    for item in ca:
+        marker = {'id': item.id, 'latitude': item.latitude, 'longitude': item.longitude}
+        print(marker)
+        markers['markers'].append(marker)
+    return markers,200
