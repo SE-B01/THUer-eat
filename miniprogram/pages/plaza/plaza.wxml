@@ -1,0 +1,22 @@
+<!--pages/appraise/appraise.wxml-->
+<view class="comment_wrapper">
+  <view>
+    <view wx:for="{{comments}}" wx:for-item="itemName" wx:for-index="idx" class="comment_info" wx:if="{{idx%2==0}}">
+      <view bindtap="switchToComment" id="{{itemName._id}}" data-comment="{{itemName.name}}">
+        <image mode="widthFix" src="{{itemName.img}}" class="comment_picture"></image>
+        <view class="text-cut">{{itemName.content}}</view>
+
+        <view style="display: flex;flex-direction: row;">
+          <image src="{{itemName.avatar}}" class="comment_avatar"></image>
+          <view>
+            <text class="comment_username">{{itemName.user_name}}</text>
+            <image class="comment_like" src='{{itemName.isClick?"../../images/icons/like.png":"/../../images/icons/like_fill.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick"></image>
+          </view>
+        </view>
+
+
+        <text class="cuIcon-shopfill">{{itemName.canteen_id}}</text>
+      </view>
+    </view>
+  </view>
+</view>
