@@ -17,24 +17,6 @@ Page({
     openid: "",
     newuser:"0",
     //宫格，不用修改
-    iconList: [{
-      icon: 'rank',
-      color: 'yellow',
-      badge: 0,
-      name: '美食排行'
-    }, {
-      icon: 'group',
-      color: "red",
-      badge: 0,
-      name: '评价广场'
-    }, {
-      icon: 'cascades',
-      color: 'purple',
-      badge: 0,
-      name: '更多好玩'
-    }],
-    gridCol: 3,
-    skin: false,
 
     //选择食堂时dropDownMenu数据
     drop_canteen_titles: ['附近', '用餐风格', '支付方式', '排序方式'],
@@ -137,6 +119,11 @@ Page({
     console.log(dish)
     wx.navigateTo({
       url: "../dish/dish?dish=" + dish
+    })
+  },
+  switchToPlaza: function (e) {
+    wx.navigateTo({
+      url: "../plaza/plaza"
     })
   },
 
