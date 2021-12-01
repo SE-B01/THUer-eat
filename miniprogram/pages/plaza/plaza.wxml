@@ -4,18 +4,39 @@
     <view wx:for="{{comments}}" wx:for-item="itemName" wx:for-index="idx" class="comment_info" wx:if="{{idx%2==0}}">
       <view bindtap="switchToComment" id="{{itemName._id}}" data-comment="{{itemName.name}}">
         <image mode="widthFix" src="{{itemName.img}}" class="comment_picture"></image>
-        <view class="text-cut">{{itemName.content}}</view>
+        <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.comment_canteen}}</text>
+        <view class="text-cut" style="margin:10rpx">{{itemName.content}}</view>
 
-        <view style="display: flex;flex-direction: row;">
-          <image src="{{itemName.avatar}}" class="comment_avatar"></image>
-          <view>
+        <view class="comment_downwrapper">
+          <view class = "comment_userinfo">
+            <image src="{{itemName.avatar}}" class="comment_avatar"></image>
             <text class="comment_username">{{itemName.user_name}}</text>
-            <image class="comment_like" src='{{itemName.isClick?"../../images/icons/like.png":"/../../images/icons/like_fill.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick"></image>
+          </view>
+          <view class="comment_like">
+            <image src='{{itemName.isClick?"../../images/icons/like_fill.png":"/../../images/icons/like.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
+            <text style="padding-top: 20rpx;height: 40rpx;text-align: center;">{{itemName.like_number}}</text>
           </view>
         </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view wx:for="{{comments}}" wx:for-item="itemName" wx:for-index="idx" class="comment_info" wx:if="{{idx%2==1}}">
+      <view bindtap="switchToComment" id="{{itemName._id}}" data-comment="{{itemName.name}}">
+        <image mode="widthFix" src="{{itemName.img}}" class="comment_picture"></image>
+        <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.comment_canteen}}</text>
+        <view class="text-cut" style="margin:10rpx">{{itemName.content}}</view>
 
-
-        <text class="cuIcon-shopfill">{{itemName.canteen_id}}</text>
+        <view class="comment_downwrapper">
+          <view class = "comment_userinfo">
+            <image src="{{itemName.avatar}}" class="comment_avatar"></image>
+            <text class="comment_username">{{itemName.user_name}}</text>
+          </view>
+          <view class="comment_like">
+            <image src='{{itemName.isClick?"../../images/icons/like_fill.png":"/../../images/icons/like.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
+            <text style="padding-top: 20rpx;height: 40rpx;text-align: center;">{{itemName.like_number}}</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
