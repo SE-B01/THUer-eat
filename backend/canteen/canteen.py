@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from .models import Canteen
 from ..appraise.models import Appraise
 from ..dish.models import Dish
+from ..user.models import User
 import json
 
 canteen = Blueprint('canteen', __name__)
@@ -88,9 +89,23 @@ def get_canteen_info():
     ap_list = []
     for item in ap:
         #print(item)
+        user_info = {}
+        #print(item.user_id)
+        user = User.query.filter(User.id==item.user_id).first()
+        #print(user.nickname)
+        user_info['avatar_url'] = user.avatarUrl
+        user_info['name'] = user.nickname
         ap_list.append(
-            {"user_id": item.user_id, "anonymous": item.anonymous, "img_list": item.img_list, "star": item.star,
-             "comment": item.comment, "dish": item.dish, "cost": item.cost})
+            {"user_id": item.user_id,
+             "anonymous": item.anonymous,
+             "img_list": item.img_list,
+             "star": item.star,
+             "comment": item.comment,
+             "dish": item.dish,
+             "cost": item.cost,
+             "user_name": user.nickname,
+             "user_avatar": user.avatarUrl
+             })
     ca_info["ap_list"] = ap_list
     dish_list = Dish.query.filter(Dish.canteen_id == ca.id)
     dish_list_ = []
