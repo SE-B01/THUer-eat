@@ -19,8 +19,15 @@ Page({
     open: false,
     index: 0,
     paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
-    cost: ["1-5￥", "6-10￥", "11-15￥", "16-20￥", ">20￥"],
     indexSign: '',
+    modalName:'',
+    canteen: "",
+    cost: "",
+    starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
+    location:"",
+    canteen_latitude:"",
+    canteen_longitude: "",
+    business_hours:""
   },
 
   /**
@@ -79,12 +86,43 @@ Page({
     let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
     let referer = 'THUer今天吃什么';   //调用插件的app的名称
     let endPoint = JSON.stringify({  //终点
-      'name': '吉野家(北京西站北口店)',
-      'latitude': 39.89631551,
-      'longitude': 116.323459711
+      'name': this.data.canteen,
+      'latitude': this.data.canteen_latitude,
+      'longitude': this.data.canteen_longitude
     });
     wx.navigateTo({
       url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
     });
-  }
+  },
+
+  bindmarkertap(e){
+    console.log(e.markerId)
+    wx.request({
+      url: 'http://127.0.0.1:5000/canteen/get_byid',
+      data: {
+        id: e.markerId
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log(res.data)
+        this.setData({
+          modalName: "bottomModal",
+          canteen: res.data.name,
+          location: res.data.location,
+          business_hours: res.data.business_hours,
+          starlist: res.data.starlist,
+          cost: res.data.cost,
+          apprise_list: res.data.ap_list,
+          dish_list: res.data.dish_list,
+          canteen_latitude: res.data.latitude,
+          canteen_longitude: res.data.longitude
+        })
+      }
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
 })
