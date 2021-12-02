@@ -74,8 +74,15 @@ def get_canteen_info():
     starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
     for i in range(0, ca.star):
         starlist[i] = 'yellow'
-    ca_info = {"location": ca.location, "payment": ca.payment, "starlist": starlist,
-               "business_hours": ca.business_hours, "cost": ca.cost, "latitude": ca.latitude, "longitude": ca.longitude}
+    ca_info = {"location": ca.location,
+               "payment": ca.payment,
+               "starlist": starlist,
+               "business_hours": ca.business_hours,
+               "cost": ca.cost,
+               "latitude": ca.latitude,
+               "longitude": ca.longitude,
+               'image_list': ca.img
+               }
     # ap：数据库中目标食堂对应评价列表
     ap = Appraise.query.filter(Appraise.canteen_id == ca.id).order_by(Appraise.time)
     ap_list = []

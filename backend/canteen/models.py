@@ -11,7 +11,7 @@ class Canteen(db.Model):
     payment = db.Column(db.Integer, default=1)
     star = db.Column(db.Integer, default=0)
     business_hours = db.Column(db.String(50))
-    img = db.Column(db.String(100))
+    img = db.Column(db.String(1000))
     cost = db.Column(db.Integer)
     style = db.Column(db.Integer)
 

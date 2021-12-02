@@ -87,7 +87,20 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
+        console.log(res.data.image_list)
+        console.log(typeof(res.data.image_list))
+        let url_list = res.data.image_list.split(',')
+        let image_list_ = []
+        console.log(url_list.length)
+        console.log(url_list)
+        for(var i = 0; i < url_list.length; i++)
+        {
+          image_list_.push({
+            id: i,
+            type: "image",
+            url: url_list[i]
+          })
+        }
         this.setData({
           location: res.data.location,
           business_hours: res.data.business_hours,
@@ -96,7 +109,8 @@ Page({
           apprise_list: res.data.ap_list,
           dish_list: res.data.dish_list,
           latitude:res.data.latitude,
-          longitude:res.data.longitude
+          longitude:res.data.longitude,
+          swiperList: image_list_
         })
       }
     })
