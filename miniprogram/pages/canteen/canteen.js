@@ -1,4 +1,5 @@
 const db = wx.cloud.database({});
+var app = getApp();
 Page({
   data: {
     //canteen接受其它页面传参，显示当前的餐厅
@@ -23,35 +24,7 @@ Page({
     cost: 0,
     apprise_list: [],
     dish_list: [],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: '../../images/canteens/听涛1.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '../../images/canteens/听涛2.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '../../images/canteens/听涛1.jpg'
-    }, {
-      id: 3,
-      type: 'image',
-      url: '../../images/canteens/听涛2.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: '../../images/canteens/听涛1.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: '../../images/canteens/听涛2.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: '../../images/canteens/听涛1.jpg'
-    }],
+    swiperList: [],
     ColorList: [{
       title: '人较少',
       name: 'red',
@@ -75,6 +48,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    console.log(app.globalData)
     that.setData({
       canteen: options.canteen
       // canteen: "听涛园"
@@ -87,12 +61,9 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data.image_list)
-        console.log(typeof(res.data.image_list))
+        console.log(res.data.ap_list[0])
         let url_list = res.data.image_list.split(',')
         let image_list_ = []
-        console.log(url_list.length)
-        console.log(url_list)
         for(var i = 0; i < url_list.length; i++)
         {
           image_list_.push({
@@ -110,7 +81,8 @@ Page({
           dish_list: res.data.dish_list,
           latitude:res.data.latitude,
           longitude:res.data.longitude,
-          swiperList: image_list_
+          swiperList: image_list_,
+          TabNumber: [res.data.ap_list.length, res.data.dish_list.length, 0]
         })
       }
     })
