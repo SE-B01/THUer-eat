@@ -52,15 +52,33 @@
   </map>
 </view>
 
-<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}" >
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
   <view class="cu-dialog">
-    <view class="cu-bar bg-white" >
-      <view class="action text-green">确定</view>
-      <view class="action text-blue" bindtap="hideModal">取消</view>
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
     </view>
-    <view class="padding-xl">
-      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    <view class="padding bg-white solid-bottom margin-top canteen-info" style="text-align:left">
+      <view class="grid col-2 margin-bottom">
+        <view class="canteen-info-item">{{canteen}}</view>
+        <view class="canteen-info-item">￥{{cost}}/人</view>
+      </view>
+      <text class="cuIcon-favorfill lg text-{{starlist[0]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[1]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[2]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[3]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[4]}}"></text>
+      <view class="grid col-1 margin-bottom">
+        <view class="canteen-info-item">地址：{{location}}</view>
+      </view>
+      <view class="grid col-1 margin-bottom">
+        <view class="canteen-info-item">营业时间：{{business_hours}}</view>
+      </view>
+      <view style="width: 693rpx; height: 95rpx; display: block; box-sizing: border-box">
+        <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative" bindtap="showPath">导航</button>
+        <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}" style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">收藏</button>
+      </view>
     </view>
   </view>
-  <view style ="height: 100rpx;"></view>
+  <view style="height: 100rpx;"></view>
 </view>
