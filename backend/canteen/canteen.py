@@ -21,7 +21,7 @@ def get_select_canteens():
     list[0]: distance:  0: 不限距离  1: <500m  2: <1km  3: <3km
     list[1]: style:     0: 风格不限 1: 个人独享 2: 朋友小聚 3:宴请四方
     list[2]: payment:   0: 支付方式不限 1:仅支持校园卡 2:可以使用支付宝
-    list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先    
+    list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先
     
     """
     distance = request.args.get("distance")
@@ -47,6 +47,7 @@ def get_select_canteens():
     # print(query_limit)
     canteen_ = eval(query_limit)
     # print(canteen_)
+
     canteen_list = []
     for canteen in canteen_:
         #print(canteen.to_json())
