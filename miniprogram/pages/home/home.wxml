@@ -78,7 +78,7 @@
             <view class="dish_price">￥{{itemName.price}}</view>
           </view>
           <view class="dish_comment">"{{itemName.comment}}"</view>
-          <text class="cuIcon-shopfill">{{itemName.canteen_id}}</text>
+          <text class="cuIcon-shopfill">{{itemName.canteen_name}}</text>
         </view>
       </view>
     </view>
@@ -93,7 +93,7 @@
             <view class="dish_price">￥{{itemName.price}}</view>
           </view>
           <view class="dish_comment">"{{itemName.comment}}"</view>
-          <text class="cuIcon-shopfill">{{itemName.canteen_id}}</text>
+          <text class="cuIcon-shopfill">{{itemName.canteen_name}}</text>
         </view>
       </view>
     </view>
