@@ -50,7 +50,7 @@
 
 <view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
   <view class="canteen_info" bindtap="switchToCanteen" id="{{itemName._id}}" data-canteen="{{itemName.name}}">
-    <image src="{{itemName.img}}" class="canteen_img"></image>
+    <image src="{{itemName.img[0]}}" class="canteen_img"></image>
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.name}}</view>
       <view style="display: flex; flex-direction: row;">
@@ -71,7 +71,7 @@
   <view>
     <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==0}}">
       <view bindtap="switchToDish" id="{{itemName._id}}" data-dish="{{itemName.name}}">
-        <image mode="widthFix" src="{{itemName.img[0]}}" class="dish_picture"></image>
+        <image mode="widthFix" src="{{itemName.img}}" class="dish_picture"></image>
         <view class="dish_text">
           <view style="display: flex;flex-direction: row;justify-content:space-between;">
             <view class="dish_name">{{itemName.name}}</view>
@@ -99,3 +99,4 @@
     </view>
   </view>
 </view>
+<view style="height: 200rpx;"></view>
