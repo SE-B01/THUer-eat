@@ -68,6 +68,10 @@ Page({
       })
       this.getTabBar().changeFormat()
     }
+    const location = chooseLocation.getLocation();
+        if(location){
+          console.log(location)
+        }
   },
 
   //显示地图
@@ -77,7 +81,10 @@ Page({
     //调用插件的app的名称（必填）
     const referer = "THUer今天吃什么";
     wx.navigateTo({
-      url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer
+      url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer,
+      success: (res) => {
+        console.log(123)
+      }
     });
   },
    //显示路径

@@ -1,5 +1,8 @@
+import uuid
+
 from flask_sqlalchemy import SQLAlchemy
 from ..db import db
+
 
 class Canteen(db.Model):
     __tablename__ = 'canteen'
