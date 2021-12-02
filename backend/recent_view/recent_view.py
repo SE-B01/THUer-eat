@@ -27,6 +27,7 @@ def get_recent_view():
                 return_list_item={
                 'id':recent_view_list_item.id,
                 'dish_name':dish_detail_item.name,
+                'dish_image': dish_detail_item.img,
                 'dish_cost':dish_detail_item.price,
                 'dish_canteen':canteen_detail_item.name,
                 'business_hours':canteen_detail_item.business_hours,

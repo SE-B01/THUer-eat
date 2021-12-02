@@ -94,7 +94,7 @@ Page({
         this.setData({
           canteen_select: e.detail.selectdata
         })
-        console.log(this.data.canteen_select)
+        //console.log(this.data.canteen_select)
         this.getSelectCanteens()
       }
     }
@@ -116,7 +116,7 @@ Page({
   //点击菜品图片跳转到指定菜品
   switchToDish: function (e) {
     var dish = e.currentTarget.dataset.dish
-    console.log(dish)
+    //console.log(dish)
     wx.navigateTo({
       url: "../dish/dish?dish=" + dish
     })
@@ -142,23 +142,22 @@ Page({
               //这里没有传appsecret，放在后端了
             },
             success: function(res){
-              console.log('openid_res')
-              console.log(res)
-              console.log(res.data[1])
+              //console.log('openid_res')
+              //console.log(res)
+              //console.log(res.data[1])
               that.setData({
                 openid: res.data[0].openid,
                 newuser: res.data[1]
               })
-              console.log('get openid0')
+              //console.log('get openid0')
               app.globalData.openid = that.data.openid
-              console.log('get openid')
-              console.log(app.globalData.openid)
-              console.log(app.globalData.openid)
-              // 
-              console.log(that.data.newuser)
+              //console.log('get openid')
+              //console.log(app.globalData.openid)
+              //console.log(app.globalData.openid)
+              //console.log(that.data.newuser)
               if (that.data.newuser==0){
                 that.getUserNameAvatar()
-                console.log('begin user info')
+                //console.log('begin user info')
               }
               else{
                 app.globalData.logged=true
@@ -169,14 +168,13 @@ Page({
           })
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)
-
         }
       }
     });
   },
   searchUserNameAvatar: function () {
     var that = this
-    console.log('searching')
+    //console.log('searching')
     wx.request({
       url: 'http://127.0.0.1:5000/searchUserinfo',
       data: {
@@ -184,8 +182,8 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log("get user info")
-        console.log(res.data)
+        //console.log("get user info")
+        //console.log(res.data)
         that.setData({
           userInfo: res.data[0],
         })
@@ -209,8 +207,8 @@ Page({
               desc: '请填写你的信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
               success: (res) => {
                 console.log("已经调用getUserProfile")
-                console.log(res)
-                console.log(res.userInfo.nickName)
+                //console.log(res)
+                //console.log(res.userInfo.nickName)
                 that.setData({
                   nickName: res.userInfo.nickName,
                   avatarUrl: res.userInfo.avatarUrl,
@@ -283,8 +281,8 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log("get dishes success")
-        //console.log(res.data)
+        //console.log("get dishes success")
+        console.log(res.data)
         that.setData({
           dishes: res.data,
         })
@@ -302,7 +300,7 @@ Page({
     that.getSelectCanteens()
     that.getSelectDishes()
     //测试：getOpenid
-    console.log("test openid")
+    //console.log("test openid")
     that.getOpenid()
     //登录模块
   },

@@ -27,6 +27,7 @@ def get_collection():
                 'id':collection_list_item.id,
                 'dish_name':dish_detail_item.name,
                 'dish_cost':dish_detail_item.price,
+                'dish_image':dish_detail_item.img,
                 'dish_canteen':canteen_detail_item.name,
                 'business_hours':canteen_detail_item.business_hours,
                 'dish_comment':dish_detail_item.comment,

@@ -3,7 +3,7 @@
 <view class="padding flex flex-wrap justify-between align-center bg-white"
     style="width: 750rpx; height: 220rpx; display: block; box-sizing: border-box; position: relative; top: -80rpx">
     <view class="cu-avatar round"
-        style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); width: 120rpx; height: 120rpx; display: inline-flex; box-sizing: border-box;">
+        style="background-image: url({{avatarUrl}}); width: 120rpx; height: 120rpx; display: inline-flex; box-sizing: border-box;">
     </view>
 
     <view class="action"
@@ -55,8 +55,9 @@
         <view class="cu-item shadow">   
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
             <view class="cu-item">
-
+                <!--
                 <view class="cu-avatar round lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute"></view>
+                -->
                 <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
                 <view class="text-grey" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">观畴园食堂</view>
                 <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
@@ -79,7 +80,7 @@
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
             <view class="cu-item">
 
-                <view class="cu-avatar round lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 153rpx; height: 190rpx; display: flex; box-sizing: border-box; left: 33rpx; top: 26rpx; position: absolute"></view>
+
                 <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
                 <view class="text-grey" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 24rpx">观畴园食堂</view>
                 <view class="text-gray text-sm flex" style="width: 134rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 52rpx; top: 136rpx">
@@ -102,7 +103,7 @@
     <view wx:for="{{collection}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
             <view class="dish_wrapper">
                 <view>
-                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                    <image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
                 </view>
                 
                 <view style="width: 172rpx;  display: block; box-sizing: border-box">
@@ -137,7 +138,7 @@
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
             <view class="cu-item">
              
-                <view class="cu-avatar radius lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute"></view>
+
                 <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
                 <view class="text-black" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">打卤面</view>
                 <view class="text-grey" style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">9元</view>
@@ -177,7 +178,7 @@
         <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" >
             <view class="dish_wrapper">
                 <view>
-                    <image mode="widthFix" src="{{itemName.dish_picture}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                    <image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
                 </view>
                 <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box">
                     <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
