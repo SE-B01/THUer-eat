@@ -1,10 +1,13 @@
+import tarfile
 from datetime import datetime
 from ..canteen.models import Canteen
 from ..dish.models import Dish
 from flask import Blueprint, request
-from .models import Appraise, db
+from .models import Appraise, db, Image
 import json
 from ..db import db
+import os
+import base64
 
 appraise = Blueprint('appraise', __name__)
 
@@ -28,15 +31,26 @@ def publish_appraise():
     ap.star = data.get('star')
     ap.time = datetime.now()
     ap.comment = data.get('comment')
-    ap.img_list = data.get('imgList')
-    ap.user_id = data.get('user_id')
+    img_list = data.get('imgList')
+    url_list = "["
+    print(type(img_list))
+    for index, img in enumerate(img_list):
+        print(index)
+        print(type(index))
+        filename = "backend/static/images/" + str(data.get('user_id')) + "_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + "_" + str(index)+ ".jpg"
+        file = open(filename, "wb")
+        file.write(base64.b64decode(img))
+        file.close()
+        url_list = url_list + '"http://127.0.0.1:5000/' + filename + '",'
+    url_list = url_list[:-1] + ']'
+    ap.img_list = url_list
+    ap.user_id = str(data.get('user_id'))
     ap.cost = data.get('cost')
     ap.canteen_id = data.get('canteen_id')
     ap.anonymous = data.get('anonymous')
     ap.is_publish = data.get('is_publish')
     db.session.add(ap)
     db.session.commit()
-    print(type(data.get('time')))
     return "发表成功", 200
 
 

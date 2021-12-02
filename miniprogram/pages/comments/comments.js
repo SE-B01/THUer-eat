@@ -1,4 +1,5 @@
 // pages/comments/comments.js
+var app = getApp();
 Page({
     /**
      * 页面的初始数据
@@ -22,7 +23,7 @@ Page({
             //把arraybuffer转成base64
             let base64 = wx.arrayBufferToBase64(res.data);
             //不加上这串字符，在页面无法显示的哦
-            base64 = 'data:image/jpeg;base64,' + base64
+            // base64 = 'data:image/jpeg;base64,' + base64
             //打印出base64字符串，可复制到网页校验一下是否是你选择的原图片呢
             this.data.base64imgList.push(base64)
             resolve();
@@ -43,7 +44,7 @@ Page({
                     dish: JSON.stringify(this.data.appraise.dish),
                     cost: this.data.appraise.cost,
                     user_id: this.data.appraise.user_id,
-                    imgList: JSON.stringify(this.data.base64imgList),
+                    imgList: this.data.base64imgList,
                     is_publish: true
                 },
                 method: 'POST',
@@ -230,7 +231,8 @@ Page({
     onLoad: function (options) {
         var that = this;
         that.setData({
-            ['canteen.name']: options.canteen
+            ['canteen.name']: options.canteen,
+            ['appraise.user_id']: app.globalData.userInfo.id
         })
         wx.request({
             url: 'http://127.0.0.1:5000/appraise/get',
@@ -239,7 +241,6 @@ Page({
             },
             method: 'GET',
             success: (res) => {
-                console.log(res.data)
                 this.data.canteen.dish = res.data.dish
                 this.data.canteen.id = res.data.id
                 this.setData({

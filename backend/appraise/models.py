@@ -26,6 +26,7 @@ class Appraise(db.Model):
 
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
+        self.like = 0
 
     def to_json(self):
         return {
@@ -42,3 +43,16 @@ class Appraise(db.Model):
             'cost': self.cost,
             'is_publish': self.is_publish,
         }
+
+
+class Image(db.Model):
+    __tablename__ = 'image'
+    id = db.Column(db.String(32), primary_key=True)
+    img = db.Column(db.Text)
+
+
+    def __repr__(self):
+        return '<Image %r>' % self.id
+
+    def __init__(self):
+        self.id = str(uuid.uuid4()).replace("-", "")
