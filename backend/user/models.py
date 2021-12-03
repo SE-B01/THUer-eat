@@ -13,7 +13,7 @@ class User(db.Model):
     is_in_school = db.Column(db.BOOLEAN)
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return '<User %r>' % self.id
 
     # def __init__(self):
     #     self.id = str(uuid.uuid4()).replace("-", "")
