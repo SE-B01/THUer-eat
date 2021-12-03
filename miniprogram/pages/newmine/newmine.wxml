@@ -138,7 +138,7 @@
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">
             <view class="cu-item">
              
-
+                <view class="cu-avatar radius lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); width: 172rpx; height: 183rpx; display: flex; box-sizing: border-box; left: 15rpx; top: 33rpx; position: absolute"></view>
                 <view class="content flex-sub" style="position: absolute; left: 202rpx; top: 8rpx; width: 354rpx; height: 251rpx; display: block; box-sizing: border-box">
                 <view class="text-black" style="width: 310rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 40rpx; top: 24rpx; font-size: 40rpx">打卤面</view>
                 <view class="text-grey" style="width: 61rpx; height: 43rpx; display: flex; box-sizing: border-box; position: relative; left: 277rpx; top: 24rpx">9元</view>
