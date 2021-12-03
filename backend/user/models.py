@@ -10,10 +10,11 @@ class User(db.Model):
     gender = db.Column(db.Integer)
     is_admin = db.Column(db.BOOLEAN)
     nickname = db.Column(db.String(50))
-    is_in_school = db.Column(db.BOOLEAN)
+    is_in_school = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<User %r>' % self.nickname
+
 
     # def __init__(self):
     #     self.id = str(uuid.uuid4()).replace("-", "")
