@@ -19,4 +19,5 @@ def create_app(config_name='default'):
     recent_view.init_app(app)
     test_image.init_app(app)
     recommend.init_app(app)
+    
     return app

@@ -18,7 +18,6 @@ Page({
       name: 'mauve',
       color: '#9c26b0'
     },
-    canteenInfo: [],
     location: "",
     comments: [],
     cost: 0,
