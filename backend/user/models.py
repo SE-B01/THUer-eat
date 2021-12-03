@@ -15,6 +15,7 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.nickname
 
+
     # def __init__(self):
     #     self.id = str(uuid.uuid4()).replace("-", "")
     
