@@ -85,7 +85,7 @@
 <view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
   <view class="cu-item comment-item" wx:for="{{dish_list}}">
     <view class="cu-avatar round lg"
-      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      style="background-image:url({{item.image}});"></view>
     <view class="content">
       <view class="text-black">{{item.name}}</view>
       <view class="text-gray text-sm flex">

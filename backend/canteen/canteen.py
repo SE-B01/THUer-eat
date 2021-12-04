@@ -112,7 +112,8 @@ def get_canteen_info():
     for item in dish_list:
         dish_item = {}
         dish_item['name'] = item.name
-        print(item.name)
+        dish_item['image'] = item.img
+        #print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
         dish_list_.append(dish_item)
