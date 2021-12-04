@@ -1,2 +1,56 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="cu-bar search bg-white" style="background-color: #7B10A8;">
+  <view class="search-form round" style="width: 634rpx; height: 64rpx; display: flex; box-sizing: border-box">
+
+    <input type="text" placeholder="   输入食堂或菜品名称" confirm-type="search" value="{{searchtext}}" bindinput="searchinput">
+    </input>
+  </view>
+  <view class="action" bindtap="search">
+    <view class="cuIcon-search" style="color: white;text-align: end;font-size:medium;"> 搜索</view>
+  </view>
+
+</view>
+<!-- <view class="top">
+  <view class="topsearch">
+    <view class="frame">
+      <input value="{{shoopingtext}}" bindinput="shoppinginput"></input>
+    </view>
+    <text bindtap="search">搜索</text>
+  </view>
+</view> -->
+<view class="history" wx:if="{{history}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <image src="../../images/icons/delete.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+  </view>
+  <view class="history_text">
+    <text wx:for="{{newArray}}" wx:key="key" data-text="{{item}}" bindtap="textfz">{{item}}</text>
+  </view>
+</view>
+
+
+
+
+
+
+
+
+<view class="none" wx:if="{{noneview}}">
+  <image src="../../images/icons/no.png" mode="widthFix" style="width:20%"></image>
+  <text>抱歉，没有相关商品</text>
+</view>
+<view class='swiper_con' wx:if="{{shoppinglist}}">
+  <view class='swiper_con_view' wx:for="{{canteenlist}}" wx:key="id" wx:if='{{item.status=="1"?true:false}}'>
+    <image src="{{item.images}}" mode="widthFix" style="width:100%" data-status="{{item.status}}"></image>
+    <view style="width:90%;margin:5%;">
+      <text style="font-size:24rpx">{{item.title}}</text>
+      <view class="swiper_con_view_view">
+        <view style="width:80%;">
+          <text style="font-size:24rpx;color:red;">￥{{item.money}}</text>
+          <text style="font-size:18rpx;color:#B8B8B8;margin-left:5%;">已售{{item.sold}}</text>
+        </view>
+        <image src="../../images/icons/like.png" mode="widthFix" style="width:10%;position:relative;left:8%;"></image>
+      </view>
+    </view>
+  </view>
+</view>

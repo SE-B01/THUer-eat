@@ -126,6 +126,11 @@ Page({
       url: "../plaza/plaza"
     })
   },
+  search: function (e){
+    wx.navigateTo({
+      url: "../search/search"
+    })
+  },
 
   getOpenid: function () {
     //获得当前登录用户的openid
