@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data: {
     canteen_name: '',
@@ -7,6 +8,8 @@ Page({
     dish_img: '',
     dish_name: '',
     dish_price: 0,
+    appraise_list: [],
+    appraise_list_length: 0,
     canteen_addr: '',
     canteen_hours: '',
     cardCur: 0,
@@ -28,7 +31,21 @@ Page({
     that.setData({
       canteen: options.canteen,
       dish: options.dish
-    })
+    }),
+    //console.log(app.globalData.userInfo);
+    wx.request({
+      url: 'http://127.0.0.1:5000/add_recent_view',
+
+      data: {
+        canteen_name: this.data.canteen,
+        dish_name: this.data.dish,
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+
+      }
+    }),
     wx.request({
       url: 'http://127.0.0.1:5000/dish/get',
       data: {
@@ -37,8 +54,7 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
-        
+        //console.log(res.data.appraise_list.length)
         this.setData({
           canteen_name: res.data.canteen_name,
           selected_comment: res.data.comment,
@@ -48,7 +64,9 @@ Page({
           canteen_addr: res.data.canteen_address,
           canteen_business_hours: res.data.canteen_business_hours,
           sel_user_name: res.data.user_nickname,
-          sel_user_avatar: res.data.user_avatar
+          sel_user_avatar: res.data.user_avatar,
+          appraise_list_length: res.data.appraise_list.length,
+          appraise_list: res.data.appraise_list
         })
       }
     })
@@ -57,6 +75,23 @@ Page({
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
+    })
+  },
+  collect(){
+    console.log(app.globalData.userInfo.id)
+    console.log(this.data.canteen_name)
+    console.log(this.data.dish_name)
+    wx.request({
+      url: 'http://127.0.0.1:5000/add_collection',
+      data: {
+        user_id: app.globalData.userInfo.id,
+        canteen_name: this.data.canteen_name,
+        dish_name: this.data.dish_name
+      },
+      method: 'GET',
+      success: (res) => {
+       
+      }
     })
   }
 })

@@ -60,7 +60,7 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data.ap_list[0])
+        console.log(res.data.dish_list)
         let url_list = res.data.image_list.split(',')
         let image_list_ = []
         for(var i = 0; i < url_list.length; i++)
@@ -91,6 +91,15 @@ Page({
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../comments/comments?canteen="+canteen
+    })
+  },
+  switchToDish: function (e) {
+    var dish = e.currentTarget.dataset.dish
+    var canteen = e.currentTarget.dataset.canteen
+    console.log(dish)
+    console.log(canteen)
+    wx.navigateTo({
+      url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
     })
   },
   // cardSwiper

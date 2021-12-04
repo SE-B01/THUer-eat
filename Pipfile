@@ -8,8 +8,11 @@ jsonify = "*"
 flask = "*"
 pymysql = "*"
 sklearn = "*"
+<<<<<<< Updated upstream
 numpy = "*"
 scikit-learn = "*"
+=======
+>>>>>>> Stashed changes
 
 [dev-packages]
 black = "*"

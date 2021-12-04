@@ -2,7 +2,9 @@ from flask import Blueprint, request, jsonify
 from .models import Collection
 from ..dish.models import Dish
 from ..canteen.models import Canteen
+from ..collection.models import Collection
 from ..db import db
+import datetime
 collection = Blueprint('collection', __name__)
 
 @collection.route('/collection_test', methods=['GET', 'POST'])
@@ -10,6 +12,26 @@ def collection_example():
     collection_ = Collection.query.first()
     # print(collection_)
     return str(collection_.rank), 200
+
+@collection.route('/add_collection', methods=['GET', 'POST'])
+def add_collection():
+    user_id = request.args.get('user_id')
+    canteen_name = request.args.get('canteen_name')
+    dish_name = request.args.get('dish_name')
+    dish_id = Dish.query.filter_by(name=dish_name).first().id
+    search = Collection.query.filter_by(dish_id=dish_id, user_id=user_id).first()
+    if search:
+        return 'already exists', 200
+    rank = Collection.query.filter_by(user_id=user_id).count() + 1
+    # print(f'rank:{rank}')
+    new_collection = Collection()
+    new_collection.user_id = user_id
+    new_collection.dish_id = dish_id
+    new_collection.rank = rank
+    new_collection.time = datetime.datetime.now()
+    db.session.add(new_collection)
+    db.session.commit()
+    return 'success', 200
 
 @collection.route('/get_collection', methods=['GET', 'POST'])
 def get_collection():

@@ -16,13 +16,10 @@ Page({
     new_avatarUrl: '',
     avatarUrl: '',
     imgBase64: '',
-    informations: [{
-      "responder_image": "../../images/dishes/打卤面.jfif",
-      "responder_name": "打卤面",
-      "responder_content": "咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。",
-      "dish_comment": "咸淡适中，肉量很足。",
-      "dish_canteen": "清芬园",
-      "dish_canteen_on": "营业中"
+    informations:[],
+    information:[{
+      "create_time":"2020 3 1",
+      "informations":"hahahahahaha"
     }],
     collections: [{
       "dish_picture": "../../images/dishes/打卤面.jfif",
@@ -303,6 +300,19 @@ delete_recent_view(e) {
         that.setData({
           collection: res.data
         })
+      }
+    })
+    wx.request({
+      url: 'http://127.0.0.1:5000/get_information',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          informations: res.data
+        })
+        console.log(that.data.informations)
       }
     })
   },

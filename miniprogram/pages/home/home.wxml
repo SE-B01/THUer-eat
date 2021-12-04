@@ -41,10 +41,82 @@
 </scroll-view>
 
 
-<dropdownmenu  wx:if="{{TabCur==0}}" dropDownMenuTitle='{{drop_canteen_titles}}' dropDownMenuFirstData='{{drop_canteen_distance}}' dropDownMenuSecondData='{{drop_canteen_style}}' dropDownMenuThirdData='{{drop_canteen_payment}}' dropDownMenuFourthData='{{drop_canteen_sortby}}' bind:selectedItem='filterSelect'></dropdownmenu>
+<dropdownmenu wx:if="{{TabCur==0}}" dropDownMenuTitle='{{drop_canteen_titles}}' dropDownMenuFirstData='{{drop_canteen_distance}}' dropDownMenuSecondData='{{drop_canteen_style}}' dropDownMenuThirdData='{{drop_canteen_payment}}' dropDownMenuFourthData='{{drop_canteen_sortby}}' bind:selectedItem='filterSelect'></dropdownmenu>
 
-<dropdownmenu  wx:if="{{TabCur==1}}" dropDownMenuTitle='{{drop_dish_titles}}' dropDownMenuFirstData='{{drop_dish_distance}}' dropDownMenuSecondData='{{drop_dish_favour}}' dropDownMenuThirdData='{{drop_dish_price}}' dropDownMenuFourthData='{{drop_dish_sortby}}'bind:selectedItem='filterSelect'></dropdownmenu>
+<dropdownmenu wx:if="{{TabCur==1}}" dropDownMenuTitle='{{drop_dish_titles}}' dropDownMenuFirstData='{{drop_dish_distance}}' dropDownMenuSecondData='{{drop_dish_favour}}' dropDownMenuThirdData='{{drop_dish_price}}' dropDownMenuFourthData='{{drop_dish_sortby}}' bind:selectedItem='filterSelect'></dropdownmenu>
 
+<!-- 管理员：增加菜品 -->
+<view wx:if="{{TabCur==0}}" class="canteen-wrapper">
+  <view class="canteen_info" bindtap="showModal" data-target="add_canteen" style="width: 731rpx; height: 231rpx; display: flex; box-sizing: border-box">
+    <image src="../../images/icons/add.png" style="width: 143rpx; height: 131rpx; display: block; box-sizing: border-box; left: 281rpx; top: 45rpx; position: relative"></image>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='add_canteen'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">增加食堂</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <form bindsubmit="addCanteen">
+      <view class="action">
+        <view class="cu-form-group margin-top">
+          <view class="title">食堂名称</view>
+          <input name="name"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">食堂位置</view>
+          <button class="cu-btn line round" bindtap='getLocation'>打开地图</button>
+        </view>
+        <text>经度：{{new_canteen_latitude}}，纬度：{{new_canteen_longitude}}</text>
+        <view class="cu-form-group margin-top">
+          <view class="title">位置描述</view>
+          <input name="location"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">营业时间</view>
+          <input name="time"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">支付方式</view>
+          <picker bindchange="paymentChange" value="{{new_canteen_payment}}" range="{{payments}}" name = "payment">
+            <view class="picker">
+              {{new_canteen_payment?payments[new_canteen_payment]:'请选择支付方式'}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-bar bg-white margin-top" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="action">
+            图片上传
+          </view>
+          <view class="action">
+            {{imgList.length}}/4
+          </view>
+        </view>
+        <view class="cu-form-group" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList[index]}}' mode='aspectFill'></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action flex solid-bottom padding justify-around">
+          <button class="cu-btn line-mauve text-mauve padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-mauve margin-left padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" formType="submit">确定</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
 
 <view wx:if="{{TabCur==0}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
   <view class="canteen_info" bindtap="switchToCanteen" id="{{itemName._id}}" data-canteen="{{itemName.name}}">
@@ -52,7 +124,41 @@
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.name}}</view>
       <view style="display: flex; flex-direction: row;">
-        <view class="canteen_rank">{{itemName.star}}</view>
+        <view class="canteen_rank" wx:if="{{itemName.star == 1}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 2}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 3}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 4}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 5}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+        </view>
         <view class="canteen_cost">￥{{itemName.cost}}/人</view>
       </view>
       <view class="canteen_business_hours">{{itemName.business_hours}}</view>

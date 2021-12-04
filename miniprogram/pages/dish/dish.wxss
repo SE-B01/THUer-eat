@@ -1,1 +1,8 @@
 /* pages/dishes/dishes.wxss */
+.comment-item {
+  border-radius: 30rpx;
+  background: white;
+  border: 2rpx solid rgb(65, 65, 65);
+  margin: 5rpx;
+  border-radius: 30rpx;
+}
