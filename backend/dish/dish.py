@@ -22,6 +22,21 @@ def get_select_dishes():
     dish_json = jsonify(dish_list)
     return dish_json, 200
 
+@dish.route('/dish/search', methods=['GET', 'POST'])
+def get_search_dish():
+    text = request.args.get("text")
+
+    dish_ = Dish.query.filter(Dish.name.like("%{}%".format(text)))
+
+    dish_list = []
+    for dish in dish_:
+        canteen_name = Canteen.query.filter(Canteen.id == dish.canteen_id).first().name
+        dish_info = dish.to_json(canteen_name)
+        dish_list.append(dish_info)
+    dish_json = jsonify(dish_list)
+    return dish_json, 200
+
+
 @dish.route('/dish/get', methods=['GET', 'POST'])
 def get_dish():
     canteen_name = request.args.get("canteen_name")
