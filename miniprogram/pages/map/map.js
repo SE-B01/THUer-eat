@@ -104,7 +104,8 @@ Page({
   },
 
   bindmarkertap(e){
-    console.log(e.markerId)
+    console.log(e)
+    console.log(this.data.markers)
     wx.request({
       url: 'http://127.0.0.1:5000/canteen/get_byid',
       data: {

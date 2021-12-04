@@ -4,15 +4,9 @@
     <text class="cuIcon-search"></text>
     <input type="text" placeholder="搜索餐厅名字" confirm-type="search" bindconfirm="searchCanteen" ></input>
   </view>
-  <!-- <view class="action">
-    <button class="cu-btn bg-mauve shadow-blur round" bindtap="searchCanteen" style="width: 141rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
-  </view> -->
 </view>
-<view class="cu-bar search bg-white">
-  <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
-    <text class="name">{{item.title}}</text>
-    <text class="cuIcon-unfold"></text>
-  </view> -->
+
+<!-- <view class="cu-bar search bg-white">
   <view class="cu-form-group">
     <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
       <view class="picker">
@@ -41,11 +35,11 @@
       </view>
     </picker>
   </view>
-</view>
+</view> -->
 
 <!-- 这是地图部分 -->
 <view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
-  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap' show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box">
+  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' data-name="{{test}}" bindcontroltap='bindcontroltap' show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box">
   </map>
 </view>
 
@@ -73,7 +67,7 @@
       </view>
       <view style="width: 693rpx; height: 95rpx; display: block; box-sizing: border-box">
         <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative" bindtap="showPath">导航</button>
-        <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}" style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">收藏</button>
+        <!-- <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}" style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">收藏</button> -->
       </view>
     </view>
   </view>

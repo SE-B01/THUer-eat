@@ -43,10 +43,6 @@
             </view>
         </view>
         <view class="action">
-            <!-- <view class="cu-form-group margin-top">
-                <textarea maxlength="-1" bindinput="textareaAInput" value="{{textareaAValue}}" placeholder="请输入您的反馈" focus="true">
-                </textarea>
-            </view> -->
             <view class="cu-form-group margin-top">
                 <view class="title">昵称</view>
                 <input value="{{new_nickname}}" bindinput="nameChange"></input>
