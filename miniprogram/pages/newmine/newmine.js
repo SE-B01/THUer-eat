@@ -222,6 +222,17 @@ Page({
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+see_feedback(e){
+  var that = this
+  console.log('asdsadsad')
+  wx.showModal({
+    title: '提示',
+    content: e.target.id,
+    confirmText: "确定",
+    showCancel: true,
+
+  })
+},
 delete_recent_view(e) {
   var that = this
     console.log(e)
@@ -239,6 +250,39 @@ delete_recent_view(e) {
           data: {
             user_id: 1,
             recent_view_id: e.target.id
+          },
+          method: 'GET',
+          success: (res) => {
+            console.log(res.data)
+          }
+        })
+        wx.reLaunch({
+          url: 'newmine',
+        })
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
+  //console.log('textareaAValue: ' + this.data.textareaAValue)
+},
+delete_information(e) {
+  var that = this
+    console.log(e)
+    console.log(e.target.id)
+    wx.showModal({
+    title: '提示',
+    content: '确定删除吗',
+    confirmText: "确定",
+    showCancel: true,
+    success(res) {
+      if (res.confirm) {
+        console.log('用户点击确定')
+        wx.request({
+          url: 'http://127.0.0.1:5000/information_delete',
+          data: {
+            user_id: app.globalData.userInfo.user_id,
+            information_id: e.target.id
           },
           method: 'GET',
           success: (res) => {

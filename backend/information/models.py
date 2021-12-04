@@ -8,6 +8,7 @@ class Information(db.Model):
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
     responser = db.Column(db.String(255))
+    feedbackid = db.Column(db.String(255))
     user = db.Column(db.String(255))
     informations = db.Column(db.String(255))
 
@@ -24,5 +25,6 @@ class Information(db.Model):
             'update_time': self.update_time,
             'responser': self.responser,
             'user': self.user,
-            'informatinos': self.informations
+            'informatinos': self.informations,
+            'feedbackid':self.feedbackid
         }
