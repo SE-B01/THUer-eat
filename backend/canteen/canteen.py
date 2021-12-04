@@ -66,6 +66,28 @@ def get_select_canteens():
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
 
+@canteen.route('/canteen/search', methods=['GET', 'POST'])
+def get_search_canteen():
+    text = request.args.get("text")
+    # ca：数据库中目标食堂条目
+    canteen_ = Canteen.query.filter(Canteen.name.like("%{}%".format(text)))
+
+    canteen_list = []
+    for canteen in canteen_:
+        #print(canteen.to_json())
+        canteen_info = canteen.to_json()
+        #print(canteen.img)
+        try:
+            canteen_info['img'] = canteen.img.split(',')
+            print(canteen_info['img'])
+        except:
+            print(canteen_info['name'])
+            canteen_img = []
+            canteen_img.append(canteen.img)
+            canteen_info['img'] = canteen_img
+        canteen_list.append(canteen_info)
+    canteen_json = jsonify(canteen_list)
+    return canteen_json, 200
 
 @canteen.route('/canteen/get', methods=['GET', 'POST'])
 def get_canteen_info():
