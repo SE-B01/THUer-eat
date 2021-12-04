@@ -3,13 +3,11 @@
 <view class="cu-bar search bg-white" style="background-color: #7B10A8;">
   <view class="search-form round" style="width: 634rpx; height: 64rpx; display: flex; box-sizing: border-box">
 
-    <input type="text" placeholder="   搜索食堂或菜品" confirm-type="search">
+    <input type="text" placeholder="   输入食堂或菜品名称" confirm-type="search">
     </input>
-    <view class="cuIcon-search" style="font-size: 80; text-align: right; width: auto; height: 64rpx; display: block; box-sizing: border-box; position: relative; left: -15rpx; top: 0rpx">
-    </view>
   </view>
-  <view class="action">
-    <view class="cuIcon-locationfill" style="color: white;text-align: end;font-size:medium;">地图</view>
+  <view class="action" bindtap="search">
+    <view class="cuIcon-search" style="color: white;text-align: end;font-size:medium;"> 搜索</view>
   </view>
 
 </view>

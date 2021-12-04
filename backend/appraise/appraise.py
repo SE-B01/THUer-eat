@@ -37,11 +37,12 @@ def publish_appraise():
     for index, img in enumerate(img_list):
         print(index)
         print(type(index))
-        filename = "backend/static/images/" + str(data.get('user_id')) + "_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + "_" + str(index)+ ".jpg"
-        file = open(filename, "wb")
+        filename = str(data.get('user_id')) + "_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + "_" + str(index)+ ".jpg"
+        filepath = "backend/static/images/"+filename
+        file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + '"http://127.0.0.1:5000/' + filename + '",'
+        url_list = url_list + '"http://127.0.0.1:5000/static/images/' + filename + '",'
     url_list = url_list[:-1] + ']'
     ap.img_list = url_list
     ap.user_id = str(data.get('user_id'))

@@ -1,5 +1,8 @@
+import base64
 import json
 import urllib
+from datetime import datetime
+
 from flask import Blueprint, request,jsonify
 from .models import User
 import sys
@@ -82,3 +85,26 @@ def searchUserinfo():
     
         return_list.append(User_query_index.to_json())
     return jsonify(return_list), 200
+
+
+@user.route('/changeUserinfo', methods=['GET', 'POST'])
+def changeUserinfo():
+    data = request.json
+    # print(data.get("nickName"))
+    tar_user = User.query.filter(User.id == data.get("id")).first()
+    # print(tar_user.gender)
+    tar_user.nickname = data.get("nickname")
+    tar_user.gender = data.get("gender")
+    tar_user.is_in_school = data.get("is_in_school")
+    if data.get("imgBase64"):
+        print(data.get("imgBase64"))
+        filename = str(data.get('nickname')) + "_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')+ ".jpg"
+        filepath = "backend/static/images/" + filename
+        file = open(filepath, "wb")
+        file.write(base64.b64decode(data.get("imgBase64")))
+        file.close()
+        tar_user.avatarUrl = "http://127.0.0.1:5000/static/images/" + filename
+    else:
+        print("无新头像")
+    db.session.commit()
+    return "ok", 200
