@@ -7,6 +7,7 @@ name = "pypi"
 jsonify = "*"
 flask = "*"
 pymysql = "*"
+sklearn = "*"
 
 [dev-packages]
 black = "*"

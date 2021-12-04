@@ -2,12 +2,15 @@ Page({
   data: {
     canteen_name: '',
     selected_comment: '',
+    sel_user_name: '',
+    sel_user_avatar: '',
     dish_img: '',
     dish_name: '',
     dish_price: 0,
     canteen_addr: '',
     canteen_hours: '',
     cardCur: 0,
+
     buttonColor: {
       title: '木槿',
        name: 'mauve',
@@ -43,7 +46,9 @@ Page({
           dish_name: res.data.name,
           price: res.data.price,
           canteen_addr: res.data.canteen_address,
-          canteen_business_hours: res.data.canteen_business_hours
+          canteen_business_hours: res.data.canteen_business_hours,
+          sel_user_name: res.data.user_nickname,
+          sel_user_avatar: res.data.user_avatar
         })
       }
     })

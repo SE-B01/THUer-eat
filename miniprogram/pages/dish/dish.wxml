@@ -5,15 +5,15 @@
       <image src="{{dish_img}}" mode="widthFix"></image>
       <view class="cu-tag bg-red">店内推荐</view>
       <view class="cu-bar bg-shadeBottom">
-        <text class="text-cut">"榴莲酥内的馅料软软又糯糯的，有一种豆沙泥、红薯泥的香甜软绵"</text>
+        <text class="text-cut">"{{selected_comment}}"</text>
       </view>
     </view>
     <view class="cu-list menu-avatar">
       <view class="cu-item">
         <view class="cu-avatar round lg"
-          style="background-image:url({{dish_img}});"></view>
+          style="background-image:url({{sel_user_avatar}});"></view>
         <view class="content flex-sub">
-          <view class="text-grey">正义天使 凯尔</view>
+          <view class="text-grey">{{sel_user_name}}</view>
           <view class="text-gray text-sm flex justify-between">
             十天前
             <view class="text-gray text-sm">

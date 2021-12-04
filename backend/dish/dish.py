@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from .models import Dish
 from ..canteen.models import Canteen
+from ..user.models import User
 
 dish = Blueprint('dish', __name__)
 
@@ -30,8 +31,11 @@ def get_dish():
     canteen_buisness_hours = canteen.business_hours
     dish_name = request.args.get("dish_name")
     dish = Dish.query.filter_by(name=dish_name, canteen_id=canteen_id).first()
+    user_id = dish.user_id
+    user = User.query.filter_by(id=user_id).first()
     #print(dish.name)
-    return dish.to_json(canteen_name, canteen_address, canteen_buisness_hours), 200
+    return dish.to_json(canteen_name, canteen_address, canteen_buisness_hours,
+                        user.nickname, user.avatarUrl), 200
 
 @dish.route('/', methods=['GET', 'POST'])
 def index():
