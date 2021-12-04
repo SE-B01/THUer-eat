@@ -94,6 +94,9 @@
               <text class="text-black  margin-right-xs">{{item.comment}}</text>
             </text>
           </view>
+          <view>
+            
+          </view>
         </view>
         <view class="action">
           <view class="text-xs">{{item.price}}￥</view>

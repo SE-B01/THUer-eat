@@ -119,6 +119,7 @@ def get_canteen_info():
         # print(user.nickname)
         user_info['avatar_url'] = user.avatarUrl
         user_info['name'] = user.nickname
+        print(item.img_list)
         ap_list.append(
             {"user_id": item.user_id,
              "anonymous": item.anonymous,
