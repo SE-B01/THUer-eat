@@ -119,11 +119,26 @@ def get_canteen_info():
         # print(user.nickname)
         user_info['avatar_url'] = user.avatarUrl
         user_info['name'] = user.nickname
-        print(item.img_list)
+        img_list = None
+        hidden = False
+        if item.img_list == '':
+            img_list = None
+        else:
+            hidden = True
+            try:
+                img_list = item.img_list.split(',')
+                img_list = img_list[0]
+            except:
+                img_list = item.img_list
+                #img_list = []
+                #img_list.append(item.img_list)
+                pass
+        print(f'hidden: {hidden}, img_list: {img_list}')
         ap_list.append(
             {"user_id": item.user_id,
              "anonymous": item.anonymous,
-             "img_list": item.img_list,
+             "hidden": hidden,
+             "img_list": img_list,
              "star": item.star,
              "comment": item.comment,
              "dish": item.dish,

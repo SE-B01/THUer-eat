@@ -67,41 +67,55 @@
     </view>
   </scroll-view>
   <view class="cu-list menu-avatar" wx:if="{{TabCur==0}}">
-    <view class="cu-item comment-item" wx:for="{{apprise_list}}">
-      <view class="cu-avatar round lg" style="background-image:url({{item.user_avatar}});"></view>
-      <view class="content">
-        <view class="text-black">{{item.user_name}}</view>
-        <view class="text-gray text-sm flex">
-          <text class="text-cut">
-            <text class="text-black  margin-right-xs">{{item.comment}}</text>
-          </text>
+    <view class="cu-card dynamic {{isCard?'no-card':''}}" wx:for="{{apprise_list}}">
+      <view class="cu-item shadow comment-item">
+        <view class="cu-list menu-avatar">
+          <view class="cu-item">
+            <view class="cu-avatar round lg" style="background-image:url({{item.user_avatar}});"></view>
+            <view class="content flex-sub">
+              <view>{{item.user_name}}</view>
+              <view class="text-gray text-sm flex justify-between">
+                2019年12月3日
+              </view>
+            </view>
+          </view>
         </view>
-      </view>
-      <view class="action">
-        <view class="text-grey text-xs">{{item.time}}</view>
-        <!-- <view class="cu-tag round bg-grey sm">5</view> -->
+        <view class="text-content">
+          {{item.comment}}
+        </view>
+        <block wx:if="{{item.hidden}}">
+          <view class="grid flex-sub padding-lr {{isCard?'col-3 grid-square':'col-1'}}">
+            <view class="bg-img only-img" style="background-image:url({{item.img_list}});"></view>
+          </view>
+        </block>
+        <view class="text-gray text-sm text-right padding">
+          <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+          <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+          <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+        </view>
       </view>
     </view>
   </view>
 
   <view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
-    <view class="cu-item comment-item" wx:for="{{dish_list}}" bindtap="switchToDish" id="{{item.name}}" data-canteen="{{item.canteen}}" data-dish="{{item.name}}" >
-        <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
-        <view class="content">
-          <view class="text-black">{{item.name}}</view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut">
-              <text class="text-black  margin-right-xs">{{item.comment}}</text>
-            </text>
-          </view>
-          <view>
-            
-          </view>
+    <view class="cu-item comment-item" wx:for="{{dish_list}}" bindtap="switchToDish" id="{{item.name}}"
+      data-canteen="{{item.canteen}}" data-dish="{{item.name}}">
+      <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
+      <view class="content">
+        <view class="text-black">{{item.name}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">
+            <text class="text-black  margin-right-xs">{{item.comment}}</text>
+          </text>
         </view>
-        <view class="action">
-          <view class="text-xs">{{item.price}}￥</view>
+        <view>
+
         </view>
       </view>
+      <view class="action">
+        <view class="text-xs">{{item.price}}￥</view>
+      </view>
+    </view>
   </view>
 </view>
 <!--
