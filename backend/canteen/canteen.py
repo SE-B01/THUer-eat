@@ -159,6 +159,9 @@ def get_canteen_byid():
         print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
+        canteen_id = item.canteen_id
+        #dish_item['canteen'] = Canteen.query.filter(id==canteen_id).first().name
+        #print(f"canteen:{dish_item['canteen']}")
         dish_list_.append(dish_item)
     ca_info['dish_list'] = dish_list_
     return ca_info, 200
