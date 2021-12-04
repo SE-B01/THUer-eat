@@ -16,7 +16,8 @@ class Dish(db.Model):
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
 
-    def to_json(self, canteen_name):
+    def to_json(self, canteen_name, canteen_address=None,
+                        canteen_business_hours=None):
         return {
             'id': self.id,
             'name': self.name,
@@ -24,5 +25,7 @@ class Dish(db.Model):
             'canteen_id': self.canteen_id,
             'comment':self.comment,
             'img':self.img,
-            'canteen_name': canteen_name
+            'canteen_name': canteen_name,
+            'canteen_address': canteen_address,
+            'canteen_business_hours': canteen_business_hours
         }

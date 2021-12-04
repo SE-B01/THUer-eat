@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/dish/dish",
     "pages/test/test",
     "pages/comments/comments",
     "pages/canteen/canteen",
     "pages/newmine/newmine",
     "pages/map/map",
-    "pages/dish/dish",
+
     "pages/index/index",
     "pages/management/management",
     "pages/search/search",

@@ -70,7 +70,7 @@
 <view class="dish_wrapper" wx:if="{{TabCur==1}}">
   <view>
     <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==0}}">
-      <view bindtap="switchToDish" id="{{itemName._id}}" data-dish="{{itemName.name}}">
+      <view bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.canteen_name}}" data-dish="{{itemName.name}}">
         <image mode="widthFix" src="{{itemName.img}}" class="dish_picture"></image>
         <view class="dish_text">
           <view style="display: flex;flex-direction: row;justify-content:space-between;">
@@ -85,7 +85,7 @@
   </view>
   <view>
     <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==1}}">
-      <view bindtap="switchToDish" id="{{itemName._id}}" data-dish="{{itemName.name}}">
+      <view bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.canteen_name}}" data-dish="{{itemName.name}}">
         <image mode="widthFix" src="{{itemName.img}}" class="dish_picture"></image>
         <view class="dish_text">
           <view style="display: flex;flex-direction: row;justify-content:space-between;">
