@@ -8,6 +8,8 @@ jsonify = "*"
 flask = "*"
 pymysql = "*"
 sklearn = "*"
+numpy = "*"
+scikit-learn = "*"
 
 [dev-packages]
 black = "*"

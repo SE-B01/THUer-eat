@@ -1,6 +1,7 @@
 import tarfile
 from datetime import datetime
 from ..canteen.models import Canteen
+from ..appraise_dish_mapping.models import Appraise_dish_mapping
 from ..dish.models import Dish
 from flask import Blueprint, request
 from .models import Appraise, db, Image
@@ -27,13 +28,22 @@ def publish_appraise():
     # ap：新建一条评价数据
     ap = Appraise()
     ap.comment = data.get('comment')
-    ap.dish = data.get('dish')
+    ap.dish = ""
+    for dish in data.get('dish'):
+        dish_id = Dish.query.filter(Dish.name == dish, Dish.canteen_id == data.get('canteen_id')).first().id
+        # print(dish_id)
+        ad_map = Appraise_dish_mapping()
+        ad_map.dish_id = dish_id
+        ad_map.user_id = data.get('user_id')
+        ad_map.appraise_id = ap.id
+        db.session.add(ad_map)
+        ap.dish = ap.dish + dish + ","
+    ap.dish = ap.dish[:-1]
     ap.star = data.get('star')
     ap.time = datetime.now()
     ap.comment = data.get('comment')
     img_list = data.get('imgList')
     url_list = "["
-    print(type(img_list))
     for index, img in enumerate(img_list):
         print(index)
         print(type(index))
