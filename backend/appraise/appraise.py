@@ -43,7 +43,7 @@ def publish_appraise():
     ap.time = datetime.now()
     ap.comment = data.get('comment')
     img_list = data.get('imgList')
-    url_list = "["
+    url_list = ""
     for index, img in enumerate(img_list):
         print(index)
         print(type(index))
@@ -53,7 +53,7 @@ def publish_appraise():
         file.write(base64.b64decode(img))
         file.close()
         url_list = url_list + '"http://127.0.0.1:5000/static/images/' + filename + '",'
-    url_list = url_list[:-1] + ']'
+    url_list = url_list[:-1]
     ap.img_list = url_list
     ap.user_id = str(data.get('user_id'))
     ap.cost = data.get('cost')
