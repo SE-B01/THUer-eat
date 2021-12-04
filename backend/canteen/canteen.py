@@ -1,5 +1,8 @@
+import base64
+
 from flask import Blueprint, request, jsonify
 from .models import Canteen
+from ..db import db
 from ..appraise.models import Appraise
 from ..dish.models import Dish
 from ..user.models import User
@@ -33,7 +36,6 @@ def get_select_canteens():
     limit = ""
     distance_limits = [0, 500, 1000, 3000]
 
-
     # if distance != "0":
     #     distance_limit = distance_limits[int(distance)]
     if style != "0":
@@ -51,9 +53,9 @@ def get_select_canteens():
 
     canteen_list = []
     for canteen in canteen_:
-        #print(canteen.to_json())
+        # print(canteen.to_json())
         canteen_info = canteen.to_json()
-        #print(canteen.img)
+        # print(canteen.img)
         try:
             canteen_info['img'] = canteen.img.split(',')
             print(canteen_info['img'])
@@ -88,11 +90,11 @@ def get_canteen_info():
     ap = Appraise.query.filter(Appraise.canteen_id == ca.id).order_by(Appraise.time)
     ap_list = []
     for item in ap:
-        #print(item)
+        # print(item)
         user_info = {}
-        #print(item.user_id)
-        user = User.query.filter(User.id==item.user_id).first()
-        #print(user.nickname)
+        # print(item.user_id)
+        user = User.query.filter(User.id == item.user_id).first()
+        # print(user.nickname)
         user_info['avatar_url'] = user.avatarUrl
         user_info['name'] = user.nickname
         ap_list.append(
@@ -129,7 +131,8 @@ def get_canteen_location():
         marker = {'id': int(item.id), 'title': item.name, 'latitude': item.latitude, 'longitude': item.longitude}
         print(marker)
         markers['markers'].append(marker)
-    return markers,200
+    return markers, 200
+
 
 @canteen.route('/canteen/get_byid', methods=['GET', 'POST'])
 def get_canteen_byid():
@@ -139,13 +142,13 @@ def get_canteen_byid():
     starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
     for i in range(0, ca.star):
         starlist[i] = 'yellow'
-    ca_info = {"name":ca.name, "location": ca.location, "payment": ca.payment, "starlist": starlist,
+    ca_info = {"name": ca.name, "location": ca.location, "payment": ca.payment, "starlist": starlist,
                "business_hours": ca.business_hours, "cost": ca.cost, "latitude": ca.latitude, "longitude": ca.longitude}
     # ap：数据库中目标食堂对应评价列表
     ap = Appraise.query.filter(Appraise.canteen_id == tar_id).order_by(Appraise.time)
     ap_list = []
     for item in ap:
-        #print(item)
+        # print(item)
         ap_list.append(
             {"user_id": item.user_id, "anonymous": item.anonymous, "img_list": item.img_list, "star": item.star,
              "comment": item.comment, "dish": item.dish, "cost": item.cost})
@@ -161,3 +164,33 @@ def get_canteen_byid():
         dish_list_.append(dish_item)
     ca_info['dish_list'] = dish_list_
     return ca_info, 200
+
+
+@canteen.route('/canteen/add', methods=['GET', 'POST'])
+def add_canteen_location():
+    data = request.json
+    new_canteen = Canteen()
+    new_canteen.name = data.get("name")
+    new_canteen.latitude = data.get("latitude")
+    new_canteen.longitude = data.get("longitude")
+    new_canteen.location = data.get("location")
+    new_canteen.business_hours = data.get("business_hours")
+    new_canteen.payment = int(data.get("payment"))
+    new_canteen.star = 5
+    img_list = data.get("img")
+    url_list = ""
+    for index, img in enumerate(img_list):
+        print(index)
+        print(type(index))
+        filename = str(data.get('name')) + str(index) + ".jpg"
+        filepath = "backend/static/images/" + filename
+        file = open(filepath, "wb")
+        file.write(base64.b64decode(img))
+        file.close()
+        url_list = url_list + "http://127.0.0.1:5000/static/images/" + filename + ","
+    url_list = url_list[:-1]
+    new_canteen.img = url_list
+    db.session.add(new_canteen)
+    db.session.commit()
+    # print(len(data.get("img")))
+    return "ok", 200
