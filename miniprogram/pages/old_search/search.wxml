@@ -1,0 +1,38 @@
+<!--pages/search/search.wxml-->
+
+<view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;" >
+  <input class="search_input" placeholder="输入词语.." bindinput="bindKeyInput" value="{{search_word}}"></input>
+  <image class="search_img" src="/images/search.png" bindtap="search"></image>
+</view>
+
+<view class="area" wx:if="{{similar_words.length!=0}}">
+  <view class="area-title">
+    <text class="title">搜索结果</text>
+  </view>
+  <view class="word-line" wx:for="{{similar_words}}" wx:for-index="idx" wx:for-item="itemName" style='{{idx == similar_words.length-1 ? "" : "border-bottom : 4rpx solid #437dd4;" }}'>
+    <view class="word-content">
+      <view class="word-txt">{{itemName.word_name==search_word?itemName.similar_word_name:itemName.word_name}}</view>
+      <view class="word-hot">{{itemName.correlation}}</view>
+    </view>
+    <image class="word-img" src='{{itemName.isClick?"/images/love_color.png":"/images/love_gray.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="loveClick"></image>
+  </view>
+</view>
+
+<view class="area" wx:if="{{isBlank}}">
+  <view class="area-title">
+    <text class="title">搜索结果</text>
+  </view>
+  <view class="area-notfound" style="font-size:32rpx;">
+    <view>抱歉，词库中未查询到您要搜索的内容</view>
+    <view style="font-size:30rpx; color:gray; margin-top:40rpx;">我们将查阅资料尽快补充该词语</view>
+  </view>
+</view>
+
+<view class="bottom-line">
+  <view class="bottom-txt">-- 当前词库已收录17,720词 --</view>
+  <view class="buttom-button">
+    <button class="bottom-click" size="mini" style="width:300rpx; height:60rpx; margin: 0rpx; padding:0rpx; font-size: 30rpx;" open-type="share">分享给好友</button>
+  </view>
+</view>
+
+<view style="height: 100rpx;"></view>
