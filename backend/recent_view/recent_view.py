@@ -3,7 +3,7 @@ from .models import Recent_view
 from ..dish.models import Dish
 from ..canteen.models import Canteen
 import json
-
+from ..db import db
 recent_view = Blueprint('recent_view', __name__)
 
 @recent_view.route('/recent_view_test', methods=['GET', 'POST'])
@@ -40,4 +40,20 @@ def get_recent_view():
                 return_list.append(return_list_item)
     # print('list')
     # print(return_list)
+    return jsonify(return_list), 200
+
+@recent_view.route('/recent_view_delete', methods=['GET', 'POST'])
+def recent_view_delete():
+    
+    user_id = request.args.get('user_id')
+    recent_view_id = request.args.get('recent_view_id')
+    print(user_id)
+    print(recent_view_id)
+    Recent_view_list = Recent_view.query.filter_by(id=recent_view_id,user_id=user_id)
+    for each in Recent_view_list:
+        print(each.to_json())
+        db.session.delete(each)
+        db.session.commit()
+        db.session.close()
+    return_list=['success']
     return jsonify(return_list), 200
