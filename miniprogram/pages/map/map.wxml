@@ -39,7 +39,7 @@
 
 <!-- 这是地图部分 -->
 <view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
-  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap' show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box">
+  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' data-name="{{test}}" bindcontroltap='bindcontroltap' show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box">
   </map>
 </view>
 

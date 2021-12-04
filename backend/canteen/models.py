@@ -21,8 +21,8 @@ class Canteen(db.Model):
     def __repr__(self):
         return '<Canteen %r>' % self.name
 
-    def __init__(self):
-        self.id = str(uuid.uuid4()).replace("-", "")
+    # def __init__(self):
+    #     self.id = str(uuid.uuid4()).replace("-", "")
 
     def to_json(self):
         return {

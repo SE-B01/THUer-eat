@@ -4,10 +4,10 @@
     <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="pull前保存">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/canteen/canteen.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/canteen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/home/home.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/home/home.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/canteen/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/static/images/1230.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/static/images/1230.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/newmine/newmine.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
       <workItem from="1638439878185" duration="7753000" />
       <workItem from="1638533486845" duration="12027000" />
       <workItem from="1638598043378" duration="6582000" />
-      <workItem from="1638612563970" duration="2443000" />
+      <workItem from="1638612563970" duration="6158000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>

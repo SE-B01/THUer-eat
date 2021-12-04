@@ -170,6 +170,8 @@ def get_canteen_byid():
 def add_canteen_location():
     data = request.json
     new_canteen = Canteen()
+    new_id = int(Canteen.query.order_by(db.desc(Canteen.id)).first().id) + 1
+    new_canteen.id = str(new_id)
     new_canteen.name = data.get("name")
     new_canteen.latitude = data.get("latitude")
     new_canteen.longitude = data.get("longitude")
@@ -180,8 +182,6 @@ def add_canteen_location():
     img_list = data.get("img")
     url_list = ""
     for index, img in enumerate(img_list):
-        print(index)
-        print(type(index))
         filename = str(data.get('name')) + str(index) + ".jpg"
         filepath = "backend/static/images/" + filename
         file = open(filepath, "wb")
@@ -192,5 +192,5 @@ def add_canteen_location():
     new_canteen.img = url_list
     db.session.add(new_canteen)
     db.session.commit()
-    # print(len(data.get("img")))
+    print(len(data.get("img")))
     return "ok", 200
