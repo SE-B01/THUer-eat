@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, session
 from .models import Dish
 from ..canteen.models import Canteen
 from ..user.models import User
+from ..appraise.models import Appraise
 
 dish = Blueprint('dish', __name__)
 
@@ -33,9 +34,26 @@ def get_dish():
     dish = Dish.query.filter_by(name=dish_name, canteen_id=canteen_id).first()
     user_id = dish.user_id
     user = User.query.filter_by(id=user_id).first()
+    #print(f'dish_name: {dish_name}')
+    appraise_list = Appraise.query.filter(
+        Appraise.dish.like('%' + dish_name + '%')
+    ).all()
+    appraise_list_res = []
+    for item in appraise_list:
+        appraise = {}
+        user_id = item.user_id
+        #print(f'user_id:{user_id}')
+        user = User.query.filter_by(id=user_id).first()
+        appraise['user_nickname'] = user.nickname
+        appraise['user_avatar'] = user.avatarUrl
+        appraise['comment'] = item.comment
+
+        appraise_list_res.append(appraise)
+
     #print(dish.name)
+    #print(f'appraise_list:{appraise_list}')
     return dish.to_json(canteen_name, canteen_address, canteen_buisness_hours,
-                        user.nickname, user.avatarUrl), 200
+                        user.nickname, user.avatarUrl, appraise_list_res), 200
 
 @dish.route('/', methods=['GET', 'POST'])
 def index():

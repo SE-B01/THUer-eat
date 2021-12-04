@@ -42,30 +42,26 @@
     </view>
     <view class="grid col-2 margin-bottom">
       <view class="canteen-navigation">
-        <button class="cu-btn block line-orange lg">
-          <text class="cuIcon-location"></text>导航</button>
+        <button bindtap="collect" class="cu-btn round bg-mauve" style="width:148px; height: 32px; display: inline-flex; box-sizing: border-box; left: 7px; top: -1 px; position: relative" role="button" aria-disabled="false">收藏</button>
       </view>
     </view>
   </view>
   <view class="cu-bar bg-white margin-top  solid-bottom">
     <view class="action">
-      <text class="cuIcon-title text-blue"></text>该菜的精选评价(48)
+      <text class="cuIcon-title text-blue"></text>该菜的精选评价({{appraise_list_length}})
     </view>
   </view>
+
   <view class="cu-list menu-avatar">
-    <view class="cu-item comment-item" wx:for="{{apprise_list}}">
+    <view class="cu-item comment-item" wx:for="{{appraise_list}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.user_avatar}});"></view>
       <view class="content">
-        <view class="text-black">{{item.user_name}}</view>
+        <view class="text-black">{{item.user_nickname}}</view>
         <view class="text-gray text-sm flex">
           <text class="text-cut">
             <text class="text-black  margin-right-xs">{{item.comment}}</text>
           </text>
         </view>
-      </view>
-      <view class="action">
-        <view class="text-grey text-xs">{{item.time}}</view>
-        <!-- <view class="cu-tag round bg-grey sm">5</view> -->
       </view>
     </view>
   </view>

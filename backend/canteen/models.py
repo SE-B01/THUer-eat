@@ -36,5 +36,5 @@ class Canteen(db.Model):
             'business_hours': self.business_hours,
             #'img': img_list,
             'cost': self.cost,
-            'style': self.style,
+            'style': self.style
         }

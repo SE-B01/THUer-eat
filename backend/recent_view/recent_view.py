@@ -2,8 +2,10 @@ from flask import Blueprint, request, jsonify
 from .models import Recent_view
 from ..dish.models import Dish
 from ..canteen.models import Canteen
+from ..db import db
+import datetime
 import json
-
+from ..db import db
 recent_view = Blueprint('recent_view', __name__)
 
 @recent_view.route('/recent_view_test', methods=['GET', 'POST'])
@@ -11,6 +13,27 @@ def recent_view_example():
     recent_view_ = Recent_view.query.first()
     # print(recent_view_)
     return str(recent_view_.rank), 200
+
+@recent_view.route('/add_recent_view', methods=['GET', 'POST'])
+def add_recent_view():
+    canteen_name = request.args.get('canteen_name')
+    canteen_id = Canteen.query.filter_by(name=canteen_name).first().id
+    dish_name = request.args.get('dish_name')
+    dish_id = Dish.query.filter_by(name=dish_name, canteen_id=canteen_id).first().id
+    user_id = request.args.get('user_id')
+    search = Recent_view.query.filter_by(dish_id=dish_id, user_id=user_id).first()
+    if search:
+        return 'already exists', 200
+    rank = Recent_view.query.filter_by(user_id=user_id).count() + 1
+    #print(f'rank:{rank}')
+    new_recent_view_item = Recent_view()
+    new_recent_view_item.user_id = user_id
+    new_recent_view_item.dish_id = dish_id
+    new_recent_view_item.rank = rank
+    new_recent_view_item.time = datetime.datetime.now()
+    db.session.add(new_recent_view_item)
+    db.session.commit()
+    return 'test', 200
 
 @recent_view.route('/get_recent_view', methods=['GET', 'POST'])
 def get_recent_view():
@@ -40,4 +63,20 @@ def get_recent_view():
                 return_list.append(return_list_item)
     # print('list')
     # print(return_list)
+    return jsonify(return_list), 200
+
+@recent_view.route('/recent_view_delete', methods=['GET', 'POST'])
+def recent_view_delete():
+    
+    user_id = request.args.get('user_id')
+    recent_view_id = request.args.get('recent_view_id')
+    print(user_id)
+    print(recent_view_id)
+    Recent_view_list = Recent_view.query.filter_by(id=recent_view_id,user_id=user_id)
+    for each in Recent_view_list:
+        print(each.to_json())
+        db.session.delete(each)
+        db.session.commit()
+        db.session.close()
+    return_list=['success']
     return jsonify(return_list), 200

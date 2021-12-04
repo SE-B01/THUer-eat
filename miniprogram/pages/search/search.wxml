@@ -10,14 +10,7 @@
   </view>
 
 </view>
-<!-- <view class="top">
-  <view class="topsearch">
-    <view class="frame">
-      <input value="{{shoopingtext}}" bindinput="shoppinginput"></input>
-    </view>
-    <text bindtap="search">搜索</text>
-  </view>
-</view> -->
+
 <view class="history" wx:if="{{history}}">
   <view class="history_title">
     <text>历史搜索</text>
@@ -28,29 +21,74 @@
   </view>
 </view>
 
-
-
-
-
-
+<scroll-view scroll-x class="nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{0==TabCur?'text-purple cur':''}} text-center" bindtap="tabSelect" data-id="0">
+      <text class="cuIcon-shopfill"></text> 搜索食堂
+    </view>
+    <view class="cu-item flex-sub {{1==TabCur?'text-purple cur':''}} text-center" bindtap="tabSelect" data-id="1">
+      <text class="cuIcon-evaluate_fill"></text> 搜索菜品
+    </view>
+  </view>
+</scroll-view>
 
 
 <view class="none" wx:if="{{noneview}}">
   <image src="../../images/icons/no.png" mode="widthFix" style="width:20%"></image>
-  <text>抱歉，没有相关商品</text>
+  <text>抱歉，没有找到相关信息</text>
 </view>
-<view class='swiper_con' wx:if="{{shoppinglist}}">
-  <view class='swiper_con_view' wx:for="{{canteenlist}}" wx:key="id" wx:if='{{item.status=="1"?true:false}}'>
-    <image src="{{item.images}}" mode="widthFix" style="width:100%" data-status="{{item.status}}"></image>
-    <view style="width:90%;margin:5%;">
-      <text style="font-size:24rpx">{{item.title}}</text>
-      <view class="swiper_con_view_view">
-        <view style="width:80%;">
-          <text style="font-size:24rpx;color:red;">￥{{item.money}}</text>
-          <text style="font-size:18rpx;color:#B8B8B8;margin-left:5%;">已售{{item.sold}}</text>
-        </view>
-        <image src="../../images/icons/like.png" mode="widthFix" style="width:10%;position:relative;left:8%;"></image>
+
+<view class='swiper_con' wx:if="{{find_relevant}}">
+<view wx:if="{{TabCur==0 && find_relevant}}" class="canteen-wrapper" wx:for="{{canteens}}" wx:for-item="itemName" wx:for-index="idx">
+  <view class="canteen_info" bindtap="switchToCanteen" id="{{itemName._id}}" data-canteen="{{itemName.name}}">
+    <image src="{{itemName.img[0]}}" class="canteen_img"></image>
+    <view class="canteen_text">
+      <view class="canteen_name">{{itemName.name}}</view>
+      <view style="display: flex; flex-direction: row;">
+        <view class="canteen_rank">{{itemName.star}}</view>
+        <view class="canteen_cost">￥{{itemName.cost}}/人</view>
+      </view>
+      <view class="canteen_business_hours">{{itemName.business_hours}}</view>
+      <view class="canteen_location">{{itemName.location}}</view>
+      <view class="canteen_tags">
+        <view class="cu-tag round" wx:for="{{itemName.canteen_tag}}">
+          {{item}}</view>
       </view>
     </view>
   </view>
+</view>
+
+<view class="dish_wrapper" wx:if="{{TabCur==1}}">
+  <view>
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==0}}">
+      <view bindtap="switchToDish" id="{{itemName._id}}" data-dish="{{itemName.name}}">
+        <image mode="widthFix" src="{{itemName.img}}" class="dish_picture"></image>
+        <view class="dish_text">
+          <view style="display: flex;flex-direction: row;justify-content:space-between;">
+            <view class="dish_name">{{itemName.name}}</view>
+            <view class="dish_price">￥{{itemName.price}}</view>
+          </view>
+          <view class="dish_comment">"{{itemName.comment}}"</view>
+          <text class="cuIcon-shopfill">{{itemName.canteen_name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info" wx:if="{{idx%2==1}}">
+      <view bindtap="switchToDish" id="{{itemName._id}}" data-dish="{{itemName.name}}">
+        <image mode="widthFix" src="{{itemName.img}}" class="dish_picture"></image>
+        <view class="dish_text">
+          <view style="display: flex;flex-direction: row;justify-content:space-between;">
+            <view class="dish_name">{{itemName.name}}</view>
+            <view class="dish_price">￥{{itemName.price}}</view>
+          </view>
+          <view class="dish_comment">"{{itemName.comment}}"</view>
+          <text class="cuIcon-shopfill">{{itemName.canteen_name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style="height: 200rpx;"></view>
 </view>

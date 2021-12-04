@@ -18,8 +18,9 @@ class Dish(db.Model):
     def __init__(self):
         self.id = str(uuid.uuid4()).replace("-", "")
 
-    def to_json(self, canteen_name, canteen_address=None,
-                        canteen_business_hours=None, user_nickname=None, user_avatar=None):
+    def to_json(self, canteen_name, canteen_address=None, \
+                canteen_business_hours=None, user_nickname=None, \
+                user_avatar=None, appraise_list=None):
         return {
             'id': self.id,
             'name': self.name,
@@ -31,5 +32,6 @@ class Dish(db.Model):
             'canteen_address': canteen_address,
             'canteen_business_hours': canteen_business_hours,
             'user_nickname': user_nickname,
-            'user_avatar': user_avatar
+            'user_avatar': user_avatar,
+            'appraise_list': appraise_list
         }
