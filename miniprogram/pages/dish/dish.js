@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data: {
     canteen_name: '',
@@ -28,7 +29,21 @@ Page({
     that.setData({
       canteen: options.canteen,
       dish: options.dish
-    })
+    }),
+    console.log(app.globalData.userInfo);
+    wx.request({
+      url: 'http://127.0.0.1:5000/add_recent_view',
+
+      data: {
+        canteen_name: this.data.canteen,
+        dish_name: this.data.dish,
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+
+      }
+    }),
     wx.request({
       url: 'http://127.0.0.1:5000/dish/get',
       data: {
@@ -37,8 +52,7 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
-        
+        //console.log(res.data)
         this.setData({
           canteen_name: res.data.canteen_name,
           selected_comment: res.data.comment,
