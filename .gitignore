@@ -2,3 +2,6 @@ project.config.json
 backend/.idea
 .idea
 miniprogram/project.config.json
+*.pyc
+*.pyc
+backend/dish/__pycache__/dish.cpython-39.pyc
