@@ -76,5 +76,22 @@ Page({
     this.setData({
       cardCur: e.detail.current
     })
+  },
+  collect(){
+    console.log(app.globalData.userInfo.id)
+    console.log(this.data.canteen_name)
+    console.log(this.data.dish_name)
+    wx.request({
+      url: 'http://127.0.0.1:5000/add_collection',
+      data: {
+        user_id: app.globalData.userInfo.id,
+        canteen_name: this.data.canteen_name,
+        dish_name: this.data.dish_name
+      },
+      method: 'GET',
+      success: (res) => {
+       
+      }
+    })
   }
 })

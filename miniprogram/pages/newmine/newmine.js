@@ -199,7 +199,7 @@ Page({
         wx.request({
           url: 'http://127.0.0.1:5000/collection_delete',
           data: {
-            user_id: 1,
+            user_id: app.globalData.userInfo.id,
             collection_id: e.target.id
           },
           method: 'GET',
@@ -232,7 +232,7 @@ delete_recent_view(e) {
         wx.request({
           url: 'http://127.0.0.1:5000/recent_view_delete',
           data: {
-            user_id: 1,
+            user_id: app.globalData.userInfo.id,
             recent_view_id: e.target.id
           },
           method: 'GET',
@@ -259,7 +259,7 @@ delete_recent_view(e) {
    */
   onLoad: function (options) {
     var that = this
-    console.log(app.globalData.userInfo)
+    //console.log(app.globalData.userInfo)
     that.setData({
       nickname: app.globalData.userInfo.nickname,
       new_nickname: app.globalData.userInfo.nickname,
@@ -268,18 +268,14 @@ delete_recent_view(e) {
       new_gender: app.globalData.userInfo.gender,
       new_is_in_school: app.globalData.userInfo.is_in_school
     })
-    console.log('userInfo')
-    console.log(app.globalData.userInfo)
-    console.log('nickName')
-    console.log(that.data.nickname)
     wx.request({
       url: 'http://127.0.0.1:5000/get_recent_view',
       data: {
-        user_id: 1
+        user_id: app.globalData.userInfo.id
       },
       method: 'GET',
       success: (res) => {
-        //console.log(res.data)
+        console.log(res.data)
         that.setData({
           dishes: res.data
         })
@@ -288,7 +284,7 @@ delete_recent_view(e) {
     wx.request({
       url: 'http://127.0.0.1:5000/get_collection',
       data: {
-        user_id: 1
+        user_id: app.globalData.userInfo.id
       },
       method: 'GET',
       success: (res) => {

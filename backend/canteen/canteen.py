@@ -56,9 +56,9 @@ def get_select_canteens():
         #print(canteen.img)
         try:
             canteen_info['img'] = canteen.img.split(',')
-            print(canteen_info['img'])
+            #print(canteen_info['img'])
         except:
-            print(canteen_info['name'])
+            #print(canteen_info['name'])
             canteen_img = []
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
@@ -131,7 +131,6 @@ def get_canteen_location():
     ca = Canteen.query.all()
     for item in ca:
         marker = {'id': int(item.id), 'title': item.name, 'latitude': item.latitude, 'longitude': item.longitude}
-        print(marker)
         markers['markers'].append(marker)
     return markers,200
 
@@ -159,7 +158,7 @@ def get_canteen_byid():
     for item in dish_list:
         dish_item = {}
         dish_item['name'] = item.name
-        print(item.name)
+        #print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
         canteen_id = item.canteen_id
