@@ -21,6 +21,9 @@ def add_recent_view():
     dish_name = request.args.get('dish_name')
     dish_id = Dish.query.filter_by(name=dish_name, canteen_id=canteen_id).first().id
     user_id = request.args.get('user_id')
+    search = Recent_view.query.filter_by(dish_id=dish_id, user_id=user_id).first()
+    if search:
+        return 'already exists', 200
     rank = Recent_view.query.filter_by(user_id=user_id).count() + 1
     #print(f'rank:{rank}')
     new_recent_view_item = Recent_view()

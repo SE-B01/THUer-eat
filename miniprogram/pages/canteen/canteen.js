@@ -93,6 +93,15 @@ Page({
       url: "../comments/comments?canteen="+canteen
     })
   },
+  switchToDish: function (e) {
+    var dish = e.currentTarget.dataset.dish
+    var canteen = e.currentTarget.dataset.canteen
+    console.log(dish)
+    console.log(canteen)
+    wx.navigateTo({
+      url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
+    })
+  },
   // cardSwiper
   cardSwiper(e) {
     this.setData({
