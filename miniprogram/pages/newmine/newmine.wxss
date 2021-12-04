@@ -80,3 +80,12 @@ page{
 .dish_cost{
   margin-top: 5rpx;
 }
+.text-zyx{
+  max-width: 200rpx;
+  border-radius:20rpx;
+  background:white;
+  border:2rpx solid rgb(252, 250, 250);
+  margin: 5rpx;
+  border-radius: 30rpx;
+  
+}

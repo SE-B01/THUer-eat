@@ -90,6 +90,32 @@
     </view>
 </scroll-view>
 <block wx:if="{{TabCur==2}}">
+    <view wx:for="{{informations}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
+        <view class="dish_wrapper">
+            <view>
+                <image mode="widthFix" src="{{itemName.responder_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+            </view>
+
+            <view style="width: 500rpx;  display: block; box-sizing: border-box">
+                <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
+                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.responder_name}}</view>
+                    <button class="cu-btn round" style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_collection" id="{{itemName.id}}">删除</button>
+                </view>
+                <view class="solids-bottom padding-xs flex align-center" style="width: 415rpx; display: flex; box-sizing: border-box; left: 0rpx; margin-top: 20rpx">
+    
+                <view class="flex-sub text-center">
+                <view class="padding">"{{itemName.responder_content}}"</view>
+                </view>
+            </view>
+
+                
+            
+                
+            </view>
+            
+        </view>
+        
+    </view>
     <view class="cu-card case {{isCard?'no-card':''}}" style="width: 750rpx; height: 319rpx; display: block; box-sizing: border-box">
         <view class="cu-item shadow">
             <view class="cu-list menu-avatar" style="width: 694rpx; height: 263rpx; display: block; box-sizing: border-box">

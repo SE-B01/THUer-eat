@@ -3,7 +3,7 @@ const app = getApp()
 const fileManager = wx.getFileSystemManager();
 Page({
   data: {
-    TabCur: 0,
+    TabCur: 2,
     tabNav: ['最近浏览', '收藏', '消息'],
     dishes: [],
     collection: [],
@@ -16,6 +16,14 @@ Page({
     new_avatarUrl: '',
     avatarUrl: '',
     imgBase64: '',
+    informations: [{
+      "responder_image": "../../images/dishes/打卤面.jfif",
+      "responder_name": "打卤面",
+      "responder_content": "咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。咸淡适中，肉量很足。",
+      "dish_comment": "咸淡适中，肉量很足。",
+      "dish_canteen": "清芬园",
+      "dish_canteen_on": "营业中"
+    }],
     collections: [{
       "dish_picture": "../../images/dishes/打卤面.jfif",
       "dish_name": "打卤面",

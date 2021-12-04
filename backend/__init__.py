@@ -8,7 +8,7 @@ def create_app(config_name='default'):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     #config[config_name].init_app(app)
     from . import dish, canteen, appraise, collection, \
-        recommend, feedback, user, recent_view, appraise_dish_mapping, db
+        recommend, feedback, user, recent_view, appraise_dish_mapping,information, db
     db.init_app(app)
     dish.init_app(app)
     canteen.init_app(app)
@@ -20,4 +20,5 @@ def create_app(config_name='default'):
     #test_image.init_app(app)
     recommend.init_app(app)
     appraise_dish_mapping.init_app(app)
+    information.init_app(app)
     return app
