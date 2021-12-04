@@ -9,8 +9,11 @@ flask = "*"
 pymysql = "*"
 sklearn = "*"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 numpy = "*"
 scikit-learn = "*"
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
