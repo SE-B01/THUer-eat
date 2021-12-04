@@ -41,7 +41,7 @@ Page({
                     star: this.data.appraise.star,
                     anonymous: this.data.appraise.anonymous,
                     comment: this.data.appraise.comment,
-                    dish: JSON.stringify(this.data.appraise.dish),
+                    dish: this.data.appraise.dish,
                     cost: this.data.appraise.cost,
                     user_id: this.data.appraise.user_id,
                     imgList: this.data.base64imgList,
@@ -76,10 +76,10 @@ Page({
                     star: this.data.appraise.star,
                     anonymous: this.data.appraise.anonymous,
                     comment: this.data.appraise.comment,
-                    dish: JSON.stringify(this.data.appraise.dish),
+                    dish: this.data.appraise.dish,
                     cost: this.data.appraise.cost,
                     user_id: this.data.appraise.user_id,
-                    imgList: JSON.stringify(this.data.base64imgList),
+                    imgList: this.data.base64imgList,
                     is_publish: false
                 },
                 method: 'POST',
@@ -222,8 +222,7 @@ Page({
                 }
             })
         }
-
-        console.log(this.data.appraise.dish)
+        // console.log(this.data.appraise.dish)
     },
     /**
      * 生命周期函数--监听页面加载
