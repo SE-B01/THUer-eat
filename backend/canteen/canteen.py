@@ -107,8 +107,7 @@ def get_canteen_info():
              "user_avatar": user.avatarUrl
              })
     ca_info["ap_list"] = ap_list
-    canteen = Canteen.query.filter(Canteen.name == name).first()
-    dish_list = Dish.query.filter(Dish.canteen_id == canteen.id)
+    dish_list = Dish.query.filter(Dish.canteen_id == ca.id)
     dish_list_ = []
     for item in dish_list:
         dish_item = {}
@@ -127,7 +126,38 @@ def get_canteen_location():
     markers = {'markers': []}
     ca = Canteen.query.all()
     for item in ca:
-        marker = {'id': item.id, 'latitude': item.latitude, 'longitude': item.longitude}
+        marker = {'id': int(item.id), 'title': item.name, 'latitude': item.latitude, 'longitude': item.longitude}
         print(marker)
         markers['markers'].append(marker)
     return markers,200
+
+@canteen.route('/canteen/get_byid', methods=['GET', 'POST'])
+def get_canteen_byid():
+    tar_id = request.args.get("id")
+    # ca：数据库中目标食堂条目
+    ca = Canteen.query.filter(Canteen.id == tar_id).first()
+    starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
+    for i in range(0, ca.star):
+        starlist[i] = 'yellow'
+    ca_info = {"name":ca.name, "location": ca.location, "payment": ca.payment, "starlist": starlist,
+               "business_hours": ca.business_hours, "cost": ca.cost, "latitude": ca.latitude, "longitude": ca.longitude}
+    # ap：数据库中目标食堂对应评价列表
+    ap = Appraise.query.filter(Appraise.canteen_id == tar_id).order_by(Appraise.time)
+    ap_list = []
+    for item in ap:
+        #print(item)
+        ap_list.append(
+            {"user_id": item.user_id, "anonymous": item.anonymous, "img_list": item.img_list, "star": item.star,
+             "comment": item.comment, "dish": item.dish, "cost": item.cost})
+    ca_info["ap_list"] = ap_list
+    dish_list = Dish.query.filter(Dish.canteen_id == tar_id)
+    dish_list_ = []
+    for item in dish_list:
+        dish_item = {}
+        dish_item['name'] = item.name
+        print(item.name)
+        dish_item['price'] = item.price
+        dish_item['comment'] = item.comment
+        dish_list_.append(dish_item)
+    ca_info['dish_list'] = dish_list_
+    return ca_info, 200

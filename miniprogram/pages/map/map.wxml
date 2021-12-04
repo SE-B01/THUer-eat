@@ -1,54 +1,81 @@
 <!--pages/map/map.wxml-->
 <view class="cu-bar search bg-purple">
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索餐厅名字" confirm-type="search"></input>
-    </view>
-    <view class="action">
-      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showMap">搜索</button>
-    </view>
-    <view class="action">
-      <button class="cu-btn bg-mauve shadow-blur round" style="width: 162rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx" bindtap="showPath">导航</button>
-    </view>
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索餐厅名字" confirm-type="search" bindconfirm="searchCanteen" ></input>
+  </view>
+  <!-- <view class="action">
+    <button class="cu-btn bg-mauve shadow-blur round" bindtap="searchCanteen" style="width: 141rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">搜索</button>
+  </view> -->
 </view>
 <view class="cu-bar search bg-white">
   <!-- <view class="box" wx:for="{{select}}" wx:key="{{index}}" data-index="{{index}}" bindtap="skipSelect">
     <text class="name">{{item.title}}</text>
     <text class="cuIcon-unfold"></text>
   </view> -->
-  <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
-		    <view class="picker">
-			    {{index?paymethod[index]:'支付方式'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
-		    <view class="picker">
-			    {{index?cost[index]:'人均消费'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}" style="position: relative; left: 2rpx; top: -2rpx">
-		    <view class="picker">
-			    {{index?cost[index]:'更多筛选'}}
-		    </view>
-	    </picker>
-    </view>
-    <view class="cu-form-group">  
-        <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
-		    <view class="picker">
-			    {{index?cost[index]:'附近食堂'}}
-		    </view>
-	    </picker>
-    </view>
-</view>
- 
-<!-- 这是地图部分 -->
-<view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
-  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
-    show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box"></map>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{paymethod}}">
+      <view class="picker">
+        {{index?paymethod[index]:'支付方式'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+      <view class="picker">
+        {{index?cost[index]:'人均消费'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}" style="position: relative; left: 2rpx; top: -2rpx">
+      <view class="picker">
+        {{index?cost[index]:'更多筛选'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{cost}}">
+      <view class="picker">
+        {{index?cost[index]:'附近食堂'}}
+      </view>
+    </picker>
+  </view>
 </view>
 
+<!-- 这是地图部分 -->
+<view class="map_container" style="height: 100%; width: 100%; display: block; box-sizing: border-box">
+  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap' show-location style="position: relative; left: -4rpx; top: -2rpx; width: 750rpx; height: 1241rpx; display: block; box-sizing: border-box">
+  </map>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
+    </view>
+    <view class="padding bg-white solid-bottom margin-top canteen-info" style="text-align:left">
+      <view class="grid col-2 margin-bottom">
+        <view class="canteen-info-item">{{canteen}}</view>
+        <view class="canteen-info-item">￥{{cost}}/人</view>
+      </view>
+      <text class="cuIcon-favorfill lg text-{{starlist[0]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[1]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[2]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[3]}}"></text>
+      <text class="cuIcon-favorfill lg text-{{starlist[4]}}"></text>
+      <view class="grid col-1 margin-bottom">
+        <view class="canteen-info-item">地址：{{location}}</view>
+      </view>
+      <view class="grid col-1 margin-bottom">
+        <view class="canteen-info-item">营业时间：{{business_hours}}</view>
+      </view>
+      <view style="width: 693rpx; height: 95rpx; display: block; box-sizing: border-box">
+        <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative" bindtap="showPath">导航</button>
+        <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}" style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">收藏</button>
+      </view>
+    </view>
+  </view>
+  <view style="height: 100rpx;"></view>
+</view>
