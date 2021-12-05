@@ -3,7 +3,8 @@ const app = getApp()
 const fileManager = wx.getFileSystemManager();
 Page({
   data: {
-    TabCur: 0,
+    is_admin: app.globalData.userInfo.is_admin,
+    TabCur: 2,
     tabNav: ['最近浏览', '收藏', '消息'],
     dishes: [],
     collection: [],
@@ -16,6 +17,11 @@ Page({
     new_avatarUrl: '',
     avatarUrl: '',
     imgBase64: '',
+    informations:[],
+    information:[{
+      "create_time":"2020 3 1",
+      "informations":"hahahahahaha"
+    }],
     collections: [{
       "dish_picture": "../../images/dishes/打卤面.jfif",
       "dish_name": "打卤面",
@@ -217,6 +223,17 @@ Page({
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+see_feedback(e){
+  var that = this
+  console.log('asdsadsad')
+  wx.showModal({
+    title: '提示',
+    content: e.target.id,
+    confirmText: "确定",
+    showCancel: true,
+
+  })
+},
 delete_recent_view(e) {
   var that = this
     console.log(e)
@@ -250,6 +267,44 @@ delete_recent_view(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+to_feedbackmag(e){
+  wx.navigateTo({
+    url:"../feedbackmag/feedbackmag"
+  })
+},
+delete_information(e) {
+  var that = this
+    console.log(e)
+    console.log(e.target.id)
+    wx.showModal({
+    title: '提示',
+    content: '确定删除吗',
+    confirmText: "确定",
+    showCancel: true,
+    success(res) {
+      if (res.confirm) {
+        console.log('用户点击确定')
+        wx.request({
+          url: 'http://127.0.0.1:5000/information_delete',
+          data: {
+            user_id: app.globalData.userInfo.user_id,
+            information_id: e.target.id
+          },
+          method: 'GET',
+          success: (res) => {
+            console.log(res.data)
+          }
+        })
+        wx.reLaunch({
+          url: 'newmine',
+        })
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
+  //console.log('textareaAValue: ' + this.data.textareaAValue)
+},
   /**
    * 页面的初始数据
    */
@@ -259,14 +314,17 @@ delete_recent_view(e) {
    */
   onLoad: function (options) {
     var that = this
-    console.log(app.globalData.userInfo)
+    console.log('global data')
+    console.log(app.globalData)
+    console.log(that.data)
     that.setData({
       nickname: app.globalData.userInfo.nickname,
       new_nickname: app.globalData.userInfo.nickname,
       avatarUrl: app.globalData.userInfo.avatarUrl,
       new_avatarUrl: app.globalData.userInfo.avatarUrl,
       new_gender: app.globalData.userInfo.gender,
-      new_is_in_school: app.globalData.userInfo.is_in_school
+      new_is_in_school: app.globalData.userInfo.is_in_school,
+      is_admin:app.globalData.userInfo.is_admin
     })
     console.log('userInfo')
     console.log(app.globalData.userInfo)
@@ -295,6 +353,19 @@ delete_recent_view(e) {
         that.setData({
           collection: res.data
         })
+      }
+    })
+    wx.request({
+      url: 'http://127.0.0.1:5000/get_information',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          informations: res.data
+        })
+        console.log(that.data.informations)
       }
     })
   },

@@ -61,6 +61,7 @@ Page({
       method: 'GET',
       success: (res) => {
         console.log(res.data.dish_list)
+        //console.log(res.data.image_list.split(','))
         let url_list = res.data.image_list.split(',')
         let image_list_ = []
         for(var i = 0; i < url_list.length; i++)
@@ -70,6 +71,12 @@ Page({
             type: "image",
             url: url_list[i]
           })
+        }
+        for(var i; i < res.data.ap_list.length; i++)
+        {
+            console.log(res.data.ap_list[i].hidden)
+          if(res.data.ap_list[i].img_list)
+            console.log(res.data.ap_list[i].img_list)
         }
         this.setData({
           location: res.data.location,
@@ -112,6 +119,11 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
+  isCard(e) {
+    this.setData({
+      isCard: e.detail.value
     })
   },
   showPath(){

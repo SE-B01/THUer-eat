@@ -81,9 +81,9 @@ def get_search_canteen():
         #print(canteen.img)
         try:
             canteen_info['img'] = canteen.img.split(',')
-            print(canteen_info['img'])
+            #print(canteen_info['img'])
         except:
-            print(canteen_info['name'])
+            #print(canteen_info['name'])
             canteen_img = []
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
@@ -119,10 +119,26 @@ def get_canteen_info():
         # print(user.nickname)
         user_info['avatar_url'] = user.avatarUrl
         user_info['name'] = user.nickname
+        img_list = None
+        hidden = False
+        if item.img_list == '':
+            img_list = None
+        else:
+            hidden = True
+            try:
+                img_list = item.img_list.split(',')
+                img_list = img_list[0]
+            except:
+                img_list = item.img_list
+                #img_list = []
+                #img_list.append(item.img_list)
+                pass
+        print(f'hidden: {hidden}, img_list: {img_list}')
         ap_list.append(
             {"user_id": item.user_id,
              "anonymous": item.anonymous,
-             "img_list": item.img_list,
+             "hidden": hidden,
+             "img_list": img_list,
              "star": item.star,
              "comment": item.comment,
              "dish": item.dish,
@@ -140,6 +156,9 @@ def get_canteen_info():
         #print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
+        canteen_id = item.canteen_id
+        dish_item['canteen'] = Canteen.query.filter(Canteen.id == canteen_id).first().name
+        #print(f"canteen: {dish_item['canteen']}")
         dish_list_.append(dish_item)
     ca_info['dish_list'] = dish_list_
     return ca_info, 200
@@ -152,7 +171,6 @@ def get_canteen_location():
     ca = Canteen.query.all()
     for item in ca:
         marker = {'id': int(item.id), 'title': item.name, 'latitude': item.latitude, 'longitude': item.longitude}
-        print(marker)
         markers['markers'].append(marker)
     return markers, 200
 
@@ -181,7 +199,7 @@ def get_canteen_byid():
     for item in dish_list:
         dish_item = {}
         dish_item['name'] = item.name
-        print(item.name)
+        #print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
         canteen_id = item.canteen_id
