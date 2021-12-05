@@ -18,6 +18,7 @@ Page({
     avatarUrl: '',
     imgBase64: '',
     informations:[],
+    information:[{responder_image:'',responder:'听涛园'}],
     current_id:''
   },
 

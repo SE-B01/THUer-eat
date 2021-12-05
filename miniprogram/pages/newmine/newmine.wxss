@@ -51,6 +51,11 @@ page{
   direction: row;
   justify-content:space-between;
 }
+.dish_wrapper2{
+  display:flex;
+  direction: column;
+  justify-content:space-between;
+}
 .dish_info{
   max-width: 800rpx;
   border-radius:20rpx;
