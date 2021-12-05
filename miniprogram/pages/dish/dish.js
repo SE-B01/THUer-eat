@@ -81,6 +81,13 @@ Page({
     console.log(app.globalData.userInfo.id)
     console.log(this.data.canteen_name)
     console.log(this.data.dish_name)
+    wx.showToast({
+      title: '收藏成功',
+      icon: 'success',
+      duration: 1500,
+      success: (res) => {
+      }
+    })
     wx.request({
       url: 'http://127.0.0.1:5000/add_collection',
       data: {
