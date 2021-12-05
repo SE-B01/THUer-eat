@@ -45,8 +45,8 @@
 
 <dropdownmenu wx:if="{{TabCur==1}}" dropDownMenuTitle='{{drop_dish_titles}}' dropDownMenuFirstData='{{drop_dish_distance}}' dropDownMenuSecondData='{{drop_dish_favour}}' dropDownMenuThirdData='{{drop_dish_price}}' dropDownMenuFourthData='{{drop_dish_sortby}}' bind:selectedItem='filterSelect'></dropdownmenu>
 
-<!-- 管理员：增加菜品 -->
-<view wx:if="{{TabCur==0}}" class="canteen-wrapper">
+<!-- 管理员：增加食堂 -->
+<view wx:if="{{TabCur==0 && is_admin == true}}" class="canteen-wrapper">
   <view class="canteen_info" bindtap="showModal" data-target="add_canteen" style="width: 731rpx; height: 231rpx; display: flex; box-sizing: border-box">
     <image src="../../images/icons/add.png" style="width: 143rpx; height: 131rpx; display: block; box-sizing: border-box; left: 281rpx; top: 45rpx; position: relative"></image>
   </view>

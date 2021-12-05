@@ -99,7 +99,8 @@ def get_canteen_info():
     starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
     for i in range(0, ca.star):
         starlist[i] = 'yellow'
-    ca_info = {"location": ca.location,
+    ca_info = {"id": ca.id,
+               "location": ca.location,
                "payment": ca.payment,
                "starlist": starlist,
                "business_hours": ca.business_hours,
@@ -211,7 +212,7 @@ def get_canteen_byid():
 
 
 @canteen.route('/canteen/add', methods=['GET', 'POST'])
-def add_canteen_location():
+def add_canteen():
     data = request.json
     new_canteen = Canteen()
     new_id = int(Canteen.query.order_by(db.desc(Canteen.id)).first().id) + 1
