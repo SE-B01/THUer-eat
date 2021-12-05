@@ -13,6 +13,7 @@ class User(db.Model):
     is_in_school = db.Column(db.Integer)
     liked_appraise = db.Column(db.String)
 
+
     def __repr__(self):
         return '<User %r>' % self.nickname
 
