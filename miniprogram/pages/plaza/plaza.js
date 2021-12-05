@@ -52,8 +52,6 @@ Page({
     })
     console.log(that.data.like_comments_idx)
   },
-
-
   setIsClick: function() {
     var that = this
     for (var i = 0; i < that.data.like_comments_idx.length; i++) {
@@ -65,6 +63,12 @@ Page({
       comments: that.data.comments
     })
   },
+
+  getAppraise: function () {
+    
+    
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

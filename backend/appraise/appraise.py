@@ -1,5 +1,7 @@
 import tarfile
 from datetime import datetime
+
+from user.models import User
 from ..canteen.models import Canteen
 from ..appraise_dish_mapping.models import Appraise_dish_mapping
 from ..dish.models import Dish
@@ -79,3 +81,18 @@ def get_canteen_info():
     print(dish_list)
     canteen_info = {'id': ca.id, 'dish': dish_list}
     return canteen_info, 200
+
+@appraise.route('/appraise/get_all', methods=['GET', 'POST'])
+def get_all_appraise():
+    """
+    获得评价广场的所有评论
+    暂时按照好评数排序
+
+    """
+    user_id = request.args.get("user_id")
+    appraise = Appraise.query.all()
+    liked_apprase = User.query.filtered(User.id == user_id)
+
+    pass
+    
+
