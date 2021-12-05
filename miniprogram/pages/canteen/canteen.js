@@ -1,9 +1,11 @@
 const db = wx.cloud.database({});
 var app = getApp();
+const fileManager = wx.getFileSystemManager();
 Page({
   data: {
     //canteen接受其它页面传参，显示当前的餐厅
     canteen: "",
+    canteen_id:"",
     apprise: [],
     starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
     latitude : 0.0, 
@@ -43,7 +45,109 @@ Page({
       title: '上菜快',
       name: 'olive',
       color: '#8dc63f'
-    }]
+    }],
+    //模态框信息
+    modalName: null,
+
+    //新增菜品信息
+    imgList: [],
+    base64imgList: [],
+  },
+
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  showModalClear(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  // 管理员：增加菜品
+  addDish(e) {
+    console.log(e.detail.value)
+    console.log(this.data.canteen_id)
+    wx.request({
+      url: 'http://127.0.0.1:5000/dish/add',
+      data: {
+        name: e.detail.value.name,
+        price: e.detail.value.price,
+        canteen_id: this.data.canteen_id,
+        img: this.data.base64imgList
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          modalName: null,
+          imgList: [],
+          base64imgList: [],
+        })
+      }
+    })
+  },
+
+
+  //管理员：上传图片
+  // 上传图片
+  ChooseImage() {
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        console.log(res.tempFilePaths);
+        let len = res.tempFilePaths.length
+        var i;
+        let base64 = []
+        for (i = 0; i < len; i++) {
+          base64.push(fileManager.readFileSync(res.tempFilePaths[i], 'base64'));
+          console.log(base64[i]);
+        }
+
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths),
+            base64imgList: this.data.base64imgList.concat(base64)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths,
+            base64imgList: base64
+          })
+        }
+      }
+    });
+  },
+  // 浏览缩略图
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+  },
+  // 删除图片
+  DelImg(e) {
+    wx.showModal({
+      content: '确定要删除这张图片吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.data.base64imgList.splice(e.currentTarget.dataset.index, 1)
+          this.setData({
+            imgList: this.data.imgList,
+            base64imgList: this.data.base64imgList
+          })
+        }
+      }
+    })
   },
   onLoad: function (options) {
     var that = this;
@@ -79,6 +183,7 @@ Page({
             console.log(res.data.ap_list[i].img_list)
         }
         this.setData({
+          canteen_id: res.data.id,
           location: res.data.location,
           business_hours: res.data.business_hours,
           starlist: res.data.starlist,
