@@ -17,6 +17,7 @@ App({
     }
 
     this.globalData = {
+      showbar:true,
       logged: false,
       is_admin: false,
       userInfo: {},

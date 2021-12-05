@@ -220,11 +220,15 @@ Page({
         app.globalData.showbar=true
         wx.hideLoading()
         that.showModalClear()
+        wx.switchTab({
+        url: "../home/home"
+        })
       },
       fail:err=>{
         console.log('加载完成')
         that.showModalClear()
-      }
+      },
+
     });
   },
   searchUserNameAvatar: function () {
@@ -480,12 +484,13 @@ Page({
     var that = this
     //加载页面函数
     //that.loadModal()
-
-    that.getSelectCanteens()
-    that.getSelectDishes()
+    wx.showLoading({
+      title: '加载中',
+      mask:true
+    })
     //测试：getOpenid
     //console.log("test openid")
-
+    that.getOpenid()
     //登录模块
   },
   /**
@@ -500,15 +505,6 @@ Page({
    */
   onShow: function () {
  
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
-      this.getTabBar().changeFormat()
-    }
-
-
   },
 
   /**
