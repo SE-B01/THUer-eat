@@ -4,7 +4,7 @@ from ..db import db
 
 class Information(db.Model):
     __tablename__ = 'information'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(32), primary_key=True)
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
     responser = db.Column(db.String(255))

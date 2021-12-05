@@ -37,7 +37,8 @@ def get_recent_view():
                 done='已反馈'
             return_list_item = {
                 'name': user_item.nickname,
-                'id': feedback_list_item.id,
+                'userid':user_item.id,
+                'feedbackid': feedback_list_item.id,
                 'contents': feedback_list_item.content,
                 'time': feedback_time,
                 'done':done
