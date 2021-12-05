@@ -83,13 +83,10 @@ Page({
     modalName: null,
 
     //新增食堂信息
-    new_canteen_name: '',
-    new_canteen_location: '',
-    new_canteen_longitude: '',
-    new_canteen_latitude: '',
+    new_canteen_longitude: null,
+    new_canteen_latitude: null,
     new_canteen_payment: 0,
     payments: ["支付方式不限", "仅支持校园卡", "可以使用支付宝"],
-    new_canteen_business_hours: '',
     imgList: [],
     base64imgList: [],
   },
@@ -367,7 +364,12 @@ Page({
       method: 'POST',
       success: (res) => {
         this.setData({
-          modalName: null
+          modalName: null,
+          imgList: [],
+          base64imgList: [],
+          new_canteen_latitude: null,
+          new_canteen_longitude: null,
+          new_canteen_payment: null
         })
       }
     })
