@@ -22,6 +22,7 @@ def get_information():
         print('information_list_item',information_list_item)
         canteen = Canteen.query.filter_by(id=information_list_item.responser).first()
         create_time=information_list_item.create_time.strftime("%Y/%m/%d")
+        update_time=information_list_item.update_time.strftime("%Y/%m/%d")
         print('feedback')
         print()
         try:
@@ -35,7 +36,7 @@ def get_information():
         return_list_item = {
             'id': information_list_item.id,
             'create_time': create_time,
-            'update_time': information_list_item.update_time,
+            'update_time': update_time,
             'informations': information_list_item.informations,
             'responder': canteen.name,
             'responder_image':canteen.img.split(',')[0],
