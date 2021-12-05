@@ -98,29 +98,8 @@ def add_dish():
     file.write(base64.b64decode(img))
     file.close()
     new_dish.img = "http://127.0.0.1:5000/static/images/" + filename
+    new_dish.user_id = 0
+    new_dish.comment = ""
     db.session.add(new_dish)
     db.session.commit()
-    # new_canteen = Canteen()
-    # new_id = int(Canteen.query.order_by(db.desc(Canteen.id)).first().id) + 1
-    # new_canteen.id = str(new_id)
-    # new_canteen.name = data.get("name")
-    # new_canteen.latitude = data.get("latitude")
-    # new_canteen.longitude = data.get("longitude")
-    # new_canteen.location = data.get("location")
-    # new_canteen.business_hours = data.get("business_hours")
-    # new_canteen.payment = int(data.get("payment"))
-    # new_canteen.star = 5
-    # img_list = data.get("img")
-    # url_list = ""
-    # for index, img in enumerate(img_list):
-    #     filename = str(data.get('name')) + str(index) + ".jpg"
-    #     filepath = "backend/static/images/" + filename
-    #     file = open(filepath, "wb")
-    #     file.write(base64.b64decode(img))
-    #     file.close()
-    #     url_list = url_list + "http://127.0.0.1:5000/static/images/" + filename + ","
-    # url_list = url_list[:-1]
-    # new_canteen.img = url_list
-
-    # print(len(data.get("img")))
     return "ok", 200
