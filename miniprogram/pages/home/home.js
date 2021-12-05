@@ -204,9 +204,10 @@ Page({
       method: 'GET',
       success: (res) => {
         //console.log("get user info")
-        //console.log(res.data)
+        console.log(res.data)
         that.setData({
           userInfo: res.data[0],
+          is_admin: res.data[0].is_admin
         })
         app.globalData.userInfo=that.data.userInfo
         app.globalData.is_admin = that.data.userInfo.is_admin
