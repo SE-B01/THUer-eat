@@ -1,0 +1,33 @@
+<!--pages/feedbackmag/feedbackmag.wxml-->
+<view wx:for="{{feedbacks}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
+        <view class="dish_wrapper" sytle="flex-direction: column;">
+            <view style="width: 495rpx;  display: block; box-sizing: border-box;flex-direction: row;">
+              <view>
+                <view class="flex-sub ">
+                    <view class="padding" style="display: block; box-sizing: border-box;height:20rpx;margin-top:2rpx">用户名："{{itemName.name}}"</view>
+                </view>
+                <view class="flex-sub ">
+                    <view class="padding" style="display: block; box-sizing: border-box;height:20rpx;margin-top:2rpx">反馈日期"{{itemName.time}}"</view>
+                </view>
+                <view class="flex-sub ">
+                    <view class="padding" style="display: block; box-sizing: border-box">内容："{{itemName.contents}}"</view>
+                </view>
+              </view>
+            </view>
+            
+            <view style="width: 225rpx; display: block; box-sizing: border-box; ">
+                <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx; width: 225rpx; height: 50rpx; box-sizing: border-box">
+                    
+                    <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
+                </view>
+                <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx; width: 225rpx; height: 50rpx; box-sizing: border-box; top: 0rpx">
+                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.create_time}}</view>
+                    <button class="cu-btn round" style="width: 193rpx; height: 50rpx; display: flex; box-sizing: border-box; position: relative; margin-right: 10rpx; left: 0rpx; top: 0rpx" bindtap="see_feedback" id="{{itemName.feedback}}">回答反馈</button>
+                </view>
+                <view class="flex-sub ">
+                    <view class="padding" style="display: block; box-sizing: border-box; justify-content: space-between; width: 221rpx; height: 92rpx">"{{itemName.done}}"</view>
+                </view>
+                 
+            </view>
+        </view>
+    </view>

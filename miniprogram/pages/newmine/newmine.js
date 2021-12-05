@@ -3,6 +3,7 @@ const app = getApp()
 const fileManager = wx.getFileSystemManager();
 Page({
   data: {
+    is_admin: app.globalData.userInfo.is_admin,
     TabCur: 2,
     tabNav: ['最近浏览', '收藏', '消息'],
     dishes: [],
@@ -266,6 +267,11 @@ delete_recent_view(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+to_feedbackmag(e){
+  wx.navigateTo({
+    url:"../feedbackmag/feedbackmag"
+  })
+},
 delete_information(e) {
   var that = this
     console.log(e)
@@ -308,14 +314,17 @@ delete_information(e) {
    */
   onLoad: function (options) {
     var that = this
-    console.log(app.globalData.userInfo)
+    console.log('global data')
+    console.log(app.globalData)
+    console.log(that.data)
     that.setData({
       nickname: app.globalData.userInfo.nickname,
       new_nickname: app.globalData.userInfo.nickname,
       avatarUrl: app.globalData.userInfo.avatarUrl,
       new_avatarUrl: app.globalData.userInfo.avatarUrl,
       new_gender: app.globalData.userInfo.gender,
-      new_is_in_school: app.globalData.userInfo.is_in_school
+      new_is_in_school: app.globalData.userInfo.is_in_school,
+      is_admin:app.globalData.userInfo.is_admin
     })
     console.log('userInfo')
     console.log(app.globalData.userInfo)
