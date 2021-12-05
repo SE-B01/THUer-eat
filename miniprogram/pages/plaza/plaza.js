@@ -1,74 +1,85 @@
 // pages/appraise/appraise.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    comments:[
-      {
-        img:"../../images/dishes/石锅拌饭.jfif",
-        content:"非常好吃哦。",
-        avatar:"../../images/dishes/派蒙.jpg",
-        user_name:"派蒙",
-        like_number:20,
-        isClick:false,
-        comment_canteen:"听涛园",
-      },
-      {
-        img:"../../images/dishes/葱油饼.jfif",
-        content:"太好吃了吧，简直是珍馐，我们一起吃好不好，一起做学园厨师！",
-        avatar:"../../images/dishes/唐可可.webp",
-        user_name:"唐可可",
-        like_number:30,
-        isClick:false,
-        comment_canteen:"观畴园",
-      },
-    ],
-    //like_comments_idx: 记录已经被用户点赞的评论，每次关闭页面前需要更新到数据库
-    like_comments_idx:[0],
+    //appraises: 存放评论
+    appraises:[],
+
+    //like_changed: 记录用户点赞状态变化的评论，关闭页面前提交到数据库
+    like_changed:[],
   },
 
   likeClick: function(e) {
     var that = this
     var idx = e.target.dataset.idx
-    if (that.data.comments[idx].isClick) {
-      that.data.comments[idx].like_number--
-      for (var i = 0; i < that.data.like_comments_idx.length; i++) {
-        if (that.data.like_comments_idx[i] == idx){
-          that.data.like_comments_idx.splice(i,1)
+    if (that.data.appraises[idx].isClick) {
+      that.data.appraises[idx].like--
+      for (var i = 0; i < that.data.like_changed.length; i++) {
+        if (that.data.like_changed[i] == idx){
+          that.data.like_changed.splice(i,1)
           break
         }
       }
     } else {
-      that.data.comments[idx].like_number++
-      that.data.like_comments_idx.splice(0,0,idx)
+      that.data.appraises[idx].like++
+      that.data.like_changed.splice(0,0,idx)
     }
     //点赞取反
-    that.data.comments[idx].isClick = !that.data.comments[idx].isClick
+    that.data.appraises[idx].isClick = !that.data.appraises[idx].isClick
     //刷新
     that.setData({
-      comments: that.data.comments
+      appraises: that.data.appraises
     })
-    console.log(that.data.like_comments_idx)
+    console.log(that.data.like_changed)
   },
 
-
-  setIsClick: function() {
+  getAppraise: function () {
+    var id = app.globalData.openid
     var that = this
-    for (var i = 0; i < that.data.like_comments_idx.length; i++) {
-      if (that.data.comments[that.data.like_comments_idx[i]].isClick == false){
-        that.data.comments[that.data.like_comments_idx[i]].isClick = true
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise/get_all',
+      data: {
+        user_id: id,
+      },
+      success: function(res){
+        console.log(res)
+        that.setData({
+          appraises: res.data
+        })
       }
-    }
-    that.setData({
-      comments: that.data.comments
     })
   },
+  
+  pushLikeChange: function () {
+    var that = this
+    if (that.data.like_changed.length != 0){
+      var like_id = []
+      for (var i = 0; i < that.data.like_changed.length; i++) {
+        like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
+      }
+      console.log(like_id)
+      wx.request({
+        url: 'http://127.0.0.1:5000/appraise/changeLiked',
+        data: {
+          user_id: app.globalData.openid,
+          like_changed: like_id.join(';')
+        },
+        success: function(res){
+          console.log(res)
+        }
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getAppraise()
 
   },
 
@@ -83,7 +94,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setIsClick()
 
   },
 
@@ -91,6 +101,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    this.pushLikeChange()
 
   },
 
@@ -98,6 +109,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    this.pushLikeChange()
 
   },
 

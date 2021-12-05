@@ -1,9 +1,11 @@
 import tarfile
 from datetime import datetime
+
+from ..user.models import User
 from ..canteen.models import Canteen
 from ..appraise_dish_mapping.models import Appraise_dish_mapping
 from ..dish.models import Dish
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from .models import Appraise, db, Image
 import json
 from ..db import db
@@ -79,3 +81,83 @@ def get_canteen_info():
     print(dish_list)
     canteen_info = {'id': ca.id, 'dish': dish_list}
     return canteen_info, 200
+
+@appraise.route('/appraise/get_all', methods=['GET', 'POST'])
+def get_all_appraise():
+    """
+    获得评价广场的所有评论
+    暂时按照好评数排序
+    之后可能考虑综合从发表时间、好评数排序
+    """
+    openid = request.args.get("user_id")
+    appraise_ = Appraise.query.order_by(db.desc(Appraise.like)).all()
+    liked_apprase_ = User.query.filter(User.id == openid).first().liked_appraise
+    try:
+        #liked_appraise用 ";" 分隔
+        liked_appraise_list = liked_apprase_.split(";")
+        
+    except:
+        liked_appraise_list = []
+
+    appraise_list = []
+    for appraise in appraise_:
+        appraise_info = appraise.to_json()
+        this_canteen = Canteen.query.filter(Canteen.id == appraise_info["canteen_id"]).first().name
+        appraise_info["canteen_name"] = this_canteen
+        try:
+            appraise_info['img_list'] = appraise.img_list.split(',')
+
+        except:
+
+            appraise_info["img_list"] = []
+
+        if appraise_info["anonymous"]:
+            appraise_info["avatar"] = "../../images/icons/user-unlogin.png"
+            appraise_info["user_name"] = "匿名用户"
+        else:
+            this_user = User.query.filter(User.id == appraise_info["user_id"]).first()
+            try: #这里赶紧把数据库里面user_id不对的删了
+                appraise_info["avatar"] = this_user.avatarUrl
+                appraise_info["user_name"] = this_user.nickname
+            except:
+                appraise_info["avatar"] = ""
+                appraise_info["user_name"] = "匿名用户"
+        if appraise_info["id"] in liked_appraise_list:
+            appraise_info['isClick'] = True
+        else:
+            appraise_info['isClick'] = False
+        appraise_list.append(appraise_info)
+    appraise_json = jsonify(appraise_list)
+    return appraise_json, 200
+
+@appraise.route('/appraise/changeLiked', methods=['GET', 'POST'])
+def changeUserLike():
+    openid = request.args.get("user_id")
+    like_changed_list = request.args.get("like_changed").split(";")
+    target_user = User.query.filter(User.id == openid).first()
+    target_user_likes = target_user.liked_appraise
+    try:#如果当前用户有liked_appraise
+        target_user_likes_list = target_user_likes.split(";")
+        for like_changed in like_changed_list:
+            target_appraise = Appraise.query.filter(Appraise.id == like_changed).first()
+            if like_changed in target_user_likes_list:
+                target_user_likes_list.remove(like_changed)
+                target_appraise.like = target_appraise.like - 1
+            else:
+                target_user_likes_list.append(like_changed)
+                target_appraise.like = target_appraise.like + 1
+        target_user_likes = ";".join(target_user_likes_list)
+
+    except:#如果当前用户liked_appraise is NULL
+        target_user_likes = ";".join(like_changed_list)
+        for like_changed in like_changed_list:
+            target_appraise = Appraise.query.filter(Appraise.id == like_changed).first()
+            target_appraise.like = target_appraise.like + 1
+
+    
+    target_user.liked_appraise = target_user_likes
+
+    db.session.commit()
+    
+    return "ok", 200
+

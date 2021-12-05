@@ -103,3 +103,29 @@ def add_dish():
     db.session.add(new_dish)
     db.session.commit()
     return "ok", 200
+
+@dish.route('/dish/edit', methods=['GET', 'POST'])
+def edit_dish():
+    data = request.json
+    print(data)
+    tar_dish = Dish.query.filter(Dish.id == data.get("id")).first()
+    print(tar_dish.name)
+    tar_dish.name = data.get("name")
+    tar_dish.price = data.get("price")
+
+    # new_dish = Dish()
+    # new_dish.name = data.get("name")
+    # new_dish.canteen_id = data.get("canteen_id")
+    # new_dish.price = data.get("price")
+    img = data.get("img")[0]
+    filename = str(data.get('canteen_id')) + "_" + str(data.get("name")) + ".jpg"
+    filepath = "backend/static/images/" + filename
+    file = open(filepath, "wb")
+    file.write(base64.b64decode(img))
+    file.close()
+    tar_dish.img = "http://127.0.0.1:5000/static/images/" + filename
+    # new_dish.user_id = 0
+    # new_dish.comment = ""
+    # db.session.add(new_dish)
+    db.session.commit()
+    return "ok", 200

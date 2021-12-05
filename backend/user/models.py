@@ -11,6 +11,8 @@ class User(db.Model):
     is_admin = db.Column(db.BOOLEAN)
     nickname = db.Column(db.String(50))
     is_in_school = db.Column(db.Integer)
+    liked_appraise = db.Column(db.String)
+
 
     def __repr__(self):
         return '<User %r>' % self.nickname

@@ -43,6 +43,7 @@
     <view class="grid col-2 margin-bottom">
       <view class="canteen-navigation">
         <button bindtap="collect" class="cu-btn round bg-mauve" style="width:148px; height: 32px; display: inline-flex; box-sizing: border-box; left: 7px; top: -1 px; position: relative" role="button" aria-disabled="false">收藏</button>
+        <button bindtap="showModal" data-target="edit_dish" wx:if="{{is_admin == true}}" class="cu-btn round bg-purple" role="button" aria-disabled="false" style="position: relative; left: 399rpx; top: -62rpx; width: 285rpx; height: 62rpx; display: inline-flex; box-sizing: border-box">修改</button>
       </view>
     </view>
   </view>
@@ -64,5 +65,56 @@
         </view>
       </view>
     </view>
+  </view>
+</view>
+<!-- 管理员：修改菜品信息 -->
+<view class="cu-modal {{modalName=='edit_dish'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">增加菜品</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <form bindsubmit="editDish">
+      <view class="action">
+        <view class="cu-form-group margin-top">
+          <view class="title">菜品名称</view>
+          <input name="name" value="{{dish_name}}"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">菜品价格</view>
+          <input type="digit" name="price" value="{{dish_price}}"></input>
+		      <text>￥</text>
+        </view>
+        <view class="cu-bar bg-white margin-top" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="action">
+            图片上传
+          </view>
+          <view class="action">
+            {{imgList.length}}/1
+          </view>
+        </view>
+        <view class="cu-form-group" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList[index]}}' mode='aspectFill'></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action flex solid-bottom padding justify-around">
+          <button class="cu-btn line-mauve text-mauve padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-mauve margin-left padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" formType="submit">确定</button>
+        </view>
+      </view>
+    </form>
   </view>
 </view>

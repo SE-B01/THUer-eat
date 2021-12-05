@@ -26,6 +26,8 @@ Page({
     apprise_list: [],
     dish_list: [],
     swiperList: [],
+    new_canteen_payment: 0,
+    payments: ["支付方式不限", "仅支持校园卡", "可以使用支付宝"],
     ColorList: [{
       title: '人较少',
       name: 'red',
@@ -56,6 +58,11 @@ Page({
   },
 
   showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  showEdit(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
@@ -196,6 +203,29 @@ Page({
           swiperList: image_list_,
           TabNumber: [res.data.ap_list.length, res.data.dish_list.length, 0],
           is_admin:app.globalData.userInfo.is_admin,
+        })
+      }
+    })
+  },
+  editCanteen(e){
+    console.log(e.detail.value)
+    wx.request({
+      url: 'http://127.0.0.1:5000/canteen/edit',
+      data: {
+        canteen_id: this.data.canteen_id,
+        name: e.detail.value.name,
+        location: e.detail.value.location,
+        business_hours: e.detail.value.time,
+        payment: e.detail.value.payment,
+        img: this.data.base64imgList
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          modalName: null,
+          imgList: [],
+          base64imgList: [],
+          new_canteen_payment: null
         })
       }
     })

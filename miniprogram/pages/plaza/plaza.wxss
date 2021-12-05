@@ -1,11 +1,11 @@
 /* pages/appraise/appraise.wxss */
-.comment_wrapper{
+.appraise_wrapper{
   display:flex;
   direction: row;
   justify-content:space-between;
 }
 
-.comment_info{
+.appraise_info{
   max-width: 365rpx;
   border-radius:20rpx;
   background:white;
@@ -14,40 +14,40 @@
   border-radius: 30rpx;
 }
 
-.comment_userinfo{
+.appraise_userinfo{
   max-width: 380rpx;
   margin:10rpx;
   display: flex;flex-direction: row;
 }
 
-.comment_picture{
+.appraise_picture{
   max-width: 335rpx;
   border-radius: 20rpx;
   margin: 15rpx;
 }
-.comment_downwrapper{
+.appraise_downwrapper{
   display: flex;
   flex-direction: row;
   justify-content:space-between;
   width: 360rpx;
 }
-.comment_name{
+.appraise_name{
   color: black;
   font-size: 40rpx;
 }
 
 
-.comment_avatar{
+.appraise_avatar{
   height: 60rpx;
   width: 60rpx;
   border-radius:50%;
 }
 
-.comment_username{
+.appraise_username{
   margin:10rpx;
 }
 
-.comment_like{
+.appraise_like{
   margin:10rpx;
   display: flex;flex-direction: row;
 }
