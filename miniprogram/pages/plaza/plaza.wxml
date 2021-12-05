@@ -3,7 +3,7 @@
   <view>
     <view wx:for="{{appraises}}" wx:for-item="itemName" wx:for-index="idx" class="appraise_info" wx:if="{{idx%2==0}}">
       <view bindtap="switchToComment" id="{{itemName._id}}" data-appraise="{{itemName.name}}">
-        <image wx:if="{{itemName.img_list}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
+        <image wx:if="{{itemName.img_list[0]}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
         <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.canteen_name}}</text>
         <view class="text-cut" style="margin:10rpx">{{itemName.comment}}</view>
 
@@ -23,7 +23,7 @@
   <view>
     <view wx:for="{{appraises}}" wx:for-item="itemName" wx:for-index="idx" class="appraise_info" wx:if="{{idx%2==1}}">
       <view bindtap="switchToComment" id="{{itemName._id}}" data-appraise="{{itemName.name}}">
-        <image wx:if="{{itemName.img_list}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
+        <image wx:if="{{itemName.img_list[0]}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
         <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.canteen_name}}</text>
         <view class="text-cut" style="margin:10rpx">{{itemName.comment}}</view>
 

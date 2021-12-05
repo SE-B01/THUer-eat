@@ -52,7 +52,6 @@ Page({
         })
       }
     })
-    console.log(that.data.changed_likes)
   },
   
   pushLikeChange: function () {
