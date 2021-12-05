@@ -95,6 +95,7 @@ def get_all_appraise():
     try:
         #liked_appraise用 ";" 分隔
         liked_appraise_list = liked_apprase_.split(";")
+        
     except:
         liked_appraise_list = []
 
@@ -103,8 +104,15 @@ def get_all_appraise():
         appraise_info = appraise.to_json()
         this_canteen = Canteen.query.filter(Canteen.id == appraise_info["canteen_id"]).first().name
         appraise_info["canteen_name"] = this_canteen
+        try:
+            appraise_info['img_list'] = appraise.img_list.split(',')
+
+        except:
+
+            appraise_info["img_list"] = []
+
         if appraise_info["anonymous"]:
-            appraise_info["avatar"] = ""
+            appraise_info["avatar"] = "../../images/icons/user-unlogin.png"
             appraise_info["user_name"] = "匿名用户"
         else:
             this_user = User.query.filter(User.id == appraise_info["user_id"]).first()
@@ -139,7 +147,7 @@ def changeUserLike():
                 target_user_likes_list.append(like_changed)
                 target_appraise.like = target_appraise.like + 1
         target_user_likes = ";".join(target_user_likes_list)
-        
+
     except:#如果当前用户liked_appraise is NULL
         target_user_likes = ";".join(like_changed_list)
         for like_changed in like_changed_list:
