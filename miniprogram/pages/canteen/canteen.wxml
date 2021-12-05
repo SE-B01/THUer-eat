@@ -90,7 +90,7 @@
     </view>
   </view>
 <!-- 管理员：添加菜品 -->
-  <view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
+  <view class="cu-list menu-avatar" wx:if="{{TabCur==1 && is_admin == true}}">
     <view class="cu-item comment-item"   bindtap="showModal" data-target="add_dish" >
       <image src="../../images/icons/add.png"style="width: 80rpx; height: 80rpx; display: block; box-sizing: border-box; right: 45%; position: relative">
       </image>

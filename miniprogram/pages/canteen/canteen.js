@@ -46,6 +46,7 @@ Page({
       name: 'olive',
       color: '#8dc63f'
     }],
+    is_admin: false, 
     //模态框信息
     modalName: null,
 
@@ -193,7 +194,8 @@ Page({
           latitude:res.data.latitude,
           longitude:res.data.longitude,
           swiperList: image_list_,
-          TabNumber: [res.data.ap_list.length, res.data.dish_list.length, 0]
+          TabNumber: [res.data.ap_list.length, res.data.dish_list.length, 0],
+          is_admin:app.globalData.userInfo.is_admin,
         })
       }
     })
