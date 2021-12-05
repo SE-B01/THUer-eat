@@ -195,6 +195,7 @@ Page({
           userInfo: res.data[0],
         })
         app.globalData.userInfo=that.data.userInfo
+        app.globalData.is_admin = that.data.userInfo.is_admin
       }
     })
 

@@ -7,7 +7,9 @@ class Feedback(db.Model):
     id = db.Column(db.String(32), primary_key=True)
     content = db.Column(db.Text)
     time = db.Column(db.DateTime)
-
+    userid = db.Column(db.String(256))
+    information = db.Column(db.String(256))
+    processed = db.Column(db.Integer)
     def __repr__(self):
         return '<Feedback %r>' % self.id
 
@@ -18,5 +20,7 @@ class Feedback(db.Model):
         return {
             'id': self.id,
             'content': self.content,
-            'time': self.time
+            'time': self.time,
+            'userid':self.userid,
+            'information':self.information
         }
