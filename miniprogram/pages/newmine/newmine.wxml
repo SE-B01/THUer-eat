@@ -66,7 +66,7 @@
             </view>
             <view class="cu-form-group margin-bottom">
                 <view class="title">头像</view>
-                <view class="cu-avatar radius" style="background-image: url({{new_avatarUrl}}); width: 120rpx; height: 120rpx; display: inline-flex; box-sizing: border-box;" bindtap="ChooseImage"></view>
+                <view class="cu-avatar radius" style="background-image: url({{new_avatarUrl}}); width: 120 rpx; height: 120 rpx; display: inline-flex; box-sizing: border-box;" bindtap="ChooseImage"></view>
             </view>
         </view>
         <view class="cu-bar bg-white justify-end">
@@ -88,32 +88,26 @@
 </scroll-view>
 <block wx:if="{{TabCur==2}}">
     <view wx:for="{{informations}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
-        <view class="dish_wrapper">
-            <view>
-                <image mode="widthFix" src="{{itemName.responder_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
-            </view>
-            
-            <view style="width: 500rpx;  display: block; box-sizing: border-box">
-                <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
-                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.responder}}</view>
-                    <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
+        <view style="display: flex; flex-direction: column; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx;  box-sizing: border-box">
+            <view style="width: 183rpx; height: 183rpx; display: block; box-sizing: border-box">
+                <view style="width: 160rpx; height: 158rpx; display: block; box-sizing: border-box">
+                    <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.responder_image}});margin-top:15 rpx"></view>
                 </view>
-                <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx">
-                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.update_time}}</view>
-                    <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="see_feedback" id="{{itemName.feedback}}">查看反馈</button>
-                </view>
-
-                 <view class="solids-bottom padding-xs flex align-center" style="width: 415rpx; display: flex; box-sizing: border-box; left: 0rpx; margin-top: 20rpx">
-                <view class="flex-sub ">
-                    <view class="padding">"{{itemName.informations}}"</view>
-                </view>
-                </view>
-
                 
-            
-                
+                <view style="width: 502rpx; display: block; box-sizing: border-box; position: relative; left: 190rpx; top: -158rpx; height: 158rpx">
+                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
+                        <view class="responder_name" style='margin-left:10 rpx'>{{itemName.responder}}</view>
+                        <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
+                    </view>
+                    <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx">
+                        <view class="responder_name" style='margin-left:10 rpx'>{{itemName.update_time}}</view>
+                        <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="see_feedback" id="{{itemName.feedback}}">查看反馈</button>
+                    </view>
+                </view>             
+            </view>    
+            <view class="flex-sub ">
+                <view class="padding" style=" height: 85rpx; display: block; box-sizing: border-box;margin-bottom: 50rpx;">"{{itemName.informations}}"</view>
             </view>
-            
         </view>
         
     </view>
@@ -123,7 +117,8 @@
     <view wx:for="{{collection}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
         <view class="dish_wrapper">
             <view>
-                <image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                <!--<image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>-->
+                <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.dish_image}});margin-top:15 rpx"></view>
             </view>
 
             <view style="width: 172rpx;  display: block; box-sizing: border-box">
@@ -161,7 +156,8 @@
     <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
         <view class="dish_wrapper">
             <view>
-                <image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>
+                <!--<image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>-->
+                <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.dish_image}});margin-top:15 rpx"></view>
             </view>
             <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box">
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
