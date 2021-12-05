@@ -1,5 +1,6 @@
 // pages/comments/comments.js
 var app = getApp();
+const fileManager = wx.getFileSystemManager();
 Page({
     /**
      * 页面的初始数据
@@ -14,56 +15,36 @@ Page({
         // paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
         appraise: { star: 0, anonymous: false, comment: '', dish: [], cost: 0, time: null, user_id: 0 }
     },
-    // 将图片列表中临时url转换为base64格式
-    url2base64() {
-        return Promise.all(this.data.imgList.map(img => new Promise(resolve => wx.request({
-          url: img,
-          responseType: 'arraybuffer', //最关键的参数，设置返回的数据格式为arraybuffer
-          success: res => {
-            //把arraybuffer转成base64
-            let base64 = wx.arrayBufferToBase64(res.data);
-            //不加上这串字符，在页面无法显示的哦
-            // base64 = 'data:image/jpeg;base64,' + base64
-            //打印出base64字符串，可复制到网页校验一下是否是你选择的原图片呢
-            this.data.base64imgList.push(base64)
-            resolve();
-          }
-        }))))
-      },
     // 发表评论 
     publish(e) {
-        this.url2base64().then(response => {
-            console.log(this.data.base64imgList)
-            wx.request({
-                url: 'http://127.0.0.1:5000/appraise/publish',
-                data: {
-                    canteen_id: this.data.canteen.id,
-                    star: this.data.appraise.star,
-                    anonymous: this.data.appraise.anonymous,
-                    comment: this.data.appraise.comment,
-                    dish: this.data.appraise.dish,
-                    cost: this.data.appraise.cost,
-                    user_id: this.data.appraise.user_id,
-                    imgList: this.data.base64imgList,
-                    is_publish: true
-                },
-                method: 'POST',
-                success: (res) => {
-                    console.log(res.data)
-                    wx.showToast({
-                        title: '发表成功',
-                        icon: 'success',
-                        duration: 1500,
-                        success: (res) => {
-                            wx.navigateTo({
-                                url: "../canteen/canteen?canteen=" + this.data.canteen.name
-                            })
-                        }
-                    })
-                }
-            })
-        }
-        )
+        wx.request({
+            url: 'http://127.0.0.1:5000/appraise/publish',
+            data: {
+                canteen_id: this.data.canteen.id,
+                star: this.data.appraise.star,
+                anonymous: this.data.appraise.anonymous,
+                comment: this.data.appraise.comment,
+                dish: this.data.appraise.dish,
+                cost: this.data.appraise.cost,
+                user_id: this.data.appraise.user_id,
+                imgList: this.data.base64imgList,
+                is_publish: true
+            },
+            method: 'POST',
+            success: (res) => {
+                console.log(res.data)
+                wx.showToast({
+                    title: '发表成功',
+                    icon: 'success',
+                    duration: 1500,
+                    success: (res) => {
+                        wx.navigateTo({
+                            url: "../canteen/canteen?canteen=" + this.data.canteen.name
+                        })
+                    }
+                })
+            }
+        })
     },
     // 保存评论
     save(e) {
@@ -114,20 +95,30 @@ Page({
             ['appraise.anonymous']: e.detail.value
         })
     },
-    // 上传图片
     ChooseImage() {
         wx.chooseImage({
-            count: 4, //默认9
+            count: 1, //默认9
             sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album'], //从相册选择
             success: (res) => {
+                console.log(res.tempFilePaths);
+                let len = res.tempFilePaths.length
+                var i;
+                let base64 = []
+                for (i = 0; i < len; i++) {
+                    base64.push(fileManager.readFileSync(res.tempFilePaths[i], 'base64'));
+                    console.log(base64[i]);
+                }
+
                 if (this.data.imgList.length != 0) {
                     this.setData({
-                        imgList: this.data.imgList.concat(res.tempFilePaths)
+                        imgList: this.data.imgList.concat(res.tempFilePaths),
+                        base64imgList: this.data.base64imgList.concat(base64)
                     })
                 } else {
                     this.setData({
-                        imgList: res.tempFilePaths
+                        imgList: res.tempFilePaths,
+                        base64imgList: base64
                     })
                 }
             }
@@ -149,8 +140,10 @@ Page({
             success: res => {
                 if (res.confirm) {
                     this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+                    this.data.base64imgList.splice(e.currentTarget.dataset.index, 1)
                     this.setData({
-                        imgList: this.data.imgList
+                        imgList: this.data.imgList,
+                        base64imgList: this.data.base64imgList
                     })
                 }
             }
