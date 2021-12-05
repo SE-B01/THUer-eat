@@ -98,7 +98,7 @@ def changeUserinfo():
     tar_user.is_in_school = data.get("is_in_school")
     if data.get("imgBase64"):
         print(data.get("imgBase64"))
-        filename = str(data.get('nickname')) + "_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')+ ".jpg"
+        filename = tar_user.id + ".jpg"
         filepath = "backend/static/images/" + filename
         file = open(filepath, "wb")
         file.write(base64.b64decode(data.get("imgBase64")))

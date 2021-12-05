@@ -98,29 +98,34 @@ def add_dish():
     file.write(base64.b64decode(img))
     file.close()
     new_dish.img = "http://127.0.0.1:5000/static/images/" + filename
+    new_dish.user_id = 0
+    new_dish.comment = ""
     db.session.add(new_dish)
     db.session.commit()
-    # new_canteen = Canteen()
-    # new_id = int(Canteen.query.order_by(db.desc(Canteen.id)).first().id) + 1
-    # new_canteen.id = str(new_id)
-    # new_canteen.name = data.get("name")
-    # new_canteen.latitude = data.get("latitude")
-    # new_canteen.longitude = data.get("longitude")
-    # new_canteen.location = data.get("location")
-    # new_canteen.business_hours = data.get("business_hours")
-    # new_canteen.payment = int(data.get("payment"))
-    # new_canteen.star = 5
-    # img_list = data.get("img")
-    # url_list = ""
-    # for index, img in enumerate(img_list):
-    #     filename = str(data.get('name')) + str(index) + ".jpg"
-    #     filepath = "backend/static/images/" + filename
-    #     file = open(filepath, "wb")
-    #     file.write(base64.b64decode(img))
-    #     file.close()
-    #     url_list = url_list + "http://127.0.0.1:5000/static/images/" + filename + ","
-    # url_list = url_list[:-1]
-    # new_canteen.img = url_list
+    return "ok", 200
 
-    # print(len(data.get("img")))
+@dish.route('/dish/edit', methods=['GET', 'POST'])
+def edit_dish():
+    data = request.json
+    print(data)
+    tar_dish = Dish.query.filter(Dish.id == data.get("id")).first()
+    print(tar_dish.name)
+    tar_dish.name = data.get("name")
+    tar_dish.price = data.get("price")
+
+    # new_dish = Dish()
+    # new_dish.name = data.get("name")
+    # new_dish.canteen_id = data.get("canteen_id")
+    # new_dish.price = data.get("price")
+    img = data.get("img")[0]
+    filename = str(data.get('canteen_id')) + "_" + str(data.get("name")) + ".jpg"
+    filepath = "backend/static/images/" + filename
+    file = open(filepath, "wb")
+    file.write(base64.b64decode(img))
+    file.close()
+    tar_dish.img = "http://127.0.0.1:5000/static/images/" + filename
+    # new_dish.user_id = 0
+    # new_dish.comment = ""
+    # db.session.add(new_dish)
+    db.session.commit()
     return "ok", 200

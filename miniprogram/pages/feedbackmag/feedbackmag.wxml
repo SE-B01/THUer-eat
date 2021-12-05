@@ -18,11 +18,11 @@
             <view style="width: 225rpx; display: block; box-sizing: border-box; ">
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx; width: 225rpx; height: 50rpx; box-sizing: border-box">
                     
-                    <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
+                    <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.feedbackid}}">删除</button>
                 </view>
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx; width: 225rpx; height: 50rpx; box-sizing: border-box; top: 0rpx">
                     <view class="responder_name" style='margin-left:10 rpx'>{{itemName.create_time}}</view>
-                    <button class="cu-btn round" style="width: 193rpx; height: 50rpx; display: flex; box-sizing: border-box; position: relative; margin-right: 10rpx; left: 0rpx; top: 0rpx" bindtap="see_feedback" id="{{itemName.feedback}}">回答反馈</button>
+                    <button class="cu-btn round" style="width: 193rpx; height: 50rpx; display: flex; box-sizing: border-box; position: relative; margin-right: 10rpx; left: 0rpx; top: 0rpx" bindtap="showModal" data-feedbackid="{{itemName.feedbackid}}" data-target="DialogModal1">回答反馈</button>
                 </view>
                 <view class="flex-sub ">
                     <view class="padding" style="display: block; box-sizing: border-box; justify-content: space-between; width: 221rpx; height: 92rpx">"{{itemName.done}}"</view>
@@ -31,3 +31,26 @@
             </view>
         </view>
     </view>
+  <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">反馈</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="action">
+            <view class="cu-form-group margin-top">
+                <textarea maxlength="-1" bindinput="textareaAInput" value="{{textareaAValue}}" placeholder="请输入您的反馈" focus="true">
+                </textarea>
+            </view>
+        </view>
+        <view class="cu-bar bg-white justify-end">
+            <view class="action flex solid-bottom padding justify-around">
+                <button class="cu-btn line-mauve text-mauve padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="hideModal">取消</button>
+                <button class="cu-btn bg-mauve margin-left padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="replyFeedback">确定</button>
+
+            </view>
+        </view>
+    </view>
+</view>

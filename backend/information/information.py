@@ -14,7 +14,7 @@ def index():
 @information.route('/get_information', methods=['GET', 'POST'])
 def get_information():
     user_id = request.args.get('user_id')
-    information_list = Information.query.order_by(Information.create_time.desc()).filter_by(user=user_id).all()
+    information_list = Information.query.order_by(Information.update_time.desc()).filter_by(user=user_id).all()
     return_list=[]
     print('哈哈哈哈哈哈哈哈')
     print(user_id)
@@ -22,6 +22,7 @@ def get_information():
         print('information_list_item',information_list_item)
         canteen = Canteen.query.filter_by(id=information_list_item.responser).first()
         create_time=information_list_item.create_time.strftime("%Y/%m/%d")
+        update_time=information_list_item.update_time.strftime("%Y/%m/%d")
         print('feedback')
         print()
         try:
@@ -35,7 +36,7 @@ def get_information():
         return_list_item = {
             'id': information_list_item.id,
             'create_time': create_time,
-            'update_time': information_list_item.update_time,
+            'update_time': update_time,
             'informations': information_list_item.informations,
             'responder': canteen.name,
             'responder_image':canteen.img.split(',')[0],
@@ -61,3 +62,26 @@ def information_delete():
         db.session.close()
     return_list=['success']
     return jsonify(return_list), 200
+
+@information.route('/reply_feedback', methods=['GET', 'POST'])
+def reply_feedback():
+    content_ = request.args.get('content')
+    feedbackid = request.args.get('feedbackid')
+    userid = request.args.get('userid')
+    print(content_)
+    print(feedbackid)
+    print(userid)
+    feedback_item = Feedback.query.filter_by(id=feedbackid).first()
+    information = Information()
+    information.informations = content_
+    information.create_time = feedback_item.time
+    information.update_time = datetime.now()
+    information.user = feedback_item.userid
+    information.responser=1
+    information.feedbackid=feedbackid
+    db.session.add(information)
+    db.session.commit()
+
+    feedback_item.processed=1
+    db.session.commit()
+    return "success", 200

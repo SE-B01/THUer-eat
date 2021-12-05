@@ -7,7 +7,7 @@
         昵称：{{nickname}}
     </view>
     <button wx:if="{{is_admin==false}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal1">反馈</button>
-    <button wx:if="{{1}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag" >反馈管理</button>
+    <button wx:if="{{is_admin==true}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag" >反馈管理</button>
     <button  class="cu-btn round" style="position: relative; left: 378rpx; top: -100rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal2">设置</button>
 </view>
 
@@ -99,7 +99,7 @@
                     <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
                 </view>
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx">
-                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.create_time}}</view>
+                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.update_time}}</view>
                     <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="see_feedback" id="{{itemName.feedback}}">查看反馈</button>
                 </view>
 

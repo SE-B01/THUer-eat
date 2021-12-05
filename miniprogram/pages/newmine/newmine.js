@@ -18,51 +18,7 @@ Page({
     avatarUrl: '',
     imgBase64: '',
     informations:[],
-    information:[{
-      "create_time":"2020 3 1",
-      "informations":"hahahahahaha"
-    }],
-    collections: [{
-      "dish_picture": "../../images/dishes/打卤面.jfif",
-      "dish_name": "打卤面",
-      "dish_cost": 9,
-      "dish_comment": "咸淡适中，肉量很足。",
-      "dish_canteen": "清芬园",
-      "dish_canteen_on": "营业中"
-    },
-    {
-      "dish_picture": "../../images/dishes/铁板鸡饭.jfif",
-      "dish_name": "铁板鸡饭",
-      "dish_cost": 21,
-      "dish_comment": "真的非常好吃，鸡肉量很大而且很香，酱汁的味道也很浓郁，还想再吃。",
-      "dish_canteen": "观畴园",
-      "dish_canteen_on": "营业中"
-    },
-    {
-      "dish_picture": "../../images/dishes/石锅拌饭.jfif",
-      "dish_name": "石锅拌饭",
-      "dish_cost": 18,
-      "dish_comment": "超喜欢，比喜欢嘉然还喜欢。",
-      "dish_canteen": "玉树园",
-      "dish_canteen_on": "营业中"
-    },
-    {
-      "dish_picture": "../../images/dishes/葱油饼.jfif",
-      "dish_name": "葱油饼",
-      "dish_cost": 12,
-      "dish_comment": "香，真的香。",
-      "dish_canteen": "观畴园",
-      "dish_canteen_on": "营业中"
-    },
-    {
-      "dish_picture": "../../images/dishes/派蒙.jpg",
-      "dish_name": "应急食品",
-      "dish_cost": 648,
-      "dish_comment": "派蒙才不是食物！",
-      "dish_canteen": "原神",
-      "dish_canteen_on": "营业中"
-    },
-    ]
+    current_id:''
   },
 
   tabSelect(e) {
@@ -77,7 +33,7 @@ Page({
   showModal(e) {
     this.setData({
       textareaAValue: '',
-      modalName: e.currentTarget.dataset.target
+      modalName: e.currentTarget.dataset.target,
     })
   },
   showModalClear(e) {
@@ -283,11 +239,11 @@ delete_information(e) {
     showCancel: true,
     success(res) {
       if (res.confirm) {
-        console.log('用户点击确定')
+        console.log('用户点击确定 delete_information')
         wx.request({
           url: 'http://127.0.0.1:5000/information_delete',
           data: {
-            user_id: app.globalData.userInfo.user_id,
+            user_id: app.globalData.userInfo.id,
             information_id: e.target.id
           },
           method: 'GET',
@@ -337,7 +293,8 @@ delete_information(e) {
       },
       method: 'GET',
       success: (res) => {
-        //console.log(res.data)
+        // console.log('最近浏览')
+        // console.log(res.data)
         that.setData({
           dishes: res.data
         })
@@ -353,6 +310,8 @@ delete_information(e) {
         that.setData({
           collection: res.data
         })
+        // console.log('收藏')
+        // console.log(res.data)
       }
     })
     wx.request({
@@ -365,7 +324,8 @@ delete_information(e) {
         that.setData({
           informations: res.data
         })
-        console.log(that.data.informations)
+        // console.log('用户消息')
+        // console.log(that.data.informations)
       }
     })
   },
