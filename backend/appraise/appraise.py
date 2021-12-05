@@ -121,5 +121,35 @@ def get_all_appraise():
         appraise_list.append(appraise_info)
     appraise_json = jsonify(appraise_list)
     return appraise_json, 200
+
+@appraise.route('/appraise/changeLiked', methods=['GET', 'POST'])
+def changeUserLike():
+    openid = request.args.get("user_id")
+    like_changed_list = request.args.get("like_changed").split(";")
+    target_user = User.query.filter(User.id == openid).first()
+    target_user_likes = target_user.liked_appraise
+    try:#如果当前用户有liked_appraise
+        target_user_likes_list = target_user_likes.split(";")
+        for like_changed in like_changed_list:
+            target_appraise = Appraise.query.filter(Appraise.id == like_changed).first()
+            if like_changed in target_user_likes_list:
+                target_user_likes_list.remove(like_changed)
+                target_appraise.like = target_appraise.like - 1
+            else:
+                target_user_likes_list.append(like_changed)
+                target_appraise.like = target_appraise.like + 1
+        target_user_likes = ";".join(target_user_likes_list)
+        
+    except:#如果当前用户liked_appraise is NULL
+        target_user_likes = ";".join(like_changed_list)
+        for like_changed in like_changed_list:
+            target_appraise = Appraise.query.filter(Appraise.id == like_changed).first()
+            target_appraise.like = target_appraise.like + 1
+
     
+    target_user.liked_appraise = target_user_likes
+
+    db.session.commit()
+    
+    return "ok", 200
 

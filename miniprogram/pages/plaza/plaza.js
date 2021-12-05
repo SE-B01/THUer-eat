@@ -64,10 +64,10 @@ Page({
       }
       console.log(like_id)
       wx.request({
-        url: 'http://127.0.0.1:5000/user/changeLiked',
+        url: 'http://127.0.0.1:5000/appraise/changeLiked',
         data: {
           user_id: app.globalData.openid,
-          like_changed: like_id,
+          like_changed: like_id.join(';')
         },
         success: function(res){
           console.log(res)

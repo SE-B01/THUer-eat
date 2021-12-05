@@ -108,13 +108,3 @@ def changeUserinfo():
         print("无新头像")
     db.session.commit()
     return "ok", 200
-
-@user.route('/user/changeLiked', methods=['GET', 'POST'])
-def changeUserLike():
-    openid = request.args.get("user_id")
-    like_changed = request.args.get("like_changed")
-    former_user_likes = User.query.filter(User.id == openid).first.liked_appraise
-    print(like_changed)
-
-
-    pass
