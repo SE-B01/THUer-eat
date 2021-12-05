@@ -3,6 +3,7 @@ const app = getApp()
 Component({
   data: {
     selected: 0,
+    showbar: app.globalData.showbar,
     "color": "#a9b7b7",
     "selectedColor": "#7b10a8",
     list_general:[
