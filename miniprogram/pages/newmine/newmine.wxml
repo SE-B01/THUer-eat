@@ -99,7 +99,7 @@
                     <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="delete_information" id="{{itemName.id}}">删除</button>
                 </view>
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; margin-top: 40rpx">
-                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.create_time}}</view>
+                    <view class="responder_name" style='margin-left:10 rpx'>{{itemName.update_time}}</view>
                     <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="see_feedback" id="{{itemName.feedback}}">查看反馈</button>
                 </view>
 
