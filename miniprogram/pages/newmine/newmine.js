@@ -161,7 +161,7 @@ Page({
         wx.request({
           url: 'http://127.0.0.1:5000/collection_delete',
           data: {
-            user_id: 1,
+            user_id: app.globalData.userInfo.id,
             collection_id: e.target.id
           },
           method: 'GET',
@@ -205,7 +205,7 @@ delete_recent_view(e) {
         wx.request({
           url: 'http://127.0.0.1:5000/recent_view_delete',
           data: {
-            user_id: 1,
+            user_id: app.globalData.userInfo.id,
             recent_view_id: e.target.id
           },
           method: 'GET',
@@ -289,7 +289,7 @@ delete_information(e) {
     wx.request({
       url: 'http://127.0.0.1:5000/get_recent_view',
       data: {
-        user_id: 1
+        user_id: app.globalData.userInfo.id
       },
       method: 'GET',
       success: (res) => {
@@ -303,7 +303,7 @@ delete_information(e) {
     wx.request({
       url: 'http://127.0.0.1:5000/get_collection',
       data: {
-        user_id: 1
+        user_id: app.globalData.userInfo.id
       },
       method: 'GET',
       success: (res) => {

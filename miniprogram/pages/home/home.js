@@ -1,5 +1,6 @@
 // pages/home/index.js
 const app = getApp()
+const fileManager = wx.getFileSystemManager();
 Page({
 
   /**
@@ -76,8 +77,18 @@ Page({
     canteens: [],
 
     //菜品信息，从数据库读取
-    dishes: []
+    dishes: [],
 
+    //模态框信息
+    modalName: null,
+
+    //新增食堂信息
+    new_canteen_longitude: null,
+    new_canteen_latitude: null,
+    new_canteen_payment: 0,
+    payments: ["支付方式不限", "仅支持校园卡", "可以使用支付宝"],
+    imgList: [],
+    base64imgList: [],
   },
 
   //tab键目前选定的页面
@@ -190,9 +201,10 @@ Page({
       method: 'GET',
       success: (res) => {
         //console.log("get user info")
-        //console.log(res.data)
+        console.log(res.data)
         that.setData({
           userInfo: res.data[0],
+          is_admin: res.data[0].is_admin
         })
         app.globalData.userInfo=that.data.userInfo
         app.globalData.is_admin = that.data.userInfo.is_admin
@@ -294,6 +306,129 @@ Page({
         that.setData({
           dishes: res.data,
         })
+      }
+    })
+  },
+  // 管理员相关：增加食堂/菜品的模态框弹出
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  showModalClear(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  // 管理员：修改餐厅信息
+  paymentChange(e) {
+    this.setData({
+      new_canteen_payment: e.detail.value
+    })
+  },
+
+  getLocation: function () {
+    var _this = this
+    wx.chooseLocation({
+      success: function (res) {
+        _this.setData({
+          new_canteen_latitude: res.latitude,
+          new_canteen_longitude: res.longitude
+        })
+      },
+      complete(r) {
+        console.log(r)
+      }
+    })
+  },
+
+  addCanteen(e) {
+    console.log(e.detail.value)
+    console.log(this.data.base64imgList)
+    wx.request({
+      url: 'http://127.0.0.1:5000/canteen/add',
+      data: {
+        name: e.detail.value.name,
+        latitude: this.data.new_canteen_latitude,
+        longitude: this.data.new_canteen_longitude,
+        location: e.detail.value.location,
+        business_hours: e.detail.value.time,
+        payment: e.detail.value.payment,
+        img: this.data.base64imgList
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          modalName: null,
+          imgList: [],
+          base64imgList: [],
+          new_canteen_latitude: null,
+          new_canteen_longitude: null,
+          new_canteen_payment: null
+        })
+      }
+    })
+  },
+
+
+  //管理员：上传图片
+  // 上传图片
+  ChooseImage() {
+    wx.chooseImage({
+      count: 4, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        console.log(res.tempFilePaths);
+        let len = res.tempFilePaths.length
+        var i;
+        let base64 = []
+        for (i = 0; i < len; i++) {
+          base64.push(fileManager.readFileSync(res.tempFilePaths[i], 'base64'));
+          console.log(base64[i]);
+        }
+
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths),
+            base64imgList: this.data.base64imgList.concat(base64)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths,
+            base64imgList: base64
+          })
+        }
+      }
+    });
+  },
+  // 浏览缩略图
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+  },
+  // 删除图片
+  DelImg(e) {
+    wx.showModal({
+      content: '确定要删除这张图片吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.data.base64imgList.splice(e.currentTarget.dataset.index, 1)
+          this.setData({
+            imgList: this.data.imgList,
+            base64imgList: this.data.base64imgList
+          })
+        }
       }
     })
   },

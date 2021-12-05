@@ -1,13 +1,10 @@
 <!--pages/canteen/canteen.wxml-->
 <view class="padding bg-white solid-bottom">
-  <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
-    autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3"
-    indicator-active-color="#0081ff">
+  <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
     <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
       <view class="swiper-item">
         <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"
-          wx:if="{{item.type=='video'}}"></video>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </view>
     </swiper-item>
   </swiper>
@@ -47,11 +44,8 @@
       <button class="cu-btn block line-purple lg">
         <text class="cuIcon-location"></text>导航</button>
     </view> -->
-    <button class="cu-btn round bg-mauve "
-      style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative"
-      bindtap="showPath">导航</button>
-    <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}"
-      style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">发表评价</button>
+    <button class="cu-btn round bg-mauve " style="width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box; left: 14rpx; top: -3rpx; position: relative" bindtap="showPath">导航</button>
+    <button class="cu-btn round bg-purple " bindtap="switchToComment" data-canteen="{{canteen}}" style="position: relative; left: 50rpx; top: -3rpx; width: 297rpx; height: 64rpx; display: inline-flex; box-sizing: border-box">发表评价</button>
   </view>
 </view>
 <view class="padding-sm flex flex-wrap">
@@ -61,8 +55,7 @@
 </view>
 <view>
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect"
-      data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect" data-id="{{index}}">
       {{TabName[index] + "(" + TabNumber[index] + ")"}}
     </view>
   </scroll-view>
@@ -96,10 +89,67 @@
       </view>
     </view>
   </view>
+<!-- 管理员：添加菜品 -->
+  <view class="cu-list menu-avatar" wx:if="{{TabCur==1 && is_admin == true}}">
+    <view class="cu-item comment-item"   bindtap="showModal" data-target="add_dish" >
+      <image src="../../images/icons/add.png"style="width: 80rpx; height: 80rpx; display: block; box-sizing: border-box; right: 45%; position: relative">
+      </image>
+    </view>
+  </view>
+
+  <view class="cu-modal {{modalName=='add_dish'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">增加菜品</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <form bindsubmit="addDish">
+      <view class="action">
+        <view class="cu-form-group margin-top">
+          <view class="title">菜品名称</view>
+          <input name="name"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">菜品价格</view>
+          <input type="digit" name="price"></input>
+		      <text>￥</text>
+        </view>
+        <view class="cu-bar bg-white margin-top" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="action">
+            图片上传
+          </view>
+          <view class="action">
+            {{imgList.length}}/1
+          </view>
+        </view>
+        <view class="cu-form-group" style="position: relative; left: 0rpx; top: -6rpx">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList[index]}}' mode='aspectFill'></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action flex solid-bottom padding justify-around">
+          <button class="cu-btn line-mauve text-mauve padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-mauve margin-left padding-sm margin-xs radius" style="width:160rpx; height:77rpx;" formType="submit">确定</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
 
   <view class="cu-list menu-avatar" wx:if="{{TabCur==1}}">
-    <view class="cu-item comment-item" wx:for="{{dish_list}}" bindtap="switchToDish" id="{{item.name}}"
-      data-canteen="{{item.canteen}}" data-dish="{{item.name}}">
+    <view class="cu-item comment-item" wx:for="{{dish_list}}" bindtap="switchToDish" id="{{item.name}}" data-canteen="{{item.canteen}}" data-dish="{{item.name}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">
         <view class="text-black">{{item.name}}</view>
