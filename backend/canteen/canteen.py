@@ -1,5 +1,4 @@
 import base64
-
 from flask import Blueprint, request, jsonify
 from .models import Canteen
 from ..db import db
@@ -16,6 +15,33 @@ def canteen_example():
     canteen_ = Canteen.query.first()
     return canteen_.name, 200
 
+@canteen.route('/canteen/edit', methods=['POST'])
+def edit_canteen():
+    data = request.json
+    canteen_id = data.get('canteen_id')
+    name = data.get('name')
+    location = data.get('location')
+    business_hours = data.get('business_hours')
+    payment = data.get('payment')
+    img = data.get('img')
+    canteen = Canteen.query.filter_by(id=canteen_id).first()
+    canteen.name = name
+    canteen.location = location
+    canteen.business_hours = business_hours
+    canteen.payment = payment
+    img_list = data.get("img")
+    url_list = ""
+    for index, img in enumerate(img_list):
+        filename = str(data.get('name')) + str(index) + ".jpg"
+        filepath = "backend/static/images/" + filename
+        file = open(filepath, "wb")
+        file.write(base64.b64decode(img))
+        file.close()
+        url_list = url_list + "http://127.0.0.1:5000/static/images/" + filename + ","
+    url_list = url_list[:-1]
+    canteen.img = url_list
+    db.session().commit()
+    return 'success', 200
 
 @canteen.route('/get_select_canteens', methods=['GET', 'POST'])
 def get_select_canteens():
@@ -99,7 +125,8 @@ def get_canteen_info():
     starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
     for i in range(0, ca.star):
         starlist[i] = 'yellow'
-    ca_info = {"location": ca.location,
+    ca_info = {"id": ca.id,
+               "location": ca.location,
                "payment": ca.payment,
                "starlist": starlist,
                "business_hours": ca.business_hours,
@@ -211,7 +238,7 @@ def get_canteen_byid():
 
 
 @canteen.route('/canteen/add', methods=['GET', 'POST'])
-def add_canteen_location():
+def add_canteen():
     data = request.json
     new_canteen = Canteen()
     new_id = int(Canteen.query.order_by(db.desc(Canteen.id)).first().id) + 1
