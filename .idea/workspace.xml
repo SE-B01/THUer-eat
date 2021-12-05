@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="pull前保存">
+    <list default="true" id="8decf971-c50b-496d-8129-31396109e115" name="默认变更列表" comment="修改评论表图片存储格式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/canteen/canteen.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/canteen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/canteen/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/canteen/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/static/images/1230.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/static/images/1230.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram/pages/map/map.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/map/map.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +44,7 @@
       <workItem from="1638439878185" duration="7753000" />
       <workItem from="1638533486845" duration="12027000" />
       <workItem from="1638598043378" duration="6582000" />
-      <workItem from="1638612563970" duration="6494000" />
+      <workItem from="1638612563970" duration="8437000" />
     </task>
     <task id="LOCAL-00001" summary="完成评论页面向后端传参">
       <created>1637250030173</created>
@@ -72,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637320606961</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改评论表图片存储格式">
+      <created>1638635009177</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1638635009177</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +139,7 @@
     <MESSAGE value="完成评论页面向后端传参" />
     <MESSAGE value="评论页面发表评论功能" />
     <MESSAGE value="pull前保存" />
-    <option name="LAST_COMMIT_MESSAGE" value="pull前保存" />
+    <MESSAGE value="修改评论表图片存储格式" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改评论表图片存储格式" />
   </component>
 </project>
