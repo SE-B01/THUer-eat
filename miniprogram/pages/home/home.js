@@ -10,7 +10,7 @@ Page({
     //TabCur：校园食堂/发现好菜互相跳转
     TabCur: 0,
     scrollLeft: 0,
-
+    loadProgress:0,
     //用户信息
     nickName: "未登录",
     is_admin: false,
@@ -90,7 +90,36 @@ Page({
     imgList: [],
     base64imgList: [],
   },
-
+  // loading框
+  isLoading (e) {
+    this.setData({
+      isLoad: e.detail.value
+    })
+  },
+  loadModal () {
+    this.setData({
+      loadModal: true
+    })
+    setTimeout(()=> {
+      this.setData({
+        loadModal: false
+      })
+    }, 20000)
+  },
+  loadProgress(){
+    this.setData({
+      loadProgress: this.data.loadProgress+3
+    })
+    if (this.data.loadProgress<100){
+      setTimeout(() => {
+        this.loadProgress();
+      }, 100)
+    }else{
+      this.setData({
+        loadProgress: 0
+      })
+    }
+  },
   //tab键目前选定的页面
   tabSelect(e) {
     this.setData({
@@ -187,6 +216,12 @@ Page({
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)
         }
+        console.log('加载完成')
+        that.showModalClear()
+      },
+      fail:err=>{
+        console.log('加载完成')
+        that.showModalClear()
       }
     });
   },
@@ -317,7 +352,8 @@ Page({
   },
   showModalClear(e) {
     this.setData({
-      modalName: null
+      modalName: null,
+      loadModal: false
     })
   },
   hideModal(e) {
@@ -440,6 +476,7 @@ Page({
   onLoad: function (options) {
     var that = this
     //加载页面函数
+    that.loadModal()
     that.getSelectCanteens()
     that.getSelectDishes()
     //测试：getOpenid
