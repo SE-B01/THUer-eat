@@ -14,7 +14,7 @@
     <view class="canteen-info-item" style="width: 226rpx; height: 68rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx">{{canteen}}</view>
     <view class="canteen-info-item" style="width: 226rpx; height: 68rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx">￥{{cost}}/人</view>
     <view class="padding flex flex-wrap justify-between align-center">
-      <button class="cu-btn round sm bg-purple" style="position: relative; left: 6rpx; top: -34rpx" bindtap="showEdit" data-target="edit_canteen">修改</button>
+      <button class="cu-btn round sm bg-purple" wx:if="{{is_admin}}" style="position: relative; left: 6rpx; top: -34rpx" bindtap="showEdit" data-target="edit_canteen">修改</button>
       <view class="cu-modal {{modalName=='edit_canteen'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
