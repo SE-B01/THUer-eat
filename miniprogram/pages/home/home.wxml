@@ -3,7 +3,7 @@
 <view class="cu-bar search bg-white" style="background-color: #7B10A8;">
   <view class="search-form round" style="width: 634rpx; height: 64rpx; display: flex; box-sizing: border-box">
 
-    <input type="text" placeholder="   输入食堂或菜品名称" confirm-type="search">
+    <input type="text" placeholder="   输入食堂或菜品名称" confirm-type="search" value="{{searchtext}}" bindinput="searchinput">
     </input>
   </view>
   <view class="action" bindtap="search">
@@ -208,7 +208,7 @@
   <!-- <view class='cuIcon-emojifill text-orange'></view> -->
   <view class='gray-text'>加载中...</view>
 </view>
-<view class='load-progress {{loadProgress!=0?"show":"hide"}}' style="top:{{CustomBar}}px;">
+<!-- <view class='load-progress {{loadProgress!=0?"show":"hide"}}' style="top:{{CustomBar}}px;">
   <view class='load-progress-bar bg-green' style="transform: translate3d(-{{100-loadProgress}}%, 0px, 0px);"></view>
   <view class='load-progress-spinner text-green'></view>
-</view>
+</view> -->

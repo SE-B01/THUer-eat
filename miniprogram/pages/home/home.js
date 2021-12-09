@@ -11,6 +11,7 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
     loadProgress:0,
+    searchtext: "", //搜索框的值
     //用户信息
     nickName: "未登录",
     is_admin: false,
@@ -18,6 +19,7 @@ Page({
     openid: "",
     newuser:"0",
     //宫格，不用修改
+
 
     //选择食堂时dropDownMenu数据
     drop_canteen_titles: ['附近', '用餐风格', '支付方式', '排序方式'],
@@ -168,9 +170,15 @@ Page({
       url: "../plaza/plaza"
     })
   },
+
+  searchinput: function (e) {
+    this.setData({
+      searchtext: e.detail.value
+    })
+  },
   search: function (e){
     wx.navigateTo({
-      url: "../search/search?" 
+      url: "../search/search?searchtext=" + this.data.searchtext
     })
   },
 
