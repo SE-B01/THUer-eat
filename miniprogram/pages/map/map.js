@@ -28,7 +28,8 @@ Page({
     canteen_latitude:"",
     canteen_longitude: "",
     business_hours:"",
-    target:""
+    target:"",
+    canteen_list:null
   },
 
   /**
@@ -135,33 +136,26 @@ Page({
     })
   },
   searchCanteen(e){
-    // console.log(this.data.markers)
-    let len = this.data.markers.length
-    for(var i = 0; i < len; i++){
-      if(this.data.markers[i].title == e.detail.value){
-        wx.request({
-          url: 'http://127.0.0.1:5000/canteen/get_byid',
-          data: {
-            id: this.data.markers[i].id
-          },
-          method: 'GET',
-          success: (res) => {
-            console.log(res.data)
-            this.setData({
-              modalName: "bottomModal",
-              canteen: res.data.name,
-              location: res.data.location,
-              business_hours: res.data.business_hours,
-              starlist: res.data.starlist,
-              cost: res.data.cost,
-              apprise_list: res.data.ap_list,
-              dish_list: res.data.dish_list,
-              canteen_latitude: res.data.latitude,
-              canteen_longitude: res.data.longitude
-            })
-          }
-        })
+    wx.request({
+      url: 'http://127.0.0.1:5000/canteen/search',
+      data: {
+        text: e.detail.value
+      },
+      method: 'GET',
+      success: (res) => {
+        //console.log("get dishes success")
+       console.log(res.data)
+       this.setData({
+         canteen_list:res.data,
+         modalName: 'bottomModal2'
+       })
       }
-    }
-  }
+    })
+  },
+  switchToCanteen: function (e) {
+    var canteen = e.currentTarget.dataset.canteen
+    wx.navigateTo({
+      url: "../canteen/canteen?canteen=" + canteen
+    })
+  },
 })
