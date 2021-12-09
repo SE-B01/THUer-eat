@@ -62,7 +62,7 @@ Page({
     ],
     drop_dish_price: [
       {id: 0, title: '价格不限'},
-      {id: 1, title: '5-10元'},
+      {id: 1, title: '0-10元'},
       {id: 2, title: '10-50元'},
       {id: 3, title: '50元以上'}
     ],
@@ -360,20 +360,45 @@ Page({
     })
   },
 
-  getSelectDishes: function () {
+  getSelectDishes: function (get_new_lines) {
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    })
+    var get_new_lines = get_new_lines||false;
     var that = this
     wx.request({
       url: 'http://127.0.0.1:5000/get_select_dishes',
       data: {
-        distance: that.data.dish_select[0]
+        get_new_lines: get_new_lines,
+        now_lines: that.data.dishes.length,
+        distance: that.data.dish_select[0],
+        favor: that.data.dish_select[1],
+        price: that.data.dish_select[2],
+        sortby: that.data.dish_select[3]
       },
       method: 'GET',
       success: (res) => {
-        //console.log("get dishes success")
-        //console.log(res.data)
-        that.setData({
-          dishes: res.data,
-        })
+        wx.hideLoading()
+        if (get_new_lines){
+          if (res.data.length == 0){
+            wx.showToast({
+              title: '没有更多菜品啦',
+              icon: 'success',
+              duration: 1000
+             })
+          }
+          else{
+            that.setData({
+              dishes: that.data.dishes.concat(res.data),
+            })
+          }
+        }
+        else{
+          that.setData({
+            dishes: res.data,
+          })
+        }
       }
     })
   },
@@ -567,7 +592,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getSelectCanteens(true)
+    if (this.data.TabCur==0){
+      this.getSelectCanteens(true)
+    }
+    else{
+      this.getSelectDishes(true)
+    }
 
   },
 
