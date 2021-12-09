@@ -47,6 +47,9 @@ def edit_canteen():
 def get_select_canteens():
     """
     根据筛选条件返回餐厅
+    get_new_lines:是利用当前条件继续读取数据，还是重新获得数据
+    now_lines:当前数据条数
+
     条件: list
     list[0]: distance:  0: 不限距离  1: <500m  2: <1km  3: <3km
     list[1]: style:     0: 风格不限 1: 个人独享 2: 朋友小聚 3:宴请四方
@@ -54,10 +57,15 @@ def get_select_canteens():
     list[3]: sortby:    0: 智能排序 1: 好评优先 2: 距离优先
     
     """
+    batch_size = 5 # 每次刷新的条数
+
+    get_new_lines = request.args.get("get_new_lines")
+    now_lines = int(request.args.get("now_lines"))
     distance = request.args.get("distance")
     style = request.args.get("distance")
     payment = request.args.get("payment")
     sortby = request.args.get("sortby")
+
 
     limit = ""
     distance_limits = [0, 500, 1000, 3000]
@@ -77,6 +85,7 @@ def get_select_canteens():
     canteen_ = eval(query_limit)
     # print(canteen_)
 
+
     canteen_list = []
     for canteen in canteen_:
         # print(canteen.to_json())
@@ -91,6 +100,10 @@ def get_select_canteens():
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
         canteen_list.append(canteen_info)
+    if get_new_lines == "false":
+        canteen_list = canteen_list[:batch_size]
+    else:
+        canteen_list = canteen_list[now_lines:now_lines + batch_size]
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
 
