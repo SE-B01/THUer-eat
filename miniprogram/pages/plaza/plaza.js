@@ -37,19 +37,42 @@ Page({
     console.log(that.data.like_changed)
   },
 
-  getAppraise: function () {
+  getAppraise: function (get_new_lines) {
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    })
+    var get_new_lines = get_new_lines||false;
     var id = app.globalData.openid
     var that = this
     wx.request({
       url: 'http://127.0.0.1:5000/appraise/get_all',
       data: {
         user_id: id,
+        get_new_lines: get_new_lines,
+        now_lines: that.data.appraises.length
       },
       success: function(res){
-        console.log(res)
-        that.setData({
-          appraises: res.data
-        })
+        wx.hideLoading()
+        if (get_new_lines){
+          if (res.data.length == 0){
+            wx.showToast({
+              title: '已加载所有评论',
+              icon: 'success',
+              duration: 1000
+             })
+          }
+          else{
+            that.setData({
+              appraises: that.data.appraises.concat(res.data),
+            })
+          }
+        }
+        else{
+          that.setData({
+            appraises: res.data,
+          })
+        }
       }
     })
   },
@@ -124,6 +147,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.getAppraise(true)
 
   },
 
