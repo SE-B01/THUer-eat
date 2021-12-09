@@ -89,6 +89,11 @@ def get_all_appraise():
     暂时按照好评数排序
     之后可能考虑综合从发表时间、好评数排序
     """
+    batch_size = 20 # 每次刷新的条数
+
+    get_new_lines = request.args.get("get_new_lines")
+    now_lines = int(request.args.get("now_lines"))
+
     openid = request.args.get("user_id")
     appraise_ = Appraise.query.order_by(db.desc(Appraise.like)).all()
     liked_apprase_ = User.query.filter(User.id == openid).first().liked_appraise
@@ -127,6 +132,13 @@ def get_all_appraise():
         else:
             appraise_info['isClick'] = False
         appraise_list.append(appraise_info)
+    
+    if get_new_lines == "false":
+        appraise_list = appraise_list[:batch_size]
+    else:
+        appraise_list = appraise_list[now_lines:now_lines + batch_size]
+
+
     appraise_json = jsonify(appraise_list)
     return appraise_json, 200
 
