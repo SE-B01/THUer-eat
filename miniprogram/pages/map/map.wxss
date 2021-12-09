@@ -7,3 +7,45 @@
   height: 100%;
   width: 100%;
 }
+.canteen_wrapper{
+  background:white;
+  background-color: white;
+
+}
+.canteen_info{
+  display: flex;
+  flex-direction: row;
+  background:white;
+  border:2rpx solid rgb(65, 65, 65);
+  margin: 5rpx;
+  border-radius: 30rpx;
+}
+.canteen_text{
+  max-width: 440rpx;
+  margin: 20rpx;
+}
+
+.canteen_img{
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 30rpx;
+  margin: 20rpx;
+}
+
+.canteen_name{
+  color: black;
+  font-size: 40rpx;
+}
+
+.canteen_tags{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+.canteen_tag{
+  padding:6rpx;
+  background:rgb(220, 220, 220);
+  margin-right:10rpx;
+  border-radius: 10rpx;
+  color: black;
+}

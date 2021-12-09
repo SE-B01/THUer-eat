@@ -2,7 +2,7 @@
 <view class="cu-bar search bg-purple">
   <view class="search-form round">
     <text class="cuIcon-search"></text>
-    <input type="text" placeholder="搜索餐厅名字" confirm-type="search" bindconfirm="searchCanteen" ></input>
+    <input type="text" placeholder="搜索餐厅名字" confirm-type="search" bindconfirm="searchCanteen"></input>
   </view>
 </view>
 
@@ -72,4 +72,68 @@
     </view>
   </view>
   <view style="height: 100rpx;"></view>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal2'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
+    </view>
+    <view class="canteen-wrapper" wx:for="{{canteen_list}}" wx:for-item="itemName" wx:for-index="idx">
+      <view class="canteen_info" bindtap="switchToCanteen" id="{{itemName._id}}" data-canteen="{{itemName.name}}">
+        <image src="{{itemName.img[0]}}" class="canteen_img"></image>
+        <view class="canteen_text">
+          <view class="canteen_name">{{itemName.name}}</view>
+          <view style="display: flex; flex-direction: row;">
+            <view class="canteen_rank">
+              <view class="canteen_rank" wx:if="{{itemName.star == 1}}">
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+              </view>
+              <view class="canteen_rank" wx:elif="{{itemName.star == 2}}">
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+              </view>
+              <view class="canteen_rank" wx:elif="{{itemName.star == 3}}">
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+              </view>
+              <view class="canteen_rank" wx:elif="{{itemName.star == 4}}">
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-gray"></text>
+              </view>
+              <view class="canteen_rank" wx:elif="{{itemName.star == 5}}">
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+                <text class="cuIcon-favorfill lg text-yellow"></text>
+              </view>
+            </view>
+            <view class="canteen_cost">￥{{itemName.cost}}/人</view>
+          </view>
+          <view class="canteen_business_hours">{{itemName.business_hours}}</view>
+          <view class="canteen_location">{{itemName.location}}</view>
+          <view class="canteen_tags">
+            <view class="cu-tag round" wx:for="{{itemName.canteen_tag}}">
+              {{item}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style="height:200rpx;"></view>
+  </view>
 </view>
