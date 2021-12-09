@@ -1,6 +1,0 @@
-<!--pages/reply.wxml-->
-<textarea placeholder="请输入给反馈用户的消息" placeholder-style="color: #949494" class="message" bindinput="bindTextAreaBlur"></textarea>
-
-<view class="line-button">
-  <button class="submit" style="width:90%; height:100rpx; line-height:100rpx; margin-left:5%; margin-right:5%;padding:0rpx;" bindtap="submitClick">发送给用户</button>
-</view>
