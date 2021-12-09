@@ -18,12 +18,57 @@ def test_dataset():
 
 @dish.route('/get_select_dishes', methods=['GET', 'POST'])
 def get_select_dishes():
-    dish_ = Dish.query.all()
+    """
+    根据筛选条件返回菜品
+    get_new_lines:是利用当前条件继续读取数据，还是重新获得数据
+    now_lines:当前数据条数
+
+    条件: list
+    distance:  0: 不限距离  1: <500m  2: <1km  3: <3km
+    favor:     0: 口味不限 1: 清淡口味 2: 香辣口味 3:大鱼大肉
+    price:   0:价格不限 1:0-10元 2:10-50元 3:50元以上
+    sortby:    0: 智能排序 1: 好评优先 2: 新菜优先
+    
+    """
+    batch_size = 5 # 每次刷新的条数
+
+    get_new_lines = request.args.get("get_new_lines")
+    now_lines = int(request.args.get("now_lines"))
+    distance = request.args.get("distance")
+    favor = request.args.get("favor")
+    price = int(request.args.get("price"))
+    sortby = request.args.get("sortby")
+
+    limit = ""
+    distance_limits = [0, 500, 1000, 3000]
+    price_limits = [0,10,50]
+
+    # if distance != "0":
+    #     distance_limit = distance_limits[int(distance)]
+    # if favor != "0":
+    #     limit += ".filter_by(favor={})".format())
+    if price != 0:
+        if price != 3:
+            limit += ".filter(Dish.price>{}).filter(Dish.price<={})".format(price_limits[price-1], price_limits[price])
+        else:
+            limit += ".filter(Dish.price>{})".format(price_limits[price-1])
+
+    if limit == "":
+        limit = ".all()"
+
+    query_limit = "Dish.query" + limit
+
+    dish_ = eval(query_limit)
+
     dish_list = []
     for dish in dish_:
         canteen_name = Canteen.query.filter(Canteen.id == dish.canteen_id).first().name
-        print(canteen_name)
         dish_list.append(dish.to_json(canteen_name))
+    if get_new_lines == "false":
+        dish_list = dish_list[:batch_size]
+    else:
+        dish_list = dish_list[now_lines:now_lines + batch_size]
+    
     dish_json = jsonify(dish_list)
     return dish_json, 200
 
