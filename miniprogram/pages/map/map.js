@@ -6,28 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addmissage: '选的位置',
-    // markers	 Array	标记点
-    stitle: '故宫',
     latitude: "",
     longitude: "",
-    scale: 14,
+    scale: 16,
     markers: [{ 'id': 1, 'title': "桃李园", 'latitude': 40.010952, 'longitude': 116.326157 }],
     distanceArr: [],
-    active: 0,
     value: 4,
     open: false,
-    index: 0,
-    paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
-    indexSign: '',
     modalName: '',
-    canteen: "",
-    cost: "",
-    starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
-    location: "",
-    canteen_latitude: "",
-    canteen_longitude: "",
-    business_hours: "",
     target: "",
     canteen_list: null
   },
@@ -104,15 +90,7 @@ Page({
         console.log(res.data)
         this.setData({
           modalName: "bottomModal",
-          canteen: res.data.name,
-          location: res.data.location,
-          business_hours: res.data.business_hours,
-          starlist: res.data.starlist,
-          cost: res.data.cost,
-          apprise_list: res.data.ap_list,
-          dish_list: res.data.dish_list,
-          canteen_latitude: res.data.latitude,
-          canteen_longitude: res.data.longitude
+          canteen_list: res.data
         })
       }
     })
@@ -134,7 +112,7 @@ Page({
         console.log(res.data)
         this.setData({
           canteen_list: res.data,
-          modalName: 'bottomModal2'
+          modalName: 'bottomModal'
         })
       }
     })
