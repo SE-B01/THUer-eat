@@ -20,16 +20,16 @@ Page({
     index: 0,
     paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
     indexSign: '',
-    modalName:'',
+    modalName: '',
     canteen: "",
     cost: "",
     starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
-    location:"",
-    canteen_latitude:"",
+    location: "",
+    canteen_latitude: "",
     canteen_longitude: "",
-    business_hours:"",
-    target:"",
-    canteen_list:null
+    business_hours: "",
+    target: "",
+    canteen_list: null
   },
 
   /**
@@ -71,25 +71,12 @@ Page({
       this.getTabBar().changeFormat()
     }
     const location = chooseLocation.getLocation();
-        if(location){
-          console.log(location)
-        }
+    if (location) {
+      console.log(location)
+    }
   },
 
-  //显示地图
-  showMap() {
-    //使用在腾讯位置服务申请的key（必填）
-    const key = "ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW";
-    //调用插件的app的名称（必填）
-    const referer = "THUer今天吃什么";
-    wx.navigateTo({
-      url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer,
-      success: (res) => {
-        console.log(123)
-      }
-    });
-  },
-   //显示路径
+  //显示路径
   showPath() {
     let plugin = requirePlugin('routePlan');
     let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
@@ -104,7 +91,7 @@ Page({
     });
   },
 
-  bindmarkertap(e){
+  bindmarkertap(e) {
     console.log(e)
     console.log(this.data.markers)
     wx.request({
@@ -135,7 +122,7 @@ Page({
       modalName: null
     })
   },
-  searchCanteen(e){
+  searchCanteen(e) {
     wx.request({
       url: 'http://127.0.0.1:5000/canteen/search',
       data: {
@@ -144,11 +131,11 @@ Page({
       method: 'GET',
       success: (res) => {
         //console.log("get dishes success")
-       console.log(res.data)
-       this.setData({
-         canteen_list:res.data,
-         modalName: 'bottomModal2'
-       })
+        console.log(res.data)
+        this.setData({
+          canteen_list: res.data,
+          modalName: 'bottomModal2'
+        })
       }
     })
   },
@@ -158,4 +145,8 @@ Page({
       url: "../canteen/canteen?canteen=" + canteen
     })
   },
+  controltap(e) {
+    let mpCtx = wx.createMapContext("map");
+    mpCtx.moveToLocation();
+  }
 })
