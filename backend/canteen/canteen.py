@@ -217,37 +217,28 @@ def get_canteen_location():
 
 @canteen.route('/canteen/get_byid', methods=['GET', 'POST'])
 def get_canteen_byid():
-    tar_id = request.args.get("id")
+    canteen_id = request.args.get("id")
     # ca：数据库中目标食堂条目
-    ca = Canteen.query.filter(Canteen.id == tar_id).first()
-    starlist = ['gray', 'gray', 'gray', 'gray', 'gray']
-    for i in range(0, ca.star):
-        starlist[i] = 'yellow'
-    ca_info = {"name": ca.name, "location": ca.location, "payment": ca.payment, "starlist": starlist,
-               "business_hours": ca.business_hours, "cost": ca.cost, "latitude": ca.latitude, "longitude": ca.longitude}
-    # ap：数据库中目标食堂对应评价列表
-    ap = Appraise.query.filter(Appraise.canteen_id == tar_id).order_by(Appraise.time)
-    ap_list = []
-    for item in ap:
-        # print(item)
-        ap_list.append(
-            {"user_id": item.user_id, "anonymous": item.anonymous, "img_list": item.img_list, "star": item.star,
-             "comment": item.comment, "dish": item.dish, "cost": item.cost})
-    ca_info["ap_list"] = ap_list
-    dish_list = Dish.query.filter(Dish.canteen_id == tar_id)
-    dish_list_ = []
-    for item in dish_list:
-        dish_item = {}
-        dish_item['name'] = item.name
-        #print(item.name)
-        dish_item['price'] = item.price
-        dish_item['comment'] = item.comment
-        canteen_id = item.canteen_id
-        #dish_item['canteen'] = Canteen.query.filter(id==canteen_id).first().name
-        #print(f"canteen:{dish_item['canteen']}")
-        dish_list_.append(dish_item)
-    ca_info['dish_list'] = dish_list_
-    return ca_info, 200
+    canteen_name = Canteen.query.filter(Canteen.id == canteen_id).first().name
+    canteen_name = canteen_name.split("-")[0]
+    print(canteen_name)
+    canteen_ = Canteen.query.filter(Canteen.name.like("%{}%".format(canteen_name)))
+    canteen_list = []
+    for canteen in canteen_:
+        # print(canteen.to_json())
+        canteen_info = canteen.to_json()
+        # print(canteen.img)
+        try:
+            canteen_info['img'] = canteen.img.split(',')
+            # print(canteen_info['img'])
+        except:
+            # print(canteen_info['name'])
+            canteen_img = []
+            canteen_img.append(canteen.img)
+            canteen_info['img'] = canteen_img
+        canteen_list.append(canteen_info)
+    canteen_json = jsonify(canteen_list)
+    return canteen_json, 200
 
 
 @canteen.route('/canteen/add', methods=['GET', 'POST'])

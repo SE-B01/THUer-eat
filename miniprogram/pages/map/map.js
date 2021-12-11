@@ -6,30 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addmissage: '选的位置',
-    // markers	 Array	标记点
-    stitle: '故宫',
     latitude: "",
     longitude: "",
-    scale: 14,
+    scale: 16,
     markers: [{ 'id': 1, 'title': "桃李园", 'latitude': 40.010952, 'longitude': 116.326157 }],
     distanceArr: [],
-    active: 0,
     value: 4,
     open: false,
-    index: 0,
-    paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
-    indexSign: '',
-    modalName:'',
-    canteen: "",
-    cost: "",
-    starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
-    location:"",
-    canteen_latitude:"",
-    canteen_longitude: "",
-    business_hours:"",
-    target:"",
-    canteen_list:null
+    modalName: '',
+    target: "",
+    canteen_list: null
   },
 
   /**
@@ -71,25 +57,12 @@ Page({
       this.getTabBar().changeFormat()
     }
     const location = chooseLocation.getLocation();
-        if(location){
-          console.log(location)
-        }
+    if (location) {
+      console.log(location)
+    }
   },
 
-  //显示地图
-  showMap() {
-    //使用在腾讯位置服务申请的key（必填）
-    const key = "ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW";
-    //调用插件的app的名称（必填）
-    const referer = "THUer今天吃什么";
-    wx.navigateTo({
-      url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer,
-      success: (res) => {
-        console.log(123)
-      }
-    });
-  },
-   //显示路径
+  //显示路径
   showPath() {
     let plugin = requirePlugin('routePlan');
     let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
@@ -104,7 +77,7 @@ Page({
     });
   },
 
-  bindmarkertap(e){
+  bindmarkertap(e) {
     console.log(e)
     console.log(this.data.markers)
     wx.request({
@@ -117,15 +90,7 @@ Page({
         console.log(res.data)
         this.setData({
           modalName: "bottomModal",
-          canteen: res.data.name,
-          location: res.data.location,
-          business_hours: res.data.business_hours,
-          starlist: res.data.starlist,
-          cost: res.data.cost,
-          apprise_list: res.data.ap_list,
-          dish_list: res.data.dish_list,
-          canteen_latitude: res.data.latitude,
-          canteen_longitude: res.data.longitude
+          canteen_list: res.data
         })
       }
     })
@@ -135,7 +100,7 @@ Page({
       modalName: null
     })
   },
-  searchCanteen(e){
+  searchCanteen(e) {
     wx.request({
       url: 'http://127.0.0.1:5000/canteen/search',
       data: {
@@ -144,11 +109,11 @@ Page({
       method: 'GET',
       success: (res) => {
         //console.log("get dishes success")
-       console.log(res.data)
-       this.setData({
-         canteen_list:res.data,
-         modalName: 'bottomModal2'
-       })
+        console.log(res.data)
+        this.setData({
+          canteen_list: res.data,
+          modalName: 'bottomModal'
+        })
       }
     })
   },
@@ -158,4 +123,8 @@ Page({
       url: "../canteen/canteen?canteen=" + canteen
     })
   },
+  controltap(e) {
+    let mpCtx = wx.createMapContext("map");
+    mpCtx.moveToLocation();
+  }
 })
