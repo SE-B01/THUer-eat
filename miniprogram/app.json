@@ -11,9 +11,7 @@
     "pages/feedbackmag/feedbackmag",
     "pages/search/search",
     "pages/newinfos/newinfos",
-    "pages/plaza/plaza",
-    "pages/list/list",
-    "pages/logs/logs"
+    "pages/plaza/plaza"
   ],
   "plugins": {
     "chooseLocation": {
