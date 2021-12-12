@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/canvas/canvas",
     "pages/loading/loading",
     "pages/home/home",
     "pages/dish/dish",
