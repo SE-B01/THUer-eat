@@ -224,6 +224,23 @@ delete_recent_view(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+remind(e){
+  var that=this
+  console.log('一小步')
+  console.log(e)
+  console.log(e.target.dish_cost)
+  console.log(that.data.collection)
+  wx.request({
+    url: 'http://127.0.0.1:5000/remind_dish',
+    data: {
+      user_id: app.globalData.userInfo.id,
+      dish_id: e.target.id
+    },
+    success: (res) => {
+      console.log(res.data)
+    }
+  })
+},
 to_feedbackmag(e){
   wx.navigateTo({
     url:"../feedbackmag/feedbackmag"
@@ -283,7 +300,7 @@ delete_information(e) {
       new_is_in_school: app.globalData.userInfo.is_in_school,
       is_admin:app.globalData.userInfo.is_admin
     })
-    console.log('userInfo')
+    console.log('userInfoooooo')
     console.log(app.globalData.userInfo)
     console.log('nickName')
     console.log(that.data.nickname)

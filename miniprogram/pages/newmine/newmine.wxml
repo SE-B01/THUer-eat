@@ -7,8 +7,8 @@
     <view class="action" style="position: relative; left: 162rpx; top: -120rpx; width: 300rpx; height: 66rpx; display: block; box-sizing: border-box; font-size: 35rpx">
         昵称：{{nickname}}
     </view>
-    <button wx:if="{{is_admin==false}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal1">反馈</button>
-    <button wx:if="{{is_admin==true}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag" >反馈管理</button>
+    <button wx:if="{{is_admin==false}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 170rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal1">反馈</button>
+    <button wx:if="{{is_admin==true}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 170rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag" >反馈管理</button>
     <button  class="cu-btn round" style="position: relative; left: 378rpx; top: -100rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal2">设置</button>
 </view>
 
@@ -139,11 +139,13 @@
             </view>
 
             <view style="width: 174rpx; display: flex; box-sizing: border-box;justify-content: space-between;flex-direction: column; margin-left: 10rpx;margin-top:20rpx;margin-bottom:20rpx;margin-right:10rpx">
-                <button class="cu-btn round" style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box ">提醒</button>
+                <button class="cu-btn round" style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box ; left: 10rpx" bindtap="remind" id="{{itemName.id}}">提醒</button>
+                <!--
                 <view style="position: relative; left:10rpx;   height: 50rpx; display: flex;justify-content: space-between; box-sizing: border-box;flex-direction: row">
                     <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↑</button>
                     <button class="cu-btn round" style="  width: 60rpx; height: 57rpx; display: inline-flex; box-sizing: border-box">↓</button>
                 </view>
+                -->
                 <button class="cu-btn round" style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx" bindtap="delete_collection" id="{{itemName.id}}">删除</button>
             </view>
         </view>
