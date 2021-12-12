@@ -19,7 +19,7 @@ Page({
     var awardsConfig = app.awardsConfig,
         runNum = 8
     if (awardIndex < 2) awardsConfig.chance = false
-    console.log(awardIndex)
+    //console.log(awardIndex)
 
     // 初始化 rotate
   /*  var animationInit = wx.createAnimation({
@@ -36,7 +36,7 @@ Page({
     app.runDegs = app.runDegs || 0
     console.log('deg', app.runDegs)
     app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
-    console.log('deg', app.runDegs)
+    //console.log('deg', app.runDegs)
 
     var animationRun = wx.createAnimation({
       duration: 4000,
@@ -56,7 +56,7 @@ Page({
     if(that.data.lotteryList.length > 5) {
       that.data.lotteryList.shift();
     };
-    console.log(that.data.lotteryList)
+    //console.log(that.data.lotteryList)
     winAwards.data.push(awardsConfig.awards[awardIndex].name)
     wx.setStorageSync('winAwards', winAwards)
 
