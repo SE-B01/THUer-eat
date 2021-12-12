@@ -16,16 +16,20 @@ Page({
   likeClick: function(e) {
     var that = this
     var idx = e.target.dataset.idx
+    var in_like_changed = false
     if (that.data.appraises[idx].isClick) {
       that.data.appraises[idx].like--
-      for (var i = 0; i < that.data.like_changed.length; i++) {
-        if (that.data.like_changed[i] == idx){
-          that.data.like_changed.splice(i,1)
-          break
-        }
-      }
     } else {
       that.data.appraises[idx].like++
+    }
+    for (var i = 0; i < that.data.like_changed.length; i++) {
+      if (that.data.like_changed[i] == idx){
+        that.data.like_changed.splice(i,1)
+        in_like_changed = true
+        break
+      }
+    }
+    if (in_like_changed == false){
       that.data.like_changed.splice(0,0,idx)
     }
     //点赞取反
@@ -34,7 +38,7 @@ Page({
     that.setData({
       appraises: that.data.appraises
     })
-    console.log(that.data.like_changed)
+    //console.log(that.data.like_changed)
   },
 
   getAppraise: function (get_new_lines) {
@@ -133,6 +137,7 @@ Page({
    */
   onUnload: function () {
     this.pushLikeChange()
+    this.data.like_changed=[]
 
   },
 

@@ -62,21 +62,22 @@ def get_select_canteens():
     get_new_lines = request.args.get("get_new_lines")
     now_lines = int(request.args.get("now_lines"))
     distance = request.args.get("distance")
-    style = request.args.get("distance")
+    style = request.args.get("style")
     payment = request.args.get("payment")
     sortby = request.args.get("sortby")
 
 
     limit = ""
     distance_limits = [0, 500, 1000, 3000]
+    select_style = False
 
     # if distance != "0":
     #     distance_limit = distance_limits[int(distance)]
-    if style != "0":
-        limit += ".filter_by(style={})".format(style)
+
     if payment != "0":
         limit += ".filter_by(payment={})".format(payment)
-
+    if style != "0":
+        select_style = True
     if limit == "":
         limit = ".all()"
 
@@ -88,14 +89,19 @@ def get_select_canteens():
 
     canteen_list = []
     for canteen in canteen_:
-        # print(canteen.to_json())
+        if select_style:
+            try:
+                canteen_style = canteen.style.split(";")
+            except:
+                canteen_style = []
+            if style not in canteen_style:
+                continue
         canteen_info = canteen.to_json()
-        # print(canteen.img)
         try:
             canteen_info['img'] = canteen.img.split(',')
-            print(canteen_info['img'])
+
         except:
-            print(canteen_info['name'])
+
             canteen_img = []
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
@@ -109,6 +115,10 @@ def get_select_canteens():
 
 @canteen.route('/canteen/search', methods=['GET', 'POST'])
 def get_search_canteen():
+    batch_size = 10 # 每次刷新的条数
+
+    get_new_lines = request.args.get("get_new_lines")
+    now_lines = int(request.args.get("now_lines"))
     text = request.args.get("text")
     # ca：数据库中目标食堂条目
     canteen_ = Canteen.query.filter(Canteen.name.like("%{}%".format(text)))
@@ -127,6 +137,10 @@ def get_search_canteen():
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
         canteen_list.append(canteen_info)
+    if get_new_lines == "false":
+        canteen_list = canteen_list[:batch_size]
+    else:
+        canteen_list = canteen_list[now_lines:now_lines + batch_size]
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
 

@@ -45,7 +45,41 @@
     <view class="canteen_text">
       <view class="canteen_name">{{itemName.name}}</view>
       <view style="display: flex; flex-direction: row;">
-        <view class="canteen_rank">{{itemName.star}}</view>
+        <view class="canteen_rank" wx:if="{{itemName.star == 1}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 2}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 3}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 4}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="canteen_rank" wx:elif="{{itemName.star == 5}}">
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+          <text class="cuIcon-favorfill lg text-yellow"></text>
+        </view>
         <view class="canteen_cost">￥{{itemName.cost}}/人</view>
       </view>
       <view class="canteen_business_hours">{{itemName.business_hours}}</view>
