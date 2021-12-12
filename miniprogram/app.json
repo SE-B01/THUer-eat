@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/loading/loading",
-    "pages/home/home",
     "pages/canvas/canvas",
+    "pages/home/home",
     "pages/test/test",
     "pages/dish/dish",
     "pages/comments/comments",
@@ -18,9 +18,7 @@
     "pages/mine/mine",
     "pages/infos/infos",
     "pages/newinfos/newinfos",
-    "pages/plaza/plaza",
-    "pages/list/list",
-    "pages/logs/logs"
+    "pages/plaza/plaza"
   ],
   "plugins": {
     "chooseLocation": {

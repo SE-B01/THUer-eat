@@ -3,7 +3,8 @@ Page({
   data: {
     awardsList: {},
     animationData: {},
-    btnDisabled: ''
+    btnDisabled: '',
+    lotteryList: []
   },
   gotoList: function() {
     wx.redirectTo({
@@ -18,7 +19,7 @@ Page({
     var awardsConfig = app.awardsConfig,
         runNum = 8
     if (awardIndex < 2) awardsConfig.chance = false
-    console.log(awardIndex)
+    //console.log(awardIndex)
 
     // 初始化 rotate
   /*  var animationInit = wx.createAnimation({
@@ -35,7 +36,7 @@ Page({
     app.runDegs = app.runDegs || 0
     console.log('deg', app.runDegs)
     app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
-    console.log('deg', app.runDegs)
+    //console.log('deg', app.runDegs)
 
     var animationRun = wx.createAnimation({
       duration: 4000,
@@ -45,17 +46,23 @@ Page({
     animationRun.rotate(app.runDegs).step()
     that.setData({
       animationData: animationRun.export(),
-      btnDisabled: 'disabled'
+      //btnDisabled: 'disabled'
     })
 
      // 记录奖品
     var winAwards = wx.getStorageSync('winAwards') || {data:[]}
-    winAwards.data.push(awardsConfig.awards[awardIndex].name + '1个')
+    //console.log(winAwards)
+    that.data.lotteryList.push(awardsConfig.awards[awardIndex].name)
+    if(that.data.lotteryList.length > 5) {
+      that.data.lotteryList.shift();
+    };
+    //console.log(that.data.lotteryList)
+    winAwards.data.push(awardsConfig.awards[awardIndex].name)
     wx.setStorageSync('winAwards', winAwards)
 
     // 中奖提示
     setTimeout(function() {
-      console.log(app.globalData.userInfo)
+      //console.log(app.globalData.userInfo
       wx.showModal({
         title: '！！',
         content: 'Nickname今天吃 ' + (awardsConfig.awards[awardIndex].name),
