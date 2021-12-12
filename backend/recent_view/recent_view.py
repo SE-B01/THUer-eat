@@ -47,21 +47,24 @@ def get_recent_view():
     print(recent_view_list)
     return_list = []
     for recent_view_list_item in recent_view_list:
-        dish_item = Dish.query.filter_by(id=recent_view_list_item.dish_id).first()
-        canteen_item = Canteen.query.filter_by(id=dish_item.canteen_id).first()
-        return_list_item = {
-            'id': recent_view_list_item.id,
-            'dish_name': dish_item.name,
-            'dish_image': dish_item.img,
-            'dish_cost': dish_item.price,
-            'dish_canteen': canteen_item.name,
-            'business_hours': canteen_item.business_hours,
-            'dish_comment': dish_item.comment,
-            'dish_canteen_on': '营业中'
-        }
-        return_list.append(return_list_item)
-    print('list')
-    print(return_list)
+        try:
+            dish_item = Dish.query.filter_by(id=recent_view_list_item.dish_id).first()
+            #print(f'recent_dish_id: {recent_view_list_item.dish_id}')
+            #print(f'dish_item: {dish_item.name}')
+            canteen_item = Canteen.query.filter_by(id=dish_item.canteen_id).first()
+            return_list_item = {
+                'id': recent_view_list_item.id,
+                'dish_name': dish_item.name,
+                'dish_image': dish_item.img,
+                'dish_cost': dish_item.price,
+                'dish_canteen': canteen_item.name,
+                'business_hours': canteen_item.business_hours,
+                'dish_comment': dish_item.comment,
+                'dish_canteen_on': '营业中'
+            }
+            return_list.append(return_list_item)
+        except:
+            pass
 
     return jsonify(return_list), 200
 
