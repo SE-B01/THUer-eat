@@ -3,8 +3,12 @@ Page({
   data: {
     awardsList: {},
     animationData: {},
+<<<<<<< HEAD
     btnDisabled: '',
     lotteryList: []
+=======
+    btnDisabled: ''
+>>>>>>> 8740b9e1be48ad1ce7b0f9eb03a53c6f0ed26819
   },
   gotoList: function() {
     wx.redirectTo({
