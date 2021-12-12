@@ -6,6 +6,7 @@ from ..canteen.models import Canteen
 from ..db import db
 from ..user.models import User
 from ..appraise.models import Appraise
+import datetime
 
 dish = Blueprint('dish', __name__)
 
@@ -170,13 +171,54 @@ def edit_dish():
 @dish.route('/remind_dish', methods=['GET', 'POST'])
 def remind_dish():   
     print('remindinggggggggggg')
-    data = request.json
-    print(data)
-    tar_dish = Dish.query.filter(Dish.id == data.get("dish_id")).first()
-    tar_user = data.get("user_id")
+    user_id = request.args.get("user_id")
+    dish_id = request.args.get("dish_id")
+    business_hours = request.args.get("business_hours")
+    print("business_hours")
+    print(business_hours)
+    print('dish_id')
+    dateTime_now = datetime.datetime.now()
+    str_dateTime_now = datetime.datetime.strftime(dateTime_now,'%Y-%m-%d')
+    remindtime = None
+    earlytime = None # 第一次开的时间
+    for business_hours_item in business_hours.split(';'):
+        str_begintime=str_dateTime_now+'-'+business_hours_item.split('-')[0]
+        # print('str_begintime')
+        # print(str_begintime)
+        itemTime = datetime.datetime.strptime(str_begintime,'%Y-%m-%d-%H:%M')
+        # print('dateTime_now>itemTime')
+        # print(dateTime_now>itemTime)
+        # print('itemTime')
+        # print(itemTime)
+        if dateTime_now<itemTime:
+            if not remindtime:# not None,本质remindtime is None
+                remindtime = itemTime
+            else:
+                if remindtime>itemTime: # 提醒的是最早的时间
+                    remindtime=itemTime
+                else:
+                    pass
+        if not earlytime:
+            earlytime=itemTime
+        else:
+            if itemTime<earlytime:
+                earlytime=itemTime
+            else:
+                pass
+    if not remindtime:# 说明今天不行，往后推一天
+        if earlytime:
+            remindtime=earlytime+datetime.timedelta(days=1)
+    # print('remindtime')
+    # print(remindtime)
+    # print('earlytime')
+    # print(earlytime)
+
+    print(dish_id)
+    tar_dish = Dish.query.filter(Dish.id == dish_id).first()
     print('dishhhhhh')
-    print(tar_dish.to_json())
-    # print(tar_dish.name)
+
+    print(tar_dish.name)
+    
     # tar_dish.name = data.get("name")
     # tar_dish.price = data.get("price")
     # img = data.get("img")[0]

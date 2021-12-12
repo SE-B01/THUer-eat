@@ -1,10 +1,13 @@
 import base64
 import json
+from os import access
 import urllib
 from datetime import datetime
 
 from flask import Blueprint, request,jsonify
 from .models import User
+from ..accessToken.models import AccessToken
+
 import sys
 from . import models
 from ..db import db
@@ -120,3 +123,26 @@ def changeUserLike():
 
 
     pass
+
+
+@user.route('/getAccessToken', methods=['GET', 'POST'])
+def getAccessToken():
+    print('getting accessToken')
+    appid = 'wxf14afe0de0f6f4e7'
+    secret="dedff9f3f672f0b085e33b5293ffb036"
+    url = "https://api.weixin.qq.com/cgi-bin/token"
+    url += "?appid={}".format(appid)
+    url += "&secret={}".format(secret)
+    url += "&grant_type=client_credential"
+    req = urllib.request.Request(url=url)
+    res = urllib.request.urlopen(req)
+    res = eval(bytes.decode(res.read()))
+    access_token = res['access_token']
+    print('AccessToken.first()')
+    print(AccessToken.query().filter_by(id==1).first())
+    for each in AccessToken.query(AccessToken.id==1).first():
+        print(each)
+
+    print('got accessToken')
+    print(access_token)
+    return 200

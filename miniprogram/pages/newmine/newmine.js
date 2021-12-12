@@ -234,8 +234,15 @@ remind(e){
     url: 'http://127.0.0.1:5000/remind_dish',
     data: {
       user_id: app.globalData.userInfo.id,
-      dish_id: e.target.id
+      dish_id: e.target.id,
+      business_hours: e.target.dataset.business_hours
     },
+    success: (res) => {
+      console.log(res.data)
+    }
+  })
+  wx.request({
+    url: 'http://127.0.0.1:5000/getAccessToken',
     success: (res) => {
       console.log(res.data)
     }
@@ -328,8 +335,8 @@ delete_information(e) {
         that.setData({
           collection: res.data
         })
-        // console.log('收藏')
-        // console.log(res.data)
+        console.log('收藏')
+        console.log(res.data)
       }
     })
     wx.request({
