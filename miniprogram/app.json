@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/loading/loading",
     "pages/canvas/canvas",
+    "pages/loading/loading",
+
     "pages/home/home",
     "pages/test/test",
     "pages/dish/dish",

@@ -1,5 +1,4 @@
-<view class="wrapper">
-
+<view class="wrapper bg-blue padding radius text-center light">
 <view class="header">
   <text class="header-title"> 餐厅大转盘 </text>
   <text class="header-subtitle">  随机决定今天吃什么 </text> 
