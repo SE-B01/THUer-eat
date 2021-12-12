@@ -283,7 +283,7 @@ delete_information(e) {
       new_is_in_school: app.globalData.userInfo.is_in_school,
       is_admin:app.globalData.userInfo.is_admin
     })
-    console.log('userInfo')
+    console.log('userInfoooooo')
     console.log(app.globalData.userInfo)
     console.log('nickName')
     console.log(that.data.nickname)

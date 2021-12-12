@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/loading/loading",
     "pages/home/home",
     "pages/canvas/canvas",
     "pages/test/test",
-    "pages/loading/loading",
     "pages/dish/dish",
     "pages/comments/comments",
     "pages/canteen/canteen",
