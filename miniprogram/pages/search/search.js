@@ -23,25 +23,47 @@ Page({
     })
   },
   //搜索
-  search: function () {
+  search: function (get_new_lines) {
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    })
+    var get_new_lines = get_new_lines||false;    
     var searchtext = this.data.searchtext; //搜索框的值
+    var that = this
     if (searchtext != "") {
       //将搜索框的值赋给历史数组
       this.data.historyArray.push(searchtext);
-      var that = this
       if (that.data.TabCur == 0) {
         wx.request({
           url: 'http://127.0.0.1:5000/canteen/search',
           data: {
+            get_new_lines: get_new_lines,
+            now_lines: that.data.canteens.length,
             text: that.data.searchtext
           },
           method: 'GET',
           success: (res) => {
-            //console.log("get dishes success")
-            console.log(res.data)
-            that.setData({
-              canteens: res.data,
-            })
+            wx.hideLoading()
+            if (get_new_lines){
+              if (res.data.length == 0){
+                wx.showToast({
+                  title: '没有更多餐厅啦',
+                  icon: 'success',
+                  duration: 1000
+                 })
+              }
+              else{
+                this.setData({
+                  canteens: this.data.canteens.concat(res.data),
+                })
+              }
+            }
+            else{
+              that.setData({
+                canteens: res.data,
+              })
+            }
             if (that.data.canteens.length == 0) { //没有查询到餐厅
               this.setData({
                 noneview: true, //显示未找到提示
@@ -62,15 +84,32 @@ Page({
         wx.request({
           url: 'http://127.0.0.1:5000/dish/search',
           data: {
+            get_new_lines: get_new_lines,
+            now_lines: that.data.dishes.length,
             text: that.data.searchtext
           },
           method: 'GET',
           success: (res) => {
-            //console.log("get dishes success")
-            console.log(res.data)
-            that.setData({
-              dishes: res.data,
-            })
+            wx.hideLoading()
+            if (get_new_lines){
+              if (res.data.length == 0){
+                wx.showToast({
+                  title: '没有更多菜品啦',
+                  icon: 'success',
+                  duration: 1000
+                 })
+              }
+              else{
+                that.setData({
+                  dishes: this.data.dishes.concat(res.data),
+                })
+              }
+            }
+            else{
+              that.setData({
+                dishes: res.data,
+              })
+            }
             if (that.data.dishes.length == 0) { //没有查询到餐厅
               this.setData({
                 noneview: true, //显示未找到提示
@@ -120,6 +159,23 @@ Page({
       this.search()
     }
   },
+    //点击餐厅图片跳转到指定餐厅
+    switchToCanteen: function (e) {
+      var canteen = e.currentTarget.dataset.canteen
+      wx.navigateTo({
+        url: "../canteen/canteen?canteen=" + canteen
+      })
+    },
+    //点击菜品图片跳转到指定菜品
+    switchToDish: function (e) {
+      var dish = e.currentTarget.dataset.dish
+      var canteen = e.currentTarget.dataset.canteen
+      //console.log(dish)
+      //console.log(canteen)
+      wx.navigateTo({
+        url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
+      })
+    },
 
   /**
    * 生命周期函数--监听页面加载
@@ -173,6 +229,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.search(true)
 
   },
 

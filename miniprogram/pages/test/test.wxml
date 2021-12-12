@@ -1,4 +1,0 @@
-<!--pages/test/test.wxml-->
-<view>
-<image src="{{images}}"></image>
-</view>
