@@ -91,6 +91,10 @@ Page({
     payments: ["支付方式不限", "仅支持校园卡", "可以使用支付宝"],
     imgList: [],
     base64imgList: [],
+
+    // 保存用户当前位置
+    latitude: null,
+    longitude: null
   },
   // loading框
   isLoading (e) {
@@ -331,7 +335,9 @@ Page({
         distance: that.data.canteen_select[0],
         style: that.data.canteen_select[1],
         payment: that.data.canteen_select[2],
-        sortby: that.data.canteen_select[3]
+        sortby: that.data.canteen_select[3],
+        latitude: that.data.latitude,
+        longitude: that.data.longitude
       },
       method: 'GET',
       success: (res) => {
@@ -534,6 +540,17 @@ Page({
   onLoad: function (options) {
     
     var that = this
+    //获取当前的地理位置、速度
+    wx.getLocation({
+      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+      success: function (res) {
+        //赋值经纬度
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        })
+      }
+    })
     //加载页面函数
     //that.loadModal()
 

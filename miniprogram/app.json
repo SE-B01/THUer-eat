@@ -2,7 +2,6 @@
   "pages": [
     "pages/loading/loading",
     "pages/home/home",
-    "pages/canvas/canvas",
     "pages/dish/dish",
     "pages/comments/comments",
     "pages/canteen/canteen",
