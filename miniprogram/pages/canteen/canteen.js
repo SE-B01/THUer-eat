@@ -159,7 +159,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    console.log(app.globalData)
+    //console.log(app.globalData)
     that.setData({
       canteen: options.canteen
       // canteen: "听涛园"

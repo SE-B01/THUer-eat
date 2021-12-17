@@ -83,7 +83,7 @@ def get_canteen_info():
     return canteen_info, 200
 
 @appraise.route('/appraise/get_all', methods=['GET', 'POST'])
-def get_all_appraise():
+def getAllAppraise():
     """
     获得评价广场的所有评论
     暂时按照好评数排序
@@ -110,11 +110,11 @@ def get_all_appraise():
         this_canteen = Canteen.query.filter(Canteen.id == appraise_info["canteen_id"]).first().name
         appraise_info["canteen_name"] = this_canteen
         try:
-            appraise_info['img_list'] = appraise.img_list.split(',')
+            appraise_info['img'] = appraise.img_list.split(',')[0]
 
         except:
 
-            appraise_info["img_list"] = []
+            appraise_info["img"] = []
 
         if appraise_info["anonymous"]:
             appraise_info["avatar"] = "../../images/icons/user-unlogin.png"
@@ -140,6 +140,52 @@ def get_all_appraise():
 
 
     appraise_json = jsonify(appraise_list)
+    return appraise_json, 200
+
+@appraise.route('/appraise/get_detail', methods=['GET', 'POST'])
+def getDetailAppraise():
+    """
+    获得评论详情
+    """
+    openid = request.args.get("user_id")
+    appraise_id = request.args.get("appraise_id")
+    appraise_ = Appraise.query.filter(Appraise.id == appraise_id).first()
+    liked_apprase_ = User.query.filter(User.id == openid).first().liked_appraise
+    try:
+        #liked_appraise用 ";" 分隔
+        liked_appraise_list = liked_apprase_.split(";")
+        
+    except:
+        liked_appraise_list = []
+
+
+    appraise_info = appraise_.to_json()
+    this_canteen = Canteen.query.filter(Canteen.id == appraise_info["canteen_id"]).first().name
+    appraise_info["canteen_name"] = this_canteen
+    try:
+        appraise_info['img_list'] = appraise_.img_list.split(',')
+
+    except:
+        appraise_info["img_list"] = []
+
+    if appraise_info["anonymous"]:
+        appraise_info["avatar"] = "../../images/icons/user-unlogin.png"
+        appraise_info["user_name"] = "匿名用户"
+    else:
+        this_user = User.query.filter(User.id == appraise_info["user_id"]).first()
+        try: #这里赶紧把数据库里面user_id不对的删了
+            appraise_info["avatar"] = this_user.avatarUrl
+            appraise_info["user_name"] = this_user.nickname
+        except:
+            appraise_info["avatar"] = ""
+            appraise_info["user_name"] = "匿名用户"
+
+    if appraise_info["id"] in liked_appraise_list:
+        appraise_info['isClick'] = True
+    else:
+        appraise_info['isClick'] = False
+
+    appraise_json = jsonify(appraise_info)
     return appraise_json, 200
 
 @appraise.route('/appraise/changeLiked', methods=['GET', 'POST'])

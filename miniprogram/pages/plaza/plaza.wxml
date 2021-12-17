@@ -2,13 +2,13 @@
 <view class="appraise_wrapper">
   <view>
     <view wx:for="{{appraises}}" wx:for-item="itemName" wx:for-index="idx" class="appraise_info" wx:if="{{idx%2==0}}">
-      <view bindtap="switchToComment" id="{{itemName._id}}" data-appraise="{{itemName.name}}">
-        <image wx:if="{{itemName.img_list[0]}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
-        <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.canteen_name}}</text>
-        <view class="text-cut" style="margin:10rpx">{{itemName.comment}}</view>
+      <view>
+        <image wx:if="{{itemName.img}}" mode="widthFix" src="{{itemName.img}}" class="appraise_picture"bindtap="switchToAppraiseDetail" id="{{itemName.id}}"></image>
+        <text class="cuIcon-shopfill" style="padding-left: 10rpx;"bindtap="switchToCanteen" data-canteen="{{itemName.canteen_name}}">{{itemName.canteen_name}}</text>
+        <view class="text-cut" style="margin:10rpx" bindtap="switchToAppraiseDetail" id="{{itemName.id}}">{{itemName.comment}}</view>
 
         <view class="appraise_downwrapper">
-          <view class = "appraise_userinfo">
+          <view class = "appraise_userinfo" bindtap="switchToAppraiseDetail" id="{{itemName.id}}">
             <image src="{{itemName.avatar}}" class="appraise_avatar"></image>
             <text class="appraise_username">{{itemName.user_name}}</text>
           </view>
@@ -22,13 +22,13 @@
   </view>
   <view>
     <view wx:for="{{appraises}}" wx:for-item="itemName" wx:for-index="idx" class="appraise_info" wx:if="{{idx%2==1}}">
-      <view bindtap="switchToComment" id="{{itemName._id}}" data-appraise="{{itemName.name}}">
-        <image wx:if="{{itemName.img_list[0]}}" mode="widthFix" src="{{itemName.img_list[0]}}" class="appraise_picture"></image>
-        <text class="cuIcon-shopfill" style="padding-left: 10rpx;">{{itemName.canteen_name}}</text>
-        <view class="text-cut" style="margin:10rpx">{{itemName.comment}}</view>
+      <view>
+        <image wx:if="{{itemName.img}}" mode="widthFix" src="{{itemName.img}}" class="appraise_picture" bindtap="switchToAppraiseDetail" id="{{itemName.id}}"></image>
+        <text class="cuIcon-shopfill" style="padding-left: 10rpx;" bindtap="switchToCanteen" data-canteen="{{itemName.canteen_name}}">{{itemName.canteen_name}}</text>
+        <view class="text-cut" style="margin:10rpx" bindtap="switchToAppraiseDetail" id="{{itemName.id}}">{{itemName.comment}}</view>
 
         <view class="appraise_downwrapper">
-          <view class = "appraise_userinfo">
+          <view class = "appraise_userinfo" bindtap="switchToAppraiseDetail" id="{{itemName.id}}">
             <image src="{{itemName.avatar}}" class="appraise_avatar"></image>
             <text class="appraise_username">{{itemName.user_name}}</text>
           </view>

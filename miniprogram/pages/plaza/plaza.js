@@ -57,6 +57,7 @@ Page({
         now_lines: that.data.appraises.length
       },
       success: function(res){
+        //console.log(res.data)
         wx.hideLoading()
         if (get_new_lines){
           if (res.data.length == 0){
@@ -100,6 +101,21 @@ Page({
         }
       })
     }
+  },
+
+  switchToAppraiseDetail: function (e) {
+    var appraise_id = e.currentTarget.id
+    console.log(appraise_id)
+    wx.navigateTo({
+      url: "../appraise/appraise?appraise_id=" + appraise_id
+    })
+  },
+
+  switchToCanteen: function (e) {
+    var canteen = e.currentTarget.dataset.canteen
+    wx.navigateTo({
+      url: "../canteen/canteen?canteen=" + canteen
+    })
   },
 
   /**

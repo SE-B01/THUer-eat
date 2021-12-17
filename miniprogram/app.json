@@ -11,7 +11,8 @@
     "pages/search/search",
     "pages/newinfos/newinfos",
     "pages/plaza/plaza",
-     "pages/question/question",
+    "pages/appraise/appraise",
+    "pages/question/question",
     "pages/canvas/canvas"
   ],
   "plugins": {
