@@ -2,7 +2,6 @@
   "pages": [
     "pages/loading/loading",
     "pages/home/home",
-    "pages/canvas/canvas",
     "pages/dish/dish",
     "pages/comments/comments",
     "pages/canteen/canteen",
@@ -12,7 +11,9 @@
     "pages/search/search",
     "pages/newinfos/newinfos",
     "pages/plaza/plaza",
-    "pages/appraise/appraise"
+    "pages/appraise/appraise",
+    "pages/question/question",
+    "pages/canvas/canvas"
   ],
   "plugins": {
     "chooseLocation": {

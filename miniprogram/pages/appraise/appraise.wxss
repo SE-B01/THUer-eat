@@ -3,6 +3,7 @@
 .appraise_like{
   margin:10rpx;
   display: flex;flex-direction: row;
+  float:right;
 }
 
 .img_box{
