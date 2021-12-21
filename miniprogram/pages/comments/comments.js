@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        id: null,
         canteenName: "",
         canteen: { name: "", id: '', dish: [] },
         starlist: ['gray', 'gray', 'gray', 'gray', 'gray'],
@@ -13,13 +14,46 @@ Page({
         imgList: [],
         base64imgList: [],
         // paymethod: ['仅校园卡', '校园卡及其它方式', '仅其他方式'],
-        appraise: { star: 0, anonymous: false, comment: '', dish: [], cost: 0, time: null, user_id: 0 }
+        appraise: { star: 0, anonymous: false, comment: '', dish: [], cost: 0, time: null, user_id: 0 , cost: 0}
     },
-    // 发表评论 
+    // 保存评论 
+    save(e) {
+        wx.request({
+            url: 'http://127.0.0.1:5000/appraise/publish',
+            data: {
+                id: this.data.id,
+                canteen_id: this.data.canteen.id,
+                star: this.data.appraise.star,
+                anonymous: this.data.appraise.anonymous,
+                comment: this.data.appraise.comment,
+                dish: this.data.appraise.dish,
+                cost: this.data.appraise.cost,
+                user_id: this.data.appraise.user_id,
+                imgList: this.data.base64imgList,
+                is_publish: false
+            },
+            method: 'POST',
+            success: (res) => {
+                console.log(res.data)
+                wx.showToast({
+                    title: '发表成功',
+                    icon: 'success',
+                    duration: 1500,
+                    success: (res) => {
+                        wx.navigateTo({
+                            url: "../canteen/canteen?canteen=" + this.data.canteen.name
+                        })
+                    }
+                })
+            }
+        })
+    },
+    // 发表评论
     publish(e) {
         wx.request({
             url: 'http://127.0.0.1:5000/appraise/publish',
             data: {
+                id: this.data.id,
                 canteen_id: this.data.canteen.id,
                 star: this.data.appraise.star,
                 anonymous: this.data.appraise.anonymous,
@@ -45,41 +79,6 @@ Page({
                 })
             }
         })
-    },
-    // 保存评论
-    save(e) {
-        this.url2base64().then(response => {
-            console.log(this.data.base64imgList)
-            wx.request({
-                url: 'http://127.0.0.1:5000/appraise/publish',
-                data: {
-                    canteen_id: this.data.canteen.id,
-                    star: this.data.appraise.star,
-                    anonymous: this.data.appraise.anonymous,
-                    comment: this.data.appraise.comment,
-                    dish: this.data.appraise.dish,
-                    cost: this.data.appraise.cost,
-                    user_id: this.data.appraise.user_id,
-                    imgList: this.data.base64imgList,
-                    is_publish: false
-                },
-                method: 'POST',
-                success: (res) => {
-                    console.log(res.data)
-                    wx.showToast({
-                        title: '保存成功',
-                        icon: 'success',
-                        duration: 1500,
-                        success: (res) => {
-                            wx.navigateTo({
-                                url: "../canteen/canteen?canteen=" + this.data.canteen.name
-                            })
-                        }
-                    })
-                }
-            })
-        }
-        )
     },
     // 实时保存用户输入
     commentInput(e) {
@@ -222,24 +221,57 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
-        that.setData({
-            ['canteen.name']: options.canteen,
-            ['appraise.user_id']: app.globalData.userInfo.id
-        })
-        wx.request({
-            url: 'http://127.0.0.1:5000/appraise/get',
-            data: {
-                canteen_name: this.data.canteen.name
-            },
-            method: 'GET',
-            success: (res) => {
-                this.data.canteen.dish = res.data.dish
-                this.data.canteen.id = res.data.id
-                this.setData({
-                    canteen: this.data.canteen
-                })
-            }
-        })
+        if (options.canteen) {
+            that.setData({
+                ['canteen.name']: options.canteen,
+                ['appraise.user_id']: app.globalData.userInfo.id
+            })
+            wx.request({
+                url: 'http://127.0.0.1:5000/appraise/get',
+                data: {
+                    canteen_name: this.data.canteen.name
+                },
+                method: 'GET',
+                success: (res) => {
+                    this.data.canteen.dish = res.data.dish
+                    this.data.canteen.id = res.data.id
+                    this.setData({
+                        canteen: this.data.canteen
+                    })
+                }
+            })
+        }
+        else if(options.id){
+            wx.request({
+                url: 'http://127.0.0.1:5000/appraise/get_by_id',
+                data: {
+                    id: options.id
+                },
+                method: 'GET',
+                success: (res) => {
+                    this.data.canteen.dish = res.data.dish
+                    this.data.canteen.id = res.data.id
+                    this.data.canteen.name = res.data.name
+                    this.data.appraise.comment  = res.data.comment
+                    this.data.appraise.star = res.data.star
+                    this.data.appraise.cost = res.data.cost
+                    this.data.appraise.anonymous = res.data.anonymous
+                    this.data.appraise.dish = res.data.chosen_dish
+                    this.data.appraise.user_id= app.globalData.userInfo.id
+                    console.log(res.data.anoymous)
+                    for(let i = 0; i < res.data.star; i++) this.data.starlist[i] = 'yellow'
+                    this.setData({
+                        canteen: this.data.canteen,
+                        appraise: this.data.appraise,
+                        starlist: this.data.starlist,
+                        id: options.id,
+                        imgList: res.data.imgList,
+                        base64imgList: res.data.base64imgList
+                    })
+                }
+            })
+        }
+
     },
 
     /**

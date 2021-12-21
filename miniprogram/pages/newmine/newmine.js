@@ -5,7 +5,7 @@ Page({
   data: {
     is_admin: app.globalData.userInfo.is_admin,
     TabCur: 2,
-    tabNav: ['最近浏览', '收藏', '消息'],
+    tabNav: ['最近浏览', '收藏', '消息','我的评论'],
     dishes: [],
     collection: [],
     nickname: '',
@@ -19,7 +19,8 @@ Page({
     imgBase64: '',
     informations:[],
     information:[{responder_image:'',responder:'听涛园'}],
-    current_id:''
+    current_id:'',
+    apprise_list:[]
   },
 
   tabSelect(e) {
@@ -279,6 +280,13 @@ delete_information(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+switchToComment: function(e) {
+  //console.log(e.currentTarget.dataset.canteen)
+  var id = e.currentTarget.dataset.id
+  wx.navigateTo({
+    url: "../comments/comments?id="+id
+  })
+},
   /**
    * 页面的初始数据
    */
@@ -344,6 +352,20 @@ delete_information(e) {
         })
         // console.log('用户消息')
         // console.log(that.data.informations)
+      }
+    })
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise/get_by_user',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          apprise_list: res.data.appraise
+        })
+        // console.log('用户消息')
+        console.log(res.data)
       }
     })
   },

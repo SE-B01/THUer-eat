@@ -8,8 +8,8 @@
         昵称：{{nickname}}
     </view>
     <button wx:if="{{is_admin==false}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 170rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal1">反馈</button>
-    <button wx:if="{{is_admin==true}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 170rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag" >反馈管理</button>
-    <button  class="cu-btn round" style="position: relative; left: 378rpx; top: -100rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal2">设置</button>
+    <button wx:if="{{is_admin==true}}" class="cu-btn round" style="position: relative; left: 540rpx; top: -180rpx; width: 170rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="to_feedbackmag">反馈管理</button>
+    <button class="cu-btn round" style="position: relative; left: 378rpx; top: -100rpx; width: 162rpx; height: 66rpx; display: inline-flex; box-sizing: border-box" bindtap="showModal" data-target="DialogModal2">设置</button>
 </view>
 
 
@@ -86,7 +86,7 @@
 
 
 <scroll-view scroll-x class="bg-white nav text-center;">
-    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabNav}}" wx:key bindtap='tabSelect' data-id="{{index}}" style="width: 237rpx; height: 85rpx; display: inline-block; box-sizing: border-box; position: relative; left: -24rpx; top: 0rpx">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabNav}}" wx:key bindtap='tabSelect' data-id="{{index}}" style="width: 168rpx; height: 81rpx; display: inline-block; box-sizing: border-box">
         {{tabNav[index]}}
     </view>
 </scroll-view>
@@ -97,7 +97,7 @@
                 <view style="width: 160rpx; height: 158rpx; display: block; box-sizing: border-box">
                     <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.responder_image}});margin-top:15 rpx"></view>
                 </view>
-                
+
                 <view style="width: 502rpx; display: block; box-sizing: border-box; position: relative; left: 190rpx; top: -158rpx; height: 158rpx">
                     <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
                         <view class="responder_name" style='margin-left:10 rpx'>{{itemName.responder}}</view>
@@ -107,13 +107,13 @@
                         <view class="responder_name" style='margin-left:10 rpx'>{{itemName.update_time}}</view>
                         <button class="cu-btn round" style="width: 200rpx; height: 50rpx; display: inline-flex; box-sizing: border-box;  position: relative; margin-right: 10rpx;" bindtap="see_feedback" id="{{itemName.feedback}}">查看反馈</button>
                     </view>
-                </view>             
-            </view>    
+                </view>
+            </view>
             <view class="flex-sub ">
                 <view class="padding" style=" height: 85rpx; display: block; box-sizing: border-box;margin-bottom: 50rpx;">"{{itemName.informations}}"</view>
             </view>
         </view>
-        
+
     </view>
 
 </block>
@@ -190,6 +190,35 @@
             <view class="dish_comment">"{{itemName.dish_comment}}"</view>
         </view>
     </view>
-    
+
 </block>
+
+<view class="cu-list menu-avatar" wx:if="{{TabCur==3}}">
+    <view class="cu-card dynamic {{isCard?'no-card':''}}" wx:for="{{apprise_list}}">
+        <view class="cu-item shadow comment-item" bindtap="switchToComment" data-id="{{item.id}}">
+            <view class="cu-list menu-avatar">
+                <view class="cu-item">
+                    <view class="cu-avatar round lg" style="background-image:url({{item.user_avatar}});"></view>
+                    <view class="content flex-sub">
+                        <view>{{item.user_name}}</view>
+                        <view class="text-gray text-sm flex justify-between">
+                            {{item.time}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="text-content">
+                {{item.comment}}
+            </view>
+            <block wx:if="{{item.hidden}}">
+                <view class="grid flex-sub padding-lr {{isCard?'col-3 grid-square':'col-1'}}">
+                    <view class="bg-img only-img" style="background-image:url({{item.img_list}});"></view>
+                </view>
+            </block>
+            <view class="text-gray text-sm text-right padding">
+                <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{item.like}}
+            </view>
+        </view>
+    </view>
+</view>
 <view style="height: 100rpx;"></view>
