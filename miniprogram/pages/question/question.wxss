@@ -2,7 +2,7 @@
 page{
   min-height:100%;
   min-height:100%;
-  background-color:#2E4A62;
+  background-color: #722072;
 }
 .container {
   height: 100%;
@@ -12,7 +12,7 @@ page{
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-  background-color: #2E4A62;
+  background-color: #722072;
 } 
 .container{
   display: flex;
@@ -29,13 +29,15 @@ page{
 }
 
 .question{
-  color: antiquewhite;
+  color: white;
   margin: 40rpx 20rpx;
+  font-size: 40rpx;
 }
 
 .option {
   min-width: 500rpx;
   border-radius: 30rpx;
+  font-size: 40rpx;
   border: solid white 8rpx;
   margin: 30rpx;
 }
@@ -59,7 +61,7 @@ page{
 .footer{
   box-sizing: border-box;
   border-top: 2rpx solid gray;
-  background-color: #2E4A62; 
+  background-color: #722072; 
   color: #DAF7A6;
   position: fixed;
   bottom: 0;
@@ -73,8 +75,8 @@ page{
 }
 
 .btn{
-  background-color: #2E4A62; 
-  border: 1rpx solid #2E4A62;
+  background-color: #722072; 
+  border: 1rpx solid #722072;
   color: #F0EDE5;
   width: 300rpx;
   height: 100rpx;

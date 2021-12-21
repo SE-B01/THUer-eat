@@ -12,20 +12,20 @@
 
 </view>
 <view class="cu-list grid col-3 {{gridBorder?'':'no-border'}}" style="width: 750rpx; height: 180rpx; display: flex; box-sizing: border-box">
-  <view class="cu-item">
-    <view class="cuIcon-rank text-yellow">
+  <view class="cu-item" bindtap="switchToCanvas">
+    <view class="cuIcon-discover text-yellow">
     </view>
-    <text>美食排行</text>
+    <text>随机转盘</text>
   </view>
   <view class="cu-item" bindtap="switchToPlaza">
     <view class="cuIcon-group text-red">
     </view>
     <text>评价广场</text>
   </view>
-  <view class="cu-item">
-    <view class="cuIcon-cascades text-purple">
+  <view class="cu-item" bindtap="switchToQuestion">
+    <view class="cuIcon-list text-purple">
     </view>
-    <text>更多好玩</text>
+    <text>知识测试</text>
   </view>
 </view>
 
