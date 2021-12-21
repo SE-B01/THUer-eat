@@ -45,7 +45,7 @@ def publish_appraise():
     ap.time = datetime.now()
     ap.comment = data.get('comment')
     img_list = data.get('imgList')
-    url_list = ""
+    url_list = "119.29.108.250:5000"
     for index, img in enumerate(img_list):
         print(index)
         print(type(index))
