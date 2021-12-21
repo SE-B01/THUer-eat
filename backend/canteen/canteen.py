@@ -188,13 +188,19 @@ def get_canteen_info():
     ap = Appraise.query.filter(Appraise.canteen_id == ca.id).order_by(Appraise.time)
     ap_list = []
     for item in ap:
+        if not item.is_publish:
+            continue
         # print(item)
         user_info = {}
         # print(item.user_id)
-        user = User.query.filter(User.id == item.user_id).first()
+        if item.anonymous:
+            user_info["avatar"] = "../../images/icons/user-unlogin.png"
+            user_info["name"] = "匿名用户"
+        else:
+            user = User.query.filter(User.id == item.user_id).first()
         # print(user.nickname)
-        user_info['avatar_url'] = user.avatarUrl
-        user_info['name'] = user.nickname
+            user_info['avatar'] = user.avatarUrl
+            user_info['name'] = user.nickname
         img_list = None
         hidden = False
         if item.img_list == '':
@@ -222,8 +228,8 @@ def get_canteen_info():
             "like": item.like,
             #"dish": item.dish,
             #"cost": item.cost,
-            "user_name": user.nickname,
-            "user_avatar": user.avatarUrl
+            "user_name": user_info["name"],
+            "user_avatar": user_info["avatar"]
              })
     ca_info["ap_list"] = ap_list
     dish_list = Dish.query.filter(Dish.canteen_id == ca.id)

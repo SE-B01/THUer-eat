@@ -114,12 +114,18 @@ def get_dish():
     ).all()
     appraise_list_res = []
     for item in appraise_list:
+        if not item.is_publish:
+            continue
         appraise = {}
-        user_id = item.user_id
+        if item.anonymous:
+            appraise['user_avatar'] = "../../images/icons/user-unlogin.png"
+            appraise['user_nickname'] = "匿名用户"
+        else:
+            user_id = item.user_id
         # print(f'user_id:{user_id}')
-        user = User.query.filter_by(id=user_id).first()
-        appraise['user_nickname'] = user.nickname
-        appraise['user_avatar'] = user.avatarUrl
+            user = User.query.filter_by(id=user_id).first()
+            appraise['user_nickname'] = user.nickname
+            appraise['user_avatar'] = user.avatarUrl
         appraise['comment'] = item.comment
 
         appraise_list_res.append(appraise)
