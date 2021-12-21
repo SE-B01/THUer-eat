@@ -5,15 +5,27 @@ from ..db import db
 from ..appraise.models import Appraise
 from ..dish.models import Dish
 from ..user.models import User
+from math import radians, cos, sin, asin, sqrt
 import json
 
 canteen = Blueprint('canteen', __name__)
+
+# 计算两个经纬度坐标之间的距离，单位米
+def geodistance(lng1, lat1, lng2, lat2, ):
+    # lng1, lat1 = (116.326157, 40.010952)
+    lng1, lat1, lng2, lat2 = map(radians, [float(lng1), float(lat1), float(lng2), float(lat2)])  # 经纬度转换成弧度
+    dlon = lng2 - lng1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    distance = 2 * asin(sqrt(a)) * 6371 * 1000  # 地球平均半径，6371km
+    return distance
 
 
 @canteen.route('/canteen_test', methods=['GET', 'POST'])
 def canteen_example():
     canteen_ = Canteen.query.first()
     return canteen_.name, 200
+
 
 @canteen.route('/canteen/edit', methods=['POST'])
 def edit_canteen():
@@ -43,6 +55,7 @@ def edit_canteen():
     db.session().commit()
     return 'success', 200
 
+
 @canteen.route('/get_select_canteens', methods=['GET', 'POST'])
 def get_select_canteens():
     """
@@ -57,26 +70,28 @@ def get_select_canteens():
     sortby:    0: 智能排序 1: 好评优先 2: 距离优先
     
     """
-    batch_size = 5 # 每次刷新的条数
+    batch_size = 5  # 每次刷新的条数
 
     get_new_lines = request.args.get("get_new_lines")
     now_lines = int(request.args.get("now_lines"))
     distance = request.args.get("distance")
-    style = request.args.get("distance")
+    style = request.args.get("style")
     payment = request.args.get("payment")
     sortby = request.args.get("sortby")
-
+    lon = request.args.get("longitude")
+    lat = request.args.get("latitude")
 
     limit = ""
     distance_limits = [0, 500, 1000, 3000]
+    distance_limit = 0
+    select_style = False
 
-    # if distance != "0":
-    #     distance_limit = distance_limits[int(distance)]
-    if style != "0":
-        limit += ".filter_by(style={})".format(style)
+    if distance != "0":
+        distance_limit = distance_limits[int(distance)]
     if payment != "0":
         limit += ".filter_by(payment={})".format(payment)
-
+    if style != "0":
+        select_style = True
     if limit == "":
         limit = ".all()"
 
@@ -85,6 +100,49 @@ def get_select_canteens():
     canteen_ = eval(query_limit)
     # print(canteen_)
 
+    canteen_list = []
+    for canteen in canteen_:
+        if select_style:
+            try:
+                canteen_style = canteen.style.split(";")
+            except:
+                canteen_style = []
+            if style not in canteen_style:
+                continue
+
+        if distance_limit != 0:
+            if geodistance(lon, lat, canteen.longitude, canteen.latitude) > distance_limit:
+                # print(canteen.name,geodistance(lon, lat, canteen.longitude, canteen.latitude))
+                continue
+        canteen_info = canteen.to_json()
+        try:
+            canteen_info['img'] = canteen.img.split(',')
+
+        except:
+
+            canteen_img = []
+            canteen_img.append(canteen.img)
+            canteen_info['img'] = canteen_img
+        canteen_list.append(canteen_info)
+    if get_new_lines == "false":
+        canteen_list = canteen_list[:batch_size]
+    else:
+        canteen_list = canteen_list[now_lines:now_lines + batch_size]
+    # print(canteen_list)
+    # print(geodistance(lon, lat, canteen_list[0]['longitude'], canteen_list[0]['latitude']))
+    canteen_json = jsonify(canteen_list)
+    return canteen_json, 200
+
+
+@canteen.route('/canteen/search', methods=['GET', 'POST'])
+def get_search_canteen():
+    batch_size = 10  # 每次刷新的条数
+
+    get_new_lines = request.args.get("get_new_lines")
+    now_lines = int(request.args.get("now_lines"))
+    text = request.args.get("text")
+    # ca：数据库中目标食堂条目
+    canteen_ = Canteen.query.filter(Canteen.name.like("%{}%".format(text)))
 
     canteen_list = []
     for canteen in canteen_:
@@ -93,9 +151,9 @@ def get_select_canteens():
         # print(canteen.img)
         try:
             canteen_info['img'] = canteen.img.split(',')
-            print(canteen_info['img'])
+            # print(canteen_info['img'])
         except:
-            print(canteen_info['name'])
+            # print(canteen_info['name'])
             canteen_img = []
             canteen_img.append(canteen.img)
             canteen_info['img'] = canteen_img
@@ -107,28 +165,6 @@ def get_select_canteens():
     canteen_json = jsonify(canteen_list)
     return canteen_json, 200
 
-@canteen.route('/canteen/search', methods=['GET', 'POST'])
-def get_search_canteen():
-    text = request.args.get("text")
-    # ca：数据库中目标食堂条目
-    canteen_ = Canteen.query.filter(Canteen.name.like("%{}%".format(text)))
-
-    canteen_list = []
-    for canteen in canteen_:
-        #print(canteen.to_json())
-        canteen_info = canteen.to_json()
-        #print(canteen.img)
-        try:
-            canteen_info['img'] = canteen.img.split(',')
-            #print(canteen_info['img'])
-        except:
-            #print(canteen_info['name'])
-            canteen_img = []
-            canteen_img.append(canteen.img)
-            canteen_info['img'] = canteen_img
-        canteen_list.append(canteen_info)
-    canteen_json = jsonify(canteen_list)
-    return canteen_json, 200
 
 @canteen.route('/canteen/get', methods=['GET', 'POST'])
 def get_canteen_info():
@@ -170,21 +206,24 @@ def get_canteen_info():
                 img_list = img_list[0]
             except:
                 img_list = item.img_list
-                #img_list = []
-                #img_list.append(item.img_list)
+                # img_list = []
+                # img_list.append(item.img_list)
                 pass
-        print(f'hidden: {hidden}, img_list: {img_list}')
+        # print(f'hidden: {hidden}, img_list: {img_list}')
         ap_list.append(
-            {"user_id": item.user_id,
-             "anonymous": item.anonymous,
-             "hidden": hidden,
-             "img_list": img_list,
-             "star": item.star,
-             "comment": item.comment,
-             "dish": item.dish,
-             "cost": item.cost,
-             "user_name": user.nickname,
-             "user_avatar": user.avatarUrl
+            {
+            "id": item.id,
+            "user_id": item.user_id,
+            "anonymous": item.anonymous,
+            "hidden": hidden,
+            "img_list": img_list,
+            #"star": item.star,
+            "comment": item.comment,
+            "like": item.like,
+            #"dish": item.dish,
+            #"cost": item.cost,
+            "user_name": user.nickname,
+            "user_avatar": user.avatarUrl
              })
     ca_info["ap_list"] = ap_list
     dish_list = Dish.query.filter(Dish.canteen_id == ca.id)
@@ -193,12 +232,12 @@ def get_canteen_info():
         dish_item = {}
         dish_item['name'] = item.name
         dish_item['image'] = item.img
-        #print(item.name)
+        # print(item.name)
         dish_item['price'] = item.price
         dish_item['comment'] = item.comment
         canteen_id = item.canteen_id
         dish_item['canteen'] = Canteen.query.filter(Canteen.id == canteen_id).first().name
-        #print(f"canteen: {dish_item['canteen']}")
+        # print(f"canteen: {dish_item['canteen']}")
         dish_list_.append(dish_item)
     ca_info['dish_list'] = dish_list_
     return ca_info, 200

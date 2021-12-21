@@ -159,7 +159,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    console.log(app.globalData)
+    //console.log(app.globalData)
     that.setData({
       canteen: options.canteen
       // canteen: "听涛园"
@@ -172,7 +172,7 @@ Page({
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data.dish_list)
+        console.log(res.data)
         //console.log(res.data.image_list.split(','))
         let url_list = res.data.image_list.split(',')
         let image_list_ = []
@@ -183,12 +183,6 @@ Page({
             type: "image",
             url: url_list[i]
           })
-        }
-        for(var i; i < res.data.ap_list.length; i++)
-        {
-            console.log(res.data.ap_list[i].hidden)
-          if(res.data.ap_list[i].img_list)
-            console.log(res.data.ap_list[i].img_list)
         }
         this.setData({
           canteen_id: res.data.id,
@@ -231,10 +225,17 @@ Page({
     })
   },
   switchToComment: function(e) {
-    console.log(e.currentTarget.dataset.canteen)
+    //console.log(e.currentTarget.dataset.canteen)
     var canteen = e.currentTarget.dataset.canteen
     wx.navigateTo({
       url: "../comments/comments?canteen="+canteen
+    })
+  },
+  switchToAppraiseDetail: function (e) {
+    var appraise_id = e.currentTarget.dataset.id
+    console.log(appraise_id)
+    wx.navigateTo({
+      url: "../appraise/appraise?appraise_id=" + appraise_id
     })
   },
   switchToDish: function (e) {

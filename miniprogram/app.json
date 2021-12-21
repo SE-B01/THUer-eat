@@ -1,25 +1,19 @@
 {
   "pages": [
     "pages/loading/loading",
-    "pages/canvas/canvas",
-
     "pages/home/home",
-    "pages/test/test",
     "pages/dish/dish",
     "pages/comments/comments",
     "pages/canteen/canteen",
     "pages/newmine/newmine",
     "pages/map/map",
     "pages/feedbackmag/feedbackmag",
-    "pages/index/index",
-    "pages/management/management",
     "pages/search/search",
-    "pages/reply/reply",
-    "pages/addword/addword",
-    "pages/mine/mine",
-    "pages/infos/infos",
     "pages/newinfos/newinfos",
-    "pages/plaza/plaza"
+    "pages/plaza/plaza",
+    "pages/appraise/appraise",
+    "pages/question/question",
+    "pages/canvas/canvas"
   ],
   "plugins": {
     "chooseLocation": {

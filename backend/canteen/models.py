@@ -16,7 +16,7 @@ class Canteen(db.Model):
     business_hours = db.Column(db.String(50))
     img = db.Column(db.String(1000))
     cost = db.Column(db.Integer)
-    style = db.Column(db.Integer)
+    style = db.Column(db.String(50))
 
     def __repr__(self):
         return '<Canteen %r>' % self.name
