@@ -475,6 +475,20 @@ switchToComment: function(e) {
         // console.log(that.data.informations)
       }
     })
+    wx.request({
+      url: 'http://'+app.globalData.IpAddress + '/appraise/get_by_user',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          apprise_list: res.data.appraise
+        })
+        // console.log('用户消息')
+        console.log(res.data)
+      }
+    })
   },
 
   /**
