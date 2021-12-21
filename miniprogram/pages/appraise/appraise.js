@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    appraise_idx:0,
     appraise_id:"",
     time:"",
     user_avatar: "",
@@ -36,6 +37,27 @@ Page({
       like: that.data.like,
     })
   },
+
+  pushLikeChange: function () {
+    wx.showLoading({
+      title: '请稍候',
+      mask: true
+    })
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise/changeLiked',
+      data: {
+        user_id: app.globalData.openid,
+        like_changed: this.data.appraise_id
+      },
+      success: function(res){
+        wx.hideLoading()
+        console.log("push like change success")
+      }
+    })
+  },
+
+
+
 
   getAppraiseDetail: function (appraise_id) {
     wx.showLoading({
@@ -82,11 +104,10 @@ Page({
     var that = this;
     //console.log(app.globalData)
     that.setData({
+      appraise_idx: options.appraise_idx,
       appraise_id: options.appraise_id
       // canteen: "听涛园"
     })
-    that.getAppraiseDetail(options.appraise_id)
-
   },
 
   /**
@@ -100,6 +121,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getAppraiseDetail(this.data.appraise_id)
 
   },
 
@@ -107,13 +129,20 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    if (this.data.like_changed){
+      this.pushLikeChange()
+      this.data.like_changed=false
+    }
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    if (this.data.like_changed){
+      this.pushLikeChange()
+      this.data.like_changed=false
+    }
 
   },
 

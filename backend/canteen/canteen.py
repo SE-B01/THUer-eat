@@ -209,18 +209,21 @@ def get_canteen_info():
                 # img_list = []
                 # img_list.append(item.img_list)
                 pass
-        print(f'hidden: {hidden}, img_list: {img_list}')
+        # print(f'hidden: {hidden}, img_list: {img_list}')
         ap_list.append(
-            {"user_id": item.user_id,
-             "anonymous": item.anonymous,
-             "hidden": hidden,
-             "img_list": img_list,
-             "star": item.star,
-             "comment": item.comment,
-             "dish": item.dish,
-             "cost": item.cost,
-             "user_name": user.nickname,
-             "user_avatar": user.avatarUrl
+            {
+            "id": item.id,
+            "user_id": item.user_id,
+            "anonymous": item.anonymous,
+            "hidden": hidden,
+            "img_list": img_list,
+            #"star": item.star,
+            "comment": item.comment,
+            "like": item.like,
+            #"dish": item.dish,
+            #"cost": item.cost,
+            "user_name": user.nickname,
+            "user_avatar": user.avatarUrl
              })
     ca_info["ap_list"] = ap_list
     dish_list = Dish.query.filter(Dish.canteen_id == ca.id)

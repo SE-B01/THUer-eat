@@ -83,24 +83,27 @@ Page({
   },
   
   pushLikeChange: function () {
+    wx.showLoading({
+      title: '请稍候',
+      mask: true
+    })
     var that = this
-    if (that.data.like_changed.length != 0){
-      var like_id = []
-      for (var i = 0; i < that.data.like_changed.length; i++) {
-        like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
-      }
-      console.log(like_id)
-      wx.request({
-        url: 'http://127.0.0.1:5000/appraise/changeLiked',
-        data: {
-          user_id: app.globalData.openid,
-          like_changed: like_id.join(';')
-        },
-        success: function(res){
-          console.log(res)
-        }
-      })
+    var like_id = []
+    for (var i = 0; i < that.data.like_changed.length; i++) {
+      like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
     }
+      //console.log(like_id)
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise/changeLiked',
+      data: {
+        user_id: app.globalData.openid,
+        like_changed: like_id.join(';')
+      },
+      success: function(res){
+        wx.hideLoading()
+        console.log("push like change success")
+      }
+    })
   },
 
   switchToAppraiseDetail: function (e) {
@@ -137,6 +140,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getAppraise()
 
   },
 
@@ -144,7 +148,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.pushLikeChange()
+    if (this.data.like_changed.length != 0){
+      this.pushLikeChange()
+      this.data.like_changed=[]
+    }
 
   },
 
@@ -152,8 +159,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.pushLikeChange()
-    this.data.like_changed=[]
+    if (this.data.like_changed.length != 0){
+      this.pushLikeChange()
+      this.data.like_changed=[]
+    }
 
   },
 
