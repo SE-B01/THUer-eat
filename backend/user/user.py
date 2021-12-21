@@ -138,9 +138,11 @@ def getAccessToken():
     res = urllib.request.urlopen(req)
     res = eval(bytes.decode(res.read()))
     access_token = res['access_token']
+    print("user")
+    print(User.query)
     print('AccessToken.first()')
-    print(AccessToken.query().filter_by(id==1).first())
-    for each in AccessToken.query(AccessToken.id==1).first():
+    print(AccessToken.query)
+    for each in AccessToken.query:
         print(each)
 
     print('got accessToken')

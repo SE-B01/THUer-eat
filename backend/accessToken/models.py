@@ -8,7 +8,7 @@ import uuid
 class AccessToken(db.Model):
     __tablename__ = 'accessToken'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(32),primary_key=True)
     update_time = db.Column(db.DateTime)
     token = db.Column(db.String(255))
     

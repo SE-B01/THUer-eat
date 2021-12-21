@@ -212,12 +212,13 @@ def remind_dish():
     # print(remindtime)
     # print('earlytime')
     # print(earlytime)
+    print((remindtime-datetime.datetime.now()).seconds)
+    return jsonify((remindtime-datetime.datetime.now()).seconds),'200'
+    # print(dish_id)
+    # tar_dish = Dish.query.filter(Dish.id == dish_id).first()
+    # print('dishhhhhh')
 
-    print(dish_id)
-    tar_dish = Dish.query.filter(Dish.id == dish_id).first()
-    print('dishhhhhh')
-
-    print(tar_dish.name)
+    # print(tar_dish.name)
     
     # tar_dish.name = data.get("name")
     # tar_dish.price = data.get("price")
