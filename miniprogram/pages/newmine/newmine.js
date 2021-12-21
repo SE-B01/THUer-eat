@@ -230,15 +230,107 @@ remind(e){
   console.log(e)
   console.log(e.target.dish_cost)
   console.log(that.data.collection)
+<<<<<<< HEAD
   wx.request({
     url: 'http://'+app.globalData.IpAddress + '/remind_dish',
     data: {
       user_id: app.globalData.userInfo.id,
       dish_id: e.target.id
+=======
+  wx.requestSubscribeMessage({
+    tmplIds:["Yv59njM4WU9VKlileHqg0ceX12mJPnBoKTdLLoQ6fAM"],
+    success(res){
+      console.log('successfully use the template')
+      wx.request({
+        url: 'http://127.0.0.1:5000/remind_dish',
+        data: {
+          user_id: app.globalData.userInfo.id,
+          dish_id: e.target.id,
+          business_hours: e.target.dataset.business_hours
+        },
+        success: (res) => {
+          console.log(res.data)
+          wx.cloud.callFunction({
+            // name: 'sendSubscribeMessage',
+            name:'jf',
+            data:{
+               timedelay: res.data,
+               openid:app.globalData.userInfo.id,
+               dish: e.target.dataset.dish_name,
+               canteen: e.target.dataset.dish_canteen
+             },
+             success:res=>{
+               if (res.result.errCode == 0) {
+                 wx.showModal({
+                   title: '提示',
+                   content: '反馈成功！',
+                   confirmText: "我知道了",
+                   showCancel: false,
+                   success(res) {
+                     if (res.confirm) {
+                       console.log('用户点击确定')
+                       wx.navigateBack({
+                         delta: 1
+                       })
+                     } else if (res.cancel) {
+                       console.log('用户点击取消')
+                     }
+                   }
+                 })
+               }
+             },
+             fail:err=>{
+               wx.showModal({
+                 title: '提示',
+                 content: '该消息已回复，不能再回复',
+                 confirmText: "我知道了",
+                 showCancel: false,
+                 success(res) {
+                   if (res.confirm) {
+                     console.log('用户点击确定')
+                     wx.switchTab({
+                       url:"../management/management"
+                     })
+                   } else if (res.cancel) {
+                     console.log('用户点击取消')
+                   }
+                 }
+               })
+             }
+ 
+ 
+           })
+        }
+      })
+>>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
     },
-    success: (res) => {
-      console.log(res.data)
+    fail(res){
+      console.log('fail to use the template')
+      console.log(res)
     }
+  })
+  // wx.request({
+  //   url: 'http://127.0.0.1:5000/remind_dish',
+  //   data: {
+  //     user_id: app.globalData.userInfo.id,
+  //     dish_id: e.target.id,
+  //     business_hours: e.target.dataset.business_hours
+  //   },
+  //   success: (res) => {
+  //     console.log(res.data)
+  //   }
+  // })
+  // wx.request({
+  //   url: 'http://127.0.0.1:5000/getAccessToken',
+  //   success: (res) => {
+  //     console.log(res.data)
+  //   }
+  // })
+},
+sendinfo(e){
+  var that = this
+  subscribeMessage.send({
+
   })
 },
 to_feedbackmag(e){
@@ -328,8 +420,8 @@ delete_information(e) {
         that.setData({
           collection: res.data
         })
-        // console.log('收藏')
-        // console.log(res.data)
+        console.log('收藏')
+        console.log(res.data)
       }
     })
     wx.request({

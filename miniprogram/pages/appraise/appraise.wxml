@@ -1,0 +1,26 @@
+<view class="cu-card dynamic {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{user_avatar}});"></view>
+        <view class="content flex-sub">
+          <view>{{user_name}}</view>
+          <view class="text-gray text-sm flex justify-between">
+            {{time}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="text-content">{{comment}}</view>
+    <view class="img_box">
+		  <view class="img_item" wx:if="{{img_list[0]}}" wx:for="{{img_list}}" wx:for-item="item">
+			  <image bindtap="preview" data-src="{{item}}" class="img_item_i" src="{{item}}" mode="aspectFill"></image>
+		  </view>
+    </view>
+    <text class="cuIcon-shopfill" style="padding-left: 10rpx;" bindtap="switchToCanteen" data-canteen="{{canteen_name}}">{{canteen_name}}</text>
+    <view class="appraise_like">
+      <image src='{{isClick?"../../images/icons/like_fill.png":"/../../images/icons/like.png"}}' id="{{id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
+      <text style="padding-top: 20rpx;height: 40rpx;text-align: center;">{{like}}</text>
+    </view>
+  </view>
+</view>

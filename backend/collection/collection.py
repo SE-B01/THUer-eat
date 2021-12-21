@@ -47,6 +47,7 @@ def get_collection():
                 print(canteen_detail_item.to_json())
                 return_list_item={
                 'id':collection_list_item.id,
+                'dish_id':dish_detail_item.id,
                 'dish_name':dish_detail_item.name,
                 'dish_cost':dish_detail_item.price,
                 'dish_image':dish_detail_item.img,

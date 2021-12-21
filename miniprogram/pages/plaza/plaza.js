@@ -16,16 +16,20 @@ Page({
   likeClick: function(e) {
     var that = this
     var idx = e.target.dataset.idx
+    var in_like_changed = false
     if (that.data.appraises[idx].isClick) {
       that.data.appraises[idx].like--
-      for (var i = 0; i < that.data.like_changed.length; i++) {
-        if (that.data.like_changed[i] == idx){
-          that.data.like_changed.splice(i,1)
-          break
-        }
-      }
     } else {
       that.data.appraises[idx].like++
+    }
+    for (var i = 0; i < that.data.like_changed.length; i++) {
+      if (that.data.like_changed[i] == idx){
+        that.data.like_changed.splice(i,1)
+        in_like_changed = true
+        break
+      }
+    }
+    if (in_like_changed == false){
       that.data.like_changed.splice(0,0,idx)
     }
     //点赞取反
@@ -34,7 +38,7 @@ Page({
     that.setData({
       appraises: that.data.appraises
     })
-    console.log(that.data.like_changed)
+    //console.log(that.data.like_changed)
   },
 
   getAppraise: function (get_new_lines) {
@@ -53,6 +57,7 @@ Page({
         now_lines: that.data.appraises.length
       },
       success: function(res){
+        //console.log(res.data)
         wx.hideLoading()
         if (get_new_lines){
           if (res.data.length == 0){
@@ -78,7 +83,12 @@ Page({
   },
   
   pushLikeChange: function () {
+    wx.showLoading({
+      title: '请稍候',
+      mask: true
+    })
     var that = this
+<<<<<<< HEAD
     if (that.data.like_changed.length != 0){
       var like_id = []
       for (var i = 0; i < that.data.like_changed.length; i++) {
@@ -95,7 +105,39 @@ Page({
           console.log(res)
         }
       })
+=======
+    var like_id = []
+    for (var i = 0; i < that.data.like_changed.length; i++) {
+      like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
+>>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
     }
+      //console.log(like_id)
+    wx.request({
+      url: 'http://127.0.0.1:5000/appraise/changeLiked',
+      data: {
+        user_id: app.globalData.openid,
+        like_changed: like_id.join(';')
+      },
+      success: function(res){
+        wx.hideLoading()
+        console.log("push like change success")
+      }
+    })
+  },
+
+  switchToAppraiseDetail: function (e) {
+    var appraise_id = e.currentTarget.id
+    console.log(appraise_id)
+    wx.navigateTo({
+      url: "../appraise/appraise?appraise_id=" + appraise_id
+    })
+  },
+
+  switchToCanteen: function (e) {
+    var canteen = e.currentTarget.dataset.canteen
+    wx.navigateTo({
+      url: "../canteen/canteen?canteen=" + canteen
+    })
   },
 
   /**
@@ -117,6 +159,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getAppraise()
 
   },
 
@@ -124,7 +167,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.pushLikeChange()
+    if (this.data.like_changed.length != 0){
+      this.pushLikeChange()
+      this.data.like_changed=[]
+    }
 
   },
 
@@ -132,7 +178,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.pushLikeChange()
+    if (this.data.like_changed.length != 0){
+      this.pushLikeChange()
+      this.data.like_changed=[]
+    }
 
   },
 
