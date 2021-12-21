@@ -5,7 +5,7 @@ Page({
   data: {
     is_admin: app.globalData.userInfo.is_admin,
     TabCur: 2,
-    tabNav: ['最近浏览', '收藏', '消息'],
+    tabNav: ['最近浏览', '收藏', '消息','我的评论'],
     dishes: [],
     collection: [],
     nickname: '',
@@ -19,7 +19,8 @@ Page({
     imgBase64: '',
     informations:[],
     information:[{responder_image:'',responder:'听涛园'}],
-    current_id:''
+    current_id:'',
+    apprise_list:[]
   },
 
   tabSelect(e) {
@@ -373,6 +374,46 @@ delete_information(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+
+delete_appraise(e) {
+  var that = this
+    console.log(e)
+    console.log(e.target.id)
+    wx.showModal({
+    title: '提示',
+    content: '确定删除吗',
+    confirmText: "确定",
+    showCancel: true,
+    success(res) {
+      if (res.confirm) {
+        console.log('用户点击确定')
+        wx.request({
+          url: 'http://'+app.globalData.IpAddress + '/appraise/delete',
+          data: {
+            id: e.target.id
+          },
+          method: 'GET',
+          success: (res) => {
+            console.log(res.data)
+          }
+        })
+        wx.reLaunch({
+          url: 'newmine',
+        })
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
+  //console.log('textareaAValue: ' + this.data.textareaAValue)
+},
+switchToComment: function(e) {
+  //console.log(e.currentTarget.dataset.canteen)
+  var id = e.currentTarget.dataset.id
+  wx.navigateTo({
+    url: "../comments/comments?id="+id
+  })
+},
   /**
    * 页面的初始数据
    */
@@ -434,7 +475,6 @@ delete_information(e) {
         // console.log(that.data.informations)
       }
     })
-   
   },
 
   /**

@@ -65,7 +65,7 @@ A
 <view class="padding bg-white solid-bottom" style="position: relative; left: 0rpx; top: 45rpx">
 	<view class="cu-form-group">
 		<view class="title">人均消费</view>
-		<input type="digit" bindinput="costInput"></input>
+		<input type="digit" bindinput="costInput" value="{{appraise.cost}}"></input>
 		<text>￥</text>
 	</view>
 	<!-- <view>{{appraise.cost}}</view> -->
