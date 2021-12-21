@@ -105,7 +105,9 @@ Page({
     wx.request({
       url: 'http://'+app.globalData.IpAddress + '/canteen/search',
       data: {
-        text: e.detail.value
+        text: e.detail.value,
+        get_new_lines: false,
+        now_lines: 0
       },
       method: 'GET',
       success: (res) => {
