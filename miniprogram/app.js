@@ -21,7 +21,8 @@ App({
       logged: false,
       is_admin: false,
       userInfo: {},
-      user: {}
+      user: {},
+      IpAddress:'119.29.108.250:5000'
     }
   }
 })

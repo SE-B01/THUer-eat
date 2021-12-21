@@ -50,7 +50,7 @@ Page({
     var id = app.globalData.openid
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/appraise/get_all',
+      url: 'http://'+app.globalData.IpAddress + '/appraise/get_all',
       data: {
         user_id: id,
         get_new_lines: get_new_lines,
@@ -88,9 +88,28 @@ Page({
       mask: true
     })
     var that = this
+<<<<<<< HEAD
+    if (that.data.like_changed.length != 0){
+      var like_id = []
+      for (var i = 0; i < that.data.like_changed.length; i++) {
+        like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
+      }
+      console.log(like_id)
+      wx.request({
+        url: 'http://'+app.globalData.IpAddress + '/appraise/changeLiked',
+        data: {
+          user_id: app.globalData.openid,
+          like_changed: like_id.join(';')
+        },
+        success: function(res){
+          console.log(res)
+        }
+      })
+=======
     var like_id = []
     for (var i = 0; i < that.data.like_changed.length; i++) {
       like_id.splice(0,0,that.data.appraises[that.data.like_changed[i]]["id"])
+>>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
     }
       //console.log(like_id)
     wx.request({

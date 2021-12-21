@@ -18,7 +18,7 @@ Page({
     // 发表评论 
     publish(e) {
         wx.request({
-            url: 'http://127.0.0.1:5000/appraise/publish',
+            url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
             data: {
                 canteen_id: this.data.canteen.id,
                 star: this.data.appraise.star,
@@ -51,7 +51,7 @@ Page({
         this.url2base64().then(response => {
             console.log(this.data.base64imgList)
             wx.request({
-                url: 'http://127.0.0.1:5000/appraise/publish',
+                url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
                 data: {
                     canteen_id: this.data.canteen.id,
                     star: this.data.appraise.star,
@@ -227,7 +227,7 @@ Page({
             ['appraise.user_id']: app.globalData.userInfo.id
         })
         wx.request({
-            url: 'http://127.0.0.1:5000/appraise/get',
+            url: 'http://'+app.globalData.IpAddress + '/appraise/get',
             data: {
                 canteen_name: this.data.canteen.name
             },
