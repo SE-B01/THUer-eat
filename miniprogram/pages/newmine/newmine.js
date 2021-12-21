@@ -230,19 +230,12 @@ remind(e){
   console.log(e)
   console.log(e.target.dish_cost)
   console.log(that.data.collection)
-<<<<<<< HEAD
-  wx.request({
-    url: 'http://'+app.globalData.IpAddress + '/remind_dish',
-    data: {
-      user_id: app.globalData.userInfo.id,
-      dish_id: e.target.id
-=======
   wx.requestSubscribeMessage({
     tmplIds:["Yv59njM4WU9VKlileHqg0ceX12mJPnBoKTdLLoQ6fAM"],
     success(res){
       console.log('successfully use the template')
       wx.request({
-        url: 'http://127.0.0.1:5000/remind_dish',
+        url: 'http://' + globalData.IpAddress +  '/remind_dish',
         data: {
           user_id: app.globalData.userInfo.id,
           dish_id: e.target.id,
@@ -302,7 +295,6 @@ remind(e){
            })
         }
       })
->>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
     },
     fail(res){
       console.log('fail to use the template')
