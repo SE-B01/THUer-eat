@@ -96,7 +96,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/changeUserinfo',
+      url: 'http://'+app.globalData.IpAddress + '/changeUserinfo',
       data: {
         id: app.globalData.userInfo.id,
         nickname: this.data.new_nickname,
@@ -130,7 +130,7 @@ Page({
     modalName: null
   }),
   wx.request({
-    url: 'http://127.0.0.1:5000/new_feedback',
+    url: 'http://'+app.globalData.IpAddress + '/new_feedback',
     data: {
       content: this.data.textareaAValue
     },
@@ -160,7 +160,7 @@ Page({
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://127.0.0.1:5000/collection_delete',
+          url: 'http://'+app.globalData.IpAddress + '/collection_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             collection_id: e.target.id
@@ -204,7 +204,7 @@ delete_recent_view(e) {
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://127.0.0.1:5000/recent_view_delete',
+          url: 'http://'+app.globalData.IpAddress + '/recent_view_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             recent_view_id: e.target.id
@@ -230,6 +230,13 @@ remind(e){
   console.log(e)
   console.log(e.target.dish_cost)
   console.log(that.data.collection)
+<<<<<<< HEAD
+  wx.request({
+    url: 'http://'+app.globalData.IpAddress + '/remind_dish',
+    data: {
+      user_id: app.globalData.userInfo.id,
+      dish_id: e.target.id
+=======
   wx.requestSubscribeMessage({
     tmplIds:["Yv59njM4WU9VKlileHqg0ceX12mJPnBoKTdLLoQ6fAM"],
     success(res){
@@ -295,6 +302,7 @@ remind(e){
            })
         }
       })
+>>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
     },
     fail(res){
       console.log('fail to use the template')
@@ -343,7 +351,7 @@ delete_information(e) {
       if (res.confirm) {
         console.log('用户点击确定 delete_information')
         wx.request({
-          url: 'http://127.0.0.1:5000/information_delete',
+          url: 'http://'+app.globalData.IpAddress + '/information_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             information_id: e.target.id
@@ -389,7 +397,7 @@ delete_information(e) {
     console.log('nickName')
     console.log(that.data.nickname)
     wx.request({
-      url: 'http://127.0.0.1:5000/get_recent_view',
+      url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -403,7 +411,7 @@ delete_information(e) {
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/get_collection',
+      url: 'http://'+app.globalData.IpAddress + '/get_collection',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -417,7 +425,7 @@ delete_information(e) {
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/get_information',
+      url: 'http://'+app.globalData.IpAddress + '/get_information',
       data: {
         user_id: app.globalData.userInfo.id
       },
