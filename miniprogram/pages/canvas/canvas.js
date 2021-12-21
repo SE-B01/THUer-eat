@@ -13,11 +13,13 @@ Page({
   },
   getLottery: function () {
     var that = this
-    var awardIndex = Math.random() * 6 >>> 0;
+
 
     // 获取奖品配置
     var awardsConfig = app.awardsConfig,
-        runNum = 8
+        runNum = 5
+    var awardsNumber = awardsConfig.awards.length
+    var awardIndex = Math.floor(Math.random() * awardsNumber);
     if (awardIndex < 2) awardsConfig.chance = false
     //console.log(awardIndex)
 
@@ -35,7 +37,7 @@ Page({
     // 旋转抽奖
     app.runDegs = app.runDegs || 0
     console.log('deg', app.runDegs)
-    app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
+    app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / awardsNumber))
     //console.log('deg', app.runDegs)
 
     var animationRun = wx.createAnimation({
@@ -64,8 +66,8 @@ Page({
     setTimeout(function() {
       //console.log(app.globalData.userInfo
       wx.showModal({
-        title: '！！',
-        content: 'Nickname今天吃 ' + (awardsConfig.awards[awardIndex].name),
+        title: '决定了！',
+        content: '今天吃' + (awardsConfig.awards[awardIndex].name),
         showCancel: false
       })
       if (awardsConfig.chance) {
@@ -108,7 +110,11 @@ Page({
         {'index': 2, 'name': '桃李园'},
         {'index': 3, 'name': '听涛园'},
         {'index': 4, 'name': '清芬园'},
-        {'index': 5, 'name': '荷园'}
+        {'index': 5, 'name': '荷园'},
+        {'index': 6, 'name': '芝兰园'},
+        {'index': 7, 'name': '玉树园'},
+        {'index': 8, 'name': '澜园'},
+        {'index': 9, 'name': '寓园'},
       ]
     }
     
