@@ -94,7 +94,7 @@ Page({
     }
       //console.log(like_id)
     wx.request({
-      url: 'http://127.0.0.1:5000/appraise/changeLiked',
+      url: 'http://'+app.globalData.IpAddress + '/appraise/changeLiked',
       data: {
         user_id: app.globalData.openid,
         like_changed: like_id.join(';')

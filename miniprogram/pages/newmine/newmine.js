@@ -236,7 +236,7 @@ remind(e){
     success(res){
       console.log('successfully use the template')
       wx.request({
-        url: 'http://'+app.globalData.IpAddress+'/remind_dish',
+        url: 'http://' + globalData.IpAddress +  '/remind_dish',
         data: {
           user_id: app.globalData.userInfo.id,
           dish_id: e.target.id,
