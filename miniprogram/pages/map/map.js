@@ -1,4 +1,5 @@
 // pages/map/map.js
+const app = getApp();
 "use strict";
 const chooseLocation = requirePlugin('chooseLocation');
 Page({

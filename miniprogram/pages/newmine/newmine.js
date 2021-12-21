@@ -382,9 +382,6 @@ delete_information(e) {
    */
   onLoad: function (options) {
     var that = this
-    console.log('global data')
-    console.log(app.globalData)
-    console.log(that.data)
     that.setData({
       nickname: app.globalData.userInfo.nickname,
       new_nickname: app.globalData.userInfo.nickname,
@@ -394,10 +391,6 @@ delete_information(e) {
       new_is_in_school: app.globalData.userInfo.is_in_school,
       is_admin:app.globalData.userInfo.is_admin
     })
-    console.log('userInfoooooo')
-    console.log(app.globalData.userInfo)
-    console.log('nickName')
-    console.log(that.data.nickname)
     wx.request({
       url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
       data: {
@@ -440,6 +433,7 @@ delete_information(e) {
         // console.log(that.data.informations)
       }
     })
+   
   },
 
   /**
@@ -453,6 +447,16 @@ delete_information(e) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    that.setData({
+      nickname: app.globalData.userInfo.nickname,
+      new_nickname: app.globalData.userInfo.nickname,
+      avatarUrl: app.globalData.userInfo.avatarUrl,
+      new_avatarUrl: app.globalData.userInfo.avatarUrl,
+      new_gender: app.globalData.userInfo.gender,
+      new_is_in_school: app.globalData.userInfo.is_in_school,
+      is_admin:app.globalData.userInfo.is_admin
+    })
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -460,7 +464,48 @@ delete_information(e) {
       })
       this.getTabBar().changeFormat()
     }
-
+    wx.request({
+      url: 'http://'+app.globalData.IpAddress + '/get_collection',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          collection: res.data
+        })
+        console.log('收藏')
+        console.log(res.data)
+      }
+    })
+    wx.request({
+      url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        // console.log('最近浏览')
+        // console.log(res.data)
+        that.setData({
+          dishes: res.data
+        })
+      }
+    })
+    wx.request({
+      url: 'http://'+app.globalData.IpAddress + '/get_information',
+      data: {
+        user_id: app.globalData.userInfo.id
+      },
+      method: 'GET',
+      success: (res) => {
+        that.setData({
+          informations: res.data
+        })
+        // console.log('用户消息')
+        // console.log(that.data.informations)
+      }
+    })
   },
 
   /**
