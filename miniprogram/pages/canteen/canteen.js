@@ -82,7 +82,7 @@ Page({
     console.log(e.detail.value)
     console.log(this.data.canteen_id)
     wx.request({
-      url: 'http://127.0.0.1:5000/dish/add',
+      url: 'http://'+app.globalData.IpAddress + '/dish/add',
       data: {
         name: e.detail.value.name,
         price: e.detail.value.price,
@@ -109,13 +109,11 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        console.log(res.tempFilePaths);
         let len = res.tempFilePaths.length
         var i;
         let base64 = []
         for (i = 0; i < len; i++) {
           base64.push(fileManager.readFileSync(res.tempFilePaths[i], 'base64'));
-          console.log(base64[i]);
         }
 
         if (this.data.imgList.length != 0) {
@@ -165,15 +163,13 @@ Page({
       // canteen: "听涛园"
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/canteen/get',
+      url: 'http://'+app.globalData.IpAddress + '/canteen/get',
       data: {
         name: this.data.canteen
         // name: "桃李园-一层"
       },
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
-        //console.log(res.data.image_list.split(','))
         let url_list = res.data.image_list.split(',')
         let image_list_ = []
         for(var i = 0; i < url_list.length; i++)
@@ -202,9 +198,8 @@ Page({
     })
   },
   editCanteen(e){
-    console.log(e.detail.value)
     wx.request({
-      url: 'http://127.0.0.1:5000/canteen/edit',
+      url: 'http://'+app.globalData.IpAddress + '/canteen/edit',
       data: {
         canteen_id: this.data.canteen_id,
         name: e.detail.value.name,
@@ -233,7 +228,6 @@ Page({
   },
   switchToAppraiseDetail: function (e) {
     var appraise_id = e.currentTarget.dataset.id
-    console.log(appraise_id)
     wx.navigateTo({
       url: "../appraise/appraise?appraise_id=" + appraise_id
     })
@@ -241,8 +235,6 @@ Page({
   switchToDish: function (e) {
     var dish = e.currentTarget.dataset.dish
     var canteen = e.currentTarget.dataset.canteen
-    console.log(dish)
-    console.log(canteen)
     wx.navigateTo({
       url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
     })

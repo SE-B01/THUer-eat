@@ -1,4 +1,4 @@
-<view class="wrapper bg-blue padding radius text-center light">
+<view class="wrapper bg-mauve padding radius text-center light" style="width: 750rpx; height: 1500rpx; display: block; box-sizing: border-box">
 <view class="header">
   <text class="header-title"> 餐厅大转盘 </text>
   <text class="header-subtitle">  随机决定今天吃什么 </text> 
@@ -25,7 +25,7 @@
     <view bindtap="getLottery" class="canvas-btn {{btnDisabled}}">抽签</view>		
   </view>
 
-  <view class="main-container">
+  <!-- <view class="main-container">
     <view class="main-container-rule">
       <text class="main-rule-title">抽签记录</text>
       <text class="main-rule-item">1. {{0}}</text>
@@ -34,7 +34,7 @@
       <text class="main-rule-item">4. {{3}}</text>	
       <text class="main-rule-item">5. {{4}}</text>	
     </view>	
-  </view>
+  </view> -->
 
 </view>
 

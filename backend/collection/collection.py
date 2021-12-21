@@ -44,16 +44,36 @@ def get_collection():
             # print(dish_detail_item.to_json())
             canteen_detail = Canteen.query.filter_by(id=dish_detail_item.canteen_id)
             for canteen_detail_item in canteen_detail:
+                
+                business_hours = canteen_detail_item.business_hours
+                dateTime_now = datetime.datetime.now()
+                str_dateTime_now = datetime.datetime.strftime(dateTime_now,'%Y-%m-%d')
+                canteen_on='未营业'
+                for business_hours_item in business_hours.split(';'):
+                    str_begintime=str_dateTime_now+'-'+business_hours_item.split('-')[0]
+                    str_endtime = str_dateTime_now+'-'+business_hours_item.split('-')[1]
+                    # print('str_begintime')
+                    # print(str_begintime)
+                    beginTime = datetime.datetime.strptime(str_begintime,'%Y-%m-%d-%H:%M')
+                    endTime = datetime.datetime.strptime(str_endtime,'%Y-%m-%d-%H:%M')
+                    # print('dateTime_now>itemTime')
+                    # print(dateTime_now>itemTime)
+                    # print('itemTime')
+                    # print(itemTime)
+                    if dateTime_now<=endTime and dateTime_now>=beginTime:
+                        canteen_on='营业中'
+
                 print(canteen_detail_item.to_json())
                 return_list_item={
                 'id':collection_list_item.id,
+                'dish_id':dish_detail_item.id,
                 'dish_name':dish_detail_item.name,
                 'dish_cost':dish_detail_item.price,
                 'dish_image':dish_detail_item.img,
                 'dish_canteen':canteen_detail_item.name,
                 'business_hours':canteen_detail_item.business_hours,
                 'dish_comment':dish_detail_item.comment,
-                'dish_canteen_on':'营业中',
+                'dish_canteen_on':canteen_on,
                 'dish_rank':collection_list_item.rank
                 }
                 # return_list_item = json.dumps(return_list_item, ensure_ascii=False)

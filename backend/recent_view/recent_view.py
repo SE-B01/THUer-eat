@@ -52,6 +52,23 @@ def get_recent_view():
             #print(f'recent_dish_id: {recent_view_list_item.dish_id}')
             #print(f'dish_item: {dish_item.name}')
             canteen_item = Canteen.query.filter_by(id=dish_item.canteen_id).first()
+            business_hours = canteen_item.business_hours
+            dateTime_now = datetime.datetime.now()
+            str_dateTime_now = datetime.datetime.strftime(dateTime_now,'%Y-%m-%d')
+            canteen_on='未营业'
+            for business_hours_item in business_hours.split(';'):
+                str_begintime=str_dateTime_now+'-'+business_hours_item.split('-')[0]
+                str_endtime = str_dateTime_now+'-'+business_hours_item.split('-')[1]
+                # print('str_begintime')
+                # print(str_begintime)
+                beginTime = datetime.datetime.strptime(str_begintime,'%Y-%m-%d-%H:%M')
+                endTime = datetime.datetime.strptime(str_endtime,'%Y-%m-%d-%H:%M')
+                # print('dateTime_now>itemTime')
+                # print(dateTime_now>itemTime)
+                # print('itemTime')
+                # print(itemTime)
+                if dateTime_now<=endTime and dateTime_now>=beginTime:
+                    canteen_on='营业中'
             return_list_item = {
                 'id': recent_view_list_item.id,
                 'dish_name': dish_item.name,
@@ -60,7 +77,7 @@ def get_recent_view():
                 'dish_canteen': canteen_item.name,
                 'business_hours': canteen_item.business_hours,
                 'dish_comment': dish_item.comment,
-                'dish_canteen_on': '营业中'
+                'dish_canteen_on': canteen_on
             }
             return_list.append(return_list_item)
         except:

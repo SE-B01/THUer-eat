@@ -1,10 +1,13 @@
 import base64
 import json
+from os import access
 import urllib
 from datetime import datetime
 
 from flask import Blueprint, request,jsonify
 from .models import User
+from ..accessToken.models import AccessToken
+
 import sys
 from . import models
 from ..db import db
@@ -105,7 +108,7 @@ def changeUserinfo():
         file = open(filepath, "wb")
         file.write(base64.b64decode(data.get("imgBase64")))
         file.close()
-        tar_user.avatarUrl = "http://127.0.0.1:5000/static/images/" + filename
+        tar_user.avatarUrl = "http://119.29.108.250/static/images/" + filename
     else:
         print("无新头像")
     db.session.commit()
@@ -120,3 +123,28 @@ def changeUserLike():
 
 
     pass
+
+
+@user.route('/getAccessToken', methods=['GET', 'POST'])
+def getAccessToken():
+    print('getting accessToken')
+    appid = 'wxf14afe0de0f6f4e7'
+    secret="dedff9f3f672f0b085e33b5293ffb036"
+    url = "https://api.weixin.qq.com/cgi-bin/token"
+    url += "?appid={}".format(appid)
+    url += "&secret={}".format(secret)
+    url += "&grant_type=client_credential"
+    req = urllib.request.Request(url=url)
+    res = urllib.request.urlopen(req)
+    res = eval(bytes.decode(res.read()))
+    access_token = res['access_token']
+    print("user")
+    print(User.query)
+    print('AccessToken.first()')
+    print(AccessToken.query)
+    for each in AccessToken.query:
+        print(each)
+
+    print('got accessToken')
+    print(access_token)
+    return 200

@@ -68,7 +68,7 @@ Page({
     var appraise_id = appraise_id
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/appraise/get_detail',
+      url: 'http://'+app.globalData.IpAddress + '/appraise/get_detail',
       data: {
         user_id: id,
         appraise_id: appraise_id,

@@ -1,4 +1,5 @@
 // pages/newinfos/newinfos.js
+const app = getApp();
 Page({
 
   /**

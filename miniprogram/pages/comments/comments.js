@@ -19,7 +19,7 @@ Page({
     // 保存评论 
     save(e) {
         wx.request({
-            url: 'http://127.0.0.1:5000/appraise/publish',
+            url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
             data: {
                 id: this.data.id,
                 canteen_id: this.data.canteen.id,
@@ -36,7 +36,7 @@ Page({
             success: (res) => {
                 console.log(res.data)
                 wx.showToast({
-                    title: '发表成功',
+                    title: '保存成功',
                     icon: 'success',
                     duration: 1500,
                     success: (res) => {
@@ -51,7 +51,7 @@ Page({
     // 发表评论
     publish(e) {
         wx.request({
-            url: 'http://127.0.0.1:5000/appraise/publish',
+            url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
             data: {
                 id: this.data.id,
                 canteen_id: this.data.canteen.id,
@@ -227,7 +227,7 @@ Page({
                 ['appraise.user_id']: app.globalData.userInfo.id
             })
             wx.request({
-                url: 'http://127.0.0.1:5000/appraise/get',
+                url: 'http://'+app.globalData.IpAddress + '/appraise/get',
                 data: {
                     canteen_name: this.data.canteen.name
                 },
@@ -243,7 +243,7 @@ Page({
         }
         else if(options.id){
             wx.request({
-                url: 'http://127.0.0.1:5000/appraise/get_by_id',
+                url: 'http://'+app.globalData.IpAddress + '/appraise/get_by_id',
                 data: {
                     id: options.id
                 },
@@ -271,7 +271,6 @@ Page({
                 }
             })
         }
-
     },
 
     /**
