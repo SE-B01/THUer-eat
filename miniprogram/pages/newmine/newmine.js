@@ -211,6 +211,7 @@ delete_recent_view(e) {
           },
           method: 'GET',
           success: (res) => {
+            console.log('recent')
             console.log(res.data)
           }
         })
@@ -302,7 +303,7 @@ remind(e){
     }
   })
   // wx.request({
-  //   url: 'http://127.0.0.1:5000/remind_dish',
+  //   url: 'http://'+app.globalData.IpAddress+'/remind_dish',
   //   data: {
   //     user_id: app.globalData.userInfo.id,
   //     dish_id: e.target.id,
@@ -313,11 +314,20 @@ remind(e){
   //   }
   // })
   // wx.request({
-  //   url: 'http://127.0.0.1:5000/getAccessToken',
+  //   url: 'http://'+app.globalData.IpAddress+'/getAccessToken',
   //   success: (res) => {
   //     console.log(res.data)
   //   }
   // })
+},
+switchToDish: function (e) {
+  var dish = e.currentTarget.dataset.dish
+  var canteen = e.currentTarget.dataset.canteen
+  //console.log(dish)
+  //console.log(canteen)
+  wx.navigateTo({
+    url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
+  })
 },
 sendinfo(e){
   var that = this
