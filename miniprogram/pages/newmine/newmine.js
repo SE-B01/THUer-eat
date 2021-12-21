@@ -96,7 +96,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/changeUserinfo',
+      url: 'http://'+app.globalData.IpAddress + '/changeUserinfo',
       data: {
         id: app.globalData.userInfo.id,
         nickname: this.data.new_nickname,
@@ -130,7 +130,7 @@ Page({
     modalName: null
   }),
   wx.request({
-    url: 'http://127.0.0.1:5000/new_feedback',
+    url: 'http://'+app.globalData.IpAddress + '/new_feedback',
     data: {
       content: this.data.textareaAValue
     },
@@ -160,7 +160,7 @@ Page({
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://127.0.0.1:5000/collection_delete',
+          url: 'http://'+app.globalData.IpAddress + '/collection_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             collection_id: e.target.id
@@ -204,13 +204,14 @@ delete_recent_view(e) {
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://127.0.0.1:5000/recent_view_delete',
+          url: 'http://'+app.globalData.IpAddress + '/recent_view_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             recent_view_id: e.target.id
           },
           method: 'GET',
           success: (res) => {
+            console.log('recent')
             console.log(res.data)
           }
         })
@@ -230,15 +231,108 @@ remind(e){
   console.log(e)
   console.log(e.target.dish_cost)
   console.log(that.data.collection)
-  wx.request({
-    url: 'http://127.0.0.1:5000/remind_dish',
-    data: {
-      user_id: app.globalData.userInfo.id,
-      dish_id: e.target.id
+  wx.requestSubscribeMessage({
+    tmplIds:["Yv59njM4WU9VKlileHqg0ceX12mJPnBoKTdLLoQ6fAM"],
+    success(res){
+      console.log('successfully use the template')
+      wx.request({
+        url: 'http://' + globalData.IpAddress +  '/remind_dish',
+        data: {
+          user_id: app.globalData.userInfo.id,
+          dish_id: e.target.id,
+          business_hours: e.target.dataset.business_hours
+        },
+        success: (res) => {
+          console.log(res.data)
+          wx.cloud.callFunction({
+            // name: 'sendSubscribeMessage',
+            name:'jf',
+            data:{
+               timedelay: res.data,
+               openid:app.globalData.userInfo.id,
+               dish: e.target.dataset.dish_name,
+               canteen: e.target.dataset.dish_canteen
+             },
+             success:res=>{
+               if (res.result.errCode == 0) {
+                 wx.showModal({
+                   title: '提示',
+                   content: '反馈成功！',
+                   confirmText: "我知道了",
+                   showCancel: false,
+                   success(res) {
+                     if (res.confirm) {
+                       console.log('用户点击确定')
+                       wx.navigateBack({
+                         delta: 1
+                       })
+                     } else if (res.cancel) {
+                       console.log('用户点击取消')
+                     }
+                   }
+                 })
+               }
+             },
+             fail:err=>{
+               wx.showModal({
+                 title: '提示',
+                 content: '该消息已回复，不能再回复',
+                 confirmText: "我知道了",
+                 showCancel: false,
+                 success(res) {
+                   if (res.confirm) {
+                     console.log('用户点击确定')
+                     wx.switchTab({
+                       url:"../management/management"
+                     })
+                   } else if (res.cancel) {
+                     console.log('用户点击取消')
+                   }
+                 }
+               })
+             }
+ 
+ 
+           })
+        }
+      })
     },
-    success: (res) => {
-      console.log(res.data)
+    fail(res){
+      console.log('fail to use the template')
+      console.log(res)
     }
+  })
+  // wx.request({
+  //   url: 'http://'+app.globalData.IpAddress+'/remind_dish',
+  //   data: {
+  //     user_id: app.globalData.userInfo.id,
+  //     dish_id: e.target.id,
+  //     business_hours: e.target.dataset.business_hours
+  //   },
+  //   success: (res) => {
+  //     console.log(res.data)
+  //   }
+  // })
+  // wx.request({
+  //   url: 'http://'+app.globalData.IpAddress+'/getAccessToken',
+  //   success: (res) => {
+  //     console.log(res.data)
+  //   }
+  // })
+},
+switchToDish: function (e) {
+  var dish = e.currentTarget.dataset.dish
+  var canteen = e.currentTarget.dataset.canteen
+  //console.log(dish)
+  //console.log(canteen)
+  wx.navigateTo({
+    url: "../dish/dish?dish=" + dish + '&canteen=' + canteen
+  })
+},
+sendinfo(e){
+  var that = this
+  subscribeMessage.send({
+
   })
 },
 to_feedbackmag(e){
@@ -259,7 +353,7 @@ delete_information(e) {
       if (res.confirm) {
         console.log('用户点击确定 delete_information')
         wx.request({
-          url: 'http://127.0.0.1:5000/information_delete',
+          url: 'http://'+app.globalData.IpAddress + '/information_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             information_id: e.target.id
@@ -305,7 +399,7 @@ delete_information(e) {
     console.log('nickName')
     console.log(that.data.nickname)
     wx.request({
-      url: 'http://127.0.0.1:5000/get_recent_view',
+      url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -319,7 +413,7 @@ delete_information(e) {
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/get_collection',
+      url: 'http://'+app.globalData.IpAddress + '/get_collection',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -328,12 +422,12 @@ delete_information(e) {
         that.setData({
           collection: res.data
         })
-        // console.log('收藏')
-        // console.log(res.data)
+        console.log('收藏')
+        console.log(res.data)
       }
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/get_information',
+      url: 'http://'+app.globalData.IpAddress + '/get_information',
       data: {
         user_id: app.globalData.userInfo.id
       },

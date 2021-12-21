@@ -82,7 +82,7 @@ Page({
     console.log(e.detail.value)
     console.log(this.data.canteen_id)
     wx.request({
-      url: 'http://127.0.0.1:5000/dish/add',
+      url: 'http://'+app.globalData.IpAddress + '/dish/add',
       data: {
         name: e.detail.value.name,
         price: e.detail.value.price,
@@ -163,7 +163,7 @@ Page({
       // canteen: "听涛园"
     })
     wx.request({
-      url: 'http://127.0.0.1:5000/canteen/get',
+      url: 'http://'+app.globalData.IpAddress + '/canteen/get',
       data: {
         name: this.data.canteen
         // name: "桃李园-一层"
@@ -199,7 +199,7 @@ Page({
   },
   editCanteen(e){
     wx.request({
-      url: 'http://127.0.0.1:5000/canteen/edit',
+      url: 'http://'+app.globalData.IpAddress + '/canteen/edit',
       data: {
         canteen_id: this.data.canteen_id,
         name: e.detail.value.name,

@@ -36,7 +36,7 @@ Page({
       this.data.historyArray.push(searchtext);
       if (that.data.TabCur == 0) {
         wx.request({
-          url: 'http://127.0.0.1:5000/canteen/search',
+          url: 'http://'+app.globalData.IpAddress + '/canteen/search',
           data: {
             get_new_lines: get_new_lines,
             now_lines: that.data.canteens.length,
@@ -82,7 +82,7 @@ Page({
         })
       } else {
         wx.request({
-          url: 'http://127.0.0.1:5000/dish/search',
+          url: 'http://'+app.globalData.IpAddress + '/dish/search',
           data: {
             get_new_lines: get_new_lines,
             now_lines: that.data.dishes.length,
