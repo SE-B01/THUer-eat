@@ -407,6 +407,7 @@ delete_information(e) {
     })
     wx.request({
       url: 'http://'+app.globalData.IpAddress + '/get_collection',
+      // url: 'http://127.0.0.1:5000/get_collection',
       data: {
         user_id: app.globalData.userInfo.id
       },
