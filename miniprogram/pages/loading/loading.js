@@ -181,8 +181,6 @@ Page({
       }
     })
   },
-
-<<<<<<< HEAD
   getSelectCanteens: function () {
     var that = this
     wx.request({
@@ -221,8 +219,7 @@ Page({
       }
     })
   },
-=======
->>>>>>> 0902e189eb440ebf6458a010d67435c8a2393af8
+
   // 管理员相关：增加食堂/菜品的模态框弹出
 
   showModalClear(e) {
