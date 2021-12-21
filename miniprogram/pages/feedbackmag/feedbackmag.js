@@ -60,7 +60,7 @@ Page({
       modalName: null
     }),
     wx.request({
-      url: 'http://127.0.0.1:5000/reply_feedback',
+      url: 'http://'+app.globalData.IpAddress+'/reply_feedback',
       data: {
         content: this.data.textareaAValue,
         feedbackid:that.data.feedbackid,
@@ -81,7 +81,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/get_feedback',
+      url: 'http://'+app.globalData.IpAddress+'/get_feedback',
       data: {
         user_id: app.globalData.userInfo.id
       },
