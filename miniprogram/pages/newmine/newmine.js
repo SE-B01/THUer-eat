@@ -280,6 +280,39 @@ delete_information(e) {
   })
   //console.log('textareaAValue: ' + this.data.textareaAValue)
 },
+
+delete_appraise(e) {
+  var that = this
+    console.log(e)
+    console.log(e.target.id)
+    wx.showModal({
+    title: '提示',
+    content: '确定删除吗',
+    confirmText: "确定",
+    showCancel: true,
+    success(res) {
+      if (res.confirm) {
+        console.log('用户点击确定')
+        wx.request({
+          url: 'http://127.0.0.1:5000/appraise/delete',
+          data: {
+            id: e.target.id
+          },
+          method: 'GET',
+          success: (res) => {
+            console.log(res.data)
+          }
+        })
+        wx.reLaunch({
+          url: 'newmine',
+        })
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
+  //console.log('textareaAValue: ' + this.data.textareaAValue)
+},
 switchToComment: function(e) {
   //console.log(e.currentTarget.dataset.canteen)
   var id = e.currentTarget.dataset.id

@@ -202,7 +202,7 @@
                     <view class="content flex-sub">
                         <view>{{item.user_name}}</view>
                         <view class="text-gray text-sm flex justify-between">
-                            {{item.time}}
+                            {{item.time}} {{item.canteen_name}}
                         </view>
                     </view>
                 </view>
@@ -218,6 +218,9 @@
             <view class="text-gray text-sm text-right padding">
                 <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{item.like}}
             </view>
+        </view>
+        <view class="text-gray text-sm text-right padding" bindtap="delete_appraise" id="{{item.id}}">
+            <text class="cuIcon-deletefill margin-lr-xs"></text>删除
         </view>
     </view>
 </view>
