@@ -45,7 +45,7 @@ def publish_appraise():
     ap.time = datetime.now()
     ap.comment = data.get('comment')
     img_list = data.get('imgList')
-    url_list = "119.29.108.250:5000"
+    url_list = ""
     for index, img in enumerate(img_list):
         print(index)
         print(type(index))
@@ -54,7 +54,7 @@ def publish_appraise():
         file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + 'static/images/' + filename + ','
+        url_list = url_list + 'http://119.29.108.250:5000/static/images/' + filename + ','
     url_list = url_list[:-1]
     ap.img_list = url_list
     ap.user_id = str(data.get('user_id'))
