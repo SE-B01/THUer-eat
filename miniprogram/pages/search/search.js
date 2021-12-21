@@ -1,6 +1,7 @@
 // pages/search/search.js
 //参考https://www.cnblogs.com/gygg/p/12703646.html
-const app = getApp()
+const app = getApp();
+
 Page({
   data: {
     TabCur: 0, //当前选择食堂|菜品
