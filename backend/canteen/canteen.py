@@ -5,8 +5,10 @@ from ..db import db
 from ..appraise.models import Appraise
 from ..dish.models import Dish
 from ..user.models import User
+from ..config import ip_address
 from math import radians, cos, sin, asin, sqrt
 import json
+
 
 canteen = Blueprint('canteen', __name__)
 
@@ -49,7 +51,7 @@ def edit_canteen():
         file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + "http://127.0.0.1:5000/static/images/" + filename + ","
+        url_list = url_list + "http://119.29.108.250/static/images/" + filename + ","
     url_list = url_list[:-1]
     canteen.img = url_list
     db.session().commit()
