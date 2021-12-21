@@ -119,13 +119,13 @@
 </block>
 <block wx:if="{{TabCur==1}}">
     <view wx:for="{{collection}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
-        <view class="dish_wrapper" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
-            <view>
+        <view class="dish_wrapper" >
+            <view bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
                 <!--<image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>-->
                 <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.dish_image}});margin-top:15 rpx"></view>
             </view>
 
-            <view style="width: 172rpx;  display: block; box-sizing: border-box">
+            <view style="width: 172rpx;  display: block; box-sizing: border-box" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
                     <view class="dish_name">{{itemName.dish_name}}</view>
                 </view>
@@ -150,7 +150,7 @@
                 <button class="cu-btn round" style="width: 150rpx; height: 50rpx; display: inline-flex; box-sizing: border-box; left: 10rpx" bindtap="delete_collection" id="{{itemName.id}}">删除</button>
             </view>
         </view>
-        <view class="dish_text">
+        <view class="dish_text" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
 
             <view class="dish_comment">"{{itemName.dish_comment}}"</view>
         </view>
@@ -161,12 +161,12 @@
 
 
     <view wx:for="{{dishes}}" wx:for-item="itemName" wx:for-index="idx" class="dish_info">
-        <view class="dish_wrapper" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
-            <view>
+        <view class="dish_wrapper" >
+            <view bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
                 <!--<image mode="widthFix" src="{{itemName.dish_image}}" class="dish_picture" style="position: relative; left: 0rpx; top: 0rpx; width: 237rpx; height: 207rpx; display: inline-block; box-sizing: border-box"></image>-->
                 <view class="cu-avatar xl radius margin-left margin-top" style="background-image:url({{itemName.dish_image}});margin-top:15 rpx"></view>
             </view>
-            <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box">
+            <view style="width: 172rpx; height: 66rpx; display: block; box-sizing: border-box" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
                 <view style="display: flex; flex-direction: row; justify-content: space-between; position: relative; left: 0rpx; top: 29rpx">
                     <view class="dish_name">{{itemName.dish_name}}</view>
 
@@ -186,7 +186,7 @@
 
             </view>
         </view>
-        <view class="dish_text">
+        <view class="dish_text" bindtap="switchToDish" id="{{itemName._id}}" data-canteen="{{itemName.dish_canteen}}" data-dish="{{itemName.dish_name}}">
 
             <view class="dish_comment">"{{itemName.dish_comment}}"</view>
         </view>
