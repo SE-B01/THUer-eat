@@ -141,6 +141,7 @@ def get_by_user():
                 "dish": item.dish,
                 "cost": item.cost,
                 "time": item.time,
+                "is_publish": item.is_publish,
                 "user_name": user_info["name"],
                 "user_avatar": user_info["avatar"],
                 "canteen_name": canteen
