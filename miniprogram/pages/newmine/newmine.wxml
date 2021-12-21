@@ -203,7 +203,7 @@
                     <view class="content flex-sub">
                         <view>{{item.user_name}}</view>
                         <view class="text-gray text-sm flex justify-between">
-                            {{item.time}} {{item.canteen_name}}
+                            {{item.time}} {{item.canteen_name}} <text wx:if="{{item.is_publish}}">已发表</text> <text wx:else>未发表</text>
                         </view>
                     </view>
                 </view>
