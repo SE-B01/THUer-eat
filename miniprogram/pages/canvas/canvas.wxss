@@ -13,7 +13,7 @@ page {
 	font-size: 2rem;
 }
 .header-subtitle{
-	color: #999;
+	color: rgb(0, 0, 0);
 }
 
 
@@ -46,7 +46,7 @@ page {
   height: 300px;
   border-radius: inherit;
   background-clip: padding-box;
-  background-color: #1A5599;
+  background-color: #951a99;
 }
 .canvas-element{
   position: relative;
@@ -114,7 +114,7 @@ page {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  color: #4692B9;
+  color: #000000;
   background-color: #DAE3E6;
   line-height: 80px;
   text-align: center;

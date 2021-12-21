@@ -2,7 +2,7 @@
 var qs = require('../../resource/res.js')
 var QC = new require('../../utils/question_control.js')
 var questioncontrol = QC.questionControl
-
+const app = getApp();
 Page({
 
   /**

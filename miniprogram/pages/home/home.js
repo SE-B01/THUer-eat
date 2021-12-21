@@ -174,6 +174,16 @@ Page({
       url: "../plaza/plaza"
     })
   },
+  switchToCanvas: function (e) {
+    wx.navigateTo({
+      url: "../canvas/canvas"
+    })
+  },
+  switchToQuestion: function (e) {
+    wx.navigateTo({
+      url: "../question/question"
+    })
+  },
 
   searchinput: function (e) {
     this.setData({

@@ -1,5 +1,7 @@
 // pages/search/search.js
 //参考https://www.cnblogs.com/gygg/p/12703646.html
+const app = getApp();
+
 Page({
   data: {
     TabCur: 0, //当前选择食堂|菜品
@@ -24,16 +26,16 @@ Page({
   },
   //搜索
   search: function (get_new_lines) {
-    wx.showLoading({
-      title: "加载中",
-      mask: true
-    })
     var get_new_lines = get_new_lines||false;    
     var searchtext = this.data.searchtext; //搜索框的值
     var that = this
     if (searchtext != "") {
       //将搜索框的值赋给历史数组
       this.data.historyArray.push(searchtext);
+      wx.showLoading({
+        title: "加载中",
+        mask: true
+      })
       if (that.data.TabCur == 0) {
         wx.request({
           url: 'http://'+app.globalData.IpAddress + '/canteen/search',
