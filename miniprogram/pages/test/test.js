@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'http://127.0.0.1:5000/get_select_canteens',
+      url: 'http://'+app.globalData.IpAddress + '/get_select_canteens',
       data: {
         distance: 0,
         style: 0,

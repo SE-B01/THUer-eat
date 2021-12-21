@@ -182,7 +182,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://127.0.0.1:5000/getUserId',
+            url: 'http://'+app.globalData.IpAddress + '/getUserId',
             data: {
               code: res.code,
               appid: "wxf14afe0de0f6f4e7"
@@ -235,7 +235,7 @@ Page({
     var that = this
     //console.log('searching')
     wx.request({
-      url: 'http://127.0.0.1:5000/searchUserinfo',
+      url: 'http://'+app.globalData.IpAddress + '/searchUserinfo',
       data: {
         openid: that.data.openid
       },
@@ -294,7 +294,7 @@ Page({
     var that = this
     console.log('inserting')
     wx.request({
-      url: 'http://127.0.0.1:5000/insertUserinfo',
+      url: 'http://'+app.globalData.IpAddress + '/insertUserinfo',
       data: {
         nickName: that.data.nickName,
         avatarUrl: that.data.avatarUrl,
@@ -315,7 +315,7 @@ Page({
   getSelectCanteens: function () {
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/get_select_canteens',
+      url: 'http://'+app.globalData.IpAddress + '/get_select_canteens',
       data: {
         distance: that.data.canteen_select[0],
         style: that.data.canteen_select[1],
@@ -336,7 +336,7 @@ Page({
   getSelectDishes: function () {
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/get_select_dishes',
+      url: 'http://'+app.globalData.IpAddress + '/get_select_dishes',
       data: {
         distance: that.data.dish_select[0]
       },
@@ -393,7 +393,7 @@ Page({
     console.log(e.detail.value)
     console.log(this.data.base64imgList)
     wx.request({
-      url: 'http://127.0.0.1:5000/canteen/add',
+      url: 'http://'+app.globalData.IpAddress + '/canteen/add',
       data: {
         name: e.detail.value.name,
         latitude: this.data.new_canteen_latitude,

@@ -31,7 +31,7 @@ Page({
       var that = this
       if (that.data.TabCur == 0) {
         wx.request({
-          url: 'http://127.0.0.1:5000/canteen/search',
+          url: 'http://'+app.globalData.IpAddress + '/canteen/search',
           data: {
             text: that.data.searchtext
           },
@@ -60,7 +60,7 @@ Page({
         })
       } else {
         wx.request({
-          url: 'http://127.0.0.1:5000/dish/search',
+          url: 'http://'+app.globalData.IpAddress + '/dish/search',
           data: {
             text: that.data.searchtext
           },
