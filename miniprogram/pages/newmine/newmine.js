@@ -4,7 +4,7 @@ const fileManager = wx.getFileSystemManager();
 Page({
   data: {
     is_admin: app.globalData.userInfo.is_admin,
-    TabCur: 2,
+    TabCur: 0,
     tabNav: ['最近浏览', '收藏', '消息','我的评论'],
     dishes: [],
     collection: [],

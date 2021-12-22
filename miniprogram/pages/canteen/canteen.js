@@ -12,8 +12,8 @@ Page({
     longitude : 0.0,
     TabCur: 0,
     scrollLeft: 0,
-    TabName: ["评价", "菜品", "问大家"],
-    TabNumber: [32, 20, 15],
+    TabName: ["评价", "菜品"],
+    TabNumber: [32, 20],
     cardCur: 0,
     buttonColor: {
       title: '木槿',

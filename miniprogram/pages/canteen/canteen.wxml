@@ -119,7 +119,7 @@
 </view>
 <view>
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{2}}" wx:key bindtap="tabSelect" data-id="{{index}}">
       {{TabName[index] + "(" + TabNumber[index] + ")"}}
     </view>
   </scroll-view>
