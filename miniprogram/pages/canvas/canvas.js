@@ -4,7 +4,10 @@ Page({
     awardsList: {},
     animationData: {},
     btnDisabled: '',
-    lotteryList: []
+    lotteryList: [],
+    canteen: '',
+    recommend: [],
+    showRecommend: true
   },
   gotoList: function() {
     wx.redirectTo({
@@ -72,10 +75,28 @@ Page({
       })
       if (awardsConfig.chance) {
         that.setData({
-          btnDisabled: ''
-        })  
+          canteen: (awardsConfig.awards[awardIndex].name),
+          btnDisabled: '',
+          showRecommend: false
+        },
+          wx.request({
+            url: 'http://'+app.globalData.IpAddress + '/recommend_dish',
+            data: {
+              user_id: app.globalData.userInfo.id,
+              canteen_name: (awardsConfig.awards[awardIndex].name)
+            },
+            method: 'GET',
+            success: (res) => {
+             console.log(res.data),
+             that.setData({
+               recommend: res.data.split(',')
+             })
+            }
+          })
+        )
       }
     }, 4000);
+
     
 
     /*wx.request({
