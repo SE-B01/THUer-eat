@@ -11,6 +11,7 @@ import json
 from ..db import db
 import os
 import base64
+import time
 
 appraise = Blueprint('appraise', __name__)
 
@@ -156,13 +157,27 @@ def getAllAppraise():
     暂时按照好评数排序
     之后可能考虑综合从发表时间、好评数排序
     """
-    batch_size = 20 # 每次刷新的条数
+
+    batch_size = 8 # 每次刷新的条数
 
     get_new_lines = request.args.get("get_new_lines")
     now_lines = int(request.args.get("now_lines"))
 
     openid = request.args.get("user_id")
-    appraise_ = Appraise.query.order_by(db.desc(Appraise.like)).all()
+
+    # before_time = time.time()
+
+    #appraise_ = Appraise.query.order_by(db.desc(Appraise.like)).all()
+    if get_new_lines == "false":
+        appraise_paginate = Appraise.query.order_by(db.desc(Appraise.like)).paginate(page=1, per_page = batch_size)
+    else:
+        appraise_paginate = Appraise.query.order_by(db.desc(Appraise.like)).paginate(page=int(now_lines/batch_size)+1, per_page = batch_size, error_out=False)
+    """
+    paginate(参数1，参数2，参数3)=>参数1:当前是第几页；参数2:每页显示几条记录；参数3:是否要返回错误。
+
+    返回的分页对象有三个属性: items:得到查询的结果，pages:得到一共有多少页，page:得到当前页。
+    """
+    appraise_ = appraise_paginate.items
     liked_apprase_ = User.query.filter(User.id == openid).first().liked_appraise
     try:
         #liked_appraise用 ";" 分隔
@@ -178,11 +193,8 @@ def getAllAppraise():
         appraise_info["canteen_name"] = this_canteen
         try:
             appraise_info['img'] = appraise.img_list.split(',')[0]
-
         except:
-
             appraise_info["img"] = []
-
         if appraise_info["anonymous"]:
             appraise_info["avatar"] = "../../images/icons/user-unlogin.png"
             appraise_info["user_name"] = "匿名用户"
@@ -199,13 +211,6 @@ def getAllAppraise():
         else:
             appraise_info['isClick'] = False
         appraise_list.append(appraise_info)
-    
-    if get_new_lines == "false":
-        appraise_list = appraise_list[:batch_size]
-    else:
-        appraise_list = appraise_list[now_lines:now_lines + batch_size]
-
-
     appraise_json = jsonify(appraise_list)
     return appraise_json, 200
 

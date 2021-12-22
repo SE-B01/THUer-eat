@@ -50,6 +50,7 @@ Page({
     var id = app.globalData.openid
     var that = this
     wx.request({
+      //url: 'http://'+app.globalData.IpAddress + '/appraise/get_all',
       url: 'http://'+app.globalData.IpAddress + '/appraise/get_all',
       data: {
         user_id: id,
