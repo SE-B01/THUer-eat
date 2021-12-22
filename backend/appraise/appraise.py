@@ -27,13 +27,25 @@ def appraise_example():
 @appraise.route('/appraise/publish', methods=['GET', 'POST'])
 def publish_appraise():
     data = request.json  # 获取 JOSN 数据
-    # ap：新建一条评价数据
-    ap = Appraise()
+    if data.get("id"):
+        ap = Appraise.query.filter(Appraise.id == data.get("id")).first()
+        tar_map = Appraise_dish_mapping.query.filter(Appraise_dish_mapping.appraise_id == data.get("id")).all()
+        for item in tar_map:
+            db.session.delete(item)
+        img_list = []
+        if ap.img_list:
+            img_list = ap.img_list.split(",")
+        for img in img_list:
+            print(img.split("/")[-1])
+            path = "backend/static/images/" + img.split("/")[-1]
+            if os.path.exists(path):  # 判断文件是否存在
+                os.remove(path)  # 删除文件
+    else:
+        ap = Appraise()
     ap.comment = data.get('comment')
     ap.dish = ""
     for dish in data.get('dish'):
         dish_id = Dish.query.filter(Dish.name == dish, Dish.canteen_id == data.get('canteen_id')).first().id
-        # print(dish_id)
         ad_map = Appraise_dish_mapping()
         ad_map.dish_id = dish_id
         ad_map.user_id = data.get('user_id')
@@ -54,7 +66,7 @@ def publish_appraise():
         file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + 'static/images/' + filename + ','
+        url_list = url_list + 'http://119.29.108.250:5000/static/images/' + filename + ','
     url_list = url_list[:-1]
     ap.img_list = url_list
     ap.user_id = str(data.get('user_id'))
@@ -62,7 +74,8 @@ def publish_appraise():
     ap.canteen_id = data.get('canteen_id')
     ap.anonymous = data.get('anonymous')
     ap.is_publish = data.get('is_publish')
-    db.session.add(ap)
+    if not data.get("id"):
+        db.session.add(ap)
     db.session.commit()
     return "发表成功", 200
 
@@ -81,6 +94,60 @@ def get_canteen_info():
     print(dish_list)
     canteen_info = {'id': ca.id, 'dish': dish_list}
     return canteen_info, 200
+
+@appraise.route('/appraise/get_by_user', methods=['GET', 'POST'])
+def get_by_user():
+    target_user_id = request.args.get('user_id')  # 获取 JOSN 数据
+    ap = Appraise.query.filter(Appraise.user_id == target_user_id).order_by(Appraise.time.desc())
+    ap_list = []
+    for item in ap:
+        canteen = Canteen.query.filter(Canteen.id == item.canteen_id).first().name
+        # print(item)
+        user_info = {}
+        # print(item.user_id)
+        if item.anonymous:
+            user_info["avatar"] = "../../images/icons/user-unlogin.png"
+            user_info["name"] = "匿名用户"
+        else:
+            user = User.query.filter(User.id == item.user_id).first()
+            # print(user.nickname)
+            user_info['avatar'] = user.avatarUrl
+            user_info['name'] = user.nickname
+        img_list = None
+        hidden = False
+        if item.img_list == '':
+            img_list = None
+        else:
+            hidden = True
+            try:
+                img_list = item.img_list.split(',')
+                img_list = img_list[0]
+            except:
+                img_list = item.img_list
+                # img_list = []
+                # img_list.append(item.img_list)
+                pass
+        # print(f'hidden: {hidden}, img_list: {img_list}')
+        ap_list.append(
+            {
+                "id": item.id,
+                "user_id": item.user_id,
+                "anonymous": item.anonymous,
+                "hidden": hidden,
+                "img_list": img_list,
+                "star": item.star,
+                "comment": item.comment,
+                "like": item.like,
+                "dish": item.dish,
+                "cost": item.cost,
+                "time": item.time,
+                "is_publish": item.is_publish,
+                "user_name": user_info["name"],
+                "user_avatar": user_info["avatar"],
+                "canteen_name": canteen
+            })
+    res = {'appraise':ap_list}
+    return res, 200
 
 @appraise.route('/appraise/get_all', methods=['GET', 'POST'])
 def getAllAppraise():
@@ -219,3 +286,52 @@ def changeUserLike():
     
     return "ok", 200
 
+@appraise.route('/appraise/get_by_id', methods=['GET', 'POST'])
+def get_by_id():
+    target_id = request.args.get('id')
+    tar_appraise = Appraise.query.filter(Appraise.id == target_id).first()
+    # ca:餐厅信息
+    ca = Canteen.query.filter(Canteen.id == tar_appraise.canteen_id).first()
+    # di: 菜品列表
+    di = Dish.query.filter(Dish.canteen_id == ca.id)
+    dish_list = []
+    chosen_dish = []
+    if tar_appraise.dish:
+        chosen_dish = tar_appraise.dish.split(",")
+    for dish in di:
+        if dish.name in chosen_dish:
+            dish_list.append([dish.name, 1, "purple"])
+        else:
+            dish_list.append([dish.name, 0, "gray"])
+    imgList = []
+    if tar_appraise.img_list:
+        imgList = tar_appraise.img_list.split(",")
+    base64imgList = []
+    for img in imgList:
+        with open("backend/static/images/"+img.split("/")[-1], 'rb') as f:
+            base64_data = base64.b64encode(f.read())
+            s = base64_data.decode()
+            print(s[0:5])
+            base64imgList.append(s)
+    res = {'id': ca.id, 'dish': dish_list, 'name': ca.name, "comment": tar_appraise.comment, "star": tar_appraise.star, "anonymous": tar_appraise.anonymous, "cost": tar_appraise.cost, "chosen_dish": chosen_dish, "imgList":imgList, "base64imgList": base64imgList}
+    return res, 200
+
+@appraise.route('/appraise/delete', methods=['GET', 'POST'])
+def delete_apprise():
+    target_id = request.args.get('id')
+    print(target_id)
+    tar_ap = Appraise.query.filter(Appraise.id == target_id).first()
+    img_list = []
+    if tar_ap.img_list:
+        img_list = tar_ap.img_list.split(",")
+    for img in img_list:
+        print(img.split("/")[-1])
+        path = "backend/static/images/"+img.split("/")[-1]
+        if os.path.exists(path):  # 判断文件是否存在
+            os.remove(path)  # 删除文件
+    tar_map = Appraise_dish_mapping.query.filter(Appraise_dish_mapping.appraise_id == target_id).all()
+    for data in tar_map:
+        db.session.delete(data)
+    db.session.delete(tar_ap)
+    db.session.commit()
+    return target_id, 200
