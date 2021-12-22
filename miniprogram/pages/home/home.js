@@ -211,9 +211,7 @@ Page({
               //这里没有传appsecret，放在后端了
             },
             success: function(res){
-              //console.log('openid_res')
-              //console.log(res)
-              //console.log(res.data[1])
+
               that.setData({
                 openid: res.data[0].openid,
                 newuser: res.data[1]
@@ -339,6 +337,7 @@ Page({
     var that = this
     wx.request({
       url: 'http://'+app.globalData.IpAddress + '/get_select_canteens',
+      //url: 'http://127.0.0.1:5000/get_select_canteens',
       data: {
         get_new_lines: get_new_lines,
         now_lines: that.data.canteens.length,

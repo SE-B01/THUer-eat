@@ -1,16 +1,16 @@
 /* pages/appraise/appraise.wxss */
-.appraise_wrapper{
+/* .appraise_wrapper{
   display:flex;
   direction: row;
   justify-content:space-between;
-}
+} */
 
 .appraise_info{
-  max-width: 365rpx;
   border-radius:20rpx;
+  min-height: 40rpx;
   background:white;
   border:2rpx solid rgb(65, 65, 65);
-  margin: 5rpx;
+  margin: 10rpx;
   border-radius: 30rpx;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .appraise_picture{
-  max-width: 335rpx;
+  max-width: 760rpx;
   border-radius: 20rpx;
   margin: 15rpx;
 }
@@ -29,7 +29,6 @@
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-  width: 360rpx;
 }
 .appraise_name{
   color: black;

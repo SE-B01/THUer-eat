@@ -43,7 +43,6 @@ def getUserId():
     res = res.read()
     try:
         res_js = json.loads(res)
-        print('res_jssssssssssssssssssssssss')
         print(res_js)
     except Exception as err:
         return res, 500
