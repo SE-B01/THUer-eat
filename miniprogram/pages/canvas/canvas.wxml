@@ -25,6 +25,12 @@
     <view bindtap="getLottery" class="canvas-btn {{btnDisabled}}">抽签</view>		
   </view>
 
+  <view hidden ="{{showRecommend}}">
+  <text class="header-subtitle"> 为您推荐： </text>
+  <view class="main-container" wx:for="{{recommend}}">
+  <text class="main-rule-item">{{item}}</text>
+  </view>
+</view>
   <!-- <view class="main-container">
     <view class="main-container-rule">
       <text class="main-rule-title">抽签记录</text>
