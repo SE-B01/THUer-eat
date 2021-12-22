@@ -483,6 +483,9 @@ Page({
         })
       }
     })
+    wx.reLaunch({
+      url: "home"
+    })
   },
 
 

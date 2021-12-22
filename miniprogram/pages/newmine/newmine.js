@@ -113,6 +113,9 @@ Page({
         })
       }
     })
+    wx.reLaunch({
+      url: "newmine"
+    })
   },
   storeFeedback(e) {
   console.log(this.data.textareaAValue)

@@ -98,6 +98,9 @@ Page({
         })
       }
     })
+    wx.reLaunch({
+      url: "canteen?canteen=" + this.data.canteen,
+    })
   },
 
 
@@ -197,6 +200,44 @@ Page({
       }
     })
   },
+  onShow: function (options) {
+    var that = this;
+    //console.log(app.globalData)
+    wx.request({
+      url: 'http://'+app.globalData.IpAddress + '/canteen/get',
+      data: {
+        name: this.data.canteen
+        // name: "桃李园-一层"
+      },
+      method: 'GET',
+      success: (res) => {
+        let url_list = res.data.image_list.split(',')
+        let image_list_ = []
+        for(var i = 0; i < url_list.length; i++)
+        {
+          image_list_.push({
+            id: i,
+            type: "image",
+            url: url_list[i]
+          })
+        }
+        this.setData({
+          canteen_id: res.data.id,
+          location: res.data.location,
+          business_hours: res.data.business_hours,
+          starlist: res.data.starlist,
+          cost: res.data.cost,
+          apprise_list: res.data.ap_list,
+          dish_list: res.data.dish_list,
+          latitude:res.data.latitude,
+          longitude:res.data.longitude,
+          swiperList: image_list_,
+          TabNumber: [res.data.ap_list.length, res.data.dish_list.length, 0],
+          is_admin:app.globalData.userInfo.is_admin,
+        })
+      }
+    })
+  },
   editCanteen(e){
     wx.request({
       url: 'http://'+app.globalData.IpAddress + '/canteen/edit',
@@ -217,6 +258,9 @@ Page({
           new_canteen_payment: null
         })
       }
+    })
+    wx.reLaunch({
+      url: "canteen?canteen=" + this.data.canteen,
     })
   },
   switchToComment: function(e) {
