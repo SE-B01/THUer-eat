@@ -71,6 +71,9 @@ Page({
         })
       }
     })
+    wx.reLaunch({
+      url: "dish?dish=" + this.data.dish + '&canteen=' + this.data.canteen,
+    })
   },
   //管理员：上传图片
   // 上传图片
