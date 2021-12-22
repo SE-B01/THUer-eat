@@ -107,7 +107,7 @@ def changeUserinfo():
         file = open(filepath, "wb")
         file.write(base64.b64decode(data.get("imgBase64")))
         file.close()
-        tar_user.avatarUrl = "http://119.29.108.250/static/images/" + filename
+        tar_user.avatarUrl = "http://119.29.108.250:5000/static/images/" + filename
     else:
         print("无新头像")
     db.session.commit()
