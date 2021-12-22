@@ -260,7 +260,7 @@ Page({
       method: 'GET',
       success: (res) => {
         //console.log("get user info")
-        console.log(res.data)
+        //console.log(res.data)
         that.setData({
           userInfo: res.data[0],
           is_admin: res.data[0].is_admin
@@ -287,11 +287,12 @@ Page({
               success: (res) => {
                 console.log("已经调用getUserProfile")
                 //console.log(res)
-                //console.log(res.userInfo.nickName)
+                //console.log(res.userInfo.is_admin)
                 that.setData({
                   nickName: res.userInfo.nickName,
                   avatarUrl: res.userInfo.avatarUrl,
-                  userInfo: res.userInfo
+                  userInfo: res.userInfo,
+                  is_admin: res.userInfo.is_admin
                 })
                 app.globalData.userInfo = res.userInfo
                 console.log('登陆成功')
@@ -563,7 +564,9 @@ Page({
     })
     //加载页面函数
     //that.loadModal()
-
+    that.setData({
+      is_admin: app.globalData.is_admin
+    })
     that.getSelectCanteens()
     that.getSelectDishes()
     //测试：getOpenid
@@ -582,7 +585,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+    console.log(app.globalData.is_admin)
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -590,7 +593,9 @@ Page({
       })
       this.getTabBar().changeFormat()
     }
-
+    this.setData({
+      is_admin: app.globalData.is_admin
+    })
 
   },
 
