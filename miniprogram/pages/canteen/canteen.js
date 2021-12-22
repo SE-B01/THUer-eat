@@ -257,16 +257,23 @@ Page({
     })
   },
   showPath(){
-    let plugin = requirePlugin('routePlan');
-    let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
-    let referer = 'THUer今天吃什么';   //调用插件的app的名称
-    let endPoint = JSON.stringify({  //终点
-        'name': this.data.canteen,
-        'latitude': this.data.latitude,
-        'longitude': this.data.longitude
-    });
-    wx.navigateTo({
-        url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
-    });
+    // let plugin = requirePlugin('routePlan');
+    // let key = 'ALFBZ-ZBXW3-F7M3H-YVUCC-SJBT3-2CBKW';  //使用在腾讯位置服务申请的key
+    // let referer = 'THUer今天吃什么';   //调用插件的app的名称
+    // let endPoint = JSON.stringify({  //终点
+    //     'name': this.data.canteen,
+    //     'latitude': this.data.latitude,
+    //     'longitude': this.data.longitude
+    // });
+    // wx.navigateTo({
+    //   url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    // });
+    wx.openLocation({
+      latitude: this.data.latitude, // 纬度，范围为-90~90，负数表示南纬
+      longitude: this.data.longitude, // 经度，范围为-180~180，负数表示西经
+      scale: 28, // 缩放比例
+      name:this.data.canteen,
+      address:this.data.location
+    })
   }
 })
