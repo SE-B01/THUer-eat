@@ -19,7 +19,8 @@
     </view>
     <text class="cuIcon-shopfill" style="padding-left: 10rpx;" bindtap="switchToCanteen" data-canteen="{{canteen_name}}">{{canteen_name}}</text>
     <view class="appraise_like">
-      <image src='{{isClick?"../../images/icons/like_fill.png":"/../../images/icons/like.png"}}' id="{{id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;border:gray"></image>
+      <image wx:if='{{isClick}}' src="../../images/icons/like_fill.png" id="{{id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;border:gray"></image>
+      <image wx:if='{{!isClick}}'src="../../images/icons/like_gray.png" id="{{id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;border:gray"></image>
       <text style="padding-top: 20rpx;height: 40rpx;text-align: center;">{{like}}</text>
     </view>
   </view>

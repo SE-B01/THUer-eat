@@ -13,7 +13,8 @@
       <text class="appraise_username">{{itemName.user_name}}</text>
     </view>
     <view class="appraise_like">
-      <image src='{{itemName.isClick?"../../images/icons/like_fill.png":"/../../images/icons/like.png"}}' id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
+      <image wx:if='{{itemName.isClick}}' src="../../images/icons/like_fill.png" id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
+      <image wx:if='{{!itemName.isClick}}'src="../../images/icons/like_gray.png" id="{{itemName.id}}" data-idx="{{idx}}" bindtap="likeClick" style="width: 40rpx; height: 40rpx;margin: 10rpx;"></image>
       <text style="padding-top: 20rpx;height: 40rpx;text-align: center;">{{itemName.like}}</text>
     </view>
   </view>
