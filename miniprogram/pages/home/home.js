@@ -204,7 +204,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://'+app.globalData.IpAddress + '/getUserId',
+            url: 'https://'+app.globalData.IpAddress + '/getUserId',
             data: {
               code: res.code,
               appid: "wxf14afe0de0f6f4e7"
@@ -251,7 +251,7 @@ Page({
     var that = this
     //console.log('searching')
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/searchUserinfo',
+      url: 'https://'+app.globalData.IpAddress + '/searchUserinfo',
       data: {
         openid: that.data.openid
       },
@@ -311,7 +311,7 @@ Page({
     var that = this
     console.log('inserting')
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/insertUserinfo',
+      url: 'https://'+app.globalData.IpAddress + '/insertUserinfo',
       data: {
         nickName: that.data.nickName,
         avatarUrl: that.data.avatarUrl,
@@ -337,8 +337,8 @@ Page({
     var get_new_lines = get_new_lines||false; //true：下拉获得更多数据；false：更换筛选条件，重新查询
     var that = this
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_select_canteens',
-      //url: 'http://127.0.0.1:5000/get_select_canteens',
+      url: 'https://'+app.globalData.IpAddress + '/get_select_canteens',
+      //url: 'https://127.0.0.1:5000/get_select_canteens',
       data: {
         get_new_lines: get_new_lines,
         now_lines: that.data.canteens.length,
@@ -384,7 +384,7 @@ Page({
     var get_new_lines = get_new_lines||false;
     var that = this
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_select_dishes',
+      url: 'https://'+app.globalData.IpAddress + '/get_select_dishes',
       data: {
         get_new_lines: get_new_lines,
         now_lines: that.data.dishes.length,
@@ -461,7 +461,7 @@ Page({
     console.log(e.detail.value)
     console.log(this.data.base64imgList)
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/canteen/add',
+      url: 'https://'+app.globalData.IpAddress + '/canteen/add',
       data: {
         name: e.detail.value.name,
         latitude: this.data.new_canteen_latitude,

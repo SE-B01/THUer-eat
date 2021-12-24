@@ -44,7 +44,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/appraise/changeLiked',
+      url: 'https://'+app.globalData.IpAddress + '/appraise/changeLiked',
       data: {
         user_id: app.globalData.openid,
         like_changed: this.data.appraise_id
@@ -68,7 +68,7 @@ Page({
     var appraise_id = appraise_id
     var that = this
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/appraise/get_detail',
+      url: 'https://'+app.globalData.IpAddress + '/appraise/get_detail',
       data: {
         user_id: id,
         appraise_id: appraise_id,

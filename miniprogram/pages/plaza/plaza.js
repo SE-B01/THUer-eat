@@ -50,8 +50,8 @@ Page({
     var id = app.globalData.openid
     var that = this
     wx.request({
-      //url: 'http://'+app.globalData.IpAddress + '/appraise/get_all',
-      url: 'http://'+app.globalData.IpAddress + '/appraise/get_all',
+      //url: 'https://'+app.globalData.IpAddress + '/appraise/get_all',
+      url: 'https://'+app.globalData.IpAddress + '/appraise/get_all',
       data: {
         user_id: id,
         get_new_lines: get_new_lines,
@@ -95,7 +95,7 @@ Page({
     }
       //console.log(like_id)
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/appraise/changeLiked',
+      url: 'https://'+app.globalData.IpAddress + '/appraise/changeLiked',
       data: {
         user_id: app.globalData.openid,
         like_changed: like_id.join(';')

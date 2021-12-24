@@ -36,7 +36,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/canteen/map_get',
+      url: 'https://'+app.globalData.IpAddress + '/canteen/map_get',
       data: {
       },
       method: 'GET',
@@ -82,7 +82,7 @@ Page({
     console.log(e)
     console.log(this.data.markers)
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/canteen/get_byid',
+      url: 'https://'+app.globalData.IpAddress + '/canteen/get_byid',
       data: {
         id: e.markerId
       },
@@ -103,7 +103,7 @@ Page({
   },
   searchCanteen(e) {
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/canteen/search',
+      url: 'https://'+app.globalData.IpAddress + '/canteen/search',
       data: {
         text: e.detail.value,
         get_new_lines: false,

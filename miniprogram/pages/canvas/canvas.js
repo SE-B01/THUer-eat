@@ -80,7 +80,7 @@ Page({
           showRecommend: false
         },
           wx.request({
-            url: 'http://'+app.globalData.IpAddress + '/recommend_dish',
+            url: 'https://'+app.globalData.IpAddress + '/recommend_dish',
             data: {
               user_id: app.globalData.userInfo.id,
               canteen_name: (awardsConfig.awards[awardIndex].name)
