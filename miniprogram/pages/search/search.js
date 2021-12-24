@@ -1,5 +1,5 @@
 // pages/search/search.js
-//参考https://www.cnblogs.com/gygg/p/12703646.html
+//参考httpss://www.cnblogs.com/gygg/p/12703646.html
 const app = getApp();
 
 Page({
@@ -38,7 +38,7 @@ Page({
       })
       if (that.data.TabCur == 0) {
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/canteen/search',
+          url: 'https://'+app.globalData.IpAddress + '/canteen/search',
           data: {
             get_new_lines: get_new_lines,
             now_lines: that.data.canteens.length,
@@ -84,7 +84,7 @@ Page({
         })
       } else {
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/dish/search',
+          url: 'https://'+app.globalData.IpAddress + '/dish/search',
           data: {
             get_new_lines: get_new_lines,
             now_lines: that.data.dishes.length,

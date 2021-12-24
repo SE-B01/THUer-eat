@@ -55,7 +55,7 @@ Page({
     console.log(e.detail.value)
     console.log(this.data.dish_id)
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/dish/edit',
+      url: 'https://'+app.globalData.IpAddress + '/dish/edit',
       data: {
         id: this.data.dish_id,
         name: e.detail.value.name,
@@ -140,7 +140,7 @@ Page({
     }),
     //console.log(app.globalData.userInfo);
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/add_recent_view',
+      url: 'https://'+app.globalData.IpAddress + '/add_recent_view',
 
       data: {
         canteen_name: this.data.canteen,
@@ -153,7 +153,7 @@ Page({
       }
     }),
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/dish/get',
+      url: 'https://'+app.globalData.IpAddress + '/dish/get',
       data: {
         canteen_name: this.data.canteen,
         dish_name: this.data.dish
@@ -196,7 +196,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/add_collection',
+      url: 'https://'+app.globalData.IpAddress + '/add_collection',
       data: {
         user_id: app.globalData.userInfo.id,
         canteen_name: this.data.canteen_name,

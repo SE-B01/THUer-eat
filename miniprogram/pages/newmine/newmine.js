@@ -97,7 +97,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/changeUserinfo',
+      url: 'https://'+app.globalData.IpAddress + '/changeUserinfo',
       data: {
         id: app.globalData.userInfo.id,
         nickname: this.data.new_nickname,
@@ -134,7 +134,7 @@ Page({
     modalName: null
   }),
   wx.request({
-    url: 'http://'+app.globalData.IpAddress + '/new_feedback',
+    url: 'https://'+app.globalData.IpAddress + '/new_feedback',
     data: {
       content: this.data.textareaAValue
     },
@@ -164,7 +164,7 @@ Page({
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/collection_delete',
+          url: 'https://'+app.globalData.IpAddress + '/collection_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             collection_id: e.target.id
@@ -208,7 +208,7 @@ delete_recent_view(e) {
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/recent_view_delete',
+          url: 'https://'+app.globalData.IpAddress + '/recent_view_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             recent_view_id: e.target.id
@@ -240,7 +240,7 @@ remind(e){
     success(res){
       console.log('successfully use the template')
       wx.request({
-        url: 'http://' + globalData.IpAddress +  '/remind_dish',
+        url: 'https://' + globalData.IpAddress +  '/remind_dish',
         data: {
           user_id: app.globalData.userInfo.id,
           dish_id: e.target.id,
@@ -307,7 +307,7 @@ remind(e){
     }
   })
   // wx.request({
-  //   url: 'http://'+app.globalData.IpAddress+'/remind_dish',
+  //   url: 'https://'+app.globalData.IpAddress+'/remind_dish',
   //   data: {
   //     user_id: app.globalData.userInfo.id,
   //     dish_id: e.target.id,
@@ -318,7 +318,7 @@ remind(e){
   //   }
   // })
   // wx.request({
-  //   url: 'http://'+app.globalData.IpAddress+'/getAccessToken',
+  //   url: 'https://'+app.globalData.IpAddress+'/getAccessToken',
   //   success: (res) => {
   //     console.log(res.data)
   //   }
@@ -357,7 +357,7 @@ delete_information(e) {
       if (res.confirm) {
         console.log('用户点击确定 delete_information')
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/information_delete',
+          url: 'https://'+app.globalData.IpAddress + '/information_delete',
           data: {
             user_id: app.globalData.userInfo.id,
             information_id: e.target.id
@@ -391,7 +391,7 @@ delete_appraise(e) {
       if (res.confirm) {
         console.log('用户点击确定')
         wx.request({
-          url: 'http://'+app.globalData.IpAddress + '/appraise/delete',
+          url: 'https://'+app.globalData.IpAddress + '/appraise/delete',
           data: {
             id: e.target.id
           },
@@ -436,7 +436,7 @@ switchToComment: function(e) {
       is_admin:app.globalData.userInfo.is_admin
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
+      url: 'https://'+app.globalData.IpAddress + '/get_recent_view',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -450,8 +450,8 @@ switchToComment: function(e) {
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_collection',
-      // url: 'http://127.0.0.1:5000/get_collection',
+      url: 'https://'+app.globalData.IpAddress + '/get_collection',
+      // url: 'https://127.0.0.1:5000/get_collection',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -465,7 +465,7 @@ switchToComment: function(e) {
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_information',
+      url: 'https://'+app.globalData.IpAddress + '/get_information',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -479,7 +479,7 @@ switchToComment: function(e) {
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/appraise/get_by_user',
+      url: 'https://'+app.globalData.IpAddress + '/appraise/get_by_user',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -523,7 +523,7 @@ switchToComment: function(e) {
       this.getTabBar().changeFormat()
     }
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_collection',
+      url: 'https://'+app.globalData.IpAddress + '/get_collection',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -537,7 +537,7 @@ switchToComment: function(e) {
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_recent_view',
+      url: 'https://'+app.globalData.IpAddress + '/get_recent_view',
       data: {
         user_id: app.globalData.userInfo.id
       },
@@ -551,7 +551,7 @@ switchToComment: function(e) {
       }
     })
     wx.request({
-      url: 'http://'+app.globalData.IpAddress + '/get_information',
+      url: 'https://'+app.globalData.IpAddress + '/get_information',
       data: {
         user_id: app.globalData.userInfo.id
       },

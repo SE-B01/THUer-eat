@@ -19,7 +19,7 @@ Page({
     // 保存评论 
     save(e) {
         wx.request({
-            url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
+            url: 'https://'+app.globalData.IpAddress + '/appraise/publish',
             data: {
                 id: this.data.id,
                 canteen_id: this.data.canteen.id,
@@ -51,7 +51,7 @@ Page({
     // 发表评论
     publish(e) {
         wx.request({
-            url: 'http://'+app.globalData.IpAddress + '/appraise/publish',
+            url: 'https://'+app.globalData.IpAddress + '/appraise/publish',
             data: {
                 id: this.data.id,
                 canteen_id: this.data.canteen.id,
@@ -227,7 +227,7 @@ Page({
                 ['appraise.user_id']: app.globalData.userInfo.id
             })
             wx.request({
-                url: 'http://'+app.globalData.IpAddress + '/appraise/get',
+                url: 'https://'+app.globalData.IpAddress + '/appraise/get',
                 data: {
                     canteen_name: this.data.canteen.name
                 },
@@ -243,7 +243,7 @@ Page({
         }
         else if(options.id){
             wx.request({
-                url: 'http://'+app.globalData.IpAddress + '/appraise/get_by_id',
+                url: 'https://'+app.globalData.IpAddress + '/appraise/get_by_id',
                 data: {
                     id: options.id
                 },
