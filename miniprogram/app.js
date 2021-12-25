@@ -22,7 +22,7 @@ App({
       is_admin: false,
       userInfo: {},
       user: {},
-      IpAddress:'119.29.108.250:5000'
+      IpAddress:'thuer-eat.whiteffire.cn:5000'
       //IpAddress:'127.0.0.1:5000'
     }
   }
