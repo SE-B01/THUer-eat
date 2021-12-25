@@ -255,35 +255,6 @@ Page({
     })
   },
 
-  addCanteen(e) {
-    console.log(e.detail.value)
-    console.log(this.data.base64imgList)
-    wx.request({
-      url: 'https://'+app.globalData.IpAddress + '/canteen/add',
-      data: {
-        name: e.detail.value.name,
-        latitude: this.data.new_canteen_latitude,
-        longitude: this.data.new_canteen_longitude,
-        location: e.detail.value.location,
-        business_hours: e.detail.value.time,
-        payment: e.detail.value.payment,
-        img: this.data.base64imgList
-      },
-      method: 'POST',
-      success: (res) => {
-        this.setData({
-          modalName: null,
-          imgList: [],
-          base64imgList: [],
-          new_canteen_latitude: null,
-          new_canteen_longitude: null,
-          new_canteen_payment: null
-        })
-      }
-    })
-  },
-
-
   //管理员：上传图片
   // 上传图片
   ChooseImage() {
