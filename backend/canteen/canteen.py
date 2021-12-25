@@ -51,7 +51,7 @@ def edit_canteen():
         file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + "http://119.29.108.250:5000/static/images/" + filename + ","
+        url_list = url_list + "https://thuer-eat.whiteffire.cn:5000/static/images/" + filename + ","
     url_list = url_list[:-1]
     canteen.img = url_list
     db.session().commit()
@@ -309,7 +309,7 @@ def add_canteen():
         file = open(filepath, "wb")
         file.write(base64.b64decode(img))
         file.close()
-        url_list = url_list + "http://119.29.108.250:5000/static/images/" + filename + ","
+        url_list = url_list + "https://thuer-eat.whiteffire.cn:5000/static/images/" + filename + ","
     url_list = url_list[:-1]
     new_canteen.img = url_list
     db.session.add(new_canteen)

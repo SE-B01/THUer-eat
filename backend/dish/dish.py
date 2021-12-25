@@ -156,7 +156,7 @@ def add_dish():
     file = open(filepath, "wb")
     file.write(base64.b64decode(img))
     file.close()
-    new_dish.img = "http://119.29.108.250:5000/static/images/" + filename
+    new_dish.img = "https://thuer-eat.whiteffire.cn:5000/static/images/" + filename
     new_dish.user_id = 0
     new_dish.comment = ""
     db.session.add(new_dish)
@@ -177,7 +177,7 @@ def edit_dish():
     file = open(filepath, "wb")
     file.write(base64.b64decode(img))
     file.close()
-    tar_dish.img = "http://119.29.108.250:5000/static/images/" + filename
+    tar_dish.img = "https://thuer-eat.whiteffire.cn:5000/static/images/" + filename
     db.session.commit()
     return "ok", 200
 
